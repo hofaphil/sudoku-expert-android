@@ -3,103 +3,96 @@ package com.aol.philipphofer.logic;
 import android.content.Context;
 import android.net.Uri;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.aol.philipphofer.sudoku.Block;
 import com.aol.philipphofer.sudoku.Sudoku;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import org.json.JSONObject;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.zip.DataFormatException;
 
 class ShareClass {
 
-    static void share(Sudoku sudoku, File file) {
-        try (BufferedWriter w = new BufferedWriter(new FileWriter(file))) {
-            w.write("$SUDOKU_DOCUMENT" + "\n");
-            w.write(MainActivity.DIFFICULTY + "\n");
-            for (int i = 0; i < 9; i++) {
-                String line = "";
-                for (int a = 0; a < 3; a++)
-                    for (int b = 0; b < 3; b++)
-                        line = line + sudoku.getSudoku()[i].getNumbers()[a][b];
-                line = line + "\n";
-                w.write(line);
-            }
 
-            for (int i = 0; i < 9; i++) {
-                String line = "";
-                for (int a = 0; a < 3; a++)
-                    for (int b = 0; b < 3; b++)
-                        line = line + sudoku.getSolution()[i].getNumbers()[a][b];
-                line = line + "\n";
-                w.write(line);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    static void share(Sudoku sudoku, Context context) throws Exception {
+        JSONObject o = new JSONObject();
+        o.put("difficulty", MainActivity.DIFFICULTY);
+
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < 9; i++)
+            for (int a = 0; a < 3; a++)
+                for (int b = 0; b < 3; b++)
+                    s.append(sudoku.getSudoku()[i].getNumbers()[a][b]);
+
+        o.put("sudoku", s.toString());
+
+        StringBuilder sol = new StringBuilder();
+        for (int i = 0; i < 9; i++)
+            for (int a = 0; a < 3; a++)
+                for (int b = 0; b < 3; b++)
+                    sol.append(sudoku.getSolution()[i].getNumbers()[a][b]);
+
+        o.put("solution", sol.toString());
+
+        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, "http://192.168.2.102:8080",
+                o,
+                r -> {
+                },
+                e -> {
+                });
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(postRequest);
     }
 
-    static Sudoku load(Uri uri, Context context) throws DataFormatException, IOException {
-        if(uri == null)
+    static Sudoku load(Uri uri) throws Exception {
+        if (uri == null)
             throw new DataFormatException();
 
-        File file = null;
-        Sudoku sudoku;
+        Sudoku sudoku = new Sudoku(4);
 
-        if (uri.getScheme().equals("file")) {
-            String fileName = uri.getEncodedPath();
-            file = new File(fileName);
-        } else if (!uri.getScheme().equals("content"))
-            throw new DataFormatException();
+        InputStream input = new URL(uri.toString()).openStream();
+        Map<String, String> data = new Gson().fromJson(new InputStreamReader(input, StandardCharsets.UTF_8),
+                new TypeToken<Map<String, String>>() {
+                }.getType());
 
-        InputStream inputStream;
-        if (file != null)
-            inputStream = new FileInputStream(file);
-        else
-            inputStream = context.getContentResolver().openInputStream(uri);
+        //TODO check if data is correct
 
-        try (BufferedReader r = new BufferedReader(new InputStreamReader(inputStream))) {
-            sudoku = new Sudoku(4);
+        StartActivity.difficulty = Integer.parseInt(data.get("difficulty"));
 
-            if (!r.readLine().equals("$SUDOKU_DOCUMENT"))
-                throw new DataFormatException();
-
-            StartActivity.difficulty = Integer.parseInt(r.readLine());
-
-            Block[] block = new Block[9];
-            int[][] numbers = new int[3][3];
-            for (int i = 0; i < 9; i++) {
-                String line = r.readLine();
-                int k = 0;
-                for (int a = 0; a < 3; a++)
-                    for (int b = 0; b < 3; b++)
-                        numbers[a][b] = Integer.parseInt(String.valueOf(line.charAt(k++)));
-                block[i] = new Block();
-                block[i].setNumbers(numbers);
-            }
-            sudoku.setSudoku(block);
-
-            block = new Block[9];
-            numbers = new int[3][3];
-            for (int i = 0; i < 9; i++) {
-                String line = r.readLine();
-                int k = 0;
-                for (int a = 0; a < 3; a++)
-                    for (int b = 0; b < 3; b++)
-                        numbers[a][b] = Integer.parseInt(String.valueOf(line.charAt(k++)));
-                block[i] = new Block();
-                block[i].setNumbers(numbers);
-            }
-            sudoku.setSolution(block);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        Block[] block = new Block[9];
+        int[][] numbers = new int[3][3];
+        int k = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int a = 0; a < 3; a++)
+                for (int b = 0; b < 3; b++)
+                    numbers[a][b] = Character.getNumericValue(data.get("sudoku").charAt(k++));
+            block[i] = new Block();
+            block[i].setNumbers(numbers);
         }
+        sudoku.setSudoku(block);
+
+        block = new Block[9];
+        numbers = new int[3][3];
+        k = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int a = 0; a < 3; a++)
+                for (int b = 0; b < 3; b++)
+                    numbers[a][b] = Character.getNumericValue(data.get("solution").charAt(k++));
+            block[i] = new Block();
+            block[i].setNumbers(numbers);
+        }
+        sudoku.setSolution(block);
 
         return sudoku;
     }

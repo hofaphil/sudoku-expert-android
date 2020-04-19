@@ -1,7 +1,6 @@
 package com.aol.philipphofer.logic;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
@@ -22,11 +21,6 @@ import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.persistence.Data;
 import com.aol.philipphofer.sudoku.Sudoku;
 import com.google.android.gms.ads.AdView;
-
-import java.io.File;
-import java.io.IOException;
-
-import static androidx.core.content.FileProvider.getUriForFile;
 
 public class MainActivity extends CustomActivity {
 
@@ -621,26 +615,10 @@ public class MainActivity extends CustomActivity {
     }
 
     public void share() {
-        File path = new File(this.getFilesDir(), "shared/");
-        path.mkdir();
-        File file = new File(path, "shared.sudoku");
         try {
-            file.createNewFile();
-        } catch (IOException e) {
+            ShareClass.share(sudoku, this);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        Uri contentUri = getUriForFile(this, "com.aol.philipphofer.fileprovider", file);
-
-        if (file.exists()) {
-            ShareClass.share(sudoku, file);
-
-            Intent intentShareFile = new Intent(Intent.ACTION_SEND);
-            intentShareFile.setType("application/vnd.sudoku");
-            intentShareFile.putExtra(Intent.EXTRA_STREAM, contentUri);
-            intentShareFile.putExtra(Intent.EXTRA_SUBJECT, "A Sudoku Game For You");
-            intentShareFile.putExtra(Intent.EXTRA_TEXT, "You got challenged by a friend...");
-            startActivity(Intent.createChooser(intentShareFile, "Share this Sudoku..."));
-        } else
-            System.out.println("file does not exist");
     }
 }

@@ -13,331 +13,232 @@
 11    <uses-permission android:name="com.android.vending.BILLING" />
 11-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:5:5-67
 11-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:5:22-64
-12    <!-- Include required permissions for Google Mobile Ads to run -->
-13    <uses-permission android:name="android.permission.INTERNET" />
-13-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:23:5-67
-13-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:23:22-64
-14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-14-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:24:5-79
-14-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:24:22-76
-15    <uses-permission android:name="android.permission.WAKE_LOCK" />
-15-->[com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:25:5-68
-15-->[com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:25:22-65
-16
-17    <application
-17-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:6:5-135:19
-18        android:allowBackup="true"
-18-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:7:9-35
-19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/65aa9efd5ac59e607457eb12354be1a7/core-1.1.0/AndroidManifest.xml:24:18-86
-20        android:debuggable="true"
-21        android:icon="@mipmap/ic_launcher"
-21-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:8:9-43
-22        android:label="@string/app_name"
-22-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:9:9-41
-23        android:roundIcon="@mipmap/ic_launcher_round"
-23-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:10:9-54
-24        android:supportsRtl="true"
-24-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:11:9-35
-25        android:theme="@style/AppTheme" >
-25-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:12:9-40
-26        <meta-data
-26-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:14:9-16:47
-27            android:name="com.google.android.gms.ads.APPLICATION_ID"
-27-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:15:13-69
-28            android:value="@string/adMob_ID" />
-28-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:16:13-45
-29
-30        <provider
-30-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:17:9-25:20
-31            android:name="androidx.core.content.FileProvider"
-31-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:18:13-62
-32            android:authorities="com.aol.philipphofer.fileprovider"
-32-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:19:13-68
-33            android:exported="false"
-33-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:20:13-37
-34            android:grantUriPermissions="true" >
-34-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:21:13-47
-35            <meta-data
-35-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:22:13-24:53
-36                android:name="android.support.FILE_PROVIDER_PATHS"
-36-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:23:17-67
-37                android:resource="@xml/filepaths" />
-37-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:24:17-50
-38        </provider>
-39
-40        <activity
-40-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:26:9-85:20
-41            android:name="com.aol.philipphofer.logic.StartActivity"
-41-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:27:13-48
-42            android:launchMode="singleTask"
-42-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:29:13-44
-43            android:screenOrientation="portrait"
-43-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:28:13-49
-44            android:theme="@style/SplashTheme" >
-44-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:30:13-47
-45            <intent-filter>
-45-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:31:13-34:29
-46                <action android:name="android.intent.action.MAIN" />
-46-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:32:17-69
-46-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:32:25-66
-47
-48                <category android:name="android.intent.category.LAUNCHER" />
-48-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:17-77
-48-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:27-74
-49            </intent-filter>
-50                android:name="com.aol.philipphofer" >
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:6:5-66
+12-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:6:22-64
+13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+13-->[com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:24:5-79
+13-->[com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:24:22-76
+14    <uses-permission android:name="android.permission.WAKE_LOCK" />
+14-->[com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:25:5-68
+14-->[com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:25:22-65
+15
+16    <application
+16-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:7:5-95:19
+17        android:allowBackup="true"
+17-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:8:9-35
+18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+18-->[androidx.core:core:1.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/65aa9efd5ac59e607457eb12354be1a7/core-1.1.0/AndroidManifest.xml:24:18-86
+19        android:debuggable="true"
+20        android:icon="@mipmap/ic_launcher"
+20-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:9:9-43
+21        android:label="@string/app_name"
+21-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:10:9-41
+22        android:roundIcon="@mipmap/ic_launcher_round"
+22-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:11:9-54
+23        android:supportsRtl="true"
+23-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:12:9-35
+24        android:testOnly="true"
+25        android:theme="@style/AppTheme"
+25-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:14:9-40
+26        android:usesCleartextTraffic="true" >
+26-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:13:9-44
+27        <meta-data
+27-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:16:9-18:47
+28            android:name="com.google.android.gms.ads.APPLICATION_ID"
+28-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:17:13-69
+29            android:value="@string/adMob_ID" />
+29-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:18:13-45
+30
+31        <provider
+31-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:19:9-27:20
+32            android:name="androidx.core.content.FileProvider"
+32-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:20:13-62
+33            android:authorities="com.aol.philipphofer.fileprovider"
+33-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:21:13-68
+34            android:exported="false"
+34-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:22:13-37
+35            android:grantUriPermissions="true" >
+35-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:23:13-47
+36            <meta-data
+36-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:24:13-26:53
+37                android:name="android.support.FILE_PROVIDER_PATHS"
+37-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:25:17-67
+38                android:resource="@xml/filepaths" />
+38-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:26:17-50
+39        </provider>
+40
+41        <activity
+41-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:28:9-45:20
+42            android:name="com.aol.philipphofer.logic.StartActivity"
+42-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:29:13-48
+43            android:launchMode="singleTask"
+43-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:31:13-44
+44            android:screenOrientation="portrait"
+44-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:30:13-49
+45            android:theme="@style/SplashTheme" >
+45-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:32:13-47
+46            <intent-filter>
+46-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:13-36:29
+47                <action android:name="android.intent.action.MAIN" />
+47-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:34:17-69
+47-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:34:25-66
+48
+49                <category android:name="android.intent.category.LAUNCHER" />
+49-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:35:17-77
+49-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:35:27-74
+50            </intent-filter>
 51            <intent-filter>
-51-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:37:17-45:33
-52                <action android:name="android.intent.action.VIEW" />
-52-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:21-73
-52-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:29-70
-53
-54                <category android:name="android.intent.category.DEFAULT" />
-54-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:21-80
-54-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:31-77
-55                <category android:name="android.intent.category.BROWSABLE" />
-55-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:40:21-82
-55-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:40:31-79
-56                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
-57                <data
-57-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-58                    android:host="share.sudoku.com"
-58-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:43:25-56
-59                    android:scheme="http" />
-59-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:27-48
-60                <!-- note that the leading "/" is required for pathPrefix -->
-61            </intent-filter>
-62            <intent-filter>
-62-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:46:17-53:33
-63                <action android:name="android.intent.action.VIEW" />
-63-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:21-73
-63-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:29-70
-64
-65                <category android:name="android.intent.category.DEFAULT" />
-65-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:21-80
-65-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:31-77
-66                <category android:name="android.intent.category.BROWSABLE" />
-66-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:40:21-82
-66-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:40:31-79
-67                <!-- Accepts URIs that begin with "example://gizmos” -->
-68                <data
-68-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-69                    android:host="share"
-69-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:43:25-56
-70                    android:scheme="sudoku" />
-70-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:27-48
-71            </intent-filter>
-72            <intent-filter>
-72-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:55:13-58:29
-73                <data android:scheme="share.sudoku.com" />
-73-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-73-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:27-48
-74
-75                <action android:name="android.intent.action.VIEW" />
-75-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:21-73
-75-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:29-70
-76            </intent-filter>
-77            <intent-filter android:label="@string/app_name" >
-77-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:60:13-66:29
-77-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:60:28-60
-78                <action android:name="android.intent.action.VIEW" />
-78-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:21-73
-78-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:29-70
-79
-80                <category android:name="android.intent.category.DEFAULT" />
-80-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:21-80
-80-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:31-77
-81
-82                <data android:scheme="content" />
-82-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-82-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:27-48
-83                <data android:mimeType="*/*" />
-83-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-83-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:64:23-45
-84                <data android:mimeType="application/octet-stream" />
-84-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-84-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:64:23-45
-85            </intent-filter>
-86            <intent-filter android:label="@string/app_name" >
-86-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:68:13-75:29
-86-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:68:28-60
-87                <action android:name="android.intent.action.VIEW" />
-87-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:21-73
-87-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:29-70
-88
-89                <category android:name="android.intent.category.DEFAULT" />
-89-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:21-80
-89-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:31-77
-90
-91                <data android:scheme="content" />
-91-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-91-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:27-48
-92                <data android:host="*" />
-92-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-92-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:43:25-56
-93                <data android:mimeType="text/plain" />
-93-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-93-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:64:23-45
-94                <data android:pathPattern=".*\\.sudoku" />
-94-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-94-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:74:23-56
-95            </intent-filter>
-96            <intent-filter android:label="@string/app_name" >
-96-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:77:13-84:29
-96-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:77:28-60
-97                <action android:name="android.intent.action.VIEW" />
-97-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:21-73
-97-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:29-70
-98
-99                <category android:name="android.intent.category.DEFAULT" />
-99-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:21-80
-99-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:31-77
+51-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:13-44:29
+52                <data
+52-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:17-40:51
+53                    android:host="192.168.2.102"
+53-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:40:21-49
+54                    android:scheme="http" />
+54-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:23-44
+55
+56                <action android:name="android.intent.action.VIEW" />
+56-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:17-69
+56-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:25-66
+57
+58                <category android:name="android.intent.category.BROWSABLE" />
+58-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:17-78
+58-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:27-75
+59                <category android:name="android.intent.category.DEFAULT" />
+59-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:43:17-76
+59-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:43:27-73
+60            </intent-filter>
+61        </activity>
+62        <activity
+62-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:46:9-54:20
+63            android:name="com.aol.philipphofer.logic.MainActivity"
+63-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:47:13-47
+64            android:launchMode="singleTask"
+64-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:49:13-44
+65            android:parentActivityName="com.aol.philipphofer.logic.StartActivity"
+65-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:48:13-62
+66            android:screenOrientation="portrait" >
+66-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:50:13-49
+67            <intent-filter>
+67-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:51:13-53:29
+68                <action android:name="android.intent.action.VIEW" />
+68-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:17-69
+68-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:25-66
+69            </intent-filter>
+70        </activity>
+71        <activity
+71-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:55:9-64:20
+72            android:name="com.aol.philipphofer.gui.NewSudoku"
+72-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:56:13-42
+73            android:launchMode="singleInstance"
+73-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:59:13-48
+74            android:parentActivityName="com.aol.philipphofer.logic.MainActivity"
+74-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:58:13-61
+75            android:theme="@style/Theme.Transparent" >
+75-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:57:13-53
+76            <intent-filter>
+76-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:60:13-63:29
+77                <action android:name="android.intent.action.VIEW" />
+77-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:17-69
+77-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:25-66
+78
+79                <category android:name="android.intent.category.LAUNCHER" />
+79-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:35:17-77
+79-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:35:27-74
+80            </intent-filter>
+81        </activity>
+82        <activity
+82-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:65:9-74:20
+83            android:name="com.aol.philipphofer.gui.EndCard"
+83-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:66:13-40
+84            android:launchMode="singleInstance"
+84-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:68:13-48
+85            android:parentActivityName="com.aol.philipphofer.logic.MainActivity"
+85-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:67:13-61
+86            android:screenOrientation="portrait" >
+86-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:69:13-49
+87            <intent-filter>
+87-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:60:13-63:29
+88                <action android:name="android.intent.action.VIEW" />
+88-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:17-69
+88-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:25-66
+89
+90                <category android:name="android.intent.category.LAUNCHER" />
+90-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:35:17-77
+90-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:35:27-74
+91            </intent-filter>
+92        </activity>
+93        <activity
+93-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:75:9-84:20
+94            android:name="com.aol.philipphofer.gui.Settings"
+94-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:76:13-41
+95            android:launchMode="singleInstance"
+95-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:78:13-48
+96            android:parentActivityName="com.aol.philipphofer.logic.MainActivity"
+96-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:77:13-61
+97            android:screenOrientation="portrait" >
+97-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:79:13-49
+98            <intent-filter>
+98-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:60:13-63:29
+99                <action android:name="android.intent.action.VIEW" />
+99-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:17-69
+99-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:25-66
 100
-101                <data android:scheme="file" />
-101-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-101-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:27-48
-102                <data android:mimeType="text/plain" />
-102-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-102-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:64:23-45
-103                <data android:host="*" />
-103-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-103-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:43:25-56
-104                <data android:pathPattern=".*\\.sudoku" />
-104-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
-104-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:74:23-56
-105            </intent-filter>
-106        </activity>
-107        <activity
-107-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:86:9-94:20
-108            android:name="com.aol.philipphofer.logic.MainActivity"
-108-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:87:13-47
-109            android:launchMode="singleTask"
-109-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:89:13-44
-110            android:parentActivityName="com.aol.philipphofer.logic.StartActivity"
-110-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:88:13-62
-111            android:screenOrientation="portrait" >
-111-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:90:13-49
-112            <intent-filter>
-112-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:91:13-93:29
-113                <action android:name="android.intent.action.VIEW" />
-113-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:21-73
-113-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:29-70
-114            </intent-filter>
-115        </activity>
+101                <category android:name="android.intent.category.LAUNCHER" />
+101-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:35:17-77
+101-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:35:27-74
+102            </intent-filter>
+103        </activity>
+104        <activity
+104-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:85:9-94:20
+105            android:name="com.aol.philipphofer.gui.Statistics"
+105-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:86:13-43
+106            android:launchMode="singleInstance"
+106-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:88:13-48
+107            android:parentActivityName="com.aol.philipphofer.logic.MainActivity"
+107-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:87:13-61
+108            android:screenOrientation="portrait" >
+108-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:89:13-49
+109            <intent-filter>
+109-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:60:13-63:29
+110                <action android:name="android.intent.action.VIEW" />
+110-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:17-69
+110-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:25-66
+111
+112                <category android:name="android.intent.category.LAUNCHER" />
+112-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:35:17-77
+112-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:35:27-74
+113            </intent-filter>
+114        </activity>
+115        <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
 116        <activity
-116-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:95:9-104:20
-117            android:name="com.aol.philipphofer.gui.NewSudoku"
-117-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:96:13-42
-118            android:launchMode="singleInstance"
-118-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:99:13-48
-119            android:parentActivityName="com.aol.philipphofer.logic.MainActivity"
-119-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:98:13-61
-120            android:theme="@style/Theme.Transparent" >
-120-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:97:13-53
-121            <intent-filter>
-121-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:100:13-103:29
-122                <action android:name="android.intent.action.VIEW" />
-122-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:21-73
-122-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:29-70
-123
-124                <category android:name="android.intent.category.LAUNCHER" />
-124-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:17-77
-124-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:27-74
-125            </intent-filter>
-126        </activity>
-127        <activity
-127-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:105:9-114:20
-128            android:name="com.aol.philipphofer.gui.EndCard"
-128-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:106:13-40
-129            android:launchMode="singleInstance"
-129-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:108:13-48
-130            android:parentActivityName="com.aol.philipphofer.logic.MainActivity"
-130-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:107:13-61
-131            android:screenOrientation="portrait" >
-131-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:109:13-49
-132            <intent-filter>
-132-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:100:13-103:29
-133                <action android:name="android.intent.action.VIEW" />
-133-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:21-73
-133-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:29-70
-134
-135                <category android:name="android.intent.category.LAUNCHER" />
-135-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:17-77
-135-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:27-74
-136            </intent-filter>
-137        </activity>
-138        <activity
-138-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:115:9-124:20
-139            android:name="com.aol.philipphofer.gui.Settings"
-139-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:116:13-41
-140            android:launchMode="singleInstance"
-140-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:118:13-48
-141            android:parentActivityName="com.aol.philipphofer.logic.MainActivity"
-141-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:117:13-61
-142            android:screenOrientation="portrait" >
-142-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:119:13-49
-143            <intent-filter>
-143-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:100:13-103:29
-144                <action android:name="android.intent.action.VIEW" />
-144-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:21-73
-144-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:29-70
-145
-146                <category android:name="android.intent.category.LAUNCHER" />
-146-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:17-77
-146-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:27-74
-147            </intent-filter>
-148        </activity>
-149        <activity
-149-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:125:9-134:20
-150            android:name="com.aol.philipphofer.gui.Statistics"
-150-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:126:13-43
-151            android:launchMode="singleInstance"
-151-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:128:13-48
-152            android:parentActivityName="com.aol.philipphofer.logic.MainActivity"
-152-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:127:13-61
-153            android:screenOrientation="portrait" >
-153-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:129:13-49
-154            <intent-filter>
-154-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:100:13-103:29
-155                <action android:name="android.intent.action.VIEW" />
-155-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:21-73
-155-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:29-70
-156
-157                <category android:name="android.intent.category.LAUNCHER" />
-157-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:17-77
-157-->/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:27-74
-158            </intent-filter>
-159        </activity>
-160        <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
-161        <activity
-161-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:29:9-33:64
-162            android:name="com.google.android.gms.ads.AdActivity"
-162-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:30:13-65
-163            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-163-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:31:13-122
-164            android:exported="false"
-164-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:32:13-37
-165            android:theme="@android:style/Theme.Translucent" />
-165-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:33:13-61
-166
-167        <provider
-167-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:35:9-39:39
-168            android:name="com.google.android.gms.ads.MobileAdsInitProvider"
-168-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:36:13-76
-169            android:authorities="com.aol.philipphofer.mobileadsinitprovider"
-169-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:37:13-73
-170            android:exported="false"
-170-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:38:13-37
-171            android:initOrder="100" />
-171-->[com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:39:13-36
-172
-173        <meta-data
-173-->[com.google.android.gms:play-services-basement:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/9d9f28aa6ff0f90122e31014e08eeabd/play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
-174            android:name="com.google.android.gms.version"
-174-->[com.google.android.gms:play-services-basement:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/9d9f28aa6ff0f90122e31014e08eeabd/play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
-175            android:value="@integer/google_play_services_version" />
-175-->[com.google.android.gms:play-services-basement:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/9d9f28aa6ff0f90122e31014e08eeabd/play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
-176    </application>
-177
-178</manifest>
+116-->[com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:29:9-33:64
+117            android:name="com.google.android.gms.ads.AdActivity"
+117-->[com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:30:13-65
+118            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+118-->[com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:31:13-122
+119            android:exported="false"
+119-->[com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:32:13-37
+120            android:theme="@android:style/Theme.Translucent" />
+120-->[com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:33:13-61
+121
+122        <provider
+122-->[com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:35:9-39:39
+123            android:name="com.google.android.gms.ads.MobileAdsInitProvider"
+123-->[com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:36:13-76
+124            android:authorities="com.aol.philipphofer.mobileadsinitprovider"
+124-->[com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:37:13-73
+125            android:exported="false"
+125-->[com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:38:13-37
+126            android:initOrder="100" />
+126-->[com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:39:13-36
+127
+128        <meta-data
+128-->[com.google.android.gms:play-services-basement:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/9d9f28aa6ff0f90122e31014e08eeabd/play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+129            android:name="com.google.android.gms.version"
+129-->[com.google.android.gms:play-services-basement:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/9d9f28aa6ff0f90122e31014e08eeabd/play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+130            android:value="@integer/google_play_services_version" />
+130-->[com.google.android.gms:play-services-basement:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/9d9f28aa6ff0f90122e31014e08eeabd/play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+131    </application>
+132
+133</manifest>

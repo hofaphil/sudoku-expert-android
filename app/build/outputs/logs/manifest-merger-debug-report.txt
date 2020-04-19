@@ -1,15 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-136:12
-INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-136:12
-INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-136:12
-INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-136:12
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-96:12
+INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-96:12
+INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-96:12
+INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-96:12
 MERGED from [com.intuit.sdp:sdp-android:1.0.6] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/91d0e57ac3c10da812301ce4e3918159/sdp-android-1.0.6/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/1ccb8d3327f3cfe30b0d84024a4ff333/appcompat-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-ads:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/d4177be7266b96ac975e4ca66c571965/play-services-ads-18.3.0/AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.volley:volley:1.1.1] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/9c46b8a70ff94dc805e861099cb65f8c/volley-1.1.1/AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android.gms:play-services-ads:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/559f2ac03ac4561f52a6bd144a670ce7/play-services-ads-19.1.0/AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-gass:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/30722ad6c1304f2f5fb296d31c57eb3d/play-services-gass-19.1.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/b370b296ccc419398f5cae1494746152/play-services-ads-identifier-17.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-gass:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/7c97e8c48fe8874f52b5ef308650ec65/play-services-gass-18.3.0/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:17:1-42:12
+MERGED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:17:1-42:12
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:17:1-27:12
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dadf0f8c49e0d7d2f53c445bd62c9c5d/play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-measurement-base:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/246136dcf0d8ff6a108a2f85253baea0/play-services-measurement-base-17.1.0/AndroidManifest.xml:2:1-9:12
@@ -43,21 +44,21 @@ MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/philipphofer/.gradle/
 MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/6003f91bb686117f3e3d0cc755796e74/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/11c9236bf1179c844aacf0c8f643d667/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/c782e6988622e0e9382e630a3dec0420/print-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.gms:play-services-ads-base:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/6695aa44fe6be75ff488d3457b93c6ab/play-services-ads-base-18.3.0/AndroidManifest.xml:2:1-9:12
-INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-136:12
-INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-136:12
-INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-136:12
+MERGED from [com.google.android.gms:play-services-ads-base:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/778cbcadf0e00714e903c2e6fdcfee04/play-services-ads-base-19.1.0/AndroidManifest.xml:2:1-9:12
+INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-96:12
+INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-96:12
+INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-96:12
 	package
 		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:3:5-35
 		INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-136:12
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-96:12
 		INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-136:12
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:1-96:12
 		INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:2:11-69
@@ -65,14 +66,24 @@ uses-permission#com.android.vending.BILLING
 ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:5:5-67
 	android:name
 		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:5:22-64
+uses-permission#android.permission.INTERNET
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:6:5-66
+MERGED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:23:5-67
+	android:name
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:6:22-64
 application
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:6:5-135:19
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:7:5-95:19
+MERGED from [com.android.volley:volley:1.1.1] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/9c46b8a70ff94dc805e861099cb65f8c/volley-1.1.1/AndroidManifest.xml:9:5-20
+MERGED from [com.android.volley:volley:1.1.1] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/9c46b8a70ff94dc805e861099cb65f8c/volley-1.1.1/AndroidManifest.xml:9:5-20
+MERGED from [com.google.android.gms:play-services-gass:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/30722ad6c1304f2f5fb296d31c57eb3d/play-services-gass-19.1.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-gass:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/30722ad6c1304f2f5fb296d31c57eb3d/play-services-gass-19.1.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/b370b296ccc419398f5cae1494746152/play-services-ads-identifier-17.0.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/b370b296ccc419398f5cae1494746152/play-services-ads-identifier-17.0.0/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-gass:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/7c97e8c48fe8874f52b5ef308650ec65/play-services-gass-18.3.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-gass:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/7c97e8c48fe8874f52b5ef308650ec65/play-services-gass-18.3.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:26:5-40:19
-MERGED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:26:5-40:19
+MERGED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:26:5-40:19
+MERGED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:26:5-40:19
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dadf0f8c49e0d7d2f53c445bd62c9c5d/play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dadf0f8c49e0d7d2f53c445bd62c9c5d/play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-measurement-base:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/246136dcf0d8ff6a108a2f85253baea0/play-services-measurement-base-17.1.0/AndroidManifest.xml:7:5-20
@@ -83,158 +94,140 @@ MERGED from [androidx.core:core:1.1.0] /Users/philipphofer/.gradle/caches/transf
 MERGED from [androidx.core:core:1.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/65aa9efd5ac59e607457eb12354be1a7/core-1.1.0/AndroidManifest.xml:24:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/c182b07aafbcc4e83a6d8ed2b22284ab/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/c182b07aafbcc4e83a6d8ed2b22284ab/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
-MERGED from [com.google.android.gms:play-services-ads-base:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/6695aa44fe6be75ff488d3457b93c6ab/play-services-ads-base-18.3.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-ads-base:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/6695aa44fe6be75ff488d3457b93c6ab/play-services-ads-base-18.3.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-ads-base:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/778cbcadf0e00714e903c2e6fdcfee04/play-services-ads-base-19.1.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-ads-base:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/778cbcadf0e00714e903c2e6fdcfee04/play-services-ads-base-19.1.0/AndroidManifest.xml:7:5-20
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/65aa9efd5ac59e607457eb12354be1a7/core-1.1.0/AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:11:9-35
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:12:9-35
 	android:label
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:9:9-41
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:10:9-41
 	android:roundIcon
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:10:9-54
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:11:9-54
 	android:icon
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:8:9-43
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:9:9-43
 	android:allowBackup
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:7:9-35
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:8:9-35
 	android:theme
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:12:9-40
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:14:9-40
+	android:usesCleartextTraffic
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:13:9-44
 meta-data#com.google.android.gms.ads.APPLICATION_ID
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:14:9-16:47
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:16:9-18:47
 	android:value
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:16:13-45
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:18:13-45
 	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:15:13-69
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:17:13-69
 provider#androidx.core.content.FileProvider
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:17:9-25:20
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:19:9-27:20
 	android:grantUriPermissions
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:21:13-47
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:23:13-47
 	android:authorities
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:19:13-68
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:21:13-68
 	android:exported
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:20:13-37
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:22:13-37
 	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:18:13-62
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:20:13-62
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:22:13-24:53
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:24:13-26:53
 	android:resource
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:24:17-50
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:26:17-50
 	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:23:17-67
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:25:17-67
 activity#com.aol.philipphofer.logic.StartActivity
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:26:9-85:20
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:28:9-45:20
 	android:screenOrientation
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:28:13-49
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:30:13-49
 	android:launchMode
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:29:13-44
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:31:13-44
 	android:theme
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:30:13-47
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:32:13-47
 	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:27:13-48
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:29:13-48
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:31:13-34:29
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:13-36:29
 action#android.intent.action.MAIN
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:32:17-69
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:34:17-69
 	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:32:25-66
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:34:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:17-77
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:35:17-77
 	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:33:27-74
-intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:share.sudoku.com+data:scheme:http
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:37:17-45:33
-action#android.intent.action.VIEW
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:21-73
-	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:29-70
-category#android.intent.category.DEFAULT
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:21-80
-	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:31-77
-category#android.intent.category.BROWSABLE
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:40:21-82
-	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:40:31-79
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:35:27-74
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:192.168.2.102+data:scheme:http
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:38:13-44:29
 data
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:21-43:59
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:17-40:51
 	android:host
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:43:25-56
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:40:21-49
 	android:scheme
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:27-48
-	android:pathPattern
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:74:23-56
-	android:mimeType
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:64:23-45
-intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:share+data:scheme:sudoku
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:46:17-53:33
-intent-filter#action:name:android.intent.action.VIEW+data:scheme:share.sudoku.com
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:55:13-58:29
-intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.DEFAULT+data:mimeType:*/*+data:mimeType:application/octet-stream+data:scheme:content
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:60:13-66:29
-	android:label
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:60:28-60
-intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.DEFAULT+data:host:*+data:mimeType:text/plain+data:pathPattern:.*\\.sudoku+data:scheme:content
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:68:13-75:29
-	android:label
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:68:28-60
-intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.DEFAULT+data:host:*+data:mimeType:text/plain+data:pathPattern:.*\\.sudoku+data:scheme:file
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:77:13-84:29
-	android:label
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:77:28-60
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:39:23-44
+action#android.intent.action.VIEW
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:17-69
+	android:name
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:41:25-66
+category#android.intent.category.BROWSABLE
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:17-78
+	android:name
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:42:27-75
+category#android.intent.category.DEFAULT
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:43:17-76
+	android:name
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:43:27-73
 activity#com.aol.philipphofer.logic.MainActivity
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:86:9-94:20
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:46:9-54:20
 	android:screenOrientation
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:90:13-49
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:50:13-49
 	android:parentActivityName
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:88:13-62
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:48:13-62
 	android:launchMode
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:89:13-44
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:49:13-44
 	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:87:13-47
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:47:13-47
 intent-filter#action:name:android.intent.action.VIEW
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:91:13-93:29
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:51:13-53:29
 activity#com.aol.philipphofer.gui.NewSudoku
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:95:9-104:20
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:55:9-64:20
 	android:parentActivityName
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:98:13-61
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:58:13-61
 	android:launchMode
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:99:13-48
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:59:13-48
 	android:theme
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:97:13-53
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:57:13-53
 	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:96:13-42
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:56:13-42
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:100:13-103:29
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:60:13-63:29
 activity#com.aol.philipphofer.gui.EndCard
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:105:9-114:20
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:65:9-74:20
 	android:screenOrientation
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:109:13-49
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:69:13-49
 	android:parentActivityName
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:107:13-61
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:67:13-61
 	android:launchMode
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:108:13-48
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:68:13-48
 	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:106:13-40
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:66:13-40
 activity#com.aol.philipphofer.gui.Settings
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:115:9-124:20
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:75:9-84:20
 	android:screenOrientation
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:119:13-49
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:79:13-49
 	android:parentActivityName
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:117:13-61
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:77:13-61
 	android:launchMode
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:118:13-48
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:78:13-48
 	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:116:13-41
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:76:13-41
 activity#com.aol.philipphofer.gui.Statistics
-ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:125:9-134:20
+ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:85:9-94:20
 	android:screenOrientation
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:129:13-49
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:89:13-49
 	android:parentActivityName
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:127:13-61
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:87:13-61
 	android:launchMode
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:128:13-48
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:88:13-48
 	android:name
-		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:126:13-43
+		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml:86:13-43
 uses-sdk
 INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
@@ -243,14 +236,16 @@ MERGED from [com.intuit.sdp:sdp-android:1.0.6] /Users/philipphofer/.gradle/cache
 MERGED from [com.intuit.sdp:sdp-android:1.0.6] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/91d0e57ac3c10da812301ce4e3918159/sdp-android-1.0.6/AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/1ccb8d3327f3cfe30b0d84024a4ff333/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/1ccb8d3327f3cfe30b0d84024a4ff333/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.gms:play-services-ads:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/d4177be7266b96ac975e4ca66c571965/play-services-ads-18.3.0/AndroidManifest.xml:21:5-23:52
-MERGED from [com.google.android.gms:play-services-ads:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/d4177be7266b96ac975e4ca66c571965/play-services-ads-18.3.0/AndroidManifest.xml:21:5-23:52
+MERGED from [com.android.volley:volley:1.1.1] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/9c46b8a70ff94dc805e861099cb65f8c/volley-1.1.1/AndroidManifest.xml:7:5-43
+MERGED from [com.android.volley:volley:1.1.1] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/9c46b8a70ff94dc805e861099cb65f8c/volley-1.1.1/AndroidManifest.xml:7:5-43
+MERGED from [com.google.android.gms:play-services-ads:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/559f2ac03ac4561f52a6bd144a670ce7/play-services-ads-19.1.0/AndroidManifest.xml:21:5-23:52
+MERGED from [com.google.android.gms:play-services-ads:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/559f2ac03ac4561f52a6bd144a670ce7/play-services-ads-19.1.0/AndroidManifest.xml:21:5-23:52
+MERGED from [com.google.android.gms:play-services-gass:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/30722ad6c1304f2f5fb296d31c57eb3d/play-services-gass-19.1.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-gass:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/30722ad6c1304f2f5fb296d31c57eb3d/play-services-gass-19.1.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/b370b296ccc419398f5cae1494746152/play-services-ads-identifier-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/b370b296ccc419398f5cae1494746152/play-services-ads-identifier-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-gass:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/7c97e8c48fe8874f52b5ef308650ec65/play-services-gass-18.3.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-gass:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/7c97e8c48fe8874f52b5ef308650ec65/play-services-gass-18.3.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dadf0f8c49e0d7d2f53c445bd62c9c5d/play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
@@ -317,12 +312,12 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/11c9236bf1179c844aacf0c8f643d667/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/c782e6988622e0e9382e630a3dec0420/print-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/c782e6988622e0e9382e630a3dec0420/print-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads-base:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/6695aa44fe6be75ff488d3457b93c6ab/play-services-ads-base-18.3.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-ads-base:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/6695aa44fe6be75ff488d3457b93c6ab/play-services-ads-base-18.3.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-base:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/778cbcadf0e00714e903c2e6fdcfee04/play-services-ads-base-19.1.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-base:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/778cbcadf0e00714e903c2e6fdcfee04/play-services-ads-base-19.1.0/AndroidManifest.xml:5:5-44
 INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
 INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
 	tools:overrideLibrary
-		ADDED from [com.google.android.gms:play-services-ads:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/d4177be7266b96ac975e4ca66c571965/play-services-ads-18.3.0/AndroidManifest.xml:23:9-49
+		ADDED from [com.google.android.gms:play-services-ads:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/559f2ac03ac4561f52a6bd144a670ce7/play-services-ads-19.1.0/AndroidManifest.xml:23:9-49
 	android:targetSdkVersion
 		INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
 		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
@@ -331,38 +326,32 @@ INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/Andr
 		INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
 		ADDED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/AndroidManifest.xml
-uses-permission#android.permission.INTERNET
-ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:23:5-67
-	android:name
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:23:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:24:5-79
+ADDED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:24:5-79
 	android:name
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:24:22-76
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:24:22-76
 activity#com.google.android.gms.ads.AdActivity
-ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:29:9-33:64
+ADDED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:29:9-33:64
 	android:exported
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:32:13-37
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:32:13-37
 	android:configChanges
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:31:13-122
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:31:13-122
 	android:theme
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:33:13-61
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:33:13-61
 	android:name
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:30:13-65
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:30:13-65
 provider#com.google.android.gms.ads.MobileAdsInitProvider
-ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:35:9-39:39
+ADDED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:35:9-39:39
 	android:authorities
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:37:13-73
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:37:13-73
 	android:exported
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:38:13-37
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:38:13-37
 	android:initOrder
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:39:13-36
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:39:13-36
 	android:name
-		ADDED from [com.google.android.gms:play-services-ads-lite:18.3.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/94712512d17da07b24f24fc089ea1654/play-services-ads-lite-18.3.0/AndroidManifest.xml:36:13-76
+		ADDED from [com.google.android.gms:play-services-ads-lite:19.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/619799adf873c0098dcafa3d44fed440/play-services-ads-lite-19.1.0/AndroidManifest.xml:36:13-76
 uses-permission#android.permission.WAKE_LOCK
 ADDED from [com.google.android.gms:play-services-measurement-sdk-api:17.1.0] /Users/philipphofer/.gradle/caches/transforms-2/files-2.1/dae85bef5840fd290dd5f05c1d73bf93/play-services-measurement-sdk-api-17.1.0/AndroidManifest.xml:25:5-68
 	android:name
