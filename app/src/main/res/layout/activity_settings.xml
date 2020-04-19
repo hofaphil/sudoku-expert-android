@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent">
+
+    <com.aol.philipphofer.gui.custom.CustomTitleBar
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/settings"
+            style="@style/General.Title"
+            android:layout_toEndOf="@id/backButton"
+            android:text="@string/settings_title" />
+    </com.aol.philipphofer.gui.custom.CustomTitleBar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:background="@color/transparent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/markNumbers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/box">
+
+                <TextView
+                    android:id="@+id/markNumbersTitle"
+                    style="@style/General.Title.Small"
+                    android:text="@string/settings_markNumbers" />
+
+                <TextView
+                    android:id="@+id/markNumbersAnnotations"
+                    style="@style/General.Info"
+                    android:layout_below="@id/markNumbersTitle"
+                    android:text="@string/settings_markNumbersAnnotations" />
+
+                <CheckBox
+                    android:id="@+id/markNumbersSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/markNumbersTitle"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="10dp"
+                    android:buttonTint="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/markLines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/markNumbers"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/box">
+
+                <TextView
+                    android:id="@+id/markLinesTitle"
+                    style="@style/General.Title.Small"
+                    android:text="@string/settings_markLines" />
+
+                <TextView
+                    android:id="@+id/markLinesAnnotations"
+                    style="@style/General.Info"
+                    android:layout_below="@id/markLinesTitle"
+                    android:text="@string/settings_markLinesAnnotations" />
+
+                <CheckBox
+                    android:id="@+id/markLinesSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/markLinesTitle"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="10dp"
+                    android:buttonTint="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/checkNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/markLines"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/box">
+
+                <TextView
+                    android:id="@+id/checkNotesTitle"
+                    style="@style/General.Title.Small"
+                    android:text="@string/settings_checkNotes" />
+
+                <TextView
+                    android:id="@+id/checkNotesAnnotation"
+                    style="@style/General.Info"
+                    android:layout_below="@id/checkNotesTitle"
+                    android:text="@string/settings_checkNotesAnnotations" />
+
+                <CheckBox
+                    android:id="@+id/checkNotesSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/checkNotesTitle"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="10dp"
+                    android:buttonTint="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/powerMode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkNotes"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/box">
+
+                <TextView
+                    android:id="@+id/powerModeTitle"
+                    style="@style/General.Title.Small"
+                    android:text="@string/settings_powerMode" />
+
+                <TextView
+                    android:id="@+id/powerModeAnnotations"
+                    style="@style/General.Info"
+                    android:layout_below="@id/powerModeTitle"
+                    android:text="@string/settings_powerModeAnnotations" />
+
+                <CheckBox
+                    android:id="@+id/powerModeSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/powerModeTitle"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="10dp"
+                    android:buttonTint="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/showErrors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/powerMode"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/box">
+
+                <TextView
+                    android:id="@+id/showErrorsTitle"
+                    style="@style/General.Title.Small"
+                    android:text="@string/settings_showErrors" />
+
+                <TextView
+                    android:id="@+id/showErrorsAnnotations"
+                    style="@style/General.Info"
+                    android:layout_below="@id/showErrorsTitle"
+                    android:text="@string/settings_showErrorsAnnotations" />
+
+                <CheckBox
+                    android:id="@+id/showErrorsSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/showErrorsTitle"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="10dp"
+                    android:buttonTint="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/showTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/showErrors"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/box">
+
+                <TextView
+                    android:id="@+id/showTimeTitle"
+                    style="@style/General.Title.Small"
+                    android:text="@string/settings_showTime" />
+
+                <TextView
+                    android:id="@+id/showTimeAnnotations"
+                    style="@style/General.Info"
+                    android:layout_below="@id/showTimeTitle"
+                    android:text="@string/settings_showTimeAnnotations" />
+
+                <CheckBox
+                    android:id="@+id/showTimeSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/showTimeTitle"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="10dp"
+                    android:buttonTint="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/showTime"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/box">
+
+                <TextView
+                    android:id="@+id/colorTitle"
+                    style="@style/General.Title.Small"
+                    android:text="@string/settings_color" />
+
+                <TextView
+                    android:id="@+id/colorAnnotations"
+                    style="@style/General.Info"
+                    android:layout_below="@id/colorTitle"
+                    android:text="@string/settings_color_annotations" />
+
+                <com.aol.philipphofer.gui.custom.CustomButton
+                    android:id="@+id/colorButton"
+                    style="@style/General.Button"
+                    android:layout_below="@id/colorAnnotations"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:text="@string/settings_color_button" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/support"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/color"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/box">
+
+                <TextView
+                    android:id="@+id/supportTitle"
+                    style="@style/General.Title.Small"
+                    android:text="@string/settings_support" />
+
+                <TextView
+                    android:id="@+id/supportAnnotations"
+                    style="@style/General.Info"
+                    android:layout_below="@id/supportTitle"
+                    android:text="@string/settings_support_annotations" />
+
+                <com.aol.philipphofer.gui.custom.CustomButton
+                    android:id="@+id/supportButton"
+                    style="@style/General.Button"
+                    android:layout_below="@id/supportAnnotations"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:text="@string/settings_support" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/deleteData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/support"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/box">
+
+                <TextView
+                    android:id="@+id/deleteDataTitle"
+                    style="@style/General.Title.Small"
+                    android:text="@string/settings_deleteData" />
+
+                <TextView
+                    android:id="@+id/deleteDataAnnotations"
+                    style="@style/General.Info"
+                    android:layout_below="@id/deleteDataTitle"
+                    android:text="@string/settings_deleteDataAnnotations" />
+
+                <com.aol.philipphofer.gui.custom.CustomButton
+                    android:id="@+id/deleteDataButton"
+                    style="@style/General.Button"
+                    android:layout_below="@id/deleteDataAnnotations"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:text="@string/settings_deleteData" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

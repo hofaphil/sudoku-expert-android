@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="@dimen/statusbar_icon_size"
+    android:height="@dimen/statusbar_icon_size"
+    android:viewportWidth="256"
+    android:viewportHeight="256">
+  <path
+      android:pathData="M27.711,128.001L228.289,128.001"
+      android:strokeWidth="20"
+      android:fillColor="#00000000"
+      android:strokeColor="#000000"/>
+  <path
+      android:pathData="M128,30.115L128,225.886"
+      android:strokeWidth="20"
+      android:fillColor="#00000000"
+      android:strokeColor="#000000"/>
+</vector>

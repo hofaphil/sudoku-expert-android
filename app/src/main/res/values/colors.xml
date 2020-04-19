@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="ic_launcher_background">@color/yellow</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="darkgray">#a9a9a9</color>
+    <color name="dimgray">#bdbdbd</color>
+    <color name="gray">#eeeeee</color>
+    <color name="red">#ff0000</color>
+    <color name="orange">#ed7d31</color>
+    <color name="yellow">#ffcc00</color>
+    <color name="blue">#5b9bd5</color>
+    <color name="green">#70ad47</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- for gamefield -->
+    <color name="selected">@color/yellow</color>
+    <color name="unselected">@color/gray</color>
+    <color name="lightSelected">@color/dimgray</color>
+
+    <color name="lineSelected">@color/lightSelected</color>
+    <color name="lineUnselected">@color/unselected</color>
+    <color name="numSelected">@color/lightSelected</color>
+    <color name="numUnselected">@color/unselected</color>
+    <color name="error">@color/red</color>
+    <color name="unerror">@color/unselected</color>
+
+</resources>
+

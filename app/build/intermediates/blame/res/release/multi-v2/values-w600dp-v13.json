@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/philipphofer/AndroidStudioProjects/Sudoku/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-w600dp-v13/values-w600dp-v13.xml",
+            "map": [
+                {
+                    "source": "/Users/philipphofer/AndroidStudioProjects/Sudoku/app/src/main/res/values-w600dp/dimensions.xml",
+                    "from": {
+                        "startLines": "12,13,19,18,16,17,5,4,2,21,10,9,8",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "432,486,746,688,564,623,164,105,55,807,371,311,251",
+                        "endColumns": "53,55,59,57,58,64,62,58,48,57,59,59,59",
+                        "endOffsets": "481,537,801,741,618,683,222,159,99,860,426,366,306"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,109,165,225,283,342,407,470,529,578,636,696,756",
+                        "endColumns": "53,55,59,57,58,64,62,58,48,57,59,59,59",
+                        "endOffsets": "104,160,220,278,337,402,465,524,573,631,691,751,811"
+                    }
+                }
+            ]
+        }
+    ]
+}

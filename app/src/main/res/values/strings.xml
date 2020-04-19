@@ -1,0 +1,92 @@
+<resources>
+    <item name="isChangeable" type="id"/>
+    <item name="position" type="id"/>
+
+    <string name="app_name">Sudoku</string>
+
+    <!-- Start -->
+    <string name="start_error">Something went wrong while loading! :/</string>
+
+    <!-- StatusBar -->
+    <string name="statusbar_newSudoku">New</string>
+    <string name="statusbar_settings">Settings</string>
+    <string name="statusbar_statistics">statistics</string>
+    <string name="statusbar_errors">%1$d/%2$d Errors</string>
+    <string name="statusbar_share">Share</string>
+
+    <!-- RatingDialog -->
+    <string name="ratingdialog_title">Rate</string>
+    <string name="ratingdialog_info">Do You enjoy playing the Sudoku app?</string>
+    <string name="ratingdialog_rate">Rate</string>
+    <string name="ratingdialog_no">No thanks</string>
+    <string name="ratingdialog_later">Remind me later</string>
+
+    <!-- ConfirmDialog -->
+    <string name="confirmdialog_ok">ok</string>
+    <string name="confirmdialog_cancel">cancel</string>
+
+    <!-- ColorChooserDiaolg -->
+    <string name="cholorchooserdialog_title">Colors</string>
+    <string name="cholorchooserdialog_info">Choose your favorite color</string>
+
+    <!-- NewGame -->
+    <string name="newgame">New Game</string>
+    <string name="beginner">Beginner</string>
+    <string name="advanced">Advanced</string>
+    <string name="expert">Expert</string>
+
+    <!-- EndCard -->
+    <string name="ok">OK</string>
+    <string name="win">You Won</string>
+    <string name="endcard_winannotations">It took you %1$s to solve this one!</string>
+    <string name="endcard_winannotationswithouttime">Nice, you solved this one!</string>
+    <string name="lose">You Lost</string>
+    <string name="endcard_loseannotaions">Too many errors, sry!</string>
+    <string name="endcard_difficulty">Difficulty:\t</string>
+    <string name="endcard_time">Your time:\t</string>
+    <string name="endcard_besttime">Best time:\t</string>
+
+    <!-- Statistics -->
+    <string name="statistics_title">Statistics</string>
+    <string name="statistics_times_played">Times Played:</string>
+    <string name="statistics_average">Average Time:</string>
+    <string name="statistics_best">Best Time:</string>
+    <string name="statistics_beginner">@string/beginner</string>
+    <string name="statistics_advanced">@string/advanced</string>
+    <string name="statistics_expert">@string/expert</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_markNumbers">Mark Numbers</string>
+    <string name="settings_markNumbersAnnotations">Mark the same numbers as the number you have selected</string>
+    <string name="settings_markLines">Mark Lines</string>
+    <string name="settings_markLinesAnnotations">Highlight the row and the column your selected number is in</string>
+    <string name="settings_powerMode">Low Power Mode</string>
+    <string name="settings_powerModeAnnotations">Activate this mode when your battery is low</string>
+    <string name="settings_showErrors">Show Errors</string>
+    <string name="settings_showErrorsAnnotations">Mark wrong numbers and count them, will change in the next game you start</string>
+    <string name="settings_checkNotes">Check Notes</string>
+    <string name="settings_checkNotesAnnotations">Delete your conflicting notes when you insert a new number</string>
+    <string name="settings_showTime">Play with Timer</string>
+    <string name="settings_showTimeAnnotations">See how much time you need for a Sudoku and save it in your statistics, will change in the next game you start</string>
+    <string name="settings_deleteData">Reset</string>
+    <string name="settings_deleteDataAnnotations">Delete all your statistics and reset the app</string>
+    <string name="settings_support">Support</string>
+    <string name="settings_support_annotations">Support the developer, never have any Ads shown again and unlock color options!</string>
+    <string name="settings_support_thanks">Thanks for your support!</string>
+    <string name="settings_support_error">Locked! You need to ba a supporter</string>
+    <string name="settings_color">Color</string>
+    <string name="settings_color_annotations">Change the color of the app</string>
+    <string name="settings_color_button">Choose</string>
+    <string name="settings_confirm">Confirm</string>
+    <string name="settings_confirm_annotations">Are you sure to reset the app?</string>
+
+    <!-- AdMob -->
+    <!-- Testing
+    <string name="adMob_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="adMob_bannerID" translatable="false">ca-app-pub-3940256099942544/6300978111</string>-->
+    <!-- Real-->
+    <string name="adMob_ID" translatable="false">ca-app-pub-1520566370008029~2349557863</string>
+    <string name="adMob_bannerID" translatable="false">ca-app-pub-1520566370008029/2182036907</string>
+
+</resources>

@@ -1,0 +1,4 @@
+#Sun Apr 19 10:44:34 CEST 2020
+base.0=/Users/philipphofer/AndroidStudioProjects/Sudoku/app/build/intermediates/dex/release/mergeDexRelease/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
