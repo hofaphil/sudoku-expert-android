@@ -80,4 +80,7 @@
     <string name="settings_color_button">Ändern</string>
     <string name="settings_confirm">Achtung</string>
     <string name="settings_confirm_annotations">Willst du wirklich die App zurücksetzen?</string>
+
+    <!-- Error -->
+    <string name="error_default">Etwas ist schiefgelaufen, versuche es später noch einmal.</string>
 </resources>

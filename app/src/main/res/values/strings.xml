@@ -22,8 +22,8 @@
     <string name="ratingdialog_later">Remind me later</string>
 
     <!-- ConfirmDialog -->
-    <string name="confirmdialog_ok">ok</string>
-    <string name="confirmdialog_cancel">cancel</string>
+    <string name="confirmdialog_ok">OK</string>
+    <string name="confirmdialog_cancel">Cancel</string>
 
     <!-- ColorChooserDiaolg -->
     <string name="cholorchooserdialog_title">Colors</string>
@@ -80,6 +80,9 @@
     <string name="settings_color_button">Choose</string>
     <string name="settings_confirm">Confirm</string>
     <string name="settings_confirm_annotations">Are you sure to reset the app?</string>
+
+    <!-- Error -->
+    <string name="error_default">Something went wrong, please try again later.</string>
 
     <!-- AdMob -->
     <!-- Testing

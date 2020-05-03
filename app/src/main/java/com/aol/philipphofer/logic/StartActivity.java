@@ -5,31 +5,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.widget.Toast;
 
 import com.aol.philipphofer.R;
+import com.aol.philipphofer.gui.custom.CustomToast;
 import com.aol.philipphofer.persistence.Data;
 import com.aol.philipphofer.sudoku.Sudoku;
 import com.google.android.gms.ads.MobileAds;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.Map;
 
 public class StartActivity extends Activity {
 
-    public static boolean sharedGame = false;
     public static int difficulty;
 
     @Override
@@ -52,9 +36,8 @@ public class StartActivity extends Activity {
         StrictMode.setThreadPolicy(policy);
 
         Intent intent = getIntent();
-        sharedGame = !intent.getAction().equals(Intent.ACTION_MAIN);
 
-        if (sharedGame) {
+        if (!intent.getAction().equals(Intent.ACTION_MAIN)) {
             Uri uri = getIntent().getData();
 
             try {
@@ -67,9 +50,7 @@ public class StartActivity extends Activity {
                 data.saveInt(Data.GAME_TIME, 0);
                 data.setLoadmode(true);
             } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(this, getResources().getString(R.string.start_error), Toast.LENGTH_LONG).show();
-                data.setLoadmode(false); //TODO Error catching
+                new CustomToast(this, getResources().getString(R.string.error_default)).show();
             }
         }
 

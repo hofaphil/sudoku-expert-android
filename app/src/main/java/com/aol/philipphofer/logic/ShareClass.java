@@ -1,17 +1,21 @@
 package com.aol.philipphofer.logic;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.aol.philipphofer.R;
+import com.aol.philipphofer.gui.custom.CustomToast;
 import com.aol.philipphofer.sudoku.Block;
 import com.aol.philipphofer.sudoku.Sudoku;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
@@ -23,8 +27,7 @@ import java.util.zip.DataFormatException;
 
 class ShareClass {
 
-
-    static void share(Sudoku sudoku, Context context) throws Exception {
+    static void share(Sudoku sudoku, Activity context) throws Exception {
         JSONObject o = new JSONObject();
         o.put("difficulty", MainActivity.DIFFICULTY);
 
@@ -44,12 +47,21 @@ class ShareClass {
 
         o.put("solution", sol.toString());
 
-        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, "http://192.168.2.102:8080",
+        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, "http://philipphofer.de/sudoku",
                 o,
                 r -> {
-                },
-                e -> {
-                });
+                    try {
+                        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                        shareIntent.setType("text/plain");
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Sudoku");
+                        String shareMessage = "Your friend wants to challenge you!\n\n";
+                        shareMessage = shareMessage + "http://philipphofer.de/share?id=" + r.getString("id") + "\n";
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                        context.startActivity(Intent.createChooser(shareIntent, "Select"));
+                    } catch (JSONException ignored) {
+                        new CustomToast(context, context.getResources().getString(R.string.error_default)).show();
+                    }
+                }, e -> new CustomToast(context, context.getResources().getString(R.string.error_default)).show());
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(postRequest);
@@ -61,14 +73,20 @@ class ShareClass {
 
         Sudoku sudoku = new Sudoku(4);
 
-        InputStream input = new URL(uri.toString()).openStream();
+        String id = uri.getQueryParameter("id");
+        System.out.println("uri: " + uri + " id: " + id);
+
+        InputStream input = new URL("http://philipphofer.de/sudoku/" + id).openStream();
+        System.out.println("here");
         Map<String, String> data = new Gson().fromJson(new InputStreamReader(input, StandardCharsets.UTF_8),
                 new TypeToken<Map<String, String>>() {
                 }.getType());
 
-        //TODO check if data is correct
+        int difficulty = Integer.parseInt(data.get("difficulty"));
+        if (difficulty < 0 || difficulty > 3)
+            throw new Exception("Difficulty is wrong!");
 
-        StartActivity.difficulty = Integer.parseInt(data.get("difficulty"));
+        StartActivity.difficulty = difficulty;
 
         Block[] block = new Block[9];
         int[][] numbers = new int[3][3];
@@ -87,8 +105,10 @@ class ShareClass {
         k = 0;
         for (int i = 0; i < 9; i++) {
             for (int a = 0; a < 3; a++)
-                for (int b = 0; b < 3; b++)
+                for (int b = 0; b < 3; b++) {
                     numbers[a][b] = Character.getNumericValue(data.get("solution").charAt(k++));
+                    System.out.println(numbers[a][b]);
+                }
             block[i] = new Block();
             block[i].setNumbers(numbers);
         }

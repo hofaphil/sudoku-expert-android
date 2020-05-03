@@ -16,15 +16,7 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/adMob_ID"/>
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.aol.philipphofer.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths" />
-        </provider>
+
         <activity
             android:name=".logic.StartActivity"
             android:screenOrientation="portrait"
@@ -36,8 +28,15 @@
             </intent-filter>
 
             <intent-filter>
+                <data android:scheme="hofer.sudoku.expert" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <intent-filter>
                 <data android:scheme="http"
-                    android:host="192.168.2.102"/>
+                    android:host="philipphofer.de"/>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />

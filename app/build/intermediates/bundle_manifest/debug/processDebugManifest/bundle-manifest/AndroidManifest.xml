@@ -28,16 +28,6 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/adMob_ID" />
 
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.aol.philipphofer.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true" >
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths" />
-        </provider>
-
         <activity
             android:name="com.aol.philipphofer.logic.StartActivity"
             android:launchMode="singleTask"
@@ -49,8 +39,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
+                <data android:scheme="hofer.sudoku.expert" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
                 <data
-                    android:host="192.168.2.102"
+                    android:host="philipphofer.de"
                     android:scheme="http" />
 
                 <action android:name="android.intent.action.VIEW" />

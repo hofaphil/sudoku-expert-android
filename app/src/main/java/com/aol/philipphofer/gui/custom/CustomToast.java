@@ -1,12 +1,11 @@
 package com.aol.philipphofer.gui.custom;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,9 +16,10 @@ public class CustomToast {
 
     private Toast toast;
 
-    public CustomToast(Activity c, String text) {
-        LayoutInflater inflater = c.getLayoutInflater();
-        View layout = inflater.inflate(R.layout.custom_toast, c.findViewById(R.id.layout));
+    public CustomToast(Context c, String text) {
+        LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        @SuppressLint("InflateParams") View layout = inflater.inflate(R.layout.custom_toast, null);
         layout.setBackgroundColor(Color.parseColor(Data.instance(c).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
 
          ((TextView) layout.findViewById(R.id.text)).setText(text);

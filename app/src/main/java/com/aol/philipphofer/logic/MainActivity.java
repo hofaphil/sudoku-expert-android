@@ -15,6 +15,7 @@ import com.aol.philipphofer.gui.Keyboard;
 import com.aol.philipphofer.gui.StatusBar;
 import com.aol.philipphofer.gui.custom.CustomActivity;
 import com.aol.philipphofer.gui.custom.CustomAdLoader;
+import com.aol.philipphofer.gui.custom.CustomToast;
 import com.aol.philipphofer.gui.dialog.RateAppDialog;
 import com.aol.philipphofer.gui.sudoku.SudokuField;
 import com.aol.philipphofer.gui.sudoku.SudokuGrid;
@@ -205,6 +206,7 @@ public class MainActivity extends CustomActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        System.out.println("onPause");;
         for (int i = 0; i < 9; i++)
             for (int a = 0; a < 3; a++)
                 for (int b = 0; b < 3; b++)
@@ -618,7 +620,7 @@ public class MainActivity extends CustomActivity {
         try {
             ShareClass.share(sudoku, this);
         } catch (Exception e) {
-            e.printStackTrace();
+            new CustomToast(this, getResources().getString(R.string.error_default)).show();
         }
     }
 }
