@@ -19,7 +19,6 @@ public class SudokuGrid extends RelativeLayout {
     public GridLayout grid;
     public RelativeLayout layout;
     private ProgressBar progressBar;
-    private boolean loading;
 
     public SudokuGrid(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -43,7 +42,6 @@ public class SudokuGrid extends RelativeLayout {
     }
 
     public void changeBackground(BackgroundMode mode) {
-        loading = false;
         progressBar.setVisibility(INVISIBLE);
         grid.setVisibility(VISIBLE);
 
@@ -55,7 +53,6 @@ public class SudokuGrid extends RelativeLayout {
                 this.setVisibility(INVISIBLE);
                 break;
             case LOADING:
-                loading = true;
                 this.setVisibility(VISIBLE);
                 grid.setVisibility(INVISIBLE);
                 progressBar.setVisibility(VISIBLE);

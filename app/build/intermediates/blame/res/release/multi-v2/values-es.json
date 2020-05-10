@@ -4,23 +4,6 @@
             "outputFile": "/Users/philipphofer/AndroidStudioProjects/Sudoku/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-es/values-es.xml",
             "map": [
                 {
-                    "source": "/Users/philipphofer/.gradle/caches/transforms-2/files-2.1/d4177be7266b96ac975e4ca66c571965/play-services-ads-18.3.0/res/values-es/values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10",
-                        "startColumns": "0,0,0,0,0,0,0",
-                        "startOffsets": "199,270,397,462,528,612,724",
-                        "endColumns": "70,126,64,65,83,111,74",
-                        "endOffsets": "269,396,461,527,611,723,798"
-                    },
-                    "to": {
-                        "startLines": "30,31,32,33,34,35,36",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "3055,3130,3261,3330,3400,3488,3604",
-                        "endColumns": "74,130,68,69,87,115,78",
-                        "endOffsets": "3125,3256,3325,3395,3483,3599,3678"
-                    }
-                },
-                {
                     "source": "/Users/philipphofer/.gradle/caches/transforms-2/files-2.1/65aa9efd5ac59e607457eb12354be1a7/core-1.1.0/res/values-es/values-es.xml",
                     "from": {
                         "startLines": "2",
@@ -35,6 +18,23 @@
                         "startOffsets": "3765",
                         "endColumns": "100",
                         "endOffsets": "3861"
+                    }
+                },
+                {
+                    "source": "/Users/philipphofer/.gradle/caches/transforms-2/files-2.1/559f2ac03ac4561f52a6bd144a670ce7/play-services-ads-19.1.0/res/values-es/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10",
+                        "startColumns": "0,0,0,0,0,0,0",
+                        "startOffsets": "199,270,397,462,528,612,724",
+                        "endColumns": "70,126,64,65,83,111,74",
+                        "endOffsets": "269,396,461,527,611,723,798"
+                    },
+                    "to": {
+                        "startLines": "30,31,32,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "3055,3130,3261,3330,3400,3488,3604",
+                        "endColumns": "74,130,68,69,87,115,78",
+                        "endOffsets": "3125,3256,3325,3395,3483,3599,3678"
                     }
                 },
                 {

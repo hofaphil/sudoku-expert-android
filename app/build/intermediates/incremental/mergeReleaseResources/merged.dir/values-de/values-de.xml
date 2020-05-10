@@ -43,6 +43,7 @@
     <string name="endcard_time">Deine Zeit:\t</string>
     <string name="endcard_winannotations">Du hast %1$s gebraucht, um das Sudoku zu lösen!</string>
     <string name="endcard_winannotationswithouttime">Top, du hast das Sudoku gelöst!</string>
+    <string name="error_default">Etwas ist schiefgelaufen, versuche es später noch einmal.</string>
     <string name="expert">Expert</string>
     <string name="lose">Du verlierst</string>
     <string name="newgame">New Game</string>

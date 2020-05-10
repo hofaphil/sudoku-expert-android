@@ -110,12 +110,10 @@ public class MainActivity extends CustomActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        System.out.println("onStart");
 
         LOADMODE = data.getLoadmode();
 
         if (LOADMODE) {
-            System.out.println("LOADMODE");
 
             setFreeFields(81);
             DIFFICULTY = data.loadInt(Data.GAME_DIFFICULTY);
@@ -146,7 +144,6 @@ public class MainActivity extends CustomActivity {
     protected void onResume() {
         super.onResume();
 
-        System.out.println("onResume");
         LOADMODE = data.getLoadmode();
 
         pause = true;
@@ -156,7 +153,6 @@ public class MainActivity extends CustomActivity {
         //TODO when new game menu open and you open app again, not in pause mode but dialog still shown!
 
         if (!LOADMODE) {
-            System.out.println("no LOADMODE");
 
             setFreeFields(81);
             DIFFICULTY = data.loadInt(Data.GAME_DIFFICULTY);
@@ -172,13 +168,11 @@ public class MainActivity extends CustomActivity {
 
             new Thread(this::heavyLoading).start();
         } else {
-            System.out.println("LOADMODE TIMER");
             getWindow().getDecorView().post(() -> timer.startTimer(data.loadInt(Data.GAME_TIME)));
         }
     }
 
     public void heavyLoading() {
-        System.out.println("HeavyLoading");
 
         sudoku.create(DIFFICULTY);
 
@@ -206,7 +200,6 @@ public class MainActivity extends CustomActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        System.out.println("onPause");;
         for (int i = 0; i < 9; i++)
             for (int a = 0; a < 3; a++)
                 for (int b = 0; b < 3; b++)
@@ -618,7 +611,8 @@ public class MainActivity extends CustomActivity {
 
     public void share() {
         try {
-            ShareClass.share(sudoku, this);
+            sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING);
+            ShareClass.share(sudoku, this, sudokuGrid);
         } catch (Exception e) {
             new CustomToast(this, getResources().getString(R.string.error_default)).show();
         }

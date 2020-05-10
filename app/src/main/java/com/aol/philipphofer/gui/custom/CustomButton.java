@@ -22,7 +22,6 @@ public class CustomButton extends AppCompatButton implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("update");
         setBackgroundColor(Color.parseColor(Data.instance(getContext()).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
     }
 }

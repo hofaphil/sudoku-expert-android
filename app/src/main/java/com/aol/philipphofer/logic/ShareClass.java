@@ -10,6 +10,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomToast;
+import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.sudoku.Block;
 import com.aol.philipphofer.sudoku.Sudoku;
 import com.google.gson.Gson;
@@ -27,7 +28,10 @@ import java.util.zip.DataFormatException;
 
 class ShareClass {
 
-    static void share(Sudoku sudoku, Activity context) throws Exception {
+    private static final String URL = "https://philipphofer.de";
+
+    static void share(Sudoku sudoku, Activity context, SudokuGrid sudokuGrid) throws Exception {
+
         JSONObject o = new JSONObject();
         o.put("difficulty", MainActivity.DIFFICULTY);
 
@@ -47,7 +51,9 @@ class ShareClass {
 
         o.put("solution", sol.toString());
 
-        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, "http://philipphofer.de/sudoku",
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, URL + "/sudoku",
                 o,
                 r -> {
                     try {
@@ -55,15 +61,19 @@ class ShareClass {
                         shareIntent.setType("text/plain");
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Sudoku");
                         String shareMessage = "Your friend wants to challenge you!\n\n";
-                        shareMessage = shareMessage + "http://philipphofer.de/share?id=" + r.getString("id") + "\n";
+                        shareMessage = shareMessage + URL + "/share?id=" + r.getString("id") + "\n";
                         shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
-                        context.startActivity(Intent.createChooser(shareIntent, "Select"));
+                        context.startActivity(Intent.createChooser(shareIntent, "Share your Sudoku"));
+                        sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
                     } catch (JSONException ignored) {
                         new CustomToast(context, context.getResources().getString(R.string.error_default)).show();
+                        sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
                     }
-                }, e -> new CustomToast(context, context.getResources().getString(R.string.error_default)).show());
-
-        RequestQueue queue = Volley.newRequestQueue(context);
+                }, e -> {
+            new CustomToast(context, context.getResources().getString(R.string.error_default)).show();
+            sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
+        }
+        );
         queue.add(postRequest);
     }
 
@@ -74,10 +84,8 @@ class ShareClass {
         Sudoku sudoku = new Sudoku(4);
 
         String id = uri.getQueryParameter("id");
-        System.out.println("uri: " + uri + " id: " + id);
 
-        InputStream input = new URL("http://philipphofer.de/sudoku/" + id).openStream();
-        System.out.println("here");
+        InputStream input = new URL(URL + "/sudoku/" + id).openStream();
         Map<String, String> data = new Gson().fromJson(new InputStreamReader(input, StandardCharsets.UTF_8),
                 new TypeToken<Map<String, String>>() {
                 }.getType());
@@ -107,7 +115,6 @@ class ShareClass {
             for (int a = 0; a < 3; a++)
                 for (int b = 0; b < 3; b++) {
                     numbers[a][b] = Character.getNumericValue(data.get("solution").charAt(k++));
-                    System.out.println(numbers[a][b]);
                 }
             block[i] = new Block();
             block[i].setNumbers(numbers);

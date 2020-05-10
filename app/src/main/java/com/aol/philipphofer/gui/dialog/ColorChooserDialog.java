@@ -38,6 +38,5 @@ public class ColorChooserDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         Data.instance(getContext()).saveString(Data.SETTINGS_COLOR, (String) v.getTag());
         ColorObservable.getInstance().notifyObservers();
-        System.out.println("observers: " + ColorObservable.getInstance().countObservers());
     }
 }

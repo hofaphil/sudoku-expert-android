@@ -6,13 +6,13 @@ android {
         applicationId "com.aol.philipphofer"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 18
-        versionName "2.1.2"
+        versionCode 20
+        versionName "2.2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

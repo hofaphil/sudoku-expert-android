@@ -1784,6 +1784,7 @@ string endcard_loseannotaions
 string endcard_time
 string endcard_winannotations
 string endcard_winannotationswithouttime
+string error_default
 string expert
 string lose
 string newgame

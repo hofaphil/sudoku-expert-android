@@ -1,4 +1,4 @@
-#Sun May 03 14:17:00 CEST 2020
+#Thu May 07 11:32:42 CEST 2020
 base.0=/Users/philipphofer/AndroidStudioProjects/Sudoku/app/build/intermediates/dex/debug/mergeExtDexDebug/out/classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex

@@ -4,6 +4,23 @@
             "outputFile": "/Users/philipphofer/AndroidStudioProjects/Sudoku/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-ml/values-ml.xml",
             "map": [
                 {
+                    "source": "/Users/philipphofer/.gradle/caches/transforms-2/files-2.1/559f2ac03ac4561f52a6bd144a670ce7/play-services-ads-19.1.0/res/values-ml/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10",
+                        "startColumns": "0,0,0,0,0,0,0",
+                        "startOffsets": "199,275,392,462,530,613,719",
+                        "endColumns": "75,116,69,67,82,105,76",
+                        "endOffsets": "274,391,461,529,612,718,795"
+                    },
+                    "to": {
+                        "startLines": "30,31,32,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "3073,3153,3274,3348,3420,3507,3617",
+                        "endColumns": "79,120,73,71,86,109,80",
+                        "endOffsets": "3148,3269,3343,3415,3502,3612,3693"
+                    }
+                },
+                {
                     "source": "/Users/philipphofer/.gradle/caches/transforms-2/files-2.1/65aa9efd5ac59e607457eb12354be1a7/core-1.1.0/res/values-ml/values-ml.xml",
                     "from": {
                         "startLines": "2",
@@ -52,23 +69,6 @@
                         "startOffsets": "105,212,318,429,520,625,747,825,901,992,1084,1185,1279,1380,1474,1569,1668,1759,1850,1931,2040,2144,2243,2355,2467,2588,2753,3698",
                         "endColumns": "106,105,110,90,104,121,77,75,90,91,100,93,100,93,94,98,90,90,80,108,103,98,111,111,120,164,100,81",
                         "endOffsets": "207,313,424,515,620,742,820,896,987,1079,1180,1274,1375,1469,1564,1663,1754,1845,1926,2035,2139,2238,2350,2462,2583,2748,2849,3775"
-                    }
-                },
-                {
-                    "source": "/Users/philipphofer/.gradle/caches/transforms-2/files-2.1/d4177be7266b96ac975e4ca66c571965/play-services-ads-18.3.0/res/values-ml/values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10",
-                        "startColumns": "0,0,0,0,0,0,0",
-                        "startOffsets": "199,275,392,462,530,613,719",
-                        "endColumns": "75,116,69,67,82,105,76",
-                        "endOffsets": "274,391,461,529,612,718,795"
-                    },
-                    "to": {
-                        "startLines": "30,31,32,33,34,35,36",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "3073,3153,3274,3348,3420,3507,3617",
-                        "endColumns": "79,120,73,71,86,109,80",
-                        "endOffsets": "3148,3269,3343,3415,3502,3612,3693"
                     }
                 }
             ]

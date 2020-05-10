@@ -28,7 +28,6 @@ public abstract class CustomActivity extends Activity implements Observer {
         ColorObservable.getInstance().addObserver(this);
         Window window = getWindow();
         window.setStatusBarColor(Color.parseColor(data.loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
-
     }
 
     @Override

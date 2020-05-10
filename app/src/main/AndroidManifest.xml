@@ -35,8 +35,9 @@
             </intent-filter>
 
             <intent-filter>
-                <data android:scheme="http"
-                    android:host="philipphofer.de"/>
+                <data android:scheme="https"
+                    android:host="philipphofer.de"
+                    android:path="/share"/>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
