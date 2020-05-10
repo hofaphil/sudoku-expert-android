@@ -611,7 +611,7 @@ public class MainActivity extends CustomActivity {
 
     public void share() {
         try {
-            ShareClass.share(sudoku, this, sudokuGrid);
+            ShareClass.share(sudoku, this);
         } catch (Exception e) {
             new CustomToast(this, getResources().getString(R.string.error_default)).show();
         }

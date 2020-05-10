@@ -1,6 +1,6 @@
 <resources>
-    <item name="isChangeable" type="id"/>
-    <item name="position" type="id"/>
+    <item name="isChangeable" type="id" />
+    <item name="position" type="id" />
 
     <string name="app_name">Sudoku</string>
 
@@ -80,6 +80,10 @@
     <string name="settings_color_button">Ändern</string>
     <string name="settings_confirm">Achtung</string>
     <string name="settings_confirm_annotations">Willst du wirklich die App zurücksetzen?</string>
+
+    <!-- Share -->
+    <string name="share_title">Teile Dein Sudoku</string>
+    <string name="share_description">Hier ist eine Herausforderung für Dich!</string>
 
     <!-- Error -->
     <string name="error_default">Etwas ist schiefgelaufen, versuche es später noch einmal.</string>

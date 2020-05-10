@@ -85,6 +85,8 @@
     <string name="settings_support_error">Gesperrt! Du musst Supporter sein</string>
     <string name="settings_support_thanks">Danke für deine Unterstützung!</string>
     <string name="settings_title">Einstellungen</string>
+    <string name="share_description">Hier ist eine Herausforderung für Dich!</string>
+    <string name="share_title">Teile Dein Sudoku</string>
     <string name="start_error">Beim Laden ist etwas schiefgelaufen! :/</string>
     <string name="statistics_advanced">@string/advanced</string>
     <string name="statistics_average">Durchschnittszeit:</string>

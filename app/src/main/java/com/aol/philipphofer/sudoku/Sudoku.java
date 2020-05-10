@@ -10,9 +10,6 @@ public class Sudoku {
     private Block[] solution;
     private Block[][] threadBlocks;
     private volatile int solutionFlag;
-    // 0 1 2
-    // 3 4 5
-    // 6 7 8
 
     public Sudoku(int threads) {
         THREADCOUNT = threads;

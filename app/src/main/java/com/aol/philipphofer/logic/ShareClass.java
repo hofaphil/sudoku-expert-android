@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.aol.philipphofer.R;
 import com.aol.philipphofer.logic.help.LinkShorter;
 import com.aol.philipphofer.sudoku.Block;
 import com.aol.philipphofer.sudoku.Sudoku;
@@ -26,10 +27,10 @@ class ShareClass {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Sudoku");
-        String shareMessage = "Your friend wants to challenge you!\n\n";
+        String shareMessage = context.getResources().getString(R.string.share_description) + "\n\n";
         shareMessage = shareMessage + URL + "share?id=" + LinkShorter.getLink(id.toString()) + "\n";
         shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
-        context.startActivity(Intent.createChooser(shareIntent, "Share your Sudoku"));
+        context.startActivity(Intent.createChooser(shareIntent, context.getResources().getString(R.string.share_title)));
     }
 
     static Sudoku load(Uri uri) throws Exception {

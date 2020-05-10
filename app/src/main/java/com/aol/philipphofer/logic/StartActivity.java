@@ -50,7 +50,6 @@ public class StartActivity extends Activity {
                 data.saveInt(Data.GAME_TIME, 0);
                 data.setLoadmode(true);
             } catch (Exception e) {
-                e.printStackTrace();
                 new CustomToast(this, getResources().getString(R.string.error_default)).show();
             }
         }
