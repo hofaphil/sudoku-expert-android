@@ -1826,6 +1826,8 @@ string settings_support_annotations
 string settings_support_error
 string settings_support_thanks
 string settings_title
+string share_description
+string share_title
 string start_error
 string statistics_advanced
 string statistics_average
