@@ -611,7 +611,6 @@ public class MainActivity extends CustomActivity {
 
     public void share() {
         try {
-            sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING);
             ShareClass.share(sudoku, this, sudokuGrid);
         } catch (Exception e) {
             new CustomToast(this, getResources().getString(R.string.error_default)).show();

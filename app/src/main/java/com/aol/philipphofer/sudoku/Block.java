@@ -8,7 +8,7 @@ public class Block {
     private Block[] rowPartner, columnPartner;
     private boolean[] containsNumber;
     private boolean[][] row, column;
-    public int latestDelIndexX = -1, latestDelIndexZ = -1;
+    int latestDelIndexX = -1, latestDelIndexZ = -1;
 
     public Block() {
         numbers = new int[3][3];
@@ -22,22 +22,22 @@ public class Block {
                 numbers[i][j] = 0;
     }
 
-    public Block(Block block) {
+    Block(Block block) {
         this();
         setNumbers(block.getNumbers());
     }
 
-    public void setRowPartner(Block block1, Block block2) {
+    void setRowPartner(Block block1, Block block2) {
         rowPartner[0] = block1;
         rowPartner[1] = block2;
     }
 
-    public void setColumnPartner(Block block1, Block block2) {
+    void setColumnPartner(Block block1, Block block2) {
         columnPartner[0] = block1;
         columnPartner[1] = block2;
     }
 
-    public boolean insert(int number, int row, int column) {
+    boolean insert(int number, int row, int column) {
         if (numbers[row][column] == 0 && !blockConflict(number) && !lineConflict(number, row, column)) {
             numbers[row][column] = number;
             containsNumber[number] = true;
@@ -48,7 +48,7 @@ public class Block {
         return false;
     }
 
-    public boolean insertWithoutBlockConflict(int number, int row, int column) {
+    boolean insertWithoutBlockConflict(int number, int row, int column) {
         if (numbers[row][column] == 0 && !lineConflict(number, row, column)) {
             numbers[row][column] = number;
             containsNumber[number] = true;
@@ -90,7 +90,7 @@ public class Block {
         return this.column[column][number];
     }
 
-    public boolean delete(int number) {
+    boolean delete(int number) {
         if (containsNumber[number]) {
             containsNumber[number] = false;
             for (int i = 0; i < 3; i++)
@@ -109,8 +109,8 @@ public class Block {
         return false;
     }
 
-    public void deleteWithPosition(int number, int row, int column) {
-        if(containsNumber[number]) {
+    void deleteWithPosition(int number, int row, int column) {
+        if (containsNumber[number]) {
             containsNumber[number] = false;
             numbers[row][column] = 0;
             this.row[row][number] = false;
@@ -124,7 +124,7 @@ public class Block {
         return this.numbers;
     }
 
-    public boolean contains(int number) {
+    boolean contains(int number) {
         return containsNumber[number];
     }
 
@@ -143,7 +143,7 @@ public class Block {
 
     @Override
     public boolean equals(Object o) {
-        if(!o.getClass().equals(this.getClass()))
+        if (!o.getClass().equals(this.getClass()))
             return false;
         Block b = (Block) o;
         for (int i = 0; i < 3; i++)
@@ -157,12 +157,12 @@ public class Block {
 
     @Override
     public String toString() {
-        String ret = "";
+        StringBuilder ret = new StringBuilder();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++)
-                ret = ret + numbers[i][j] + " ";
-            ret = ret + "\n";
+                ret.append(numbers[i][j]).append(" ");
+            ret.append("\n");
         }
-        return ret;
+        return ret.toString();
     }
 }

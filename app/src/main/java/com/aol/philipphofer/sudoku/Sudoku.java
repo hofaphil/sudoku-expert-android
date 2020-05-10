@@ -38,7 +38,6 @@ public class Sudoku {
         for (int i = 0; i < 9; i++)
             solution[i] = new Block(blocks[i]);
 
-
         for (int j = 0; j < THREADCOUNT; j++)
             for (int i = 0; i < 9; i++)
                 threadBlocks[j][i].setNumbers(blocks[i].getNumbers());
@@ -90,9 +89,8 @@ public class Sudoku {
                     }
                 }
             }
-            if (solutionFlag == -1) {
+            if (solutionFlag == -1)
                 solutionFlag = threadNumber;
-            }
         }
     }
 
@@ -130,9 +128,8 @@ public class Sudoku {
 
     private boolean checkSolutions(final int index, final int x, final int z, int number, Block[] holderNum) {
         Block[] holder = new Block[9];
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++)
             holder[i] = new Block(holderNum[i]);
-        }
 
         for (int j = 1; j < 10; j++) {
             if (solutionFlag != -1)
@@ -149,7 +146,6 @@ public class Sudoku {
             }
         }
         return true;
-
     }
 
     private boolean solve(Block[] blocks, int number, int block) {
@@ -159,13 +155,11 @@ public class Sudoku {
         if (blocks[block].contains(number))
             return solve(blocks, block == 8 ? number + 1 : number, block == 8 ? 0 : block + 1);
 
-
         int counter = 0;
         boolean ready;
         int r = 0, c = 0;
 
         do {
-            //blocks[block].delete(number);
             blocks[block].deleteWithPosition(number, r, c);
             c = (c + 1) % 3;
             if (c == 0)
@@ -177,7 +171,6 @@ public class Sudoku {
             }
 
             if (counter >= 9) {
-                //blocks[block].delete(number);
                 blocks[block].deleteWithPosition(number, r, c);
                 return false;
             }
@@ -206,23 +199,34 @@ public class Sudoku {
                     r = (r + 1) % 3;
             }
 
-            if (counter >= 9) {
+            if (counter >= 9)
                 return false;
-            }
 
-            if (block == 7) {
+            if (block == 7)
                 ready = generate(number + 1, 1);
-            } else if (block == 3) {
+            else if (block == 3)
                 ready = generate(number, block + 2);
-            } else {
+            else
                 ready = generate(number, block + 1);
-            }
         } while (!ready);
         return true;
     }
 
     public Block[] getSolution() {
         return this.solution;
+    }
+
+    public Block[] getSolution(Block[] sudoku) throws Exception {
+        solutionFlag = -1;
+        Block[] solution = new Block[9];
+        initBlock(solution);
+        for (int i = 0; i < 9; i++)
+            solution[i].setNumbers(sudoku[i].getNumbers());
+
+        if (!solve(solution, 1, 0))
+            throw new Exception("More than one solution");
+
+        return solution;
     }
 
     public void setSolution(Block[] blocks) {
@@ -233,7 +237,7 @@ public class Sudoku {
         return this.blocks;
     }
 
-    public void setSudoku(Block[] blocks){
+    public void setSudoku(Block[] blocks) {
         this.blocks = blocks;
     }
 
