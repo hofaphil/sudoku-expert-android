@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -28,10 +29,11 @@ import java.util.Observer;
 
 public class StatusBar extends RelativeLayout implements Observer {
 
-    private ImageButton settingsButton, newButton, statisticsButton, shareButton;
-    private TextView timeView, errorView, difficultyView;
-    private MainActivity mainActivity;
+    private final ImageButton popupButton, newButton;
+    private final TextView timeView, errorView, difficultyView;
+    private final MainActivity mainActivity;
 
+    @SuppressLint("RestrictedApi")
     public StatusBar(final Context context, AttributeSet attrSet) {
         super(context, attrSet);
 
@@ -42,17 +44,27 @@ public class StatusBar extends RelativeLayout implements Observer {
         findViewById(R.id.layout).setBackgroundColor(Color.parseColor(Data.instance(mainActivity).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
         ColorObservable.getInstance().addObserver(this);
 
-        settingsButton = findViewById(R.id.settingsButton);
-        settingsButton.setOnClickListener((View v) -> {
-            PopupMenu popup = new PopupMenu(context, settingsButton);
+        popupButton = findViewById(R.id.popupButton);
+        popupButton.setOnClickListener((View v) -> {
+            PopupMenu popup = new PopupMenu(context, popupButton);
+            popup.setOnMenuItemClickListener((MenuItem item) -> {
+                Intent intent;
+                if (item.getItemId() == R.id.popup_statistics) {
+                    intent = new Intent(mainActivity, Statistics.class);
+                } else if (item.getItemId() == R.id.popup_share) {
+                    mainActivity.share();
+                    return true;
+                } else {
+                    intent = new Intent(mainActivity, Settings.class);
+                }
+                mainActivity.startActivity(intent);
+                return true;
+            });
             popup.getMenuInflater().inflate(R.menu.popup, popup.getMenu());
 
-            MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popup.getMenu(), settingsButton);
+            @SuppressLint("RestrictedApi") MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popup.getMenu(), popupButton);
             menuHelper.setForceShowIcon(true);
             menuHelper.show();
-
-            //Intent intent = new Intent(mainActivity, Settings.class);
-            //mainActivity.startActivity(intent);
         });
 
 
@@ -62,15 +74,6 @@ public class StatusBar extends RelativeLayout implements Observer {
             mainActivity.sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.TRANSPARENT);
             mainActivity.startActivityForResult(intent, 1);
         });
-
-        statisticsButton = findViewById(R.id.statisticsButton);
-        statisticsButton.setOnClickListener((View v) -> {
-            Intent intent = new Intent(mainActivity, Statistics.class);
-            mainActivity.startActivity(intent);
-        });
-
-        shareButton = findViewById(R.id.shareButton);
-        shareButton.setOnClickListener((View v) -> mainActivity.share());
 
         timeView = findViewById(R.id.timeView);
 
@@ -103,22 +106,14 @@ public class StatusBar extends RelativeLayout implements Observer {
         else
             this.timeView.setText("--:--");
     }
-/*
-    public void initTime() {
-        Data.instance(context).saveBoolean(SHOW_TIME, Data.instance(context).loadBoolean(Settings.SHOW_TIME));
-    }
-*/
+
     public void deactivate() {
-        settingsButton.setEnabled(false);
-        shareButton.setEnabled(false);
-        statisticsButton.setEnabled(false);
+        popupButton.setEnabled(false);
         newButton.setEnabled(false);
     }
 
     public void activate() {
-        settingsButton.setEnabled(true);
-        shareButton.setEnabled(true);
-        statisticsButton.setEnabled(true);
+        popupButton.setEnabled(true);
         newButton.setEnabled(true);
     }
 

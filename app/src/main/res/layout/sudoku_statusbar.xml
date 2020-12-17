@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
-        android:columnCount="7"
+        android:columnCount="5"
         android:padding="5dp">
 
         <ImageButton
@@ -21,14 +21,6 @@
             android:layout_columnWeight="1"
             android:background="@color/transparent"
             android:src="@drawable/ic_new" />
-
-        <ImageButton
-            android:id="@+id/shareButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@color/transparent"
-            android:src="@drawable/ic_share" />
 
         <TextView
             android:id="@+id/timeView"
@@ -42,17 +34,8 @@
             android:textSize="@dimen/statusbar_text_time"
             android:textStyle="bold" />
 
-
         <ImageButton
-            android:id="@+id/statisticsButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@color/transparent"
-            android:src="@drawable/ic_statistic" />
-
-        <ImageButton
-            android:id="@+id/settingsButton"
+            android:id="@+id/popupButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
