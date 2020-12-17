@@ -1,5 +1,6 @@
 package com.aol.philipphofer.gui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,9 +8,12 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
+import androidx.appcompat.widget.PopupMenu;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomColor;
@@ -17,7 +21,6 @@ import com.aol.philipphofer.gui.help.ColorObservable;
 import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Timer;
-import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
 
 import java.util.Observable;
@@ -39,15 +42,14 @@ public class StatusBar extends RelativeLayout implements Observer {
         findViewById(R.id.layout).setBackgroundColor(Color.parseColor(Data.instance(mainActivity).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
         ColorObservable.getInstance().addObserver(this);
 
-
-
         settingsButton = findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener((View v) -> {
-
             PopupMenu popup = new PopupMenu(context, settingsButton);
-            //Inflating the Popup using xml file
             popup.getMenuInflater().inflate(R.menu.popup, popup.getMenu());
-            popup.show();
+
+            MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popup.getMenu(), settingsButton);
+            menuHelper.setForceShowIcon(true);
+            menuHelper.show();
 
             //Intent intent = new Intent(mainActivity, Settings.class);
             //mainActivity.startActivity(intent);

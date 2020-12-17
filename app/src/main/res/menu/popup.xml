@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/popup_settings"
-        android:title="@string/statusbar_settings" />
-    <item android:id="@+id/popup_share"
-        android:title="@string/statusbar_share" />
-    <item android:id="@+id/popup_statistics"
-        android:title="@string/statusbar_statistics" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/popup_share"
+        android:icon="@drawable/ic_share"
+        android:title="@string/statusbar_share"
+        tools:ignore="ExtraText">
+        @style/PopupMenuStyle
+    </item>
+    <item
+        android:id="@+id/popup_statistics"
+        android:icon="@drawable/ic_statistic"
+        android:title="@string/statusbar_statistics"
+        tools:ignore="ExtraText">
+        @style/PopupMenuStyle
+    </item>
+    <item
+        android:id="@+id/popup_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/statusbar_settings"
+        tools:ignore="ExtraText">
+        @style/PopupMenuStyle
+    </item>
 </menu>
