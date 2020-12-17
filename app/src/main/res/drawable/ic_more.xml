@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="@dimen/statusbar_icon_size"
+    android:height="@dimen/statusbar_icon_size"
+    android:viewportWidth="256"
+    android:viewportHeight="256">
+  <path
+      android:pathData="M45.25,130.5m-20.159,0a20.159,20.159 0,1 1,40.319 0a20.159,20.159 0,1 1,-40.319 0"
+      android:strokeWidth="4.68133"
+      android:fillColor="#000000"
+      android:strokeColor="#000000"/>
+  <path
+      android:pathData="M130.5,130.5m-20.159,0a20.159,20.159 0,1 1,40.319 0a20.159,20.159 0,1 1,-40.319 0"
+      android:strokeWidth="4.68133"
+      android:fillColor="#000000"
+      android:strokeColor="#000000"/>
+  <path
+      android:pathData="M215.75,130.5m-20.159,0a20.159,20.159 0,1 1,40.319 0a20.159,20.159 0,1 1,-40.319 0"
+      android:strokeWidth="4.68133"
+      android:fillColor="#000000"
+      android:strokeColor="#000000"/>
+</vector>

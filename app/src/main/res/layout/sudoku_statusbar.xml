@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:background="@color/transparent"
-            android:src="@drawable/ic_settings" />
+            android:src="@drawable/ic_more" />
     </GridLayout>
 
     <GridLayout
