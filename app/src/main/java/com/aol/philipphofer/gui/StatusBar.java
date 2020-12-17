@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -38,11 +39,20 @@ public class StatusBar extends RelativeLayout implements Observer {
         findViewById(R.id.layout).setBackgroundColor(Color.parseColor(Data.instance(mainActivity).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
         ColorObservable.getInstance().addObserver(this);
 
+
+
         settingsButton = findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener((View v) -> {
-            Intent intent = new Intent(mainActivity, Settings.class);
-            mainActivity.startActivity(intent);
+
+            PopupMenu popup = new PopupMenu(context, settingsButton);
+            //Inflating the Popup using xml file
+            popup.getMenuInflater().inflate(R.menu.popup, popup.getMenu());
+            popup.show();
+
+            //Intent intent = new Intent(mainActivity, Settings.class);
+            //mainActivity.startActivity(intent);
         });
+
 
         newButton = findViewById(R.id.newButton);
         newButton.setOnClickListener((View v) -> {
