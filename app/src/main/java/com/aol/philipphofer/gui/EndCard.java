@@ -1,5 +1,6 @@
 package com.aol.philipphofer.gui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomActivity;
 import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Timer;
+import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
 
 public class EndCard extends CustomActivity implements View.OnClickListener {
@@ -37,7 +39,6 @@ public class EndCard extends CustomActivity implements View.OnClickListener {
         this.time.setText("---");
         this.bestTime = findViewById(R.id.bestTimeInfo);
         this.difficulty = findViewById(R.id.difficultyInfo);
-
     }
 
     @Override
@@ -49,26 +50,14 @@ public class EndCard extends CustomActivity implements View.OnClickListener {
         int time = 0;
         if (data.loadBoolean(Data.GAME_SHOW_TIME))
             time = intent.getIntExtra(TIME, 0);
-        int difficulty = intent.getIntExtra(DIFFICULTY, MainActivity.ADVANCED);
-        init(won, time, difficulty);
+        int difficulty = intent.getIntExtra(DIFFICULTY, 0);
+        init(won, time, Difficulty.getDifficulty(difficulty), this);
     }
 
-    private void init(boolean won, int time, int difficulty) {
-        switch (difficulty) {
-            case MainActivity.BEGINNER:
-                this.difficulty.setText(getResources().getString(R.string.beginner));
-                break;
-            case MainActivity.ADVANCED:
-                this.difficulty.setText(getResources().getString(R.string.advanced));
-                break;
-            case MainActivity.EXPERT:
-                this.difficulty.setText(getResources().getString(R.string.expert));
-                break;
-            default:
-                break;
-        }
+    private void init(boolean won, int time, Difficulty difficulty, Context context) {
+        this.difficulty.setText(difficulty.getText(context));
 
-        bestTime.setText(Timer.timeToString(data.loadInt(Statistics.SAVE_BESTTIME + difficulty)));
+        bestTime.setText(Timer.timeToString(data.loadInt(Statistics.SAVE_BESTTIME + difficulty.getNumber())));
 
         if (won) {
             title.setText(getResources().getString(R.string.win));

@@ -19,6 +19,7 @@ import com.aol.philipphofer.gui.custom.CustomToast;
 import com.aol.philipphofer.gui.dialog.RateAppDialog;
 import com.aol.philipphofer.gui.sudoku.SudokuField;
 import com.aol.philipphofer.gui.sudoku.SudokuGrid;
+import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
 import com.aol.philipphofer.sudoku.Sudoku;
 import com.google.android.gms.ads.AdView;
@@ -40,12 +41,8 @@ public class MainActivity extends CustomActivity {
 
     private Timer timer;
 
-    public final static int BEGINNER = 0;
-    public final static int ADVANCED = 1;
-    public final static int EXPERT = 2;
-
     public static int MAXERROR = 3;
-    public static int DIFFICULTY = ADVANCED;
+    public static Difficulty DIFFICULTY = Difficulty.ADVANCED;
     public static boolean LOADMODE = false;
     public static boolean SHARED = false;
 
@@ -116,7 +113,7 @@ public class MainActivity extends CustomActivity {
         if (LOADMODE) {
 
             setFreeFields(81);
-            DIFFICULTY = data.loadInt(Data.GAME_DIFFICULTY);
+            DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
             numberCount = new int[9];
             sudoku = new Sudoku(4);
 
@@ -155,7 +152,7 @@ public class MainActivity extends CustomActivity {
         if (!LOADMODE) {
 
             setFreeFields(81);
-            DIFFICULTY = data.loadInt(Data.GAME_DIFFICULTY);
+            DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
             numberCount = new int[9];
             sudoku = new Sudoku(4);
 
@@ -174,7 +171,7 @@ public class MainActivity extends CustomActivity {
 
     public void heavyLoading() {
 
-        sudoku.create(DIFFICULTY);
+        sudoku.create(DIFFICULTY.getNumber());
 
         LOADMODE = !LOADMODE;
         data.setLoadmode(LOADMODE);
@@ -205,7 +202,7 @@ public class MainActivity extends CustomActivity {
                 for (int b = 0; b < 3; b++)
                     sudokuGrid.blocks[i].field[a][b].save();
         data.saveInt(Data.GAME_ERRORS, errors);
-        data.saveInt(Data.GAME_DIFFICULTY, DIFFICULTY);
+        data.saveInt(Data.GAME_DIFFICULTY, DIFFICULTY.getNumber());
         timer.stopTimer();
         data.saveInt(Data.GAME_TIME, timer.getTime());
     }
@@ -557,7 +554,7 @@ public class MainActivity extends CustomActivity {
         data.setLoadmode(false);
         Intent intent = new Intent(this, EndCard.class);
         intent.putExtra(EndCard.WON, true);
-        intent.putExtra(EndCard.DIFFICULTY, DIFFICULTY);
+        intent.putExtra(EndCard.DIFFICULTY, DIFFICULTY.getNumber());
         if (data.loadBoolean(Data.GAME_SHOW_TIME))
             intent.putExtra(EndCard.TIME, timer.getTime());
         startActivityForResult(intent, 1);
@@ -566,7 +563,7 @@ public class MainActivity extends CustomActivity {
     public void abortSudoku() {
         data.setLoadmode(false);
         Intent intent = new Intent(this, EndCard.class);
-        intent.putExtra(EndCard.DIFFICULTY, DIFFICULTY);
+        intent.putExtra(EndCard.DIFFICULTY, DIFFICULTY.getNumber());
         intent.putExtra(EndCard.WON, false);
         startActivityForResult(intent, 1);
     }

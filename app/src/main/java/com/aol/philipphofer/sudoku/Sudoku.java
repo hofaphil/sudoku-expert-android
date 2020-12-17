@@ -61,8 +61,8 @@ public class Sudoku {
 
     private void deleteNumbers(int threadNumber, int difficulty, Block[] threadHolder) {
         int b = 0;
-        int diff = difficulty * 7 + 40;
-        //int diff = 5;
+        //int diff = difficulty * 7 + 40;
+        int diff = 1;
 
         ArrayList<Number> numbers = new ArrayList<>(81);
         for (int i = 0; i < 9; i++)

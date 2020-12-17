@@ -16,6 +16,7 @@ import com.aol.philipphofer.gui.help.ColorObservable;
 import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Timer;
+import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
 
 import java.util.Observable;
@@ -70,19 +71,7 @@ public class StatusBar extends RelativeLayout implements Observer {
     }
 
     public void initDifficultyView() {
-        switch (MainActivity.DIFFICULTY) {
-            case MainActivity.BEGINNER:
-                difficultyView.setText(R.string.beginner);
-                break;
-            case MainActivity.ADVANCED:
-                difficultyView.setText(R.string.advanced);
-                break;
-            case MainActivity.EXPERT:
-                difficultyView.setText(R.string.expert);
-                break;
-            default:
-                break;
-        }
+        difficultyView.setText(MainActivity.DIFFICULTY.getText(getContext()));
     }
 
     public void initError() {
