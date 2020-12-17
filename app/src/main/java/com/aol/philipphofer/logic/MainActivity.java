@@ -53,7 +53,6 @@ public class MainActivity extends CustomActivity {
         setContentView(R.layout.activity_main);
 
         sudokuGrid = findViewById(R.id.sudokuGrid);
-
         statusBar = findViewById(R.id.statusBar);
         keyboard = findViewById(R.id.keyboard);
 
@@ -108,10 +107,7 @@ public class MainActivity extends CustomActivity {
     protected void onStart() {
         super.onStart();
 
-        LOADMODE = data.getLoadmode();
-
-        if (LOADMODE) {
-
+        if (LOADMODE = data.getLoadmode()) {
             setFreeFields(81);
             DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
             numberCount = new int[9];
@@ -141,16 +137,13 @@ public class MainActivity extends CustomActivity {
     protected void onResume() {
         super.onResume();
 
-        LOADMODE = data.getLoadmode();
-
         pause = true;
         pauseGame();
 
-        //TODO selected sometimes still shown, sometimes not (after showing dialog)
-        //TODO when new game menu open and you open app again, not in pause mode but dialog still shown!
+        // TODO selected sometimes still shown, sometimes not (after showing dialog)
+        // TODO when new game menu open and you open app again, not in pause mode but dialog still shown!
 
-        if (!LOADMODE) {
-
+        if (!(LOADMODE = data.getLoadmode())) {
             setFreeFields(81);
             DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
             numberCount = new int[9];
@@ -170,7 +163,6 @@ public class MainActivity extends CustomActivity {
     }
 
     public void heavyLoading() {
-
         sudoku.create(DIFFICULTY.getNumber());
 
         LOADMODE = !LOADMODE;
@@ -529,7 +521,6 @@ public class MainActivity extends CustomActivity {
         if (errors >= MAXERROR && data.loadBoolean(Data.GAME_SHOW_ERRORS))
             abortSudoku();
         else {
-            //TODO
             statusBar.setError();
         }
     }
@@ -540,7 +531,6 @@ public class MainActivity extends CustomActivity {
 
     private void setErrors(int errors) {
         this.errors = errors;
-        //TODO
         statusBar.setError();
     }
 
