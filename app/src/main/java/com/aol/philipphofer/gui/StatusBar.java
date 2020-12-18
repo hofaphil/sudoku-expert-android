@@ -22,6 +22,7 @@ import com.aol.philipphofer.gui.help.ColorObservable;
 import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Timer;
+import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
 
 import java.util.Observable;
@@ -47,6 +48,7 @@ public class StatusBar extends RelativeLayout implements Observer {
         moreButton = findViewById(R.id.popupButton);
         moreButton.setOnClickListener((View v) -> {
             PopupMenu popup = new PopupMenu(context, moreButton);
+            popup.getMenuInflater().inflate(R.menu.popup_more, popup.getMenu());
             popup.setOnMenuItemClickListener((MenuItem item) -> {
                 Intent intent;
                 if (item.getItemId() == R.id.popup_statistics) {
@@ -60,7 +62,6 @@ public class StatusBar extends RelativeLayout implements Observer {
                 mainActivity.startActivity(intent);
                 return true;
             });
-            popup.getMenuInflater().inflate(R.menu.popup_more, popup.getMenu());
 
             @SuppressLint("RestrictedApi") MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popup.getMenu(), moreButton);
             menuHelper.setForceShowIcon(true);
@@ -70,9 +71,24 @@ public class StatusBar extends RelativeLayout implements Observer {
 
         newButton = findViewById(R.id.newButton);
         newButton.setOnClickListener((View v) -> {
-            Intent intent = new Intent(mainActivity, NewSudoku.class);
-            mainActivity.sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.TRANSPARENT);
-            mainActivity.startActivityForResult(intent, 1);
+            PopupMenu popup = new PopupMenu(context, newButton);
+            popup.getMenuInflater().inflate(R.menu.popup_new, popup.getMenu());
+            popup.setOnMenuItemClickListener((MenuItem item) -> {
+                if (item.getItemId() == R.id.popup_advanced) {
+                    Data.instance(context).saveInt(Data.GAME_DIFFICULTY, Difficulty.ADVANCED.getNumber());
+                } else if (item.getItemId() == R.id.popup_expert) {
+                    Data.instance(context).saveInt(Data.GAME_DIFFICULTY, Difficulty.EXPERT.getNumber());
+                } else {
+                    Data.instance(context).saveInt(Data.GAME_DIFFICULTY, Difficulty.BEGINNER.getNumber());
+                }
+                Data.instance(context).setLoadmode(false);
+                mainActivity.onResume();
+                return true;
+            });
+
+            @SuppressLint("RestrictedApi") MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popup.getMenu(), newButton);
+            menuHelper.setForceShowIcon(true);
+            menuHelper.show();
         });
 
         timeView = findViewById(R.id.timeView);

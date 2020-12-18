@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/popup_beginner"
+        android:icon="@drawable/ic_share"
+        android:title="@string/beginner"
+        tools:ignore="ExtraText">
+        @style/PopupMenuStyle
+    </item>
+    <item
+        android:id="@+id/popup_advanced"
+        android:icon="@drawable/ic_statistic"
+        android:title="@string/advanced"
+        tools:ignore="ExtraText">
+        @style/PopupMenuStyle
+    </item>
+    <item
+        android:id="@+id/popup_expert"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/expert"
+        tools:ignore="ExtraText">
+        @style/PopupMenuStyle
+    </item>
+</menu>

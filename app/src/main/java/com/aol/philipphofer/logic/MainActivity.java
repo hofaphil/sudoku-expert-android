@@ -134,7 +134,7 @@ public class MainActivity extends CustomActivity {
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
 
         pause = true;
