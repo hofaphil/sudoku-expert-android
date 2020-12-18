@@ -75,6 +75,7 @@ public class EndCard extends CustomActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        data.setLoadmode(false);
         finish();
     }
 }

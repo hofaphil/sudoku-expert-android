@@ -24,6 +24,11 @@ import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Timer;
 import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.review.testing.FakeReviewManager;
+import com.google.android.play.core.tasks.Task;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -56,8 +61,22 @@ public class StatusBar extends RelativeLayout implements Observer {
                 } else if (item.getItemId() == R.id.popup_share) {
                     mainActivity.share();
                     return true;
-                } else {
+                } else if (item.getItemId() == R.id.popup_settings) {
                     intent = new Intent(mainActivity, Settings.class);
+                } else if (item.getItemId() == R.id.popup_rate) {
+                    ReviewManager manager = ReviewManagerFactory.create(context);
+                    Task<ReviewInfo> request = manager.requestReviewFlow();
+                    request.addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            ReviewInfo reviewInfo = task.getResult();
+                            Task<Void> flow = manager.launchReviewFlow((MainActivity) context, reviewInfo);
+                            flow.addOnCompleteListener(t -> {
+                            });
+                        }
+                    });
+                    return true;
+                } else {
+                    return false;
                 }
                 mainActivity.startActivity(intent);
                 return true;

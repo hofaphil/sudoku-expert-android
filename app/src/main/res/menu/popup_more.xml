@@ -16,6 +16,13 @@
         @style/PopupMenuStyle
     </item>
     <item
+        android:id="@+id/popup_rate"
+        android:icon="@drawable/ic_statistic"
+        android:title="@string/statusbar_rate"
+        tools:ignore="ExtraText">
+        @style/PopupMenuStyle
+    </item>
+    <item
         android:id="@+id/popup_settings"
         android:icon="@drawable/ic_settings"
         android:title="@string/statusbar_settings"
