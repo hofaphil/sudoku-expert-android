@@ -29,7 +29,7 @@ import java.util.Observer;
 
 public class StatusBar extends RelativeLayout implements Observer {
 
-    private final ImageButton popupButton, newButton;
+    private final ImageButton moreButton, newButton;
     private final TextView timeView, errorView, difficultyView;
     private final MainActivity mainActivity;
 
@@ -44,9 +44,9 @@ public class StatusBar extends RelativeLayout implements Observer {
         findViewById(R.id.layout).setBackgroundColor(Color.parseColor(Data.instance(mainActivity).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
         ColorObservable.getInstance().addObserver(this);
 
-        popupButton = findViewById(R.id.popupButton);
-        popupButton.setOnClickListener((View v) -> {
-            PopupMenu popup = new PopupMenu(context, popupButton);
+        moreButton = findViewById(R.id.popupButton);
+        moreButton.setOnClickListener((View v) -> {
+            PopupMenu popup = new PopupMenu(context, moreButton);
             popup.setOnMenuItemClickListener((MenuItem item) -> {
                 Intent intent;
                 if (item.getItemId() == R.id.popup_statistics) {
@@ -60,9 +60,9 @@ public class StatusBar extends RelativeLayout implements Observer {
                 mainActivity.startActivity(intent);
                 return true;
             });
-            popup.getMenuInflater().inflate(R.menu.popup, popup.getMenu());
+            popup.getMenuInflater().inflate(R.menu.popup_more, popup.getMenu());
 
-            @SuppressLint("RestrictedApi") MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popup.getMenu(), popupButton);
+            @SuppressLint("RestrictedApi") MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popup.getMenu(), moreButton);
             menuHelper.setForceShowIcon(true);
             menuHelper.show();
         });
@@ -108,12 +108,12 @@ public class StatusBar extends RelativeLayout implements Observer {
     }
 
     public void deactivate() {
-        popupButton.setEnabled(false);
+        moreButton.setEnabled(false);
         newButton.setEnabled(false);
     }
 
     public void activate() {
-        popupButton.setEnabled(true);
+        moreButton.setEnabled(true);
         newButton.setEnabled(true);
     }
 
