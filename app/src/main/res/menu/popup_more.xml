@@ -17,7 +17,7 @@
     </item>
     <item
         android:id="@+id/popup_rate"
-        android:icon="@drawable/ic_statistic"
+        android:icon="@drawable/ic_rate"
         android:title="@string/statusbar_rate"
         tools:ignore="ExtraText">
         @style/PopupMenuStyle

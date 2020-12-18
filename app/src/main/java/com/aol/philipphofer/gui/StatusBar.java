@@ -19,7 +19,6 @@ import androidx.appcompat.widget.PopupMenu;
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomColor;
 import com.aol.philipphofer.gui.help.ColorObservable;
-import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Timer;
 import com.aol.philipphofer.logic.help.Difficulty;
@@ -27,7 +26,6 @@ import com.aol.philipphofer.persistence.Data;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
-import com.google.android.play.core.review.testing.FakeReviewManager;
 import com.google.android.play.core.tasks.Task;
 
 import java.util.Observable;
