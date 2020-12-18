@@ -75,8 +75,6 @@ public class EndCard extends CustomActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this, NewSudoku.class);
-        startActivity(intent);
         finish();
     }
 }
