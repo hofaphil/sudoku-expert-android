@@ -16,7 +16,6 @@ import com.aol.philipphofer.gui.StatusBar;
 import com.aol.philipphofer.gui.custom.CustomActivity;
 import com.aol.philipphofer.gui.custom.CustomAdLoader;
 import com.aol.philipphofer.gui.custom.CustomToast;
-import com.aol.philipphofer.gui.dialog.RateAppDialog;
 import com.aol.philipphofer.gui.sudoku.SudokuField;
 import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.logic.help.Difficulty;
@@ -67,8 +66,6 @@ public class MainActivity extends CustomActivity {
                 sudokuGrid.getViewTreeObserver().removeGlobalOnLayoutListener(this);
             }
         });
-
-        new RateAppDialog(this).showDialog(this);
     }
 
     protected void init() {

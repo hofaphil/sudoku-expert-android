@@ -3,7 +3,6 @@ package com.aol.philipphofer.persistence;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.aol.philipphofer.gui.dialog.RateAppDialog;
 import com.aol.philipphofer.gui.help.ColorObservable;
 import com.aol.philipphofer.gui.sudoku.SudokuField;
 import com.aol.philipphofer.sudoku.Block;
@@ -12,8 +11,8 @@ import com.aol.philipphofer.sudoku.Sudoku;
 public class Data {
 
     private static Data unique = null;
-    private SharedPreferences data;
-    private SharedPreferences.Editor editor;
+    private final SharedPreferences data;
+    private final SharedPreferences.Editor editor;
 
     private final static String NAME = "data";
 
@@ -176,12 +175,10 @@ public class Data {
 
     public void drop() {
         boolean supporter = loadBoolean(SETTINGS_SUPPORTER, false);
-        boolean rate = loadBoolean(RateAppDialog.SHOW_DIALOG, true);
 
         editor.clear();
 
         editor.putBoolean(SETTINGS_SUPPORTER, supporter);
-        editor.putBoolean(RateAppDialog.SHOW_DIALOG, rate);
         editor.commit();
 
         ColorObservable.getInstance().notifyObservers();
