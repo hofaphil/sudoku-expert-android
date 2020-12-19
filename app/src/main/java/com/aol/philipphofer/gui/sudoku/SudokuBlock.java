@@ -14,7 +14,6 @@ public class SudokuBlock extends GridLayout {
 
     public SudokuField[][] field;
 
-
     public SudokuBlock(Context context, AttributeSet attrs) {
         super(context, attrs);
 

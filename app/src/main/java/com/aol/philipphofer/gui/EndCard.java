@@ -9,14 +9,12 @@ import android.widget.TextView;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomActivity;
-import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Timer;
 import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
 
 public class EndCard extends CustomActivity implements View.OnClickListener {
 
-    private Button ok;
     private TextView title, annotations;
     private TextView time, bestTime, difficulty;
 
@@ -29,7 +27,7 @@ public class EndCard extends CustomActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_endcard);
 
-        ok = findViewById(R.id.okbutton);
+        Button ok = findViewById(R.id.okbutton);
         ok.setOnClickListener(this);
 
         title = findViewById(R.id.title);

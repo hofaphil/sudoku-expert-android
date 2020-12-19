@@ -1,6 +1,5 @@
 package com.aol.philipphofer.logic;
 
-
 public class Position {
 
     public int row, column, parent;

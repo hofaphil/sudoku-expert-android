@@ -7,7 +7,7 @@ public class Timer extends Thread {
     private boolean stopped = false;
     private boolean running = false;
     private int time; //in sec
-    private MainActivity mainActivity;
+    private final MainActivity mainActivity;
 
     Timer(Context context) {
         this(context, 0);

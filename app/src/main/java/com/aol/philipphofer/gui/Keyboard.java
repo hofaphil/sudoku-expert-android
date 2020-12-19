@@ -13,17 +13,15 @@ import com.aol.philipphofer.gui.custom.CustomColor;
 import com.aol.philipphofer.gui.help.ColorObservable;
 import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.persistence.Data;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 import java.util.Observable;
 import java.util.Observer;
 
 public class Keyboard extends GridLayout implements View.OnClickListener, Observer {
 
-    private Button delButton, notesButton, pauseButton;
-    private Button[] keys;
-    private MainActivity mainActivity;
+    private final Button delButton, notesButton, pauseButton;
+    private final Button[] keys;
+    private final MainActivity mainActivity;
 
     public Keyboard(Context context, AttributeSet attrs) {
         super(context, attrs);

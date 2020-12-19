@@ -1,7 +1,5 @@
 package com.aol.philipphofer.gui.help;
 
-import android.view.Window;
-
 import java.util.Observable;
 
 public class ColorObservable extends Observable {
@@ -11,9 +9,7 @@ public class ColorObservable extends Observable {
     private ColorObservable(){}
 
     public static ColorObservable getInstance() {
-        if (instance == null)
-            instance = new ColorObservable();
-        return instance;
+        return instance == null ? instance = new ColorObservable() : instance;
     }
 
     @Override

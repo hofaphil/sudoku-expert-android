@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomActivity;
 import com.aol.philipphofer.gui.custom.CustomAdLoader;
-import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Timer;
 import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;

@@ -1,7 +1,6 @@
 package com.aol.philipphofer.gui.custom;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -14,7 +13,7 @@ import com.aol.philipphofer.persistence.Data;
 
 public class CustomToast {
 
-    private Toast toast;
+    private final Toast toast;
 
     public CustomToast(Context c, String text) {
         LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

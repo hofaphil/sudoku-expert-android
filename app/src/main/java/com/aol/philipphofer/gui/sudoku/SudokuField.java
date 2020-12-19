@@ -23,12 +23,12 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
 
     private boolean error;
 
-    private TextView numberView;
+    private final TextView numberView;
 
     private GridLayout notesLayout;
-    private TextView[] notes;
+    private final TextView[] notes;
 
-    private MainActivity mainActivity;
+    private final MainActivity mainActivity;
 
     private boolean changeable;
     private boolean isNotes;
@@ -218,12 +218,12 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
     }
 
     public void setNumberViewText(int text) {
-        this.numberView.setText("" + text);
+        this.numberView.setText(String.valueOf(text));
     }
 
-    public String getNumberViewText() {
+    /* public String getNumberViewText() {
         return this.numberView.getText().toString();
-    }
+    }*/
 
     public void setChangeable(boolean changeable) {
         this.changeable = changeable;

@@ -7,8 +7,8 @@ import com.aol.philipphofer.R;
 public enum Difficulty {
     BEGINNER(0, R.string.beginner), ADVANCED(1, R.string.advanced), EXPERT(2, R.string.expert);
 
-    private int number;
-    private int text;
+    private final int number;
+    private final int text;
 
     Difficulty(int number, int text) {
         this.number = number;

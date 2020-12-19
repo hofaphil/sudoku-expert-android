@@ -11,14 +11,13 @@ import com.aol.philipphofer.R;
 import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.sudoku.Block;
 
-
 public class SudokuGrid extends RelativeLayout {
 
     public SudokuBlock[] blocks;
     public MainActivity mainActivity;
     public GridLayout grid;
     public RelativeLayout layout;
-    private ProgressBar progressBar;
+    private final ProgressBar progressBar;
 
     public SudokuGrid(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -46,9 +45,6 @@ public class SudokuGrid extends RelativeLayout {
         grid.setVisibility(VISIBLE);
 
         switch (mode) {
-            case VISIBLE:
-                this.setVisibility(VISIBLE);
-                break;
             case TRANSPARENT:
                 this.setVisibility(INVISIBLE);
                 break;
@@ -68,6 +64,6 @@ public class SudokuGrid extends RelativeLayout {
     }
 
     public enum BackgroundMode {
-        TRANSPARENT, VISIBLE, LOADING;
+        TRANSPARENT, VISIBLE, LOADING
     }
 }

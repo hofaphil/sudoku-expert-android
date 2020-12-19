@@ -12,6 +12,8 @@ import com.aol.philipphofer.persistence.Data;
 import com.aol.philipphofer.sudoku.Sudoku;
 import com.google.android.gms.ads.MobileAds;
 
+import java.util.Objects;
+
 public class StartActivity extends Activity {
 
     public static int difficulty;
@@ -37,7 +39,7 @@ public class StartActivity extends Activity {
 
         Intent intent = getIntent();
 
-        if (!intent.getAction().equals(Intent.ACTION_MAIN)) {
+        if (!Objects.equals(intent.getAction(), Intent.ACTION_MAIN)) {
             Uri uri = getIntent().getData();
 
             try {
