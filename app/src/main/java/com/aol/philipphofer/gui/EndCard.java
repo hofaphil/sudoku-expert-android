@@ -55,7 +55,7 @@ public class EndCard extends CustomActivity implements View.OnClickListener {
     private void init(boolean won, int time, Difficulty difficulty, Context context) {
         this.difficulty.setText(difficulty.getText(context));
 
-        bestTime.setText(Timer.timeToString(data.loadInt(Statistics.SAVE_BESTTIME + difficulty.getNumber())));
+        bestTime.setText(Timer.timeToString(data.loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber())));
 
         if (won) {
             title.setText(getResources().getString(R.string.win));

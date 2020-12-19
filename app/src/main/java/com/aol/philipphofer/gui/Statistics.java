@@ -14,11 +14,6 @@ import com.aol.philipphofer.persistence.Data;
 
 public class Statistics extends CustomActivity {
 
-    public static final String SAVE_BESTTIME = "besttime";
-
-    public static final String SAVE_TIMEOVERALL = "timeoverall";
-    public static final String SAVE_TIMESPLAYED = "timesplayed";
-
     private TextView beginnerTime, advancedTime, expertTime;
     private TextView beginnerPlayed, advancedPlayed, expertPlayed;
     private TextView beginnerBest, advancedBest, expertBest;
@@ -50,20 +45,20 @@ public class Statistics extends CustomActivity {
         CustomAdLoader.loadAd(this, findViewById(R.id.adView));
 
         int timesPlayed;
-        if ((timesPlayed = data.loadInt(SAVE_TIMESPLAYED + Difficulty.BEGINNER.getNumber())) != 0)
-            beginnerTime.setText(Timer.timeToString(data.loadInt(SAVE_TIMEOVERALL + Difficulty.BEGINNER.getNumber()) / timesPlayed));
-        if ((timesPlayed = data.loadInt(SAVE_TIMESPLAYED + Difficulty.ADVANCED.getNumber())) != 0)
-            advancedTime.setText(Timer.timeToString(data.loadInt(SAVE_TIMEOVERALL + Difficulty.ADVANCED.getNumber()) / timesPlayed));
-        if ((timesPlayed = data.loadInt(SAVE_TIMESPLAYED + Difficulty.EXPERT.getNumber())) != 0)
-            expertTime.setText(Timer.timeToString(data.loadInt(SAVE_TIMEOVERALL + Difficulty.EXPERT.getNumber()) / timesPlayed));
+        if ((timesPlayed = data.loadInt(Data.STATISTICS_TIMESPLAYED + Difficulty.BEGINNER.getNumber())) != 0)
+            beginnerTime.setText(Timer.timeToString(data.loadInt(Data.STATISTICS_TIMEOVERALL + Difficulty.BEGINNER.getNumber()) / timesPlayed));
+        if ((timesPlayed = data.loadInt(Data.STATISTICS_TIMESPLAYED + Difficulty.ADVANCED.getNumber())) != 0)
+            advancedTime.setText(Timer.timeToString(data.loadInt(Data.STATISTICS_TIMEOVERALL + Difficulty.ADVANCED.getNumber()) / timesPlayed));
+        if ((timesPlayed = data.loadInt(Data.STATISTICS_TIMESPLAYED + Difficulty.EXPERT.getNumber())) != 0)
+            expertTime.setText(Timer.timeToString(data.loadInt(Data.STATISTICS_TIMEOVERALL + Difficulty.EXPERT.getNumber()) / timesPlayed));
 
-        beginnerPlayed.setText(String.valueOf(data.loadInt(SAVE_TIMESPLAYED + Difficulty.BEGINNER.getNumber())));
-        advancedPlayed.setText(String.valueOf(data.loadInt(SAVE_TIMESPLAYED + Difficulty.ADVANCED.getNumber())));
-        expertPlayed.setText(String.valueOf(data.loadInt(SAVE_TIMESPLAYED + Difficulty.EXPERT.getNumber())));
+        beginnerPlayed.setText(String.valueOf(data.loadInt(Data.STATISTICS_TIMESPLAYED + Difficulty.BEGINNER.getNumber())));
+        advancedPlayed.setText(String.valueOf(data.loadInt(Data.STATISTICS_TIMESPLAYED + Difficulty.ADVANCED.getNumber())));
+        expertPlayed.setText(String.valueOf(data.loadInt(Data.STATISTICS_TIMESPLAYED + Difficulty.EXPERT.getNumber())));
 
-        beginnerBest.setText(Timer.timeToString(data.loadInt(SAVE_BESTTIME + Difficulty.BEGINNER.getNumber())));
-        advancedBest.setText(Timer.timeToString(data.loadInt(SAVE_BESTTIME + Difficulty.ADVANCED.getNumber())));
-        expertBest.setText(Timer.timeToString(data.loadInt(SAVE_BESTTIME + Difficulty.EXPERT.getNumber())));
+        beginnerBest.setText(Timer.timeToString(data.loadInt(Data.STATISTICS_BESTTIME + Difficulty.BEGINNER.getNumber())));
+        advancedBest.setText(Timer.timeToString(data.loadInt(Data.STATISTICS_BESTTIME + Difficulty.ADVANCED.getNumber())));
+        expertBest.setText(Timer.timeToString(data.loadInt(Data.STATISTICS_BESTTIME + Difficulty.EXPERT.getNumber())));
     }
 
     @Override
@@ -72,12 +67,12 @@ public class Statistics extends CustomActivity {
     }
 
     public static void addTime(Context context, int time, Difficulty difficulty) {
-        int timesPlayed = Data.instance(context).loadInt(SAVE_TIMESPLAYED + difficulty.getNumber()) + 1;
-        int timeOverall = Data.instance(context).loadInt(SAVE_TIMEOVERALL + difficulty.getNumber()) + time;
-        Data.instance(context).saveInt(SAVE_TIMESPLAYED + difficulty.getNumber(), timesPlayed);
-        Data.instance(context).saveInt(SAVE_TIMEOVERALL + difficulty.getNumber(), timeOverall);
-        if (Data.instance(context).loadInt(SAVE_BESTTIME + difficulty.getNumber()) > time ||
-                Data.instance(context).loadInt(SAVE_BESTTIME + difficulty.getNumber()) == 0)
-            Data.instance(context).saveInt(SAVE_BESTTIME + difficulty.getNumber(), time);
+        int timesPlayed = Data.instance(context).loadInt(Data.STATISTICS_TIMESPLAYED + difficulty.getNumber()) + 1;
+        int timeOverall = Data.instance(context).loadInt(Data.STATISTICS_TIMEOVERALL + difficulty.getNumber()) + time;
+        Data.instance(context).saveInt(Data.STATISTICS_TIMESPLAYED + difficulty.getNumber(), timesPlayed);
+        Data.instance(context).saveInt(Data.STATISTICS_TIMEOVERALL + difficulty.getNumber(), timeOverall);
+        if (Data.instance(context).loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber()) > time ||
+                Data.instance(context).loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber()) == 0)
+            Data.instance(context).saveInt(Data.STATISTICS_BESTTIME + difficulty.getNumber(), time);
     }
 }
