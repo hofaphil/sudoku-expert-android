@@ -98,9 +98,8 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
 
     @Override
     protected void onDestroy() {
-        if (bp != null) {
+        if (bp != null)
             bp.release();
-        }
         super.onDestroy();
     }
 
@@ -126,6 +125,10 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
 
     @Override
     public void onBillingError(int errorCode, Throwable error) {
+        if (errorCode == com.anjlab.android.iab.v3.Constants.BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED) {
+            Data.instance(this).saveBoolean(Data.SETTINGS_SUPPORTER, true);
+            new CustomToast(this, getResources().getString(R.string.settings_support_already)).show();
+        }
     }
 
     @Override

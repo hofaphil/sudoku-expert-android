@@ -75,6 +75,7 @@
     <string name="settings_support">Support</string>
     <string name="settings_support_annotations">Unterstütze den Entwickler, werde die Werbung los und schalte verschiedene Farben für die App frei!</string>
     <string name="settings_support_thanks">Danke für deine Unterstützung!</string>
+    <string name="settings_support_already">Danke, du bist bereits Supporter!</string>
     <string name="settings_support_error">Gesperrt! Du musst Supporter sein</string>
     <string name="settings_color">Farben</string>
     <string name="settings_color_annotations">Ändere die Farben der App</string>
