@@ -64,6 +64,7 @@ public class StatusBar extends RelativeLayout implements Observer {
                 } else if (item.getItemId() == R.id.popup_rate) {
                     ReviewManager manager = ReviewManagerFactory.create(context);
                     Task<ReviewInfo> request = manager.requestReviewFlow();
+                    mainActivity.pauseGame();
                     request.addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             ReviewInfo reviewInfo = task.getResult();
@@ -72,6 +73,7 @@ public class StatusBar extends RelativeLayout implements Observer {
                             });
                         }
                     });
+                    mainActivity.pauseGame();
                     return true;
                 } else {
                     return false;

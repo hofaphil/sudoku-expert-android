@@ -6,8 +6,8 @@ android {
         applicationId "com.aol.philipphofer"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 24
-        versionName "2.2.4"
+        versionCode 25
+        versionName "2.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
