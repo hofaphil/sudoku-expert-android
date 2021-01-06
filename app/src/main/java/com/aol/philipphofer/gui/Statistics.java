@@ -23,7 +23,7 @@ public class Statistics extends CustomActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
-        findViewById(R.id.backButton).setOnClickListener((View v) -> finish());
+        setActionBar(findViewById(R.id.title));
 
         beginnerTime = findViewById(R.id.Beginner_Average_Time);
         advancedTime = findViewById(R.id.Advanced_Average_Time);

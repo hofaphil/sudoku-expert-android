@@ -8,13 +8,13 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/ToolBar" />
+        android:theme="@style/ToolBar"
+        android:title="@string/settings_title" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:background="@color/transparent">
+        android:layout_below="@id/title">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -289,7 +289,6 @@
                     android:layout_margin="@dimen/_3sdp"
                     android:text="@string/settings_info" />
             </RelativeLayout>
-
 
         </RelativeLayout>
     </ScrollView>

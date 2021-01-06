@@ -1,199 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@color/transparent">
 
-    <RelativeLayout
+    <Toolbar
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent">
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ToolBar"
+        android:title="@string/statistics_title" />
 
-        <com.aol.philipphofer.gui.custom.CustomTitleBar
-            android:id="@+id/title"
+    <ScrollView
+        android:layout_below="@id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/backButton"
+            <TextView
+                android:id="@+id/Beginner"
+                style="@style/General.Title.Small"
+                android:text="@string/statistics_beginner" />
+
+            <RelativeLayout
+                android:id="@+id/beginner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Beginner"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/box">
+
+                <TextView
+                    android:id="@+id/Beginner.Average"
+                    style="@style/General.Info"
+                    android:text="@string/statistics_average" />
+
+                <TextView
+                    android:id="@+id/Beginner.Average.Time"
+                    style="@style/General.Info"
+                    android:layout_toEndOf="@id/Beginner.Average"
+                    android:text="00:00" />
+
+                <TextView
+                    android:id="@+id/Beginner.Best"
+                    style="@style/General.Info"
+                    android:layout_below="@id/Beginner.Average"
+                    android:text="@string/statistics_best" />
+
+                <TextView
+                    android:id="@+id/Beginner.Best.Time"
+                    style="@style/General.Info"
+                    android:layout_below="@id/Beginner.Average"
+                    android:layout_toEndOf="@id/Beginner.Best"
+                    android:text="00:00" />
+
+                <TextView
+                    android:id="@+id/Beginner.TimesPlayed"
+                    style="@style/General.Info"
+                    android:layout_below="@id/Beginner.Best"
+                    android:text="@string/statistics_times_played" />
+
+                <TextView
+                    android:id="@+id/Beginner.TimesPlayed.Count"
+                    style="@style/General.Info"
+                    android:layout_below="@id/Beginner.Best"
+                    android:layout_toEndOf="@id/Beginner.TimesPlayed"
+                    android:text="0" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/Advanced"
+                style="@style/General.Title.Small"
+                android:layout_below="@id/beginner"
+                android:text="@string/statistics_advanced" />
+
+            <RelativeLayout
+                android:id="@+id/advanced"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Advanced"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/box">
+
+                <TextView
+                    android:id="@+id/Advanced.Average"
+                    style="@style/General.Info"
+                    android:text="@string/statistics_average" />
+
+                <TextView
+                    android:id="@+id/Advanced.Average.Time"
+                    style="@style/General.Info"
+                    android:layout_toEndOf="@id/Advanced.Average"
+                    android:text="00:00" />
+
+                <TextView
+                    android:id="@+id/Advanced.Best"
+                    style="@style/General.Info"
+                    android:layout_below="@id/Advanced.Average"
+                    android:text="@string/statistics_best" />
+
+                <TextView
+                    android:id="@+id/Advanced.Best.Time"
+                    style="@style/General.Info"
+                    android:layout_below="@id/Advanced.Average"
+                    android:layout_toEndOf="@id/Advanced.Best"
+                    android:text="00:00" />
+
+                <TextView
+                    android:id="@+id/Advanced.TimesPlayed"
+                    style="@style/General.Info"
+                    android:layout_below="@id/Advanced.Best"
+                    android:text="@string/statistics_times_played" />
+
+                <TextView
+                    android:id="@+id/Advanced.TimesPlayed.Count"
+                    style="@style/General.Info"
+                    android:layout_below="@id/Advanced.Best"
+                    android:layout_toEndOf="@id/Advanced.TimesPlayed"
+                    android:text="0" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/Expert"
+                style="@style/General.Title.Small"
+                android:layout_below="@id/advanced"
+                android:text="@string/statistics_expert" />
+
+            <RelativeLayout
+                android:id="@+id/expert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Expert"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/box">
+
+                <TextView
+                    android:id="@+id/Expert.Average"
+                    style="@style/General.Info"
+                    android:text="@string/statistics_average" />
+
+                <TextView
+                    android:id="@+id/Expert.Average.Time"
+                    style="@style/General.Info"
+                    android:layout_toEndOf="@id/Expert.Average"
+                    android:text="00:00" />
+
+                <TextView
+                    android:id="@+id/Expert.Best"
+                    style="@style/General.Info"
+                    android:layout_below="@id/Expert.Average"
+                    android:text="@string/statistics_best" />
+
+                <TextView
+                    android:id="@+id/Expert.Best.Time"
+                    style="@style/General.Info"
+                    android:layout_below="@id/Expert.Average"
+                    android:layout_toEndOf="@id/Expert.Best"
+                    android:text="00:00" />
+
+                <TextView
+                    android:id="@+id/Expert.TimesPlayed"
+                    style="@style/General.Info"
+                    android:layout_below="@id/Expert.Best"
+                    android:text="@string/statistics_times_played" />
+
+                <TextView
+                    android:id="@+id/Expert.TimesPlayed.Count"
+                    style="@style/General.Info"
+                    android:layout_below="@id/Expert.Best"
+                    android:layout_toEndOf="@id/Expert.TimesPlayed"
+                    android:text="0" />
+            </RelativeLayout>
+
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:background="@color/transparent"
-                android:layout_marginStart="15dp"
-                android:src="@drawable/ic_back" />
-
-            <TextView
-                android:id="@+id/settings"
-                style="@style/General.Title"
-                android:layout_toEndOf="@id/backButton"
-                android:text="@string/statistics_title" />
-        </com.aol.philipphofer.gui.custom.CustomTitleBar>
-
-        <TextView
-            android:id="@+id/Beginner"
-            style="@style/General.Title.Small"
-            android:layout_below="@id/title"
-            android:text="@string/statistics_beginner" />
-
-        <RelativeLayout
-            android:id="@+id/beginner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/Beginner"
-            android:layout_margin="@dimen/_2sdp"
-            android:background="@drawable/box">
-
-            <TextView
-                android:id="@+id/Beginner.Average"
-                style="@style/General.Info"
-                android:text="@string/statistics_average" />
-
-            <TextView
-                android:id="@+id/Beginner.Average.Time"
-                style="@style/General.Info"
-                android:layout_toEndOf="@id/Beginner.Average"
-                android:text="00:00" />
-
-            <TextView
-                android:id="@+id/Beginner.Best"
-                style="@style/General.Info"
-                android:layout_below="@id/Beginner.Average"
-                android:text="@string/statistics_best" />
-
-            <TextView
-                android:id="@+id/Beginner.Best.Time"
-                style="@style/General.Info"
-                android:layout_below="@id/Beginner.Average"
-                android:layout_toEndOf="@id/Beginner.Best"
-                android:text="00:00" />
-
-            <TextView
-                android:id="@+id/Beginner.TimesPlayed"
-                style="@style/General.Info"
-                android:layout_below="@id/Beginner.Best"
-                android:text="@string/statistics_times_played" />
-
-            <TextView
-                android:id="@+id/Beginner.TimesPlayed.Count"
-                style="@style/General.Info"
-                android:layout_below="@id/Beginner.Best"
-                android:layout_toEndOf="@id/Beginner.TimesPlayed"
-                android:text="0" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/Advanced"
-            style="@style/General.Title.Small"
-            android:layout_below="@id/beginner"
-            android:text="@string/statistics_advanced" />
-
-        <RelativeLayout
-            android:id="@+id/advanced"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/Advanced"
-            android:layout_margin="@dimen/_2sdp"
-            android:background="@drawable/box">
-
-            <TextView
-                android:id="@+id/Advanced.Average"
-                style="@style/General.Info"
-                android:text="@string/statistics_average" />
-
-            <TextView
-                android:id="@+id/Advanced.Average.Time"
-                style="@style/General.Info"
-                android:layout_toEndOf="@id/Advanced.Average"
-                android:text="00:00" />
-
-            <TextView
-                android:id="@+id/Advanced.Best"
-                style="@style/General.Info"
-                android:layout_below="@id/Advanced.Average"
-                android:text="@string/statistics_best" />
-
-            <TextView
-                android:id="@+id/Advanced.Best.Time"
-                style="@style/General.Info"
-                android:layout_below="@id/Advanced.Average"
-                android:layout_toEndOf="@id/Advanced.Best"
-                android:text="00:00" />
-
-            <TextView
-                android:id="@+id/Advanced.TimesPlayed"
-                style="@style/General.Info"
-                android:layout_below="@id/Advanced.Best"
-                android:text="@string/statistics_times_played" />
-
-            <TextView
-                android:id="@+id/Advanced.TimesPlayed.Count"
-                style="@style/General.Info"
-                android:layout_below="@id/Advanced.Best"
-                android:layout_toEndOf="@id/Advanced.TimesPlayed"
-                android:text="0" />
+                android:layout_below="@id/expert"
+                android:layout_centerHorizontal="true"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/adMob_bannerID" />
 
         </RelativeLayout>
-
-        <TextView
-            android:id="@+id/Expert"
-            style="@style/General.Title.Small"
-            android:layout_below="@id/advanced"
-            android:text="@string/statistics_expert" />
-
-        <RelativeLayout
-            android:id="@+id/expert"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Expert"
-            android:layout_margin="@dimen/_2sdp"
-            android:background="@drawable/box">
-
-            <TextView
-                android:id="@+id/Expert.Average"
-                style="@style/General.Info"
-                android:text="@string/statistics_average" />
-
-            <TextView
-                android:id="@+id/Expert.Average.Time"
-                style="@style/General.Info"
-                android:layout_toEndOf="@id/Expert.Average"
-                android:text="00:00" />
-
-            <TextView
-                android:id="@+id/Expert.Best"
-                style="@style/General.Info"
-                android:layout_below="@id/Expert.Average"
-                android:text="@string/statistics_best" />
-
-            <TextView
-                android:id="@+id/Expert.Best.Time"
-                style="@style/General.Info"
-                android:layout_below="@id/Expert.Average"
-                android:layout_toEndOf="@id/Expert.Best"
-                android:text="00:00" />
-
-            <TextView
-                android:id="@+id/Expert.TimesPlayed"
-                style="@style/General.Info"
-                android:layout_below="@id/Expert.Best"
-                android:text="@string/statistics_times_played" />
-
-            <TextView
-                android:id="@+id/Expert.TimesPlayed.Count"
-                style="@style/General.Info"
-                android:layout_below="@id/Expert.Best"
-                android:layout_toEndOf="@id/Expert.TimesPlayed"
-                android:text="0" />
-        </RelativeLayout>
-
-        <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/expert"
-            android:layout_centerHorizontal="true"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/adMob_bannerID"/>
-    </RelativeLayout>
-</ScrollView>
+    </ScrollView>
+</RelativeLayout>
