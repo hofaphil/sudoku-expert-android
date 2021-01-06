@@ -36,7 +36,7 @@ public class Data {
     public final static String SETTINGS_CHECK_NOTES = "checknotes";
     public final static String SETTINGS_SHOW_TIME = "showtime";
     public final static String SETTINGS_COLOR = "color";
-    public final static String SETTINGS_SUPPORTER ="supporter";
+    public final static String SETTINGS_SUPPORTER = "supporter";
 
     // for actual game
     public final static String GAME_ERRORS = "errors";
