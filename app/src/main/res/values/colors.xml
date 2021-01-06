@@ -5,6 +5,7 @@
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="darkdarkgray">#656565</color>
     <color name="darkgray">#a9a9a9</color>
     <color name="dimgray">#bdbdbd</color>
     <color name="gray">#eeeeee</color>

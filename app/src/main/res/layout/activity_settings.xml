@@ -8,7 +8,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/ToolBar"
+        android:theme="@style/General.ToolBar"
         android:title="@string/settings_title" />
 
     <ScrollView
@@ -22,193 +22,154 @@
 
             <RelativeLayout
                 android:id="@+id/markNumbers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_2sdp"
-                android:background="@drawable/box">
+                style="@style/SettingsLayout">
 
                 <TextView
                     android:id="@+id/markNumbersTitle"
-                    style="@style/General.Title.Small"
+                    style="@style/Settings.Title"
                     android:text="@string/settings_markNumbers" />
 
                 <TextView
                     android:id="@+id/markNumbersAnnotations"
-                    style="@style/General.Info"
+                    style="@style/Settings.Info"
                     android:layout_below="@id/markNumbersTitle"
+                    android:layout_toStartOf="@id/markNumbersSwitch"
                     android:text="@string/settings_markNumbersAnnotations" />
 
                 <CheckBox
                     android:id="@+id/markNumbersSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/markNumbersTitle"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"
-                    android:buttonTint="@color/black" />
+                    style="@style/SettingsCheckBox"
+                    android:layout_alignTop="@id/markNumbersTitle" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/markLines"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/markNumbers"
-                android:layout_margin="@dimen/_2sdp"
-                android:background="@drawable/box">
+                style="@style/SettingsLayout"
+                android:layout_below="@id/markNumbers">
 
                 <TextView
                     android:id="@+id/markLinesTitle"
-                    style="@style/General.Title.Small"
+                    style="@style/Settings.Title"
                     android:text="@string/settings_markLines" />
 
                 <TextView
                     android:id="@+id/markLinesAnnotations"
-                    style="@style/General.Info"
+                    style="@style/Settings.Info"
                     android:layout_below="@id/markLinesTitle"
+                    android:layout_toStartOf="@id/markLinesSwitch"
                     android:text="@string/settings_markLinesAnnotations" />
 
                 <CheckBox
                     android:id="@+id/markLinesSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/markLinesTitle"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"
-                    android:buttonTint="@color/black" />
+                    style="@style/SettingsCheckBox"
+                    android:layout_alignTop="@id/markLinesTitle" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/checkNotes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/markLines"
-                android:layout_margin="@dimen/_2sdp"
-                android:background="@drawable/box">
+                style="@style/SettingsLayout"
+                android:layout_below="@id/markLines">
 
                 <TextView
                     android:id="@+id/checkNotesTitle"
-                    style="@style/General.Title.Small"
+                    style="@style/Settings.Title"
                     android:text="@string/settings_checkNotes" />
 
                 <TextView
                     android:id="@+id/checkNotesAnnotation"
-                    style="@style/General.Info"
+                    style="@style/Settings.Info"
                     android:layout_below="@id/checkNotesTitle"
+                    android:layout_toStartOf="@id/checkNotesSwitch"
                     android:text="@string/settings_checkNotesAnnotations" />
 
                 <CheckBox
                     android:id="@+id/checkNotesSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/checkNotesTitle"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"
-                    android:buttonTint="@color/black" />
+                    style="@style/SettingsCheckBox"
+                    android:layout_alignTop="@id/checkNotesTitle" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/powerMode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/checkNotes"
-                android:layout_margin="@dimen/_2sdp"
-                android:background="@drawable/box">
+                style="@style/SettingsLayout"
+                android:layout_below="@id/checkNotes">
 
                 <TextView
                     android:id="@+id/powerModeTitle"
-                    style="@style/General.Title.Small"
+                    style="@style/Settings.Title"
                     android:text="@string/settings_powerMode" />
 
                 <TextView
                     android:id="@+id/powerModeAnnotations"
-                    style="@style/General.Info"
+                    style="@style/Settings.Info"
                     android:layout_below="@id/powerModeTitle"
+                    android:layout_toStartOf="@id/powerModeSwitch"
                     android:text="@string/settings_powerModeAnnotations" />
 
                 <CheckBox
                     android:id="@+id/powerModeSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/powerModeTitle"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"
-                    android:buttonTint="@color/black" />
+                    style="@style/SettingsCheckBox"
+                    android:layout_alignTop="@id/powerModeTitle" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/showErrors"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/powerMode"
-                android:layout_margin="@dimen/_2sdp"
-                android:background="@drawable/box">
+                style="@style/SettingsLayout"
+                android:layout_below="@id/powerMode">
 
                 <TextView
                     android:id="@+id/showErrorsTitle"
-                    style="@style/General.Title.Small"
+                    style="@style/Settings.Title"
                     android:text="@string/settings_showErrors" />
 
                 <TextView
                     android:id="@+id/showErrorsAnnotations"
-                    style="@style/General.Info"
+                    style="@style/Settings.Info"
                     android:layout_below="@id/showErrorsTitle"
+                    android:layout_toStartOf="@id/showErrorsSwitch"
                     android:text="@string/settings_showErrorsAnnotations" />
 
                 <CheckBox
                     android:id="@+id/showErrorsSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/showErrorsTitle"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"
-                    android:buttonTint="@color/black" />
+                    style="@style/SettingsCheckBox"
+                    android:layout_alignTop="@id/showErrorsTitle" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/showTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/showErrors"
-                android:layout_margin="@dimen/_2sdp"
-                android:background="@drawable/box">
+                style="@style/SettingsLayout"
+                android:layout_below="@id/showErrors">
 
                 <TextView
                     android:id="@+id/showTimeTitle"
-                    style="@style/General.Title.Small"
+                    style="@style/Settings.Title"
                     android:text="@string/settings_showTime" />
 
                 <TextView
                     android:id="@+id/showTimeAnnotations"
-                    style="@style/General.Info"
+                    style="@style/Settings.Info"
                     android:layout_below="@id/showTimeTitle"
+                    android:layout_toStartOf="@id/showTimeSwitch"
                     android:text="@string/settings_showTimeAnnotations" />
 
                 <CheckBox
                     android:id="@+id/showTimeSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/showTimeTitle"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"
-                    android:buttonTint="@color/black" />
+                    style="@style/SettingsCheckBox"
+                    android:layout_alignTop="@id/showTimeTitle" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/showTime"
-                android:layout_margin="@dimen/_2sdp"
-                android:background="@drawable/box">
+                style="@style/SettingsLayout"
+                android:layout_below="@id/showTime">
 
                 <TextView
                     android:id="@+id/colorTitle"
-                    style="@style/General.Title.Small"
+                    style="@style/Settings.Title"
                     android:text="@string/settings_color" />
 
                 <TextView
                     android:id="@+id/colorAnnotations"
-                    style="@style/General.Info"
+                    style="@style/Settings.Info"
                     android:layout_below="@id/colorTitle"
                     android:text="@string/settings_color_annotations" />
 
@@ -223,20 +184,17 @@
 
             <RelativeLayout
                 android:id="@+id/support"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/color"
-                android:layout_margin="@dimen/_2sdp"
-                android:background="@drawable/box">
+                style="@style/SettingsLayout"
+                android:layout_below="@id/color">
 
                 <TextView
                     android:id="@+id/supportTitle"
-                    style="@style/General.Title.Small"
+                    style="@style/Settings.Title"
                     android:text="@string/settings_support" />
 
                 <TextView
                     android:id="@+id/supportAnnotations"
-                    style="@style/General.Info"
+                    style="@style/Settings.Info"
                     android:layout_below="@id/supportTitle"
                     android:text="@string/settings_support_annotations" />
 
@@ -250,20 +208,17 @@
 
             <RelativeLayout
                 android:id="@+id/deleteData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/support"
-                android:layout_margin="@dimen/_2sdp"
-                android:background="@drawable/box">
+                style="@style/SettingsLayout"
+                android:layout_below="@id/support">
 
                 <TextView
                     android:id="@+id/deleteDataTitle"
-                    style="@style/General.Title.Small"
+                    style="@style/Settings.Title"
                     android:text="@string/settings_deleteData" />
 
                 <TextView
                     android:id="@+id/deleteDataAnnotations"
-                    style="@style/General.Info"
+                    style="@style/Settings.Info"
                     android:layout_below="@id/deleteDataTitle"
                     android:text="@string/settings_deleteDataAnnotations" />
 
@@ -277,11 +232,8 @@
 
             <RelativeLayout
                 android:id="@+id/info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/deleteData"
-                android:layout_margin="@dimen/_2sdp"
-                android:background="@drawable/box">
+                style="@style/SettingsLayout"
+                android:layout_below="@id/deleteData">
 
                 <com.aol.philipphofer.gui.custom.CustomButton
                     android:id="@+id/infoButton"
