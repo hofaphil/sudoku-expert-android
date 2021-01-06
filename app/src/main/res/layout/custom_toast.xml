@@ -2,7 +2,6 @@
     android:id="@+id/layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:foreground="@drawable/box"
     android:orientation="horizontal"
     android:padding="8dp">
 

@@ -21,14 +21,14 @@ public class CustomToast {
         @SuppressLint("InflateParams") View layout = inflater.inflate(R.layout.custom_toast, null);
         layout.setBackgroundColor(Color.parseColor(Data.instance(c).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
 
-         ((TextView) layout.findViewById(R.id.text)).setText(text);
+        ((TextView) layout.findViewById(R.id.text)).setText(text);
 
         toast = new Toast(c);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);
     }
 
-    public void show(){
+    public void show() {
         toast.show();
     }
 }
