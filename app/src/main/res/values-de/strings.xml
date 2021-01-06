@@ -77,6 +77,7 @@
     <string name="settings_support_thanks">Danke für deine Unterstützung!</string>
     <string name="settings_support_already">Danke, du bist bereits Supporter!</string>
     <string name="settings_support_error">Gesperrt! Du musst Supporter sein</string>
+    <string name="settings_info">Kontakt</string>
     <string name="settings_color">Farben</string>
     <string name="settings_color_annotations">Ändere die Farben der App</string>
     <string name="settings_color_button">Ändern</string>
