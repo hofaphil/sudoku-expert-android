@@ -76,7 +76,7 @@
     <string name="settings_support_annotations">Support the developer, never have any Ads shown again and unlock color options!</string>
     <string name="settings_support_thanks">Thanks for your support!</string>
     <string name="settings_support_already">Thanks, you are already supporter!</string>
-    <string name="settings_support_error">Locked! You need to ba a supporter</string>
+    <string name="settings_support_error">Locked! You need to be a supporter</string>
     <string name="settings_info">Contact</string>
     <string name="settings_color">Color</string>
     <string name="settings_color_annotations">Change the color of the app</string>

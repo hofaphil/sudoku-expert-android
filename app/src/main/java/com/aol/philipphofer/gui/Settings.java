@@ -10,7 +10,6 @@ import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomActivity;
-import com.aol.philipphofer.gui.custom.CustomButton;
 import com.aol.philipphofer.gui.custom.CustomToast;
 import com.aol.philipphofer.gui.dialog.ColorChooserDialog;
 import com.aol.philipphofer.gui.dialog.ConfirmDialog;
@@ -19,7 +18,6 @@ import com.aol.philipphofer.persistence.Data;
 public class Settings extends CustomActivity implements CompoundButton.OnCheckedChangeListener, BillingProcessor.IBillingHandler {
 
     private CheckBox markNumbers, markLines, powerMode, showErrors, checkNotes, showTime;
-    private CustomButton deleteDataButton, supportButton, colorButton, infoButton;
     private BillingProcessor bp;
 
     @Override
@@ -50,30 +48,21 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
         showTime = findViewById(R.id.showTimeSwitch);
         showTime.setOnCheckedChangeListener(this);
 
-        deleteDataButton = findViewById(R.id.deleteDataButton);
-        supportButton = findViewById(R.id.supportButton);
-        colorButton = findViewById(R.id.colorButton);
-        infoButton = findViewById(R.id.infoButton);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        deleteDataButton.setOnClickListener(v -> new ConfirmDialog(this,
+        findViewById(R.id.deleteData).setOnClickListener(v -> new ConfirmDialog(this,
                 getResources().getString(R.string.settings_confirm),
                 getResources().getString(R.string.settings_confirm_annotations),
                 () -> data.drop()));
 
-        supportButton.setOnClickListener(v -> bp.purchase(this, "supporter"));
+        findViewById(R.id.support).setOnClickListener(v -> bp.purchase(this, "supporter"));
 
-        colorButton.setOnClickListener(v -> {
+        findViewById(R.id.color).setOnClickListener(v -> {
             if (!data.loadBoolean(Data.SETTINGS_SUPPORTER, false))
                 new CustomToast(this, getResources().getString(R.string.settings_support_error)).show();
             else
                 new ColorChooserDialog(this).show();
         });
 
-        infoButton.setOnClickListener(v -> {
+        findViewById(R.id.info).setOnClickListener(v -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.philipphofer.de/contact"));
             startActivity(browserIntent);
         });

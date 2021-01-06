@@ -38,8 +38,7 @@
 
                 <CheckBox
                     android:id="@+id/markNumbersSwitch"
-                    style="@style/SettingsCheckBox"
-                    android:layout_alignTop="@id/markNumbersTitle" />
+                    style="@style/SettingsCheckBox" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -61,8 +60,7 @@
 
                 <CheckBox
                     android:id="@+id/markLinesSwitch"
-                    style="@style/SettingsCheckBox"
-                    android:layout_alignTop="@id/markLinesTitle" />
+                    style="@style/SettingsCheckBox" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -84,8 +82,7 @@
 
                 <CheckBox
                     android:id="@+id/checkNotesSwitch"
-                    style="@style/SettingsCheckBox"
-                    android:layout_alignTop="@id/checkNotesTitle" />
+                    style="@style/SettingsCheckBox" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -107,8 +104,7 @@
 
                 <CheckBox
                     android:id="@+id/powerModeSwitch"
-                    style="@style/SettingsCheckBox"
-                    android:layout_alignTop="@id/powerModeTitle" />
+                    style="@style/SettingsCheckBox" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -130,8 +126,7 @@
 
                 <CheckBox
                     android:id="@+id/showErrorsSwitch"
-                    style="@style/SettingsCheckBox"
-                    android:layout_alignTop="@id/showErrorsTitle" />
+                    style="@style/SettingsCheckBox" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -153,8 +148,7 @@
 
                 <CheckBox
                     android:id="@+id/showTimeSwitch"
-                    style="@style/SettingsCheckBox"
-                    android:layout_alignTop="@id/showTimeTitle" />
+                    style="@style/SettingsCheckBox" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -172,14 +166,6 @@
                     style="@style/Settings.Info"
                     android:layout_below="@id/colorTitle"
                     android:text="@string/settings_color_annotations" />
-
-                <com.aol.philipphofer.gui.custom.CustomButton
-                    android:id="@+id/colorButton"
-                    style="@style/General.Button"
-                    android:layout_below="@id/colorAnnotations"
-                    android:layout_margin="@dimen/_3sdp"
-                    android:text="@string/settings_color_button" />
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -197,13 +183,6 @@
                     style="@style/Settings.Info"
                     android:layout_below="@id/supportTitle"
                     android:text="@string/settings_support_annotations" />
-
-                <com.aol.philipphofer.gui.custom.CustomButton
-                    android:id="@+id/supportButton"
-                    style="@style/General.Button"
-                    android:layout_below="@id/supportAnnotations"
-                    android:layout_margin="@dimen/_3sdp"
-                    android:text="@string/settings_support" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -221,13 +200,6 @@
                     style="@style/Settings.Info"
                     android:layout_below="@id/deleteDataTitle"
                     android:text="@string/settings_deleteDataAnnotations" />
-
-                <com.aol.philipphofer.gui.custom.CustomButton
-                    android:id="@+id/deleteDataButton"
-                    style="@style/General.Button"
-                    android:layout_below="@id/deleteDataAnnotations"
-                    android:layout_margin="@dimen/_3sdp"
-                    android:text="@string/settings_deleteData" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -235,10 +207,9 @@
                 style="@style/SettingsLayout"
                 android:layout_below="@id/deleteData">
 
-                <com.aol.philipphofer.gui.custom.CustomButton
-                    android:id="@+id/infoButton"
-                    style="@style/General.Button"
-                    android:layout_margin="@dimen/_3sdp"
+                <TextView
+                    android:id="@+id/InfoTitle"
+                    style="@style/Settings.Title"
                     android:text="@string/settings_info" />
             </RelativeLayout>
 
