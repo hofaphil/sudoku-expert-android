@@ -25,6 +25,14 @@
         <item name="android:navigationBarColor">@color/yellow</item>
     </style>
 
+    <!-- ToolBar -->
+    <style name="ToolBar" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:background">@color/yellow</item>
+        <item name="android:title">@string/settings_title</item>
+        <item name="android:navigationIcon">@drawable/ic_back</item>
+        <item name="android:titleTextColor">@color/black</item>
+    </style>
+
     <!-- Keyboard Style -->
     <style name="KeyboardNumberButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
         <item name="android:layout_height">wrap_content</item>

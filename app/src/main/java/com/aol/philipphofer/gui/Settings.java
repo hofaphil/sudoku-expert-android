@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
@@ -28,11 +27,10 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        setActionBar(findViewById(R.id.title));
+
         bp = new BillingProcessor(this, "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx61y5ioHZSErdYWJwURIZ1EAMwNRQsvgu3mDr9FDmWbu9JQf4qcjbKVpFsggXnp24Y3whDXJ4mMMI9fCnuQDMy0+Z+18sRtKtT5t1+prdvJb7gbY8D8Xeb1XYDxhC7p3M/pg1KDjdB1jax8s8pqHex5suUkE9n5349EpES/pMpgZlFGO4i2wMTAPiJJ8C5bVyPXeGVstGckdnUKtPZpnZQm/kWjvra7+Ccqltz8f7T89zsr2e2kEk3q6kRUrF2dln6kXpLJulWG6pAZ6DZq0t8UsPS5lsJtuC1dyHd9w/cUJ1x3q8dXnJCrcXnaKUMocVqkpWwk60jwGcwhOBo/KkQIDAQAB", this);
         bp.initialize();
-
-        ImageButton back = findViewById(R.id.backButton);
-        back.setOnClickListener(v -> finish());
 
         markLines = findViewById(R.id.markLinesSwitch);
         markLines.setOnCheckedChangeListener(this);

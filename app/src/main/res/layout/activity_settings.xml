@@ -4,26 +4,11 @@
     android:layout_height="match_parent"
     android:background="@color/transparent">
 
-    <com.aol.philipphofer.gui.custom.CustomTitleBar
+    <Toolbar
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="15dp"
-            android:background="@color/transparent"
-            android:src="@drawable/ic_back" />
-
-        <TextView
-            android:id="@+id/settings"
-            style="@style/General.Title"
-            android:layout_toEndOf="@id/backButton"
-            android:text="@string/settings_title" />
-    </com.aol.philipphofer.gui.custom.CustomTitleBar>
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ToolBar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -297,7 +282,7 @@
                 android:layout_below="@id/deleteData"
                 android:layout_margin="@dimen/_2sdp"
                 android:background="@drawable/box">
-                
+
                 <com.aol.philipphofer.gui.custom.CustomButton
                     android:id="@+id/infoButton"
                     style="@style/General.Button"
