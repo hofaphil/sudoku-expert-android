@@ -1,6 +1,7 @@
 package com.aol.philipphofer.gui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -19,7 +20,7 @@ import com.aol.philipphofer.persistence.Data;
 public class Settings extends CustomActivity implements CompoundButton.OnCheckedChangeListener, BillingProcessor.IBillingHandler {
 
     private CheckBox markNumbers, markLines, powerMode, showErrors, checkNotes, showTime;
-    private CustomButton deleteDataButton, supportButton, colorButton;
+    private CustomButton deleteDataButton, supportButton, colorButton, infoButton;
     private BillingProcessor bp;
 
     @Override
@@ -54,6 +55,7 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
         deleteDataButton = findViewById(R.id.deleteDataButton);
         supportButton = findViewById(R.id.supportButton);
         colorButton = findViewById(R.id.colorButton);
+        infoButton = findViewById(R.id.infoButton);
     }
 
     @Override
@@ -71,6 +73,11 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
                 new CustomToast(this, getResources().getString(R.string.settings_support_error)).show();
             else
                 new ColorChooserDialog(this).show();
+        });
+
+        infoButton.setOnClickListener(v -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.philipphofer.de/contact"));
+            startActivity(browserIntent);
         });
     }
 

@@ -290,6 +290,28 @@
                     android:text="@string/settings_deleteData" />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/deleteData"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@drawable/box">
+
+                <TextView
+                    android:id="@+id/infoTitle"
+                    style="@style/General.Title.Small"
+                    android:text="@string/settings_info" />
+
+                <com.aol.philipphofer.gui.custom.CustomButton
+                    android:id="@+id/infoButton"
+                    style="@style/General.Button"
+                    android:layout_below="@id/infoTitle"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:text="@string/settings_info" />
+            </RelativeLayout>
+
+
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
