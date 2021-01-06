@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/yellow</item>
         <item name="colorAccent">@color/yellow</item>
         <item name="android:itemTextAppearance">@style/PopupMenuStyle</item>
+        <item name="android:navigationBarColor">@color/gray</item>
     </style>
 
     <!-- Popup Menu -->
@@ -15,9 +16,11 @@
     </style>
 
     <!-- Splash Screen -->
-    <style name="SplashTheme" parent="@style/Theme.AppCompat.NoActionBar">
+    <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:background">@color/transparent</item>
         <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:navigationBarColor">@color/transparent</item>
     </style>
 
     <!-- Keyboard Style -->
