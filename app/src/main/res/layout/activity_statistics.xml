@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/transparent">
@@ -9,12 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/ToolBar"
-        android:title="@string/statistics_title" />
+        android:title="@string/statistics_title"/>
 
     <ScrollView
         android:layout_below="@id/title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_5sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,7 +25,9 @@
             <TextView
                 android:id="@+id/Beginner"
                 style="@style/General.Title.Small"
-                android:text="@string/statistics_beginner" />
+                android:text="@string/statistics_beginner"
+                android:textAlignment="center"
+                android:drawableTop="@drawable/ic_beginner" />
 
             <RelativeLayout
                 android:id="@+id/beginner"
@@ -75,7 +79,8 @@
                 android:id="@+id/Advanced"
                 style="@style/General.Title.Small"
                 android:layout_below="@id/beginner"
-                android:text="@string/statistics_advanced" />
+                android:text="@string/statistics_advanced"
+                android:drawableTop="@drawable/ic_advanced"/>
 
             <RelativeLayout
                 android:id="@+id/advanced"
@@ -128,7 +133,8 @@
                 android:id="@+id/Expert"
                 style="@style/General.Title.Small"
                 android:layout_below="@id/advanced"
-                android:text="@string/statistics_expert" />
+                android:text="@string/statistics_expert"
+                android:drawableTop="@drawable/ic_expert"/>
 
             <RelativeLayout
                 android:id="@+id/expert"
