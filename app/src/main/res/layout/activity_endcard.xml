@@ -43,7 +43,8 @@
             android:id="@+id/timeInfo"
             style="@style/General.Info"
             android:layout_below="@id/difficulty"
-            android:layout_toEndOf="@id/time" />
+            android:layout_toEndOf="@id/time"
+            android:text="--:--"/>
 
         <TextView
             android:id="@+id/bestTime"
