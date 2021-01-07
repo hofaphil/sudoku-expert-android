@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import androidx.core.content.ContextCompat;
+
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomActivity;
 import com.aol.philipphofer.logic.Timer;
@@ -70,6 +72,18 @@ public class EndCard extends CustomActivity implements View.OnClickListener {
         } else {
             getActionBar().setTitle(getResources().getString(R.string.lose));
             annotations.setText(getResources().getString(R.string.endcard_loseannotaions));
+        }
+
+        switch (difficulty) {
+            case BEGINNER:
+                annotations.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_beginner, 0, 0);
+                break;
+            case ADVANCED:
+                annotations.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_advanced, 0, 0);
+                break;
+            default:
+                annotations.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_expert, 0, 0);
+                break;
         }
     }
 
