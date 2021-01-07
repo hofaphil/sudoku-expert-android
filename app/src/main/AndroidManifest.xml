@@ -53,16 +53,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".gui.NewSudoku"
-            android:theme="@style/Theme.Transparent"
-            android:parentActivityName=".logic.MainActivity"
-            android:launchMode="singleInstance">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".gui.EndCard"
             android:parentActivityName=".logic.MainActivity"
             android:launchMode="singleInstance"
