@@ -58,6 +58,7 @@
             android:layout_weight="1"
             android:background="@color/orange"
             android:tag="#ed7d31" />
-    </LinearLayout>
 
+
+    </LinearLayout>
 </RelativeLayout>

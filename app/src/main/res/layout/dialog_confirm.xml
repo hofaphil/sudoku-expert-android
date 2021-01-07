@@ -4,24 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.aol.philipphofer.gui.custom.CustomTitleBar
-        android:id="@+id/titleBar"
+    <Toolbar
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/title"
-            style="@style/General.Title.Big" />
-
-    </com.aol.philipphofer.gui.custom.CustomTitleBar>
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/General.ToolBar" />
 
     <TextView
         android:id="@+id/description"
-        style="@style/General.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/titleBar"
-        android:layout_centerHorizontal="true" />
+        style="@style/General.Info.Big"
+        android:layout_below="@id/title"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,5 +43,4 @@
             android:text="@string/confirmdialog_cancel" />
 
     </LinearLayout>
-
 </RelativeLayout>

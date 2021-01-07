@@ -3,6 +3,7 @@ package com.aol.philipphofer.gui.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.aol.philipphofer.R;
 
@@ -12,7 +13,7 @@ public class ConfirmDialog extends Dialog {
         super(context);
         setContentView(R.layout.dialog_confirm);
 
-        ((TextView) findViewById(R.id.title)).setText(title);
+        ((Toolbar) findViewById(R.id.title)).setTitle(title);
         ((TextView) findViewById(R.id.description)).setText(message);
 
         findViewById(R.id.ok).setOnClickListener(v ->  {
