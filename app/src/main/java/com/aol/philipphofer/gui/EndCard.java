@@ -27,7 +27,7 @@ public class EndCard extends CustomActivity {
 
         setActionBar(findViewById(R.id.title));
 
-        findViewById(R.id.okbutton).setOnClickListener(v -> {
+        findViewById(R.id.okButton).setOnClickListener(v -> {
             data.setLoadmode(false);
             finish();
         });

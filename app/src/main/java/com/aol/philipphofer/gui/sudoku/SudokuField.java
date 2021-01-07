@@ -162,7 +162,7 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
 
     public void select() {
         if (!error || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
-            this.setBackgroundColor(Color.parseColor(Data.instance(getContext()).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
+            this.setBackgroundColor(MainActivity.getPrimaryColor(getContext()));
     }
 
     public void unselect() {

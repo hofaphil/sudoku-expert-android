@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.help.ColorObservable;
+import com.aol.philipphofer.logic.MainActivity;
+import com.aol.philipphofer.logic.StartActivity;
 import com.aol.philipphofer.persistence.Data;
 
 public class ColorChooserDialog extends Dialog implements View.OnClickListener {
@@ -33,6 +35,7 @@ public class ColorChooserDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         Data.instance(getContext()).saveTheme(Integer.parseInt((String) v.getTag()));
         ColorObservable.getInstance().notifyObservers();
-        // TODO restart activity
+        //Intent intent = new Intent(getContext(), StartActivity.class);
+        //getContext().startActivity(intent);
     }
 }

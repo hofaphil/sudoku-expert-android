@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.aol.philipphofer.gui.custom.CustomToolBar
+    <Toolbar
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -60,8 +60,8 @@
 
     </RelativeLayout>
 
-    <com.aol.philipphofer.gui.custom.CustomButton
-        android:id="@+id/okbutton"
+    <Button
+        android:id="@+id/okButton"
         style="@style/General.Button"
         android:layout_below="@id/infoLayout"
         android:layout_margin="5dp"

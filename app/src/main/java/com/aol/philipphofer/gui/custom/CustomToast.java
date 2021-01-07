@@ -19,7 +19,6 @@ public class CustomToast {
         LayoutInflater inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         @SuppressLint("InflateParams") View layout = inflater.inflate(R.layout.custom_toast, null);
-        layout.setBackgroundColor(Color.parseColor(Data.instance(c).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
 
         ((TextView) layout.findViewById(R.id.text)).setText(text);
 

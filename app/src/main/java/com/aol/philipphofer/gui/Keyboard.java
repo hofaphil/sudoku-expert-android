@@ -1,7 +1,6 @@
 package com.aol.philipphofer.gui;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,15 +8,9 @@ import android.widget.Button;
 import android.widget.GridLayout;
 
 import com.aol.philipphofer.R;
-import com.aol.philipphofer.gui.custom.CustomColor;
-import com.aol.philipphofer.gui.help.ColorObservable;
 import com.aol.philipphofer.logic.MainActivity;
-import com.aol.philipphofer.persistence.Data;
 
-import java.util.Observable;
-import java.util.Observer;
-
-public class Keyboard extends GridLayout implements View.OnClickListener, Observer {
+public class Keyboard extends GridLayout implements View.OnClickListener {
 
     private final Button delButton, notesButton, pauseButton;
     private final Button[] keys;
@@ -29,15 +22,13 @@ public class Keyboard extends GridLayout implements View.OnClickListener, Observ
 
         mainActivity = (MainActivity) context;
 
-        ColorObservable.getInstance().addObserver(this);
-
         delButton = findViewById(R.id.delete);
         delButton.setOnClickListener((View v) -> mainActivity.delete());
 
         notesButton = findViewById(R.id.notes);
         notesButton.setOnClickListener((View v) -> {
             if (mainActivity.notesMode())
-                notesButton.setBackgroundColor(Color.parseColor(Data.instance(context).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
+                notesButton.setBackgroundColor(MainActivity.getPrimaryColor(getContext()));
             else
                 notesButton.setBackgroundColor(getResources().getColor(R.color.transparent));
         });
@@ -71,7 +62,8 @@ public class Keyboard extends GridLayout implements View.OnClickListener, Observ
     public void activatePauseMode() {
         for (int i = 0; i < 9; i++)
             keys[i].setEnabled(false);
-        pauseButton.setBackgroundColor(Color.parseColor(Data.instance(getContext()).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
+
+        pauseButton.setBackgroundColor(MainActivity.getPrimaryColor(getContext()));
         delButton.setEnabled(false);
         notesButton.setEnabled(false);
     }
@@ -101,11 +93,4 @@ public class Keyboard extends GridLayout implements View.OnClickListener, Observ
         notesButton.setEnabled(false);
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        if(mainActivity.isNotes())
-        notesButton.setBackgroundColor(Color.parseColor(Data.instance(mainActivity).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
-            else
-        notesButton.setBackgroundColor(getResources().getColor(R.color.transparent));
-    }
 }

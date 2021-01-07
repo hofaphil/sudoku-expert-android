@@ -1,5 +1,6 @@
 package com.aol.philipphofer.logic;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -602,5 +603,11 @@ public class MainActivity extends CustomActivity {
         } catch (Exception e) {
             new CustomToast(this, getResources().getString(R.string.error_default)).show();
         }
+    }
+
+    public static int getPrimaryColor(Context context) {
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        return typedValue.data;
     }
 }
