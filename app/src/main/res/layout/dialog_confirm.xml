@@ -8,7 +8,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/General.ToolBar" />
+        android:theme="@style/General.ToolBar"/>
 
     <TextView
         android:id="@+id/description"
@@ -26,7 +26,7 @@
         android:orientation="vertical"
         android:weightSum="2">
 
-        <com.aol.philipphofer.gui.custom.CustomButton
+        <Button
             android:id="@+id/ok"
             style="@style/General.Button"
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:layout_weight="1"
             android:text="@string/confirmdialog_ok" />
 
-        <com.aol.philipphofer.gui.custom.CustomButton
+        <Button
             android:id="@+id/cancel"
             style="@style/General.Button"
             android:layout_width="match_parent"

@@ -33,7 +33,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/yellow"
-            android:tag="#ffcc00" />
+            android:tag="0" />
 
         <Button
             android:id="@+id/green"
@@ -41,7 +41,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/green"
-            android:tag="#70ad47" />
+            android:tag="1" />
 
         <Button
             android:id="@+id/blue"
@@ -49,7 +49,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/blue"
-            android:tag="#5b9bd5" />
+            android:tag="2" />
 
         <Button
             android:id="@+id/orange"
@@ -57,7 +57,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/orange"
-            android:tag="#ed7d31" />
+            android:tag="3" />
 
 
     </LinearLayout>

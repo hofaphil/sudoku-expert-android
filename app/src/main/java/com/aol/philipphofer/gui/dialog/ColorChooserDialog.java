@@ -2,6 +2,7 @@ package com.aol.philipphofer.gui.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
@@ -30,7 +31,8 @@ public class ColorChooserDialog extends Dialog implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Data.instance(getContext()).saveString(Data.SETTINGS_COLOR, (String) v.getTag());
+        Data.instance(getContext()).saveTheme(Integer.parseInt((String) v.getTag()));
         ColorObservable.getInstance().notifyObservers();
+        // TODO restart activity
     }
 }

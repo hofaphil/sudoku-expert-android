@@ -31,7 +31,7 @@ import com.google.android.play.core.tasks.Task;
 import java.util.Observable;
 import java.util.Observer;
 
-public class StatusBar extends RelativeLayout implements Observer {
+public class StatusBar extends RelativeLayout {
 
     private final ImageButton moreButton, newButton;
     private final TextView timeView, errorView, difficultyView;
@@ -44,9 +44,6 @@ public class StatusBar extends RelativeLayout implements Observer {
         LayoutInflater.from(context).inflate(R.layout.sudoku_statusbar, this);
 
         mainActivity = (MainActivity) context;
-
-        findViewById(R.id.layout).setBackgroundColor(Color.parseColor(Data.instance(mainActivity).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
-        ColorObservable.getInstance().addObserver(this);
 
         moreButton = findViewById(R.id.popupButton);
         moreButton.setOnClickListener((View v) -> {
@@ -150,11 +147,6 @@ public class StatusBar extends RelativeLayout implements Observer {
     public void activate() {
         moreButton.setEnabled(true);
         newButton.setEnabled(true);
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
-        findViewById(R.id.layout).setBackgroundColor(Color.parseColor(Data.instance(getContext()).loadString(Data.SETTINGS_COLOR, CustomColor.YELLOW.getHex())));
     }
 }
 

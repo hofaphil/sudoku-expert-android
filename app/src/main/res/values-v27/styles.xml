@@ -3,9 +3,9 @@
     <!-- General AppStyle with light navigation bar -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:background">@color/gray</item>
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryDark">@color/yellow</item>
-        <item name="colorAccent">@color/yellow</item>
+        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/gray</item>
         <item name="android:statusBarColor">@color/yellow</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:itemTextAppearance">@style/PopupMenuStyle</item>

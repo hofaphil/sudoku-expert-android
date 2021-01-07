@@ -3,6 +3,7 @@ package com.aol.philipphofer.persistence;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.help.ColorObservable;
 import com.aol.philipphofer.gui.sudoku.SudokuField;
 import com.aol.philipphofer.logic.help.Difficulty;
@@ -178,17 +179,6 @@ public class Data {
         editor.commit();
     }
 
-    public void drop() {
-        boolean supporter = loadBoolean(SETTINGS_SUPPORTER, false);
-
-        editor.clear();
-
-        editor.putBoolean(SETTINGS_SUPPORTER, supporter);
-        editor.commit();
-
-        ColorObservable.getInstance().notifyObservers();
-    }
-
     public void addTime(int time, Difficulty difficulty) {
         int timesPlayed = loadInt(Data.STATISTICS_TIMESPLAYED + difficulty.getNumber()) + 1;
         int timeOverall = loadInt(Data.STATISTICS_TIMEOVERALL + difficulty.getNumber()) + time;
@@ -198,4 +188,41 @@ public class Data {
                 loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber()) == 0)
             saveInt(Data.STATISTICS_BESTTIME + difficulty.getNumber(), time);
     }
+
+    public int getTheme() {
+        // Hacky, but before there was a string saved
+        try {
+            return data.getInt(SETTINGS_COLOR, R.style.AppTheme);
+        } catch (Exception e) {
+            return R.style.AppTheme;
+        }
+    }
+
+    public void saveTheme(int color) {
+        switch (color) {
+            case 1:
+                editor.putInt(SETTINGS_COLOR, R.style.AppTheme_Green);
+                break;
+            case 2:
+                editor.putInt(SETTINGS_COLOR, R.style.AppTheme_Blue);
+                break;
+            case 3:
+                editor.putInt(SETTINGS_COLOR, R.style.AppTheme_Orange);
+                break;
+            default:
+                editor.putInt(SETTINGS_COLOR, R.style.AppTheme);
+                break;
+        }
+        editor.commit();
+    }
+
+    public void drop() {
+        boolean supporter = loadBoolean(SETTINGS_SUPPORTER, false);
+
+        editor.clear();
+
+        editor.putBoolean(SETTINGS_SUPPORTER, supporter);
+        editor.commit();
+    }
+
 }
