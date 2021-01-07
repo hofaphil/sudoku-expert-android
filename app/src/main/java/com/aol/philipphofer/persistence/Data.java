@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.aol.philipphofer.gui.help.ColorObservable;
 import com.aol.philipphofer.gui.sudoku.SudokuField;
+import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.sudoku.Block;
 import com.aol.philipphofer.sudoku.Sudoku;
 
@@ -186,5 +187,15 @@ public class Data {
         editor.commit();
 
         ColorObservable.getInstance().notifyObservers();
+    }
+
+    public void addTime(int time, Difficulty difficulty) {
+        int timesPlayed = loadInt(Data.STATISTICS_TIMESPLAYED + difficulty.getNumber()) + 1;
+        int timeOverall = loadInt(Data.STATISTICS_TIMEOVERALL + difficulty.getNumber()) + time;
+        saveInt(Data.STATISTICS_TIMESPLAYED + difficulty.getNumber(), timesPlayed);
+        saveInt(Data.STATISTICS_TIMEOVERALL + difficulty.getNumber(), timeOverall);
+        if (loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber()) > time ||
+                loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber()) == 0)
+            saveInt(Data.STATISTICS_BESTTIME + difficulty.getNumber(), time);
     }
 }

@@ -58,7 +58,6 @@ public class EndCard extends CustomActivity {
             if (data.loadBoolean(Data.GAME_SHOW_TIME)) {
                 this.time.setText(Timer.timeToString(time));
                 annotations.setText(getResources().getString(R.string.endcard_winannotations, Timer.timeToString(time)));
-                Statistics.addTime(this, time, difficulty);
             } else
                 annotations.setText(getResources().getString(R.string.endcard_winannotationswithouttime));
         } else {

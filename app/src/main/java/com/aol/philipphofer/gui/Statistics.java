@@ -65,14 +65,4 @@ public class Statistics extends CustomActivity {
     protected void onStop() {
         super.onStop();
     }
-
-    public static void addTime(Context context, int time, Difficulty difficulty) {
-        int timesPlayed = Data.instance(context).loadInt(Data.STATISTICS_TIMESPLAYED + difficulty.getNumber()) + 1;
-        int timeOverall = Data.instance(context).loadInt(Data.STATISTICS_TIMEOVERALL + difficulty.getNumber()) + time;
-        Data.instance(context).saveInt(Data.STATISTICS_TIMESPLAYED + difficulty.getNumber(), timesPlayed);
-        Data.instance(context).saveInt(Data.STATISTICS_TIMEOVERALL + difficulty.getNumber(), timeOverall);
-        if (Data.instance(context).loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber()) > time ||
-                Data.instance(context).loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber()) == 0)
-            Data.instance(context).saveInt(Data.STATISTICS_BESTTIME + difficulty.getNumber(), time);
-    }
 }

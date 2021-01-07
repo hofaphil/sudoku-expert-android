@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.EndCard;
 import com.aol.philipphofer.gui.Keyboard;
+import com.aol.philipphofer.gui.Statistics;
 import com.aol.philipphofer.gui.StatusBar;
 import com.aol.philipphofer.gui.custom.CustomActivity;
 import com.aol.philipphofer.gui.custom.CustomAdLoader;
@@ -545,6 +546,8 @@ public class MainActivity extends CustomActivity {
         if (data.loadBoolean(Data.GAME_SHOW_TIME))
             intent.putExtra(EndCard.TIME, timer.getTime());
         startActivityForResult(intent, 1);
+
+        data.addTime(timer.getTime(), DIFFICULTY);
     }
 
     public void abortSudoku() {
