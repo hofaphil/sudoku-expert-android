@@ -1,5 +1,6 @@
 package com.aol.philipphofer.gui.dialog;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -8,9 +9,13 @@ import android.widget.Button;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.help.ColorObservable;
-import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.StartActivity;
 import com.aol.philipphofer.persistence.Data;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class ColorChooserDialog extends Dialog implements View.OnClickListener {
 
@@ -35,7 +40,10 @@ public class ColorChooserDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         Data.instance(getContext()).saveTheme(Integer.parseInt((String) v.getTag()));
         ColorObservable.getInstance().notifyObservers();
-        //Intent intent = new Intent(getContext(), StartActivity.class);
-        //getContext().startActivity(intent);
+        // Restart app
+        Intent intent = new Intent(getContext(), StartActivity.class);
+        intent.setAction(Intent.ACTION_MAIN);
+        getContext().startActivity(intent);
+        Runtime.getRuntime().exit(0);
     }
 }
