@@ -8,7 +8,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/General.ToolBar"
+        android:theme="@style/General.ToolBar.Back"
         android:title="@string/settings_title" />
 
     <ScrollView
@@ -22,7 +22,7 @@
 
             <RelativeLayout
                 android:id="@+id/markNumbers"
-                style="@style/SettingsLayout">
+                style="@style/Settings.Layout">
 
                 <TextView
                     android:id="@+id/markNumbersTitle"
@@ -38,12 +38,12 @@
 
                 <CheckBox
                     android:id="@+id/markNumbersSwitch"
-                    style="@style/SettingsCheckBox" />
+                    style="@style/Settings.CheckBox" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/markLines"
-                style="@style/SettingsLayout"
+                style="@style/Settings.Layout"
                 android:layout_below="@id/markNumbers">
 
                 <TextView
@@ -60,12 +60,12 @@
 
                 <CheckBox
                     android:id="@+id/markLinesSwitch"
-                    style="@style/SettingsCheckBox" />
+                    style="@style/Settings.CheckBox" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/checkNotes"
-                style="@style/SettingsLayout"
+                style="@style/Settings.Layout"
                 android:layout_below="@id/markLines">
 
                 <TextView
@@ -82,12 +82,12 @@
 
                 <CheckBox
                     android:id="@+id/checkNotesSwitch"
-                    style="@style/SettingsCheckBox" />
+                    style="@style/Settings.CheckBox" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/powerMode"
-                style="@style/SettingsLayout"
+                style="@style/Settings.Layout"
                 android:layout_below="@id/checkNotes">
 
                 <TextView
@@ -104,12 +104,12 @@
 
                 <CheckBox
                     android:id="@+id/powerModeSwitch"
-                    style="@style/SettingsCheckBox" />
+                    style="@style/Settings.CheckBox" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/showErrors"
-                style="@style/SettingsLayout"
+                style="@style/Settings.Layout"
                 android:layout_below="@id/powerMode">
 
                 <TextView
@@ -126,12 +126,12 @@
 
                 <CheckBox
                     android:id="@+id/showErrorsSwitch"
-                    style="@style/SettingsCheckBox" />
+                    style="@style/Settings.CheckBox" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/showTime"
-                style="@style/SettingsLayout"
+                style="@style/Settings.Layout"
                 android:layout_below="@id/showErrors">
 
                 <TextView
@@ -148,12 +148,12 @@
 
                 <CheckBox
                     android:id="@+id/showTimeSwitch"
-                    style="@style/SettingsCheckBox" />
+                    style="@style/Settings.CheckBox" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/color"
-                style="@style/SettingsLayout"
+                style="@style/Settings.Layout"
                 android:layout_below="@id/showTime">
 
                 <TextView
@@ -170,7 +170,7 @@
 
             <RelativeLayout
                 android:id="@+id/support"
-                style="@style/SettingsLayout"
+                style="@style/Settings.Layout"
                 android:layout_below="@id/color">
 
                 <TextView
@@ -187,7 +187,7 @@
 
             <RelativeLayout
                 android:id="@+id/deleteData"
-                style="@style/SettingsLayout"
+                style="@style/Settings.Layout"
                 android:layout_below="@id/support">
 
                 <TextView
@@ -204,7 +204,7 @@
 
             <RelativeLayout
                 android:id="@+id/info"
-                style="@style/SettingsLayout"
+                style="@style/Settings.Layout"
                 android:layout_below="@id/deleteData">
 
                 <TextView

@@ -8,7 +8,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/General.ToolBar"
+        android:theme="@style/General.ToolBar.Back"
         android:title="@string/statistics_title"/>
 
     <ScrollView
@@ -23,7 +23,7 @@
 
             <TextView
                 android:id="@+id/Beginner"
-                style="@style/Statistics.Title.Small"
+                style="@style/General.Title"
                 android:text="@string/statistics_beginner"
                 android:textAlignment="center"
                 android:drawableTop="@drawable/ic_beginner" />
@@ -76,7 +76,7 @@
 
             <TextView
                 android:id="@+id/Advanced"
-                style="@style/Statistics.Title.Small"
+                style="@style/General.Title"
                 android:layout_below="@id/beginner"
                 android:text="@string/statistics_advanced"
                 android:drawableTop="@drawable/ic_advanced"/>
@@ -130,7 +130,7 @@
 
             <TextView
                 android:id="@+id/Expert"
-                style="@style/Statistics.Title.Small"
+                style="@style/General.Title"
                 android:layout_below="@id/advanced"
                 android:text="@string/statistics_expert"
                 android:drawableTop="@drawable/ic_expert"/>

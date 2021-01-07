@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomActivity;
@@ -15,7 +16,7 @@ import com.aol.philipphofer.persistence.Data;
 
 public class EndCard extends CustomActivity implements View.OnClickListener {
 
-    private TextView title, annotations;
+    private TextView annotations;
     private TextView time, bestTime, difficulty;
 
     public final static String WON = "won";
@@ -27,10 +28,11 @@ public class EndCard extends CustomActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_endcard);
 
+        setActionBar(findViewById(R.id.title));
+
         Button ok = findViewById(R.id.okbutton);
         ok.setOnClickListener(this);
 
-        title = findViewById(R.id.title);
         annotations = findViewById(R.id.annotations);
 
         this.time = findViewById(R.id.timeInfo);
@@ -58,7 +60,7 @@ public class EndCard extends CustomActivity implements View.OnClickListener {
         bestTime.setText(Timer.timeToString(data.loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber())));
 
         if (won) {
-            title.setText(getResources().getString(R.string.win));
+            getActionBar().setTitle(getResources().getString(R.string.win));
             if (data.loadBoolean(Data.GAME_SHOW_TIME)) {
                 this.time.setText(Timer.timeToString(time));
                 annotations.setText(getResources().getString(R.string.endcard_winannotations, Timer.timeToString(time)));
@@ -66,7 +68,7 @@ public class EndCard extends CustomActivity implements View.OnClickListener {
             } else
                 annotations.setText(getResources().getString(R.string.endcard_winannotationswithouttime));
         } else {
-            title.setText(getResources().getString(R.string.lose));
+            getActionBar().setTitle(getResources().getString(R.string.lose));
             annotations.setText(getResources().getString(R.string.endcard_loseannotaions));
         }
     }

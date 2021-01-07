@@ -3,21 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.aol.philipphofer.gui.custom.CustomTitleBar
-        android:id="@+id/titleBar"
+    <Toolbar
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/title"
-            style="@style/General.Title" />
-
-    </com.aol.philipphofer.gui.custom.CustomTitleBar>
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/General.ToolBar" />
 
     <TextView
         android:id="@+id/annotations"
-        style="@style/General.Title.Small"
-        android:layout_below="@id/titleBar" />
+        style="@style/General.Title"
+        android:layout_below="@id/title" />
 
     <RelativeLayout
         android:id="@+id/infoLayout"
