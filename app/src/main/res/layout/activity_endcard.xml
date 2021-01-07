@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/annotations"
-        style="@style/General.Title"
+        style="@style/General.Info.Big"
         android:layout_below="@id/title"
         android:layout_marginTop="@dimen/_5sdp"/>
 
@@ -25,36 +25,36 @@
 
         <TextView
             android:id="@+id/difficulty"
-            style="@style/General.Info"
+            style="@style/General.Info.Big"
             android:text="@string/endcard_difficulty" />
 
         <TextView
             android:id="@+id/difficultyInfo"
-            style="@style/General.Info"
+            style="@style/General.Info.Big"
             android:layout_toEndOf="@id/difficulty" />
 
         <TextView
             android:id="@+id/time"
-            style="@style/General.Info"
+            style="@style/General.Info.Big"
             android:layout_below="@id/difficulty"
             android:text="@string/endcard_time" />
 
         <TextView
             android:id="@+id/timeInfo"
-            style="@style/General.Info"
+            style="@style/General.Info.Big"
             android:layout_below="@id/difficulty"
             android:layout_toEndOf="@id/time"
             android:text="--:--"/>
 
         <TextView
             android:id="@+id/bestTime"
-            style="@style/General.Info"
+            style="@style/General.Info.Big"
             android:layout_below="@id/time"
             android:text="@string/endcard_besttime" />
 
         <TextView
             android:id="@+id/bestTimeInfo"
-            style="@style/General.Info"
+            style="@style/General.Info.Big"
             android:layout_below="@id/time"
             android:layout_toEndOf="@id/bestTime" />
 

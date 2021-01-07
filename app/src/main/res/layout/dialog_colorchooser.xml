@@ -4,25 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.aol.philipphofer.gui.custom.CustomTitleBar
-        android:id="@+id/titleBar"
+    <Toolbar
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/title"
-            style="@style/General.Title"
-            android:text="@string/cholorchooserdialog_title" />
-
-    </com.aol.philipphofer.gui.custom.CustomTitleBar>
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/General.ToolBar"
+        android:title="@string/cholorchooserdialog_title" />
 
     <TextView
         android:id="@+id/description"
-        style="@style/General.Title.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/titleBar"
+        style="@style/General.Info.Big"
+        android:layout_below="@id/title"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:text="@string/cholorchooserdialog_info" />
 
     <LinearLayout
@@ -35,7 +30,6 @@
         <Button
             android:id="@+id/yellow"
             style="@style/General.Button"
-            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/yellow"
@@ -44,7 +38,6 @@
         <Button
             android:id="@+id/green"
             style="@style/General.Button"
-            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/green"
@@ -53,7 +46,6 @@
         <Button
             android:id="@+id/blue"
             style="@style/General.Button"
-            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/blue"
@@ -62,7 +54,6 @@
         <Button
             android:id="@+id/orange"
             style="@style/General.Button"
-            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/orange"

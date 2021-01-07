@@ -23,7 +23,7 @@
 
             <TextView
                 android:id="@+id/Beginner"
-                style="@style/General.Title"
+                style="@style/General.Title.Big"
                 android:text="@string/statistics_beginner"
                 android:textAlignment="center"
                 android:drawableTop="@drawable/ic_beginner" />
@@ -38,37 +38,37 @@
 
                 <TextView
                     android:id="@+id/Beginner.Average"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:text="@string/statistics_average" />
 
                 <TextView
                     android:id="@+id/Beginner.Average.Time"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_toEndOf="@id/Beginner.Average"
                     android:text="00:00" />
 
                 <TextView
                     android:id="@+id/Beginner.Best"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_below="@id/Beginner.Average"
                     android:text="@string/statistics_best" />
 
                 <TextView
                     android:id="@+id/Beginner.Best.Time"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_below="@id/Beginner.Average"
                     android:layout_toEndOf="@id/Beginner.Best"
                     android:text="00:00" />
 
                 <TextView
                     android:id="@+id/Beginner.TimesPlayed"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_below="@id/Beginner.Best"
                     android:text="@string/statistics_times_played" />
 
                 <TextView
                     android:id="@+id/Beginner.TimesPlayed.Count"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_below="@id/Beginner.Best"
                     android:layout_toEndOf="@id/Beginner.TimesPlayed"
                     android:text="0" />
@@ -76,7 +76,7 @@
 
             <TextView
                 android:id="@+id/Advanced"
-                style="@style/General.Title"
+                style="@style/General.Title.Big"
                 android:layout_below="@id/beginner"
                 android:text="@string/statistics_advanced"
                 android:drawableTop="@drawable/ic_advanced"/>
@@ -91,37 +91,37 @@
 
                 <TextView
                     android:id="@+id/Advanced.Average"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:text="@string/statistics_average" />
 
                 <TextView
                     android:id="@+id/Advanced.Average.Time"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_toEndOf="@id/Advanced.Average"
                     android:text="00:00" />
 
                 <TextView
                     android:id="@+id/Advanced.Best"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_below="@id/Advanced.Average"
                     android:text="@string/statistics_best" />
 
                 <TextView
                     android:id="@+id/Advanced.Best.Time"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_below="@id/Advanced.Average"
                     android:layout_toEndOf="@id/Advanced.Best"
                     android:text="00:00" />
 
                 <TextView
                     android:id="@+id/Advanced.TimesPlayed"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_below="@id/Advanced.Best"
                     android:text="@string/statistics_times_played" />
 
                 <TextView
                     android:id="@+id/Advanced.TimesPlayed.Count"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_below="@id/Advanced.Best"
                     android:layout_toEndOf="@id/Advanced.TimesPlayed"
                     android:text="0" />
@@ -130,7 +130,7 @@
 
             <TextView
                 android:id="@+id/Expert"
-                style="@style/General.Title"
+                style="@style/General.Title.Big"
                 android:layout_below="@id/advanced"
                 android:text="@string/statistics_expert"
                 android:drawableTop="@drawable/ic_expert"/>
@@ -145,37 +145,37 @@
 
                 <TextView
                     android:id="@+id/Expert.Average"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:text="@string/statistics_average" />
 
                 <TextView
                     android:id="@+id/Expert.Average.Time"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_toEndOf="@id/Expert.Average"
                     android:text="00:00" />
 
                 <TextView
                     android:id="@+id/Expert.Best"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_below="@id/Expert.Average"
                     android:text="@string/statistics_best" />
 
                 <TextView
                     android:id="@+id/Expert.Best.Time"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_below="@id/Expert.Average"
                     android:layout_toEndOf="@id/Expert.Best"
                     android:text="00:00" />
 
                 <TextView
                     android:id="@+id/Expert.TimesPlayed"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_below="@id/Expert.Best"
                     android:text="@string/statistics_times_played" />
 
                 <TextView
                     android:id="@+id/Expert.TimesPlayed.Count"
-                    style="@style/General.Info"
+                    style="@style/General.Info.Big"
                     android:layout_below="@id/Expert.Best"
                     android:layout_toEndOf="@id/Expert.TimesPlayed"
                     android:text="0" />

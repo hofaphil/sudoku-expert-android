@@ -11,13 +11,13 @@
 
         <TextView
             android:id="@+id/title"
-            style="@style/General.Title" />
+            style="@style/General.Title.Big" />
 
     </com.aol.philipphofer.gui.custom.CustomTitleBar>
 
     <TextView
         android:id="@+id/description"
-        style="@style/General.Title.Small"
+        style="@style/General.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/titleBar"
