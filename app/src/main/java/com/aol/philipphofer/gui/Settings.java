@@ -87,7 +87,7 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
     protected void onPause() {
         super.onPause();
         data.saveBoolean(Data.SETTINGS_POWERMODE, powerMode.isChecked());
-        data.saveBoolean(Data.SETTINGS_CHECK_NOTES, markLines.isChecked());
+        data.saveBoolean(Data.SETTINGS_MARK_LINES, markLines.isChecked());
         data.saveBoolean(Data.SETTINGS_MARK_NUMBERS, markNumbers.isChecked());
         data.saveBoolean(Data.SETTINGS_CHECK_NOTES, checkNotes.isChecked());
         data.saveBoolean(Data.SETTINGS_MARK_ERRORS, showErrors.isChecked());
