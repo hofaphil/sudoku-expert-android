@@ -5,8 +5,11 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.GridLayout;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.logic.MainActivity;
@@ -16,20 +19,18 @@ import com.aol.philipphofer.persistence.Data;
 public class SudokuField extends GridLayout implements View.OnClickListener {
 
     private int number;
-
     public Position position;
 
     private boolean error;
+    private boolean changeable;
+    private boolean isNotes;
 
     private final TextView numberView;
 
-    private GridLayout notesLayout;
-    private final TextView[] notes;
+    private GridLayout notesLayout = null;
+    private TextView[] notes;
 
     private final MainActivity mainActivity;
-
-    private boolean changeable;
-    private boolean isNotes;
 
     public SudokuField(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -40,30 +41,19 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
 
         numberView = findViewById(R.id.numberView);
         numberView.setOnClickListener(this);
-
-        notesLayout = new GridLayout(context);
-        notesLayout = findViewById(R.id.notesGrid);
-        notesLayout.setOnClickListener(this);
-
-        notes = new TextView[9];
-        for (int i = 0; i < 9; i++)
-            notes[i] = findViewById(context.getResources().getIdentifier("tv" + i, "id", context.getPackageName()));
-
     }
 
     public void init(int number, Position position) {
         this.position = position;
 
         isNotes = false;
+        // TODO: kann die nächste Zeile weg?
         setNumber(0);
         switchLayout(isNotes);
         error = false;
 
-        for (int i = 0; i < 9; i++)
-            notes[i].setVisibility(View.INVISIBLE);
-
         setNumber(number);
-        setBackgroundColor(getResources().getColor(R.color.unselected));
+        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.unselected));
         if (number > 0) {
             setChangeable(false);
             setNumberViewText("" + number);
@@ -75,12 +65,12 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
 
     public void load(Position position) {
         this.position = position;
-        setBackgroundColor(getResources().getColor(R.color.unselected));
+        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.unselected));
         Data data = Data.instance(mainActivity);
         data.loadField(this);
         if (getError())
             if (Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
-                this.setBackgroundColor(getResources().getColor(R.color.error));
+                this.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.error));
     }
 
     public void save() {
@@ -139,10 +129,11 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
         if (isNotes) {
             mainActivity.unselectPartner(this);
             this.numberView.setVisibility(INVISIBLE);
-            this.notesLayout.setVisibility(VISIBLE);
+            getNotesLayout().setVisibility(VISIBLE);
         } else {
             this.numberView.setVisibility(VISIBLE);
-            this.notesLayout.setVisibility(INVISIBLE);
+            if (notesLayout != null)
+                getNotesLayout().setVisibility(INVISIBLE);
         }
     }
 
@@ -150,12 +141,12 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
         error = true;
         mainActivity.addError();
         if (Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
-            this.setBackgroundColor(getResources().getColor(R.color.error));
+            setBackgroundColor(ContextCompat.getColor(getContext(), R.color.error));
     }
 
     private void unerror() {
         error = false;
-        this.setBackgroundColor(getResources().getColor(R.color.selected));
+        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.selected));
     }
 
     public void select() {
@@ -165,18 +156,18 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
 
     public void unselect() {
         if (!error || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
-            this.setBackgroundColor(getResources().getColor(R.color.unselected));
+            setBackgroundColor(ContextCompat.getColor(getContext(), R.color.unselected));
     }
 
     public void lightSelect() {
-        if (!error || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS)) {
-            this.setBackgroundColor(getResources().getColor(R.color.lineSelected));
-        }
+        if (!error || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
+            setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lineSelected));
     }
 
     public void unlightSelect() {
         if (!error || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
-            this.setBackgroundColor(getResources().getColor(R.color.lineUnselected));
+            setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lineUnselected));
+
     }
 
     public void checkNotes(int number) {
@@ -188,8 +179,6 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
     public void onClick(View view) {
         mainActivity.select(this);
     }
-
-    //get and set methods
 
     public void setNumber(int number) {
         this.number = number;
@@ -218,10 +207,6 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
     public void setNumberViewText(int text) {
         this.numberView.setText(String.valueOf(text));
     }
-
-    /* public String getNumberViewText() {
-        return this.numberView.getText().toString();
-    }*/
 
     public void setChangeable(boolean changeable) {
         this.changeable = changeable;
@@ -263,5 +248,16 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
         for (int i = 0; i < 9; i++)
             if (bool[i])
                 notes[i].setVisibility(VISIBLE);
+    }
+
+    private GridLayout getNotesLayout() {
+        if (notesLayout == null) {
+            notesLayout = (GridLayout) ((ViewStub) findViewById(R.id.notesGridStub)).inflate();
+            notesLayout.setOnClickListener(this);
+            notes = new TextView[9];
+            for (int i = 0; i < 9; i++)
+                notes[i] = findViewById(getContext().getResources().getIdentifier("tv" + i, "id", getContext().getPackageName()));
+        }
+        return notesLayout;
     }
 }
