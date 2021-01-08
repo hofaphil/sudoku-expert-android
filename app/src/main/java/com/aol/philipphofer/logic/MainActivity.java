@@ -610,4 +610,16 @@ public class MainActivity extends CustomActivity {
         context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
         return typedValue.data;
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("auch here");
+        if (requestCode == 0) {
+            if(resultCode == 1) {
+                System.out.println("here");
+                recreate();
+            }
+        }
+    }
 }

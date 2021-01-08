@@ -3,6 +3,7 @@ package com.aol.philipphofer.gui;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
@@ -58,8 +59,11 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
         findViewById(R.id.color).setOnClickListener(v -> {
             if (!data.loadBoolean(Data.SETTINGS_SUPPORTER, false))
                 new CustomToast(this, getResources().getString(R.string.settings_support_error)).show();
-            else
-                new ColorChooserDialog(this).show();
+            else {
+                System.out.println(getBaseContext());
+                System.out.println("parent" + getParent());
+                new ColorChooserDialog(this, this).show();
+            }
         });
 
         findViewById(R.id.info).setOnClickListener(v -> {
@@ -134,5 +138,22 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
         if (!bp.handleActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent returnIntent = new Intent();
+        setResult(1, returnIntent);
+        finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Intent returnIntent = new Intent();
+            setResult(1, returnIntent);
+            finish();
+        }
+        return true;
     }
 }
