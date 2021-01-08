@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/annotations"
-        style="@style/General.Info.Big"
+        style="@style/General.Title.Big"
         android:layout_below="@id/title"
         android:layout_marginTop="@dimen/_5sdp"/>
 

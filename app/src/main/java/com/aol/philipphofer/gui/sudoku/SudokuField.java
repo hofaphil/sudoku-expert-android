@@ -171,7 +171,7 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
     }
 
     public void checkNotes(int number) {
-        if (number != 0)
+        if (number != 0 && notesLayout != null)
             notes[number - 1].setVisibility(INVISIBLE);
     }
 

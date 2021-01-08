@@ -52,6 +52,8 @@ public class MainActivity extends CustomActivity {
 
         setContentView(R.layout.activity_main);
 
+        // data.drop();
+
         sudokuGrid = findViewById(R.id.sudokuGrid);
         statusBar = findViewById(R.id.statusBar);
         keyboard = findViewById(R.id.keyboard);
