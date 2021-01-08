@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.aol.philipphofer.R;
-import com.aol.philipphofer.gui.help.ColorObservable;
 import com.aol.philipphofer.gui.sudoku.SudokuField;
 import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.sudoku.Block;

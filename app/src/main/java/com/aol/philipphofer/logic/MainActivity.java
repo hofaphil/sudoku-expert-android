@@ -13,7 +13,6 @@ import android.widget.RelativeLayout;
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.EndCard;
 import com.aol.philipphofer.gui.Keyboard;
-import com.aol.philipphofer.gui.Statistics;
 import com.aol.philipphofer.gui.StatusBar;
 import com.aol.philipphofer.gui.custom.CustomActivity;
 import com.aol.philipphofer.gui.custom.CustomAdLoader;

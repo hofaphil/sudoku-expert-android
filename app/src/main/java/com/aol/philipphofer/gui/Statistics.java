@@ -1,8 +1,6 @@
 package com.aol.philipphofer.gui;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.aol.philipphofer.R;

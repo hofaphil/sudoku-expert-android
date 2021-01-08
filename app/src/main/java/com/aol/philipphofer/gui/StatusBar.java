@@ -3,7 +3,6 @@ package com.aol.philipphofer.gui;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -17,8 +16,6 @@ import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 
 import com.aol.philipphofer.R;
-import com.aol.philipphofer.gui.custom.CustomColor;
-import com.aol.philipphofer.gui.help.ColorObservable;
 import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Timer;
 import com.aol.philipphofer.logic.help.Difficulty;
@@ -27,9 +24,6 @@ import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.android.play.core.tasks.Task;
-
-import java.util.Observable;
-import java.util.Observer;
 
 public class StatusBar extends RelativeLayout {
 

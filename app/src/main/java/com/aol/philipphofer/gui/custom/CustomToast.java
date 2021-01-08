@@ -2,14 +2,12 @@ package com.aol.philipphofer.gui.custom;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aol.philipphofer.R;
-import com.aol.philipphofer.persistence.Data;
 
 public class CustomToast {
 

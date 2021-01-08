@@ -1,7 +1,6 @@
 package com.aol.philipphofer.gui.sudoku;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.aol.philipphofer.R;
-import com.aol.philipphofer.gui.custom.CustomColor;
 import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Position;
 import com.aol.philipphofer.persistence.Data;
