@@ -17,7 +17,7 @@ class ShareClass {
 
     static void share(Sudoku sudoku, Activity context) {
         StringBuilder id = new StringBuilder();
-        id.append(MainActivity.DIFFICULTY);
+        id.append(MainActivity.DIFFICULTY.getNumber());
 
         for (int i = 0; i < 9; i++)
             for (int a = 0; a < 3; a++)
