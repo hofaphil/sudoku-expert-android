@@ -52,7 +52,6 @@ public class StartActivity extends Activity {
                 data.saveInt(Data.GAME_TIME, 0);
                 data.setLoadmode(true);
             } catch (Exception e) {
-                System.out.println("here");
                 new CustomToast(this, getResources().getString(R.string.error_default)).show();
             }
         }

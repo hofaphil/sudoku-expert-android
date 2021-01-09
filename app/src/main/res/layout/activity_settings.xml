@@ -205,12 +205,14 @@
             <RelativeLayout
                 android:id="@+id/info"
                 style="@style/Settings.Layout"
-                android:layout_below="@id/deleteData">
+                android:layout_below="@id/deleteData"
+                android:layout_marginBottom="@dimen/_20sdp">
 
                 <TextView
-                    android:id="@+id/InfoTitle"
+                    android:id="@+id/infoTitle"
                     style="@style/General.Title"
                     android:text="@string/settings_info" />
+
             </RelativeLayout>
 
         </RelativeLayout>

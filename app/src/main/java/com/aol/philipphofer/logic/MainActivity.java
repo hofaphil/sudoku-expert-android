@@ -615,12 +615,8 @@ public class MainActivity extends CustomActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        System.out.println("auch here");
-        if (requestCode == 0) {
-            if(resultCode == 1) {
-                System.out.println("here");
+        if (requestCode == 0)
+            if(resultCode == 1)
                 recreate();
-            }
-        }
     }
 }

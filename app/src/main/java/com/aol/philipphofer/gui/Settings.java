@@ -21,12 +21,17 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
     private CheckBox markNumbers, markLines, powerMode, showErrors, checkNotes, showTime;
     private BillingProcessor bp;
 
+    private static int colorChanged;
+    private static final String COLOR_CHANGED = "color_changed";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
         setActionBar(findViewById(R.id.title));
+
+        colorChanged = getIntent().getIntExtra(COLOR_CHANGED, 0);
 
         bp = new BillingProcessor(this, "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx61y5ioHZSErdYWJwURIZ1EAMwNRQsvgu3mDr9FDmWbu9JQf4qcjbKVpFsggXnp24Y3whDXJ4mMMI9fCnuQDMy0+Z+18sRtKtT5t1+prdvJb7gbY8D8Xeb1XYDxhC7p3M/pg1KDjdB1jax8s8pqHex5suUkE9n5349EpES/pMpgZlFGO4i2wMTAPiJJ8C5bVyPXeGVstGckdnUKtPZpnZQm/kWjvra7+Ccqltz8f7T89zsr2e2kEk3q6kRUrF2dln6kXpLJulWG6pAZ6DZq0t8UsPS5lsJtuC1dyHd9w/cUJ1x3q8dXnJCrcXnaKUMocVqkpWwk60jwGcwhOBo/KkQIDAQAB", this);
         bp.initialize();
@@ -59,11 +64,8 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
         findViewById(R.id.color).setOnClickListener(v -> {
             if (!data.loadBoolean(Data.SETTINGS_SUPPORTER, false))
                 new CustomToast(this, getResources().getString(R.string.settings_support_error)).show();
-            else {
-                System.out.println(getBaseContext());
-                System.out.println("parent" + getParent());
+            else
                 new ColorChooserDialog(this, this).show();
-            }
         });
 
         findViewById(R.id.info).setOnClickListener(v -> {
@@ -143,7 +145,7 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
     @Override
     public void onBackPressed() {
         Intent returnIntent = new Intent();
-        setResult(1, returnIntent);
+        setResult(colorChanged, returnIntent);
         finish();
     }
 
@@ -151,9 +153,14 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             Intent returnIntent = new Intent();
-            setResult(1, returnIntent);
+            setResult(colorChanged, returnIntent);
             finish();
         }
         return true;
+    }
+
+    public void recreate(int colorChanged) {
+        getIntent().putExtra(COLOR_CHANGED, colorChanged);
+        super.recreate();
     }
 }
