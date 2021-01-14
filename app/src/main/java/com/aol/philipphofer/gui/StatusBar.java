@@ -16,6 +16,7 @@ import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 
 import com.aol.philipphofer.R;
+import com.aol.philipphofer.gui.custom.CustomToast;
 import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Timer;
 import com.aol.philipphofer.logic.help.Difficulty;
@@ -23,6 +24,7 @@ import com.aol.philipphofer.persistence.Data;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.review.testing.FakeReviewManager;
 import com.google.android.play.core.tasks.Task;
 
 public class StatusBar extends RelativeLayout {
@@ -55,16 +57,21 @@ public class StatusBar extends RelativeLayout {
                     intent = new Intent(mainActivity, Settings.class);
                     mainActivity.startActivityForResult(intent, 0);
                 } else if (item.getItemId() == R.id.popup_rate) {
-                    ReviewManager manager = ReviewManagerFactory.create(context);
+                    ReviewManager manager = new FakeReviewManager(context);
+                            //ReviewManagerFactory.create(getContext());
                     Task<ReviewInfo> request = manager.requestReviewFlow();
                     mainActivity.pauseGame();
                     request.addOnCompleteListener(task -> {
+                        System.out.println("here");
                         if (task.isSuccessful()) {
+                            System.out.println("herer");
                             ReviewInfo reviewInfo = task.getResult();
                             Task<Void> flow = manager.launchReviewFlow((MainActivity) context, reviewInfo);
                             flow.addOnCompleteListener(t -> {
+                                new CustomToast(getContext(), "Thanks for rating!").show();
                             });
                         }
+                        new CustomToast(getContext(), getResources().getString(R.string.error_default));
                     });
                     mainActivity.pauseGame();
                     return true;

@@ -88,6 +88,10 @@
     <string name="share_title">Teile Dein Sudoku</string>
     <string name="share_description">Hier ist eine Herausforderung für Dich!</string>
 
+    <!-- Rate -->
+    <string name="rate_success">Danke für deine Bewertung!</string>
+    <string name="rate_error">Etwas ist schiefgelaufen, versuche es später noch einmal.</string>
+
     <!-- Error -->
     <string name="error_default">Etwas ist schiefgelaufen, versuche es später noch einmal.</string>
 </resources>

@@ -88,6 +88,10 @@
     <string name="share_title">Share your Sudoku</string>
     <string name="share_description">Your friend wants to challenge you!</string>
 
+    <!-- Rate -->
+    <string name="rate_success">Thanks for rating!</string>
+    <string name="rate_error">Something went wrong, please try again later.</string>
+
     <!-- Error -->
     <string name="error_default">Something went wrong, please try again later.</string>
 
