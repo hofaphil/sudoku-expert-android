@@ -1,8 +1,10 @@
 package com.aol.philipphofer.gui;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -21,11 +23,6 @@ import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Timer;
 import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
-import com.google.android.play.core.review.ReviewInfo;
-import com.google.android.play.core.review.ReviewManager;
-import com.google.android.play.core.review.ReviewManagerFactory;
-import com.google.android.play.core.review.testing.FakeReviewManager;
-import com.google.android.play.core.tasks.Task;
 
 public class StatusBar extends RelativeLayout {
 
@@ -57,14 +54,21 @@ public class StatusBar extends RelativeLayout {
                     intent = new Intent(mainActivity, Settings.class);
                     mainActivity.startActivityForResult(intent, 0);
                 } else if (item.getItemId() == R.id.popup_rate) {
-                    ReviewManager manager = new FakeReviewManager(context);
-                            //ReviewManagerFactory.create(getContext());
+                    Uri uri = Uri.parse("market://details?id=" + getContext().getPackageName());
+                    Intent myAppLinkToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                    try {
+                        getContext().startActivity(myAppLinkToMarket);
+                    } catch (ActivityNotFoundException e) {
+                        new CustomToast(getContext(), getResources().getString(R.string.error_default)).show();
+                    }
+
+                    // Does not work nice, due to strange show-time restrictions
+                    /*
+                    ReviewManager manager = ReviewManagerFactory.create(getContext());
                     Task<ReviewInfo> request = manager.requestReviewFlow();
                     mainActivity.pauseGame();
                     request.addOnCompleteListener(task -> {
-                        System.out.println("here");
                         if (task.isSuccessful()) {
-                            System.out.println("herer");
                             ReviewInfo reviewInfo = task.getResult();
                             Task<Void> flow = manager.launchReviewFlow((MainActivity) context, reviewInfo);
                             flow.addOnCompleteListener(t -> {
@@ -74,6 +78,7 @@ public class StatusBar extends RelativeLayout {
                         new CustomToast(getContext(), getResources().getString(R.string.error_default));
                     });
                     mainActivity.pauseGame();
+                    */
                     return true;
                 } else {
                     return false;
@@ -85,7 +90,6 @@ public class StatusBar extends RelativeLayout {
             menuHelper.setForceShowIcon(true);
             menuHelper.show();
         });
-
 
         newButton = findViewById(R.id.newButton);
         newButton.setOnClickListener((View v) -> {

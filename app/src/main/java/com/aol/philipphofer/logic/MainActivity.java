@@ -147,7 +147,7 @@ public class MainActivity extends CustomActivity {
             setFreeFields(81);
             DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
             numberCount = new int[9];
-            sudoku = new Sudoku(4);
+            sudoku = new Sudoku(8);
 
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING);
 
@@ -163,6 +163,7 @@ public class MainActivity extends CustomActivity {
     }
 
     public void heavyLoading() {
+        timer.stopTimer();
         sudoku.create(DIFFICULTY.getNumber());
 
         LOADMODE = !LOADMODE;
@@ -616,7 +617,7 @@ public class MainActivity extends CustomActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0)
-            if(resultCode == 1)
+            if (resultCode == 1)
                 recreate();
     }
 }

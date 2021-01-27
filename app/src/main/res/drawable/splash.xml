@@ -5,9 +5,9 @@
         android:drawable="@color/yellow"/>
 
     <item
-        android:drawable="@drawable/ic_icon_winter"
+        android:drawable="@drawable/ic_icon"
         android:width="@dimen/_270sdp"
-        android:height="@dimen/_540sdp"
+        android:height="@dimen/_270sdp"
         android:gravity="center"/>
 
 </layer-list>
