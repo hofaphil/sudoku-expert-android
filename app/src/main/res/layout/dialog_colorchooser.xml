@@ -13,11 +13,10 @@
 
     <TextView
         android:id="@+id/description"
-        style="@style/General.Info.Big"
+        style="@style/General.Title"
         android:layout_below="@id/title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_margin="@dimen/_10sdp"
         android:text="@string/cholorchooserdialog_info" />
 
     <LinearLayout
