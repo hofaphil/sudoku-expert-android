@@ -72,13 +72,13 @@
             android:id="@+id/notes"
             style="@style/KeyboardButtonStyle"
             android:drawableStart="@drawable/ic_write"
-            android:text="notes" />
+            android:text="Notes" />
 
         <Button
             android:id="@+id/delete"
             style="@style/KeyboardButtonStyle"
             android:drawableStart="@drawable/ic_delete"
-            android:text="delete" />
+            android:text="Delete" />
 
         <Button
             android:id="@+id/pause"

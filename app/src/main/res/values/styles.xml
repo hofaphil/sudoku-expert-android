@@ -59,6 +59,7 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:foreground">@drawable/box</item>
         <item name="android:background">@color/transparent</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <!-- Sudoku Style -->
@@ -173,6 +174,7 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textAlignment">center</item>
         <item name="android:background">?colorPrimary</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="General.CheckBox" parent="">
