@@ -16,12 +16,10 @@ public class ConfirmDialog extends Dialog {
         ((Toolbar) findViewById(R.id.title)).setTitle(title);
         ((TextView) findViewById(R.id.description)).setText(message);
 
-        findViewById(R.id.ok).setOnClickListener(v ->  {
+        findViewById(R.id.ok).setOnClickListener(v -> {
             okButton.run();
             dismiss();
         });
         findViewById(R.id.cancel).setOnClickListener(v -> dismiss());
-
-        show();
     }
 }

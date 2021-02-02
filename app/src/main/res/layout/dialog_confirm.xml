@@ -8,15 +8,15 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/General.ToolBar"/>
+        android:theme="@style/General.ToolBar" />
 
     <TextView
         android:id="@+id/description"
         style="@style/General.Title"
         android:layout_below="@id/title"
-        android:textAlignment="center"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/_10sdp" />
+        android:layout_margin="@dimen/_10sdp"
+        android:textAlignment="center" />
 
     <LinearLayout
         android:layout_width="match_parent"

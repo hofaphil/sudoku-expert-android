@@ -3,7 +3,6 @@ package com.aol.philipphofer.gui.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
-import android.widget.Button;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.Settings;
@@ -19,17 +18,10 @@ public class ColorChooserDialog extends Dialog implements View.OnClickListener {
 
         this.settings = settings;
 
-        Button yellow = findViewById(R.id.yellow);
-        yellow.setOnClickListener(this);
-
-        Button green = findViewById(R.id.green);
-        green.setOnClickListener(this);
-
-        Button blue = findViewById(R.id.blue);
-        blue.setOnClickListener(this);
-
-        Button orange = findViewById(R.id.orange);
-        orange.setOnClickListener(this);
+        findViewById(R.id.yellow).setOnClickListener(this);
+        findViewById(R.id.green).setOnClickListener(this);
+        findViewById(R.id.blue).setOnClickListener(this);
+        findViewById(R.id.orange).setOnClickListener(this);
     }
 
     @Override

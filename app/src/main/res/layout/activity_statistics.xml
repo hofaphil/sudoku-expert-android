@@ -67,6 +67,7 @@
                     android:layout_below="@id/Beginner.Best"
                     android:layout_toEndOf="@id/Beginner.TimesPlayed"
                     android:text="0" />
+
             </RelativeLayout>
 
             <View
@@ -132,14 +133,14 @@
             <TextView
                 android:id="@+id/expertTitle"
                 style="@style/Settings.Title"
-                android:text="@string/expert"
-                android:layout_below="@id/line2"/>
+                android:layout_below="@id/line2"
+                android:text="@string/expert" />
 
             <RelativeLayout
                 android:id="@+id/expert"
                 style="@style/Settings.Layout"
-                android:layout_marginBottom="@dimen/_15sdp"
-                android:layout_below="@id/expertTitle">
+                android:layout_below="@id/expertTitle"
+                android:layout_marginBottom="@dimen/_15sdp">
 
                 <TextView
                     android:id="@+id/Expert.Average"
@@ -177,6 +178,7 @@
                     android:layout_below="@id/Expert.Best"
                     android:layout_toEndOf="@id/Expert.TimesPlayed"
                     android:text="0" />
+
             </RelativeLayout>
 
             <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"

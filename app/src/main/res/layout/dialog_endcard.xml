@@ -14,8 +14,8 @@
         android:id="@+id/infoLayout"
         style="@style/Settings.Layout"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
-        android:layout_below="@id/title">
+        android:layout_below="@id/title"
+        android:layout_margin="@dimen/_5sdp">
 
         <TextView
             android:id="@+id/difficulty"
@@ -59,6 +59,5 @@
         style="@style/General.Button"
         android:layout_below="@id/infoLayout"
         android:text="@string/confirmdialog_ok" />
-
 
 </RelativeLayout>

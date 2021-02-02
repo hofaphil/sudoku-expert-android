@@ -24,12 +24,10 @@ public class EndCardDialog extends Dialog {
         ((TextView) findViewById(R.id.difficultyInfo)).setText(difficulty.getText(mainActivity));
         ((TextView) findViewById(R.id.bestTimeInfo)).setText(Timer.timeToString(Data.instance(mainActivity).loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber())));
 
-        if(won && Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_TIME))
+        if (won && Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_TIME))
             ((TextView) findViewById(R.id.timeInfo)).setText(Timer.timeToString(time));
 
         findViewById(R.id.ok).setOnClickListener(v -> dismiss());
-
-        show();
     }
 
     @Override

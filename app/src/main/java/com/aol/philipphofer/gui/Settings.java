@@ -42,20 +42,14 @@ public class Settings extends CustomActivity implements BillingProcessor.IBillin
         showErrors = findViewById(R.id.showErrorsSwitch);
         showTime = findViewById(R.id.showTimeSwitch);
 
-        findViewById(R.id.deleteData).setOnClickListener(v -> new ConfirmDialog(this,
-                getResources().getString(R.string.settings_confirm),
-                getResources().getString(R.string.settings_confirm_annotations),
-                () -> data.drop()));
-
+        findViewById(R.id.deleteData).setOnClickListener(v -> new ConfirmDialog(this, getResources().getString(R.string.settings_confirm), getResources().getString(R.string.settings_confirm_annotations), () -> data.drop()).show());
         findViewById(R.id.support).setOnClickListener(v -> bp.purchase(this, "supporter"));
-
         findViewById(R.id.color).setOnClickListener(v -> {
             if (!data.loadBoolean(Data.SETTINGS_SUPPORTER, false))
                 new CustomToast(this, getResources().getString(R.string.settings_support_error)).show();
             else
                 new ColorChooserDialog(this, this).show();
         });
-
         findViewById(R.id.info).setOnClickListener(v -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.philipphofer.de/contact"));
             startActivity(browserIntent);

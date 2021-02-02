@@ -22,8 +22,8 @@
 
             <TextView
                 android:id="@+id/gameSettings"
-                android:text="@string/settings_title_game_settings"
-                style="@style/Settings.Title" />
+                style="@style/Settings.Title"
+                android:text="@string/settings_title_game_settings" />
 
             <RelativeLayout
                 android:id="@+id/markNumbers"
@@ -39,13 +39,14 @@
                     android:id="@+id/markNumbersAnnotations"
                     style="@style/General.Info"
                     android:layout_below="@id/markNumbersTitle"
-                    android:layout_toStartOf="@id/markNumbersSwitch"
                     android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/markNumbersSwitch"
                     android:text="@string/settings_markNumbersAnnotations" />
 
                 <CheckBox
                     android:id="@+id/markNumbersSwitch"
                     style="@style/General.CheckBox" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -62,13 +63,14 @@
                     android:id="@+id/markLinesAnnotations"
                     style="@style/General.Info"
                     android:layout_below="@id/markLinesTitle"
-                    android:layout_toStartOf="@id/markLinesSwitch"
                     android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/markLinesSwitch"
                     android:text="@string/settings_markLinesAnnotations" />
 
                 <CheckBox
                     android:id="@+id/markLinesSwitch"
                     style="@style/General.CheckBox" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -85,13 +87,14 @@
                     android:id="@+id/checkNotesAnnotation"
                     style="@style/General.Info"
                     android:layout_below="@id/checkNotesTitle"
-                    android:layout_toStartOf="@id/checkNotesSwitch"
                     android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/checkNotesSwitch"
                     android:text="@string/settings_checkNotesAnnotations" />
 
                 <CheckBox
                     android:id="@+id/checkNotesSwitch"
                     style="@style/General.CheckBox" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -108,13 +111,14 @@
                     android:id="@+id/showErrorsAnnotations"
                     style="@style/General.Info"
                     android:layout_below="@id/showErrorsTitle"
-                    android:layout_toStartOf="@id/showErrorsSwitch"
                     android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/showErrorsSwitch"
                     android:text="@string/settings_showErrorsAnnotations" />
 
                 <CheckBox
                     android:id="@+id/showErrorsSwitch"
                     style="@style/General.CheckBox" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -131,25 +135,26 @@
                     android:id="@+id/showTimeAnnotations"
                     style="@style/General.Info"
                     android:layout_below="@id/showTimeTitle"
-                    android:layout_toStartOf="@id/showTimeSwitch"
                     android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/showTimeSwitch"
                     android:text="@string/settings_showTimeAnnotations" />
 
                 <CheckBox
                     android:id="@+id/showTimeSwitch"
                     style="@style/General.CheckBox" />
+
             </RelativeLayout>
 
             <View
                 android:id="@+id/line1"
                 style="@style/General.VerticalLine"
-                android:layout_below="@id/showTime"/>
+                android:layout_below="@id/showTime" />
 
             <TextView
                 android:id="@+id/supportText"
-                android:text="@string/settings_title_support"
                 style="@style/Settings.Title"
-                android:layout_below="@id/line1"/>
+                android:layout_below="@id/line1"
+                android:text="@string/settings_title_support" />
 
             <RelativeLayout
                 android:id="@+id/color"
@@ -166,6 +171,7 @@
                     style="@style/General.Info"
                     android:layout_below="@id/colorTitle"
                     android:text="@string/settings_color_annotations" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -183,18 +189,19 @@
                     style="@style/General.Info"
                     android:layout_below="@id/supportTitle"
                     android:text="@string/settings_support_annotations" />
+
             </RelativeLayout>
 
             <View
                 android:id="@+id/line2"
                 style="@style/General.VerticalLine"
-                android:layout_below="@id/support"/>
+                android:layout_below="@id/support" />
 
             <TextView
                 android:id="@+id/more"
                 style="@style/Settings.Title"
-                android:text="@string/settings_title_more"
-                android:layout_below="@id/line2"/>
+                android:layout_below="@id/line2"
+                android:text="@string/settings_title_more" />
 
             <RelativeLayout
                 android:id="@+id/deleteData"
@@ -211,6 +218,7 @@
                     style="@style/General.Info"
                     android:layout_below="@id/deleteDataTitle"
                     android:text="@string/settings_deleteDataAnnotations" />
+
             </RelativeLayout>
 
             <RelativeLayout
