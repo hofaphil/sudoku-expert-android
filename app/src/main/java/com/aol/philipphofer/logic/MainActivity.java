@@ -17,6 +17,7 @@ import com.aol.philipphofer.gui.StatusBar;
 import com.aol.philipphofer.gui.custom.CustomActivity;
 import com.aol.philipphofer.gui.custom.CustomAdLoader;
 import com.aol.philipphofer.gui.custom.CustomToast;
+import com.aol.philipphofer.gui.dialog.EndCardDialog;
 import com.aol.philipphofer.gui.sudoku.SudokuField;
 import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.logic.help.Difficulty;
@@ -542,23 +543,20 @@ public class MainActivity extends CustomActivity {
                     if (sudokuGrid.blocks[i].field[x][y].getError())
                         return;
 
+
+        timer.stopTimer();
         data.setLoadmode(false);
-        Intent intent = new Intent(this, EndCard.class);
-        intent.putExtra(EndCard.WON, true);
-        intent.putExtra(EndCard.DIFFICULTY, DIFFICULTY.getNumber());
-        if (data.loadBoolean(Data.GAME_SHOW_TIME))
-            intent.putExtra(EndCard.TIME, timer.getTime());
-        startActivityForResult(intent, 1);
+
+        int t = data.loadBoolean(Data.GAME_SHOW_TIME) ? timer.getTime() : 0;
+        new EndCardDialog(this, true, t, DIFFICULTY).show();
 
         data.addTime(timer.getTime(), DIFFICULTY);
     }
 
     public void abortSudoku() {
         data.setLoadmode(false);
-        Intent intent = new Intent(this, EndCard.class);
-        intent.putExtra(EndCard.DIFFICULTY, DIFFICULTY.getNumber());
-        intent.putExtra(EndCard.WON, false);
-        startActivityForResult(intent, 1);
+        timer.stopTimer();
+        new EndCardDialog(this, false, 0, DIFFICULTY).show();
     }
 
     public boolean pauseGame() {

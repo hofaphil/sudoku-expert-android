@@ -43,9 +43,9 @@
     <string name="endcard_winannotationswithouttime">Nice, you solved this one!</string>
     <string name="lose">You Lost</string>
     <string name="endcard_loseannotaions">Too many errors, sry!</string>
-    <string name="endcard_difficulty">Difficulty:\t</string>
-    <string name="endcard_time">Your time:\t</string>
-    <string name="endcard_besttime">Best time:\t</string>
+    <string name="endcard_difficulty">Difficulty:</string>
+    <string name="endcard_time">Your time:</string>
+    <string name="endcard_besttime">Best time:</string>
 
     <!-- Statistics -->
     <string name="statistics_title">Statistics</string>

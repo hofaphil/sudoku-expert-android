@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Toolbar
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/General.ToolBar" />
+
+    <RelativeLayout
+        android:id="@+id/infoLayout"
+        style="@style/Settings.Layout"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_below="@id/title">
+
+        <TextView
+            android:id="@+id/difficulty"
+            style="@style/General.Title"
+            android:text="@string/endcard_difficulty" />
+
+        <TextView
+            android:id="@+id/difficultyInfo"
+            style="@style/General.Info"
+            android:layout_toEndOf="@id/difficulty" />
+
+        <TextView
+            android:id="@+id/time"
+            style="@style/General.Title"
+            android:layout_below="@id/difficulty"
+            android:text="@string/endcard_time" />
+
+        <TextView
+            android:id="@+id/timeInfo"
+            style="@style/General.Info"
+            android:layout_below="@id/difficulty"
+            android:layout_toEndOf="@id/time"
+            android:text="--:--" />
+
+        <TextView
+            android:id="@+id/bestTime"
+            style="@style/General.Title"
+            android:layout_below="@id/time"
+            android:text="@string/endcard_besttime" />
+
+        <TextView
+            android:id="@+id/bestTimeInfo"
+            style="@style/General.Info"
+            android:layout_below="@id/time"
+            android:layout_toEndOf="@id/bestTime" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/ok"
+        style="@style/General.Button"
+        android:layout_below="@id/infoLayout"
+        android:text="@string/confirmdialog_ok" />
+
+
+</RelativeLayout>

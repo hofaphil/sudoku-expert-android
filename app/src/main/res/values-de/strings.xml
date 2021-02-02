@@ -23,8 +23,8 @@
     <string name="ratingdialog_later">Später</string>
 
     <!-- ConfirmDialog -->
-    <string name="confirmdialog_ok">ok</string>
-    <string name="confirmdialog_cancel">cancel</string>
+    <string name="confirmdialog_ok">OK</string>
+    <string name="confirmdialog_cancel">Cancel</string>
 
     <!-- ColorChooserDiaolg -->
     <string name="cholorchooserdialog_title">Farben</string>
@@ -43,9 +43,9 @@
     <string name="endcard_winannotationswithouttime">Top, du hast das Sudoku gelöst!</string>
     <string name="lose">Du verlierst</string>
     <string name="endcard_loseannotaions">Zu viele Fehler, schade!</string>
-    <string name="endcard_difficulty">Difficulty:\t</string>
-    <string name="endcard_time">Deine Zeit:\t</string>
-    <string name="endcard_besttime">Bestzeit:\t</string>
+    <string name="endcard_difficulty">Difficulty:</string>
+    <string name="endcard_time">Deine Zeit:</string>
+    <string name="endcard_besttime">Bestzeit:</string>
 
     <!-- Statistics -->
     <string name="statistics_title">Statistik</string>
