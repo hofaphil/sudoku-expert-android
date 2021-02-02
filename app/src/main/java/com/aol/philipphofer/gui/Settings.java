@@ -16,9 +16,9 @@ import com.aol.philipphofer.gui.dialog.ColorChooserDialog;
 import com.aol.philipphofer.gui.dialog.ConfirmDialog;
 import com.aol.philipphofer.persistence.Data;
 
-public class Settings extends CustomActivity implements CompoundButton.OnCheckedChangeListener, BillingProcessor.IBillingHandler {
+public class Settings extends CustomActivity implements BillingProcessor.IBillingHandler {
 
-    private CheckBox markNumbers, markLines, powerMode, showErrors, checkNotes, showTime;
+    private CheckBox markNumbers, markLines, showErrors, checkNotes, showTime;
     private BillingProcessor bp;
 
     private static int colorChanged;
@@ -37,22 +37,10 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
         bp.initialize();
 
         markLines = findViewById(R.id.markLinesSwitch);
-        markLines.setOnCheckedChangeListener(this);
-
         markNumbers = findViewById(R.id.markNumbersSwitch);
-        markNumbers.setOnCheckedChangeListener(this);
-
         checkNotes = findViewById(R.id.checkNotesSwitch);
-        checkNotes.setOnCheckedChangeListener(this);
-
-        powerMode = findViewById(R.id.powerModeSwitch);
-        powerMode.setOnCheckedChangeListener(this);
-
         showErrors = findViewById(R.id.showErrorsSwitch);
-        showErrors.setOnCheckedChangeListener(this);
-
         showTime = findViewById(R.id.showTimeSwitch);
-        showTime.setOnCheckedChangeListener(this);
 
         findViewById(R.id.deleteData).setOnClickListener(v -> new ConfirmDialog(this,
                 getResources().getString(R.string.settings_confirm),
@@ -77,7 +65,6 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
     @Override
     protected void onResume() {
         super.onResume();
-        powerMode.setChecked(data.loadBoolean(Data.SETTINGS_POWERMODE));
         markLines.setChecked(data.loadBoolean(Data.SETTINGS_MARK_LINES));
         markNumbers.setChecked(data.loadBoolean(Data.SETTINGS_MARK_NUMBERS));
         checkNotes.setChecked(data.loadBoolean(Data.SETTINGS_CHECK_NOTES));
@@ -88,7 +75,6 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
     @Override
     protected void onPause() {
         super.onPause();
-        data.saveBoolean(Data.SETTINGS_POWERMODE, powerMode.isChecked());
         data.saveBoolean(Data.SETTINGS_MARK_LINES, markLines.isChecked());
         data.saveBoolean(Data.SETTINGS_MARK_NUMBERS, markNumbers.isChecked());
         data.saveBoolean(Data.SETTINGS_CHECK_NOTES, checkNotes.isChecked());
@@ -101,16 +87,6 @@ public class Settings extends CustomActivity implements CompoundButton.OnChecked
         if (bp != null)
             bp.release();
         super.onDestroy();
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (buttonView.equals(powerMode) && isChecked) {
-            markNumbers.setChecked(false);
-            markLines.setChecked(false);
-            checkNotes.setChecked(false);
-        } else if ((buttonView.equals(markLines) || buttonView.equals(markNumbers) || buttonView.equals(checkNotes)) && isChecked)
-            powerMode.setChecked(false);
     }
 
     @Override

@@ -58,6 +58,9 @@
 
     <!-- Settings -->
     <string name="settings_title">Einstellungen</string>
+    <string name="settings_title_game_settings">Spieleinstellungen</string>
+    <string name="settings_title_support">Support</string>
+    <string name="settings_title_more">Weiteres</string>
     <string name="settings_markNumbers">Zahlen markieren</string>
     <string name="settings_markNumbersAnnotations">Hervorheben von gleichen Zahlen</string>
     <string name="settings_markLines">Linien markieren</string>

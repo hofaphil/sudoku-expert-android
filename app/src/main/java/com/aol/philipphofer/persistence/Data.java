@@ -30,7 +30,6 @@ public class Data {
     private final static String FIELD_NOTES = "notes";
 
     // for settings
-    public final static String SETTINGS_POWERMODE = "powermode";
     public final static String SETTINGS_MARK_LINES = "marklines";
     public final static String SETTINGS_MARK_NUMBERS = "marknumbers";
     public final static String SETTINGS_MARK_ERRORS = "markerrors";
