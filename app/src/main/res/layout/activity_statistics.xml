@@ -9,12 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/General.ToolBar.Back"
-        android:title="@string/statistics_title"/>
+        android:title="@string/statistics_title" />
 
     <ScrollView
-        android:layout_below="@id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/title"
         android:layout_marginTop="@dimen/_5sdp">
 
         <RelativeLayout
@@ -22,160 +22,158 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/Beginner"
-                style="@style/General.Title.Big"
-                android:text="@string/statistics_beginner"
-                android:textAlignment="center"
-                android:drawableTop="@drawable/ic_beginner" />
+                android:id="@+id/beginnerTitle"
+                style="@style/Settings.Title"
+                android:text="@string/beginner" />
 
             <RelativeLayout
                 android:id="@+id/beginner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/Beginner"
-                android:layout_margin="@dimen/_2sdp"
-                android:background="@drawable/box">
+                style="@style/Settings.Layout"
+                android:layout_below="@id/beginnerTitle">
 
                 <TextView
                     android:id="@+id/Beginner.Average"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Title"
                     android:text="@string/statistics_average" />
 
                 <TextView
                     android:id="@+id/Beginner.Average.Time"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Info"
                     android:layout_toEndOf="@id/Beginner.Average"
                     android:text="00:00" />
 
                 <TextView
                     android:id="@+id/Beginner.Best"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Title"
                     android:layout_below="@id/Beginner.Average"
                     android:text="@string/statistics_best" />
 
                 <TextView
                     android:id="@+id/Beginner.Best.Time"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Info"
                     android:layout_below="@id/Beginner.Average"
                     android:layout_toEndOf="@id/Beginner.Best"
                     android:text="00:00" />
 
                 <TextView
                     android:id="@+id/Beginner.TimesPlayed"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Title"
                     android:layout_below="@id/Beginner.Best"
                     android:text="@string/statistics_times_played" />
 
                 <TextView
                     android:id="@+id/Beginner.TimesPlayed.Count"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Info"
                     android:layout_below="@id/Beginner.Best"
                     android:layout_toEndOf="@id/Beginner.TimesPlayed"
                     android:text="0" />
             </RelativeLayout>
 
+            <View
+                android:id="@+id/line1"
+                style="@style/General.VerticalLine"
+                android:layout_below="@id/beginner" />
+
             <TextView
-                android:id="@+id/Advanced"
-                style="@style/General.Title.Big"
-                android:layout_below="@id/beginner"
-                android:text="@string/statistics_advanced"
-                android:drawableTop="@drawable/ic_advanced"/>
+                android:id="@+id/advancedTitle"
+                style="@style/Settings.Title"
+                android:layout_below="@id/line1"
+                android:text="@string/advanced" />
 
             <RelativeLayout
                 android:id="@+id/advanced"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/Advanced"
-                android:layout_margin="@dimen/_2sdp"
-                android:background="@drawable/box">
+                style="@style/Settings.Layout"
+                android:layout_below="@id/advancedTitle">
 
                 <TextView
                     android:id="@+id/Advanced.Average"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Title"
                     android:text="@string/statistics_average" />
 
                 <TextView
                     android:id="@+id/Advanced.Average.Time"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Info"
                     android:layout_toEndOf="@id/Advanced.Average"
                     android:text="00:00" />
 
                 <TextView
                     android:id="@+id/Advanced.Best"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Title"
                     android:layout_below="@id/Advanced.Average"
                     android:text="@string/statistics_best" />
 
                 <TextView
                     android:id="@+id/Advanced.Best.Time"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Info"
                     android:layout_below="@id/Advanced.Average"
                     android:layout_toEndOf="@id/Advanced.Best"
                     android:text="00:00" />
 
                 <TextView
                     android:id="@+id/Advanced.TimesPlayed"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Title"
                     android:layout_below="@id/Advanced.Best"
                     android:text="@string/statistics_times_played" />
 
                 <TextView
                     android:id="@+id/Advanced.TimesPlayed.Count"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Info"
                     android:layout_below="@id/Advanced.Best"
                     android:layout_toEndOf="@id/Advanced.TimesPlayed"
                     android:text="0" />
 
             </RelativeLayout>
 
+            <View
+                android:id="@+id/line2"
+                style="@style/General.VerticalLine"
+                android:layout_below="@id/advanced" />
+
             <TextView
-                android:id="@+id/Expert"
-                style="@style/General.Title.Big"
-                android:layout_below="@id/advanced"
-                android:text="@string/statistics_expert"
-                android:drawableTop="@drawable/ic_expert"/>
+                android:id="@+id/expertTitle"
+                style="@style/Settings.Title"
+                android:text="@string/expert"
+                android:layout_below="@id/line2"/>
 
             <RelativeLayout
                 android:id="@+id/expert"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/Expert"
-                android:layout_margin="@dimen/_2sdp"
-                android:background="@drawable/box">
+                style="@style/Settings.Layout"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_below="@id/expertTitle">
 
                 <TextView
                     android:id="@+id/Expert.Average"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Title"
                     android:text="@string/statistics_average" />
 
                 <TextView
                     android:id="@+id/Expert.Average.Time"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Info"
                     android:layout_toEndOf="@id/Expert.Average"
                     android:text="00:00" />
 
                 <TextView
                     android:id="@+id/Expert.Best"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Title"
                     android:layout_below="@id/Expert.Average"
                     android:text="@string/statistics_best" />
 
                 <TextView
                     android:id="@+id/Expert.Best.Time"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Info"
                     android:layout_below="@id/Expert.Average"
                     android:layout_toEndOf="@id/Expert.Best"
                     android:text="00:00" />
 
                 <TextView
                     android:id="@+id/Expert.TimesPlayed"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Title"
                     android:layout_below="@id/Expert.Best"
                     android:text="@string/statistics_times_played" />
 
                 <TextView
                     android:id="@+id/Expert.TimesPlayed.Count"
-                    style="@style/General.Info.Big"
+                    style="@style/General.Info"
                     android:layout_below="@id/Expert.Best"
                     android:layout_toEndOf="@id/Expert.TimesPlayed"
                     android:text="0" />
