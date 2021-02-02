@@ -27,9 +27,7 @@ public class EndCardDialog extends Dialog {
         if(won && Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_TIME))
             ((TextView) findViewById(R.id.timeInfo)).setText(Timer.timeToString(time));
 
-        findViewById(R.id.ok).setOnClickListener(v -> {
-            dismiss();
-        });
+        findViewById(R.id.ok).setOnClickListener(v -> dismiss());
 
         show();
     }
