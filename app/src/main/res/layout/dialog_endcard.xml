@@ -22,37 +22,43 @@
         <TextView
             android:id="@+id/difficulty"
             style="@style/General.Title"
-            android:text="@string/endcard_difficulty" />
+            android:text="@string/endcard_difficulty"
+            android:textSize="@dimen/_15sdp" />
 
         <TextView
             android:id="@+id/difficultyInfo"
             style="@style/General.Info"
-            android:layout_toEndOf="@id/difficulty" />
+            android:layout_toEndOf="@id/difficulty"
+            android:textSize="@dimen/_15sdp" />
 
         <TextView
             android:id="@+id/time"
             style="@style/General.Title"
             android:layout_below="@id/difficulty"
-            android:text="@string/endcard_time" />
+            android:text="@string/endcard_time"
+            android:textSize="@dimen/_15sdp" />
 
         <TextView
             android:id="@+id/timeInfo"
             style="@style/General.Info"
             android:layout_below="@id/difficulty"
             android:layout_toEndOf="@id/time"
-            android:text="--:--" />
+            android:text="--:--"
+            android:textSize="@dimen/_15sdp" />
 
         <TextView
             android:id="@+id/bestTime"
             style="@style/General.Title"
             android:layout_below="@id/time"
-            android:text="@string/endcard_besttime" />
+            android:text="@string/endcard_besttime"
+            android:textSize="@dimen/_15sdp" />
 
         <TextView
             android:id="@+id/bestTimeInfo"
             style="@style/General.Info"
             android:layout_below="@id/time"
-            android:layout_toEndOf="@id/bestTime" />
+            android:layout_toEndOf="@id/bestTime"
+            android:textSize="@dimen/_15sdp" />
 
     </RelativeLayout>
 
