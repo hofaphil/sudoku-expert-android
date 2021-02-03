@@ -124,8 +124,8 @@
             <RelativeLayout
                 android:id="@+id/showTime"
                 style="@style/Settings.Layout"
-                android:paddingBottom="@dimen/_15sdp"
-                android:layout_below="@id/showErrors">
+                android:layout_below="@id/showErrors"
+                android:paddingBottom="@dimen/_15sdp">
 
                 <TextView
                     android:id="@+id/showTimeTitle"
@@ -173,8 +173,8 @@
             <RelativeLayout
                 android:id="@+id/support"
                 style="@style/Settings.Layout"
-                android:paddingBottom="@dimen/_15sdp"
-                android:layout_below="@id/color">
+                android:layout_below="@id/color"
+                android:paddingBottom="@dimen/_15sdp">
 
                 <TextView
                     android:id="@+id/supportTitle"

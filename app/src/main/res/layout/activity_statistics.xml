@@ -29,7 +29,8 @@
             <RelativeLayout
                 android:id="@+id/beginner"
                 style="@style/Settings.Layout"
-                android:layout_below="@id/beginnerTitle">
+                android:layout_below="@id/beginnerTitle"
+                android:paddingBottom="@dimen/_15sdp">
 
                 <TextView
                     android:id="@+id/Beginner.Average"
@@ -70,21 +71,17 @@
 
             </RelativeLayout>
 
-            <View
-                android:id="@+id/line1"
-                style="@style/General.VerticalLine"
-                android:layout_below="@id/beginner" />
-
             <TextView
                 android:id="@+id/advancedTitle"
                 style="@style/Settings.Title"
-                android:layout_below="@id/line1"
+                android:layout_below="@id/beginner"
                 android:text="@string/advanced" />
 
             <RelativeLayout
                 android:id="@+id/advanced"
                 style="@style/Settings.Layout"
-                android:layout_below="@id/advancedTitle">
+                android:layout_below="@id/advancedTitle"
+                android:paddingBottom="@dimen/_15sdp">
 
                 <TextView
                     android:id="@+id/Advanced.Average"
@@ -125,22 +122,17 @@
 
             </RelativeLayout>
 
-            <View
-                android:id="@+id/line2"
-                style="@style/General.VerticalLine"
-                android:layout_below="@id/advanced" />
-
             <TextView
                 android:id="@+id/expertTitle"
                 style="@style/Settings.Title"
-                android:layout_below="@id/line2"
+                android:layout_below="@id/advanced"
                 android:text="@string/expert" />
 
             <RelativeLayout
                 android:id="@+id/expert"
                 style="@style/Settings.Layout"
                 android:layout_below="@id/expertTitle"
-                android:layout_marginBottom="@dimen/_15sdp">
+                android:paddingBottom="@dimen/_15sdp">
 
                 <TextView
                     android:id="@+id/Expert.Average"
