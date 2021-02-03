@@ -15,7 +15,7 @@
         style="@style/General.Title"
         android:layout_below="@id/title"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/_10sdp"
+        android:layout_margin="@dimen/_15sdp"
         android:textAlignment="center" />
 
     <LinearLayout
@@ -30,6 +30,8 @@
             style="@style/General.Button"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
             android:layout_weight="1"
             android:text="@string/confirmdialog_ok" />
 
@@ -38,6 +40,10 @@
             style="@style/General.Button"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
             android:layout_weight="1"
             android:text="@string/confirmdialog_cancel" />
 

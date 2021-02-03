@@ -16,7 +16,7 @@
         style="@style/General.Title"
         android:layout_below="@id/title"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/_10sdp"
+        android:layout_margin="@dimen/_15sdp"
         android:text="@string/cholorchooserdialog_info" />
 
     <LinearLayout
@@ -30,6 +30,7 @@
             android:id="@+id/yellow"
             style="@style/General.Button"
             android:layout_height="0dp"
+            android:layout_margin="@dimen/_1sdp"
             android:layout_weight="1"
             android:background="@color/yellow"
             android:tag="0" />
@@ -38,6 +39,7 @@
             android:id="@+id/green"
             style="@style/General.Button"
             android:layout_height="0dp"
+            android:layout_margin="@dimen/_1sdp"
             android:layout_weight="1"
             android:background="@color/green"
             android:tag="1" />
@@ -46,6 +48,7 @@
             android:id="@+id/blue"
             style="@style/General.Button"
             android:layout_height="0dp"
+            android:layout_margin="@dimen/_1sdp"
             android:layout_weight="1"
             android:background="@color/blue"
             android:tag="2" />
@@ -54,6 +57,7 @@
             android:id="@+id/orange"
             style="@style/General.Button"
             android:layout_height="0dp"
+            android:layout_margin="@dimen/_1sdp"
             android:layout_weight="1"
             android:background="@color/orange"
             android:tag="3" />
