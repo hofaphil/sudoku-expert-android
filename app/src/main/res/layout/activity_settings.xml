@@ -124,6 +124,7 @@
             <RelativeLayout
                 android:id="@+id/showTime"
                 style="@style/Settings.Layout"
+                android:paddingBottom="@dimen/_15sdp"
                 android:layout_below="@id/showErrors">
 
                 <TextView
@@ -145,15 +146,10 @@
 
             </RelativeLayout>
 
-            <View
-                android:id="@+id/line1"
-                style="@style/General.VerticalLine"
-                android:layout_below="@id/showTime" />
-
             <TextView
                 android:id="@+id/supportText"
                 style="@style/Settings.Title"
-                android:layout_below="@id/line1"
+                android:layout_below="@id/showTime"
                 android:text="@string/settings_title_support" />
 
             <RelativeLayout
@@ -177,6 +173,7 @@
             <RelativeLayout
                 android:id="@+id/support"
                 style="@style/Settings.Layout"
+                android:paddingBottom="@dimen/_15sdp"
                 android:layout_below="@id/color">
 
                 <TextView
@@ -192,15 +189,10 @@
 
             </RelativeLayout>
 
-            <View
-                android:id="@+id/line2"
-                style="@style/General.VerticalLine"
-                android:layout_below="@id/support" />
-
             <TextView
                 android:id="@+id/more"
                 style="@style/Settings.Title"
-                android:layout_below="@id/line2"
+                android:layout_below="@id/support"
                 android:text="@string/settings_title_more" />
 
             <RelativeLayout
@@ -225,7 +217,7 @@
                 android:id="@+id/info"
                 style="@style/Settings.Layout"
                 android:layout_below="@id/deleteData"
-                android:layout_marginBottom="@dimen/_20sdp">
+                android:paddingBottom="@dimen/_15sdp">
 
                 <TextView
                     android:id="@+id/infoTitle"
