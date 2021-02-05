@@ -1,5 +1,6 @@
 package com.aol.philipphofer.logic;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,7 +35,7 @@ public class MainActivity extends CustomActivity {
     public SudokuGrid sudokuGrid;
     private Keyboard keyboard;
     public Sudoku sudoku;
-
+    private EndCardDialog endCardDialog;
     private SudokuField selected;
     private boolean notes;
     public static boolean pause;
@@ -57,6 +58,7 @@ public class MainActivity extends CustomActivity {
         sudokuGrid = findViewById(R.id.sudokuGrid);
         statusBar = findViewById(R.id.statusBar);
         keyboard = findViewById(R.id.keyboard);
+        endCardDialog = new EndCardDialog(this);
 
         timer = new Timer(this);
         timer.start();
@@ -107,6 +109,9 @@ public class MainActivity extends CustomActivity {
     protected void onStart() {
         super.onStart();
 
+        if (endCardDialog.isShowing())
+            return;
+
         if (LOADMODE = data.getLoadmode()) {
             setFreeFields(81);
             DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
@@ -139,6 +144,9 @@ public class MainActivity extends CustomActivity {
 
         pause = true;
         pauseGame();
+
+        if (endCardDialog.isShowing())
+            return;
 
         // TODO selected sometimes still shown, sometimes not (after showing dialog)
         // TODO when new game menu open and you open app again, not in pause mode but dialog still shown!
@@ -190,6 +198,7 @@ public class MainActivity extends CustomActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
         for (int i = 0; i < 9; i++)
             for (int a = 0; a < 3; a++)
                 for (int b = 0; b < 3; b++)
@@ -547,7 +556,8 @@ public class MainActivity extends CustomActivity {
         data.setLoadmode(false);
 
         int t = data.loadBoolean(Data.GAME_SHOW_TIME) ? timer.getTime() : 0;
-        new EndCardDialog(this, true, t, DIFFICULTY).show();
+
+        endCardDialog.show(true, t, DIFFICULTY);
 
         data.addTime(timer.getTime(), DIFFICULTY);
     }
@@ -555,7 +565,8 @@ public class MainActivity extends CustomActivity {
     public void abortSudoku() {
         data.setLoadmode(false);
         timer.stopTimer();
-        new EndCardDialog(this, false, 0, DIFFICULTY).show();
+
+        endCardDialog.show(false, 0, DIFFICULTY);
     }
 
     public boolean pauseGame() {

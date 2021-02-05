@@ -12,14 +12,16 @@ import com.aol.philipphofer.persistence.Data;
 
 public class EndCardDialog extends Dialog {
 
-    private MainActivity mainActivity;
+    private final MainActivity mainActivity;
 
-    public EndCardDialog(MainActivity mainActivity, boolean won, int time, Difficulty difficulty) {
+    public EndCardDialog(MainActivity mainActivity) {
         super(mainActivity);
         setContentView(R.layout.dialog_endcard);
 
         this.mainActivity = mainActivity;
+    }
 
+    public void show(boolean won, int time, Difficulty difficulty) {
         ((Toolbar) findViewById(R.id.title)).setTitle(won ? mainActivity.getResources().getString(R.string.win) : mainActivity.getResources().getString(R.string.lose));
         ((TextView) findViewById(R.id.difficultyInfo)).setText(difficulty.getText(mainActivity));
         ((TextView) findViewById(R.id.bestTimeInfo)).setText(Timer.timeToString(Data.instance(mainActivity).loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber())));
@@ -28,6 +30,7 @@ public class EndCardDialog extends Dialog {
             ((TextView) findViewById(R.id.timeInfo)).setText(Timer.timeToString(time));
 
         findViewById(R.id.ok).setOnClickListener(v -> dismiss());
+        this.show();
     }
 
     @Override
