@@ -52,6 +52,8 @@ public class MainActivity extends CustomActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
+
         setContentView(R.layout.activity_main);
 
         sudokuGrid = findViewById(R.id.sudokuGrid);

@@ -61,24 +61,6 @@ public class StatusBar extends RelativeLayout {
                     } catch (ActivityNotFoundException e) {
                         new CustomToast(getContext(), getResources().getString(R.string.error_default)).show();
                     }
-
-                    // Does not work nice, due to strange show-time restrictions
-                    /*
-                    ReviewManager manager = ReviewManagerFactory.create(getContext());
-                    Task<ReviewInfo> request = manager.requestReviewFlow();
-                    mainActivity.pauseGame();
-                    request.addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            ReviewInfo reviewInfo = task.getResult();
-                            Task<Void> flow = manager.launchReviewFlow((MainActivity) context, reviewInfo);
-                            flow.addOnCompleteListener(t -> {
-                                new CustomToast(getContext(), "Thanks for rating!").show();
-                            });
-                        }
-                        new CustomToast(getContext(), getResources().getString(R.string.error_default));
-                    });
-                    mainActivity.pauseGame();
-                    */
                     return true;
                 } else {
                     return false;
