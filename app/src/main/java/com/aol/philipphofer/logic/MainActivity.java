@@ -183,6 +183,14 @@ public class MainActivity extends CustomActivity {
 
         runOnUiThread(() -> {
             sudokuGrid.init(sudoku.getSudoku());
+            for (int i = 0; i < 9; i++)
+                for (int a = 0; a < 3; a++)
+                    for (int b = 0; b < 3; b++)
+                        sudokuGrid.blocks[i].field[a][b].save();
+            data.saveInt(Data.GAME_ERRORS, 0);
+            data.saveInt(Data.GAME_DIFFICULTY, DIFFICULTY.getNumber());
+            data.saveInt(Data.GAME_TIME, 0);
+
             statusBar.initDifficultyView();
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
 
