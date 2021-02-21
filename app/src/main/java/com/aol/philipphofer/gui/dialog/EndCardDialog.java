@@ -25,9 +25,7 @@ public class EndCardDialog extends Dialog {
         ((Toolbar) findViewById(R.id.title)).setTitle(won ? mainActivity.getResources().getString(R.string.win) : mainActivity.getResources().getString(R.string.lose));
         ((TextView) findViewById(R.id.difficultyInfo)).setText(difficulty.getText(mainActivity));
         ((TextView) findViewById(R.id.bestTimeInfo)).setText(Timer.timeToString(Data.instance(mainActivity).loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber())));
-
-        if (won && Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_TIME))
-            ((TextView) findViewById(R.id.timeInfo)).setText(Timer.timeToString(time));
+        ((TextView) findViewById(R.id.timeInfo)).setText((won && Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_TIME)) ? Timer.timeToString(time) : "--:--");
 
         findViewById(R.id.ok).setOnClickListener(v -> dismiss());
         this.show();
