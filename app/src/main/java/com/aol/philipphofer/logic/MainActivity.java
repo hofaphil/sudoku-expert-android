@@ -1,6 +1,5 @@
 package com.aol.philipphofer.logic;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,13 +46,13 @@ public class MainActivity extends CustomActivity {
     public static boolean LOADMODE = false;
     public static boolean SHARED = false;
 
+    private Thread t = new Thread();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
-        // data.drop();
 
         sudokuGrid = findViewById(R.id.sudokuGrid);
         statusBar = findViewById(R.id.statusBar);
@@ -152,19 +151,20 @@ public class MainActivity extends CustomActivity {
         // TODO when new game menu open and you open app again, not in pause mode but dialog still shown!
 
         if (!(LOADMODE = data.getLoadmode())) {
-            setFreeFields(81);
-            DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
-            numberCount = new int[9];
-            sudoku = new Sudoku(8);
-
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING);
 
             keyboard.deactivate();
             statusBar.deactivate();
 
-            setErrors(0);
-
-            new Thread(this::heavyLoading).start();
+            if (!t.isAlive()) {
+                setFreeFields(81);
+                DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
+                numberCount = new int[9];
+                sudoku = new Sudoku(8);
+                setErrors(0);
+                t = new Thread(this::heavyLoading);
+                t.start();
+            }
         } else {
             getWindow().getDecorView().post(() -> timer.startTimer(data.loadInt(Data.GAME_TIME)));
         }
@@ -188,7 +188,6 @@ public class MainActivity extends CustomActivity {
                     for (int b = 0; b < 3; b++)
                         sudokuGrid.blocks[i].field[a][b].save();
             data.saveInt(Data.GAME_ERRORS, 0);
-            data.saveInt(Data.GAME_DIFFICULTY, DIFFICULTY.getNumber());
             data.saveInt(Data.GAME_TIME, 0);
 
             statusBar.initDifficultyView();
