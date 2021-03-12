@@ -24,6 +24,9 @@ import com.aol.philipphofer.persistence.Data;
 import com.aol.philipphofer.sudoku.Sudoku;
 import com.google.android.gms.ads.AdView;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public class MainActivity extends CustomActivity {
 
     private int errors;
@@ -163,6 +166,8 @@ public class MainActivity extends CustomActivity {
                 DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
                 numberCount = new int[9];
                 sudoku = new Sudoku(8);
+                for (int i = 0; i < 9; i++)
+                    keyboard.activateNumber(i + 1);
                 setErrors(0);
                 t = new Thread(this::heavyLoading);
                 t.start();
