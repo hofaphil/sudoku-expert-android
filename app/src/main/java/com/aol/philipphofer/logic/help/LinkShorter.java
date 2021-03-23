@@ -5,14 +5,14 @@ public class LinkShorter {
     public static String getLink(String id) {
         String link = id;
 
-        link = link.replaceAll("000000000", "h");
-        link = link.replaceAll("00000000", "g");
-        link = link.replaceAll("0000000", "f");
-        link = link.replaceAll("000000", "e");
-        link = link.replaceAll("00000", "d");
-        link = link.replaceAll("0000", "c");
-        link = link.replaceAll("000", "b");
-        link = link.replaceAll("00", "a");
+        link = link.replace("000000000", "h");
+        link = link.replace("00000000", "g");
+        link = link.replace("0000000", "f");
+        link = link.replace("000000", "e");
+        link = link.replace("00000", "d");
+        link = link.replace("0000", "c");
+        link = link.replace("000", "b");
+        link = link.replace("00", "a");
 
         link = link.replace("01", "i");
         link = link.replace("02", "j");
@@ -30,14 +30,14 @@ public class LinkShorter {
     public static String getId(String link) {
         String id = link;
 
-        id = id.replaceAll("a", "00");
-        id = id.replaceAll("b", "000");
-        id = id.replaceAll("c", "0000");
-        id = id.replaceAll("d", "00000");
-        id = id.replaceAll("e", "000000");
-        id = id.replaceAll("f", "0000000");
-        id = id.replaceAll("g", "00000000");
-        id = id.replaceAll("h", "000000000");
+        id = id.replace("a", "00");
+        id = id.replace("b", "000");
+        id = id.replace("c", "0000");
+        id = id.replace("d", "00000");
+        id = id.replace("e", "000000");
+        id = id.replace("f", "0000000");
+        id = id.replace("g", "00000000");
+        id = id.replace("h", "000000000");
 
         id = id.replace("i", "01");
         id = id.replace("j", "02");
