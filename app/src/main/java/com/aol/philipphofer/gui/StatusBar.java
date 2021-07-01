@@ -68,7 +68,7 @@ public class StatusBar extends RelativeLayout {
                 return true;
             });
 
-            @SuppressLint("RestrictedApi") MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popup.getMenu(), moreButton);
+            MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popup.getMenu(), moreButton);
             menuHelper.setForceShowIcon(true);
             menuHelper.show();
         });

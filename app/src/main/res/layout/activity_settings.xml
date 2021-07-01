@@ -115,6 +115,14 @@
                     android:layout_toStartOf="@id/showErrorsSwitch"
                     android:text="@string/settings_showErrorsAnnotations" />
 
+                <TextView
+                    android:id="@+id/showErrorsNextGame"
+                    style="@style/General.SmallInfo"
+                    android:layout_below="@id/showErrorsAnnotations"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/showErrorsSwitch"
+                    android:text="@string/settings_applies_next_game" />
+
                 <CheckBox
                     android:id="@+id/showErrorsSwitch"
                     style="@style/General.CheckBox" />
@@ -124,8 +132,7 @@
             <RelativeLayout
                 android:id="@+id/showTime"
                 style="@style/Settings.Layout"
-                android:layout_below="@id/showErrors"
-                android:paddingBottom="@dimen/_15sdp">
+                android:layout_below="@id/showErrors">
 
                 <TextView
                     android:id="@+id/showTimeTitle"
@@ -140,22 +147,25 @@
                     android:layout_toStartOf="@id/showTimeSwitch"
                     android:text="@string/settings_showTimeAnnotations" />
 
+                <TextView
+                    android:id="@+id/showTimeNextGame"
+                    style="@style/General.SmallInfo"
+                    android:layout_below="@id/showTimeAnnotations"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/showTimeSwitch"
+                    android:text="@string/settings_applies_next_game" />
+
                 <CheckBox
                     android:id="@+id/showTimeSwitch"
                     style="@style/General.CheckBox" />
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/supportText"
-                style="@style/Settings.Title"
-                android:layout_below="@id/showTime"
-                android:text="@string/settings_title_support" />
-
             <RelativeLayout
                 android:id="@+id/color"
                 style="@style/Settings.Layout"
-                android:layout_below="@id/supportText">
+                android:layout_below="@id/showTime"
+                android:paddingBottom="@dimen/_15sdp">
 
                 <TextView
                     android:id="@+id/colorTitle"
@@ -170,11 +180,16 @@
 
             </RelativeLayout>
 
+            <TextView
+                android:id="@+id/more"
+                style="@style/Settings.Title"
+                android:layout_below="@id/color"
+                android:text="@string/settings_title_more" />
+
             <RelativeLayout
                 android:id="@+id/support"
                 style="@style/Settings.Layout"
-                android:layout_below="@id/color"
-                android:paddingBottom="@dimen/_15sdp">
+                android:layout_below="@id/more">
 
                 <TextView
                     android:id="@+id/supportTitle"
@@ -189,16 +204,10 @@
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/more"
-                style="@style/Settings.Title"
-                android:layout_below="@id/support"
-                android:text="@string/settings_title_more" />
-
             <RelativeLayout
                 android:id="@+id/deleteData"
                 style="@style/Settings.Layout"
-                android:layout_below="@id/more">
+                android:layout_below="@id/support">
 
                 <TextView
                     android:id="@+id/deleteDataTitle"
@@ -225,6 +234,12 @@
                     android:text="@string/settings_info" />
 
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/end"
+                style="@style/Settings.Title"
+                android:layout_below="@id/info"
+                android:text="" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

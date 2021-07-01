@@ -68,15 +68,15 @@
     <string name="settings_powerMode">Low Power Mode</string>
     <string name="settings_powerModeAnnotations">Activate this mode when your battery is low</string>
     <string name="settings_showErrors">Show Errors</string>
-    <string name="settings_showErrorsAnnotations">Mark wrong numbers and count them, will change in the next game you start</string>
+    <string name="settings_showErrorsAnnotations">Mark wrong numbers and count them</string>
     <string name="settings_checkNotes">Check Notes</string>
     <string name="settings_checkNotesAnnotations">Delete your conflicting notes when you insert a new number</string>
     <string name="settings_showTime">Play with Timer</string>
-    <string name="settings_showTimeAnnotations">See how much time you need for a Sudoku and save it in your statistics, will change in the next game you start</string>
+    <string name="settings_showTimeAnnotations">See how much time you need for a Sudoku and save it in your statistics</string>
     <string name="settings_deleteData">Reset</string>
     <string name="settings_deleteDataAnnotations">Delete all your statistics and reset the app</string>
     <string name="settings_support">Support</string>
-    <string name="settings_support_annotations">Support the developer, never have any Ads shown again and unlock color options!</string>
+    <string name="settings_support_annotations">Support the developer. And never have any Ads shown again!</string>
     <string name="settings_support_thanks">Thanks for your support!</string>
     <string name="settings_support_already">Thanks, you are already supporter!</string>
     <string name="settings_support_error">Locked! You need to be a supporter</string>
@@ -86,6 +86,7 @@
     <string name="settings_color_button">Choose</string>
     <string name="settings_confirm">Confirm</string>
     <string name="settings_confirm_annotations">Are you sure to reset the app?</string>
+    <string name="settings_applies_next_game">Applies next game</string>
 
     <!-- Share -->
     <string name="share_title">Share your Sudoku</string>

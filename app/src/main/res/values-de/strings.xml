@@ -68,7 +68,7 @@
     <string name="settings_powerMode">Low Power Modus</string>
     <string name="settings_powerModeAnnotations">Spare dir etwas Batterie</string>
     <string name="settings_showErrors">Fehler anzeigen</string>
-    <string name="settings_showErrorsAnnotations">Markiert und zählt deine Fehler (Einstellung wird bei deinem nächsten Spiel übernommen)</string>
+    <string name="settings_showErrorsAnnotations">Markiert und zählt deine Fehler</string>
     <string name="settings_checkNotes">Schlaue Notizen</string>
     <string name="settings_checkNotesAnnotations">Wenn du eine Zahl einfügst, werden alle jetzt überflüssigen Notizen gelöscht</string>
     <string name="settings_showTime">Stoppuhr</string>
@@ -76,7 +76,7 @@
     <string name="settings_deleteData">Zurücksetzen</string>
     <string name="settings_deleteDataAnnotations">Lösche deine Statistik und setzte die App zurück</string>
     <string name="settings_support">Support</string>
-    <string name="settings_support_annotations">Unterstütze den Entwickler, werde die Werbung los und schalte verschiedene Farben für die App frei!</string>
+    <string name="settings_support_annotations">Unterstütze den Entwickler und werde die Werbung los!</string>
     <string name="settings_support_thanks">Danke für deine Unterstützung!</string>
     <string name="settings_support_already">Danke, du bist bereits Supporter!</string>
     <string name="settings_support_error">Gesperrt! Du musst Supporter sein</string>
@@ -86,6 +86,7 @@
     <string name="settings_color_button">Ändern</string>
     <string name="settings_confirm">Achtung</string>
     <string name="settings_confirm_annotations">Willst du wirklich die App zurücksetzen?</string>
+    <string name="settings_applies_next_game">Wird im nächsten Spiel übernommen</string>
 
     <!-- Share -->
     <string name="share_title">Teile Dein Sudoku</string>

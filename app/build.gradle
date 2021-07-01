@@ -24,10 +24,10 @@ android {
 
 dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
-    implementation 'com.google.android.play:core:1.9.1'
+    implementation 'com.google.android.play:core:1.10.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
     testImplementation 'junit:junit:4.13-beta-3'
-    implementation 'com.google.android.gms:play-services-ads:19.7.0'
+    implementation 'com.google.android.gms:play-services-ads:20.2.0'
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
 }
