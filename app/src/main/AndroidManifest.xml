@@ -20,6 +20,7 @@
             android:name=".logic.StartActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
+            android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,40 +47,22 @@
             android:name=".logic.MainActivity"
             android:parentActivityName=".logic.StartActivity"
             android:launchMode="singleTask"
+            android:exported="false"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".gui.EndCard"
-            android:parentActivityName=".logic.MainActivity"
-            android:launchMode="singleInstance"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".gui.Settings"
             android:parentActivityName=".logic.MainActivity"
             android:launchMode="singleInstance"
+            android:exported="false"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".gui.Statistics"
             android:parentActivityName=".logic.MainActivity"
             android:launchMode="singleInstance"
+            android:exported="false"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 </manifest>
