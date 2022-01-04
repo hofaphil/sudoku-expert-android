@@ -23,6 +23,7 @@ public class Sudoku {
             initBlock(threadBlocks[i]);
 
         initBlock(blocks);
+        initBlock(solution);
     }
 
     public void create(int difficulty) {

@@ -1,0 +1,60 @@
+#include <jni.h>
+#include "Sudoku.h"
+
+JNIEXPORT jobject JNICALL
+Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, jobject mainActivity, jint difficulty)
+{
+    /*
+     * Sudoku
+     */
+    jclass jSudokuClass = (*env)->FindClass(env, "com/aol/philipphofer/sudoku/Sudoku");
+    jmethodID jNewSudoku = (*env)->GetMethodID(env, jSudokuClass, "<init>", "(I)V");
+    jobject jSudoku = (*env)->NewObject(env, jSudokuClass, jNewSudoku, difficulty);
+
+    jmethodID jSetSudoku = (*env)->GetMethodID(env, jSudokuClass, "setSudoku", "([Lcom/aol/philipphofer/sudoku/Block;)V");
+    jmethodID jSetSolution = (*env)->GetMethodID(env, jSudokuClass, "setSolution", "([Lcom/aol/philipphofer/sudoku/Block;)V");
+    jmethodID jGetSudoku = (*env)->GetMethodID(env, jSudokuClass, "getSudoku", "()[Lcom/aol/philipphofer/sudoku/Block;");
+    jmethodID jGetSolution = (*env)->GetMethodID(env, jSudokuClass, "getSolution", "()[Lcom/aol/philipphofer/sudoku/Block;");
+
+    /*
+     * Blocks
+     */
+    jclass jBlockClass = (*env)->FindClass(env, "com/aol/philipphofer/sudoku/Block");
+    jmethodID jInsert = (*env)->GetMethodID(env, jBlockClass, "insert", "(III)Z");
+
+    /*
+     * Generate sudoku with c code
+     */
+    sudoku *sudoku = new_sudoku();
+    create(sudoku, difficulty);
+
+    /**
+     * Set Sudoku
+     */
+    jobjectArray jBlocks = (*env)->CallObjectMethod(env, jSudoku, jGetSudoku);
+    for (int b = 0; b < 9; b++) {
+        jobject jBlock = (*env)->GetObjectArrayElement(env, jBlocks, b);
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                (*env)->CallBooleanMethod(env, jBlock, jInsert, sudoku->blocks->numbers[i][j], i, j);
+            }
+        }
+    }
+    (*env)->CallVoidMethod(env, jSudoku, jSetSudoku, jBlocks);
+
+    /**
+     * Set Solution
+     */
+    jBlocks = (*env)->CallObjectMethod(env, jSudoku, jGetSolution);
+    for (int b = 0; b < 9; b++) {
+        jobject jBlock = (*env)->GetObjectArrayElement(env, jBlocks, b);
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                (*env)->CallBooleanMethod(env, jBlock, jInsert, sudoku->blocks->numbers[i][j], i, j);
+            }
+        }
+    }
+    (*env)->CallVoidMethod(env, jSudoku, jSetSolution, jBlocks);
+
+    return jSudoku;
+}

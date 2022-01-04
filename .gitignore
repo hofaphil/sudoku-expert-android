@@ -9,6 +9,7 @@ build/
 .navigation
 captures/
 output.json
+**/.cxx
 
 # NDK
 obj/

@@ -24,9 +24,6 @@ import com.aol.philipphofer.persistence.Data;
 import com.aol.philipphofer.sudoku.Sudoku;
 import com.google.android.gms.ads.AdView;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 public class MainActivity extends CustomActivity {
 
     private int errors;
@@ -56,6 +53,9 @@ public class MainActivity extends CustomActivity {
         super.onCreate(savedInstanceState);
 
         DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
+
+        Sudoku test = createSudokuNative(DIFFICULTY.getNumber());
+        test.printSudoku();
 
         setContentView(R.layout.activity_main);
 
@@ -151,9 +151,6 @@ public class MainActivity extends CustomActivity {
 
         if (endCardDialog.isShowing())
             return;
-
-        // TODO selected sometimes still shown, sometimes not (after showing dialog)
-        // TODO when new game menu open and you open app again, not in pause mode but dialog still shown!
 
         if (!(LOADMODE = data.getLoadmode())) {
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING);
@@ -642,4 +639,10 @@ public class MainActivity extends CustomActivity {
             if (resultCode == 1)
                 recreate();
     }
+
+    // JNI
+    static {
+        System.loadLibrary("generator");
+    }
+    public native Sudoku createSudokuNative(int difficulty);
 }
