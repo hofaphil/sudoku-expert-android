@@ -36,6 +36,7 @@ public class Data {
     public final static String SETTINGS_CHECK_NOTES = "checknotes";
     public final static String SETTINGS_SHOW_TIME = "showtime";
     public final static String SETTINGS_COLOR = "color";
+    // this functionality does not exist anymore, but some people might have bought this
     public final static String SETTINGS_SUPPORTER = "supporter";
 
     // for actual game

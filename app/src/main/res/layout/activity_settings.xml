@@ -132,6 +132,7 @@
             <RelativeLayout
                 android:id="@+id/showTime"
                 style="@style/Settings.Layout"
+                android:paddingBottom="@dimen/_15sdp"
                 android:layout_below="@id/showErrors">
 
                 <TextView
@@ -161,11 +162,16 @@
 
             </RelativeLayout>
 
+            <TextView
+                android:id="@+id/more"
+                style="@style/Settings.Title"
+                android:layout_below="@id/showTime"
+                android:text="@string/settings_title_more" />
+
             <RelativeLayout
                 android:id="@+id/color"
                 style="@style/Settings.Layout"
-                android:layout_below="@id/showTime"
-                android:paddingBottom="@dimen/_15sdp">
+                android:layout_below="@id/more">
 
                 <TextView
                     android:id="@+id/colorTitle"
@@ -180,34 +186,11 @@
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/more"
-                style="@style/Settings.Title"
-                android:layout_below="@id/color"
-                android:text="@string/settings_title_more" />
-
-            <RelativeLayout
-                android:id="@+id/support"
-                style="@style/Settings.Layout"
-                android:layout_below="@id/more">
-
-                <TextView
-                    android:id="@+id/supportTitle"
-                    style="@style/General.Title"
-                    android:text="@string/settings_support" />
-
-                <TextView
-                    android:id="@+id/supportAnnotations"
-                    style="@style/General.Info"
-                    android:layout_below="@id/supportTitle"
-                    android:text="@string/settings_support_annotations" />
-
-            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/deleteData"
                 style="@style/Settings.Layout"
-                android:layout_below="@id/support">
+                android:layout_below="@id/color">
 
                 <TextView
                     android:id="@+id/deleteDataTitle"

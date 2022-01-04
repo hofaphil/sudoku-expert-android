@@ -5,10 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
-import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.TransactionDetails;
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomActivity;
 import com.aol.philipphofer.gui.custom.CustomToast;
@@ -16,10 +13,9 @@ import com.aol.philipphofer.gui.dialog.ColorChooserDialog;
 import com.aol.philipphofer.gui.dialog.ConfirmDialog;
 import com.aol.philipphofer.persistence.Data;
 
-public class Settings extends CustomActivity implements BillingProcessor.IBillingHandler {
+public class Settings extends CustomActivity {
 
     private CheckBox markNumbers, markLines, showErrors, checkNotes, showTime;
-    private BillingProcessor bp;
 
     private static int colorChanged;
     private static final String COLOR_CHANGED = "color_changed";
@@ -34,9 +30,6 @@ public class Settings extends CustomActivity implements BillingProcessor.IBillin
 
         colorChanged = getIntent().getIntExtra(COLOR_CHANGED, 0);
 
-        bp = new BillingProcessor(this, "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx61y5ioHZSErdYWJwURIZ1EAMwNRQsvgu3mDr9FDmWbu9JQf4qcjbKVpFsggXnp24Y3whDXJ4mMMI9fCnuQDMy0+Z+18sRtKtT5t1+prdvJb7gbY8D8Xeb1XYDxhC7p3M/pg1KDjdB1jax8s8pqHex5suUkE9n5349EpES/pMpgZlFGO4i2wMTAPiJJ8C5bVyPXeGVstGckdnUKtPZpnZQm/kWjvra7+Ccqltz8f7T89zsr2e2kEk3q6kRUrF2dln6kXpLJulWG6pAZ6DZq0t8UsPS5lsJtuC1dyHd9w/cUJ1x3q8dXnJCrcXnaKUMocVqkpWwk60jwGcwhOBo/KkQIDAQAB", this);
-        bp.initialize();
-
         markLines = findViewById(R.id.markLinesSwitch);
         markNumbers = findViewById(R.id.markNumbersSwitch);
         checkNotes = findViewById(R.id.checkNotesSwitch);
@@ -44,7 +37,6 @@ public class Settings extends CustomActivity implements BillingProcessor.IBillin
         showTime = findViewById(R.id.showTimeSwitch);
 
         findViewById(R.id.deleteData).setOnClickListener(v -> new ConfirmDialog(this, getResources().getString(R.string.settings_confirm), getResources().getString(R.string.settings_confirm_annotations), () -> data.drop()).show());
-        findViewById(R.id.support).setOnClickListener(v -> bp.purchase(this, "supporter"));
         findViewById(R.id.color).setOnClickListener(v -> new ColorChooserDialog(this, this).show());
         findViewById(R.id.info).setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(CONTACT_URL))));
     }
@@ -67,42 +59,6 @@ public class Settings extends CustomActivity implements BillingProcessor.IBillin
         data.saveBoolean(Data.SETTINGS_CHECK_NOTES, checkNotes.isChecked());
         data.saveBoolean(Data.SETTINGS_MARK_ERRORS, showErrors.isChecked());
         data.saveBoolean(Data.SETTINGS_SHOW_TIME, showTime.isChecked());
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (bp != null)
-            bp.release();
-        super.onDestroy();
-    }
-
-    @Override
-    public void onProductPurchased(String productId, TransactionDetails details) {
-        Data.instance(this).saveBoolean(Data.SETTINGS_SUPPORTER, true);
-        new CustomToast(this, getResources().getString(R.string.settings_support_thanks)).show();
-    }
-
-    @Override
-    public void onPurchaseHistoryRestored() {
-    }
-
-    @Override
-    public void onBillingError(int errorCode, Throwable error) {
-        if (errorCode == com.anjlab.android.iab.v3.Constants.BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED) {
-            Data.instance(this).saveBoolean(Data.SETTINGS_SUPPORTER, true);
-            new CustomToast(this, getResources().getString(R.string.settings_support_already)).show();
-        }
-    }
-
-    @Override
-    public void onBillingInitialized() {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
     }
 
     @Override
