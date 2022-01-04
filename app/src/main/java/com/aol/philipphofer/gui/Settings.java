@@ -8,7 +8,6 @@ import android.widget.CheckBox;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomActivity;
-import com.aol.philipphofer.gui.custom.CustomToast;
 import com.aol.philipphofer.gui.dialog.ColorChooserDialog;
 import com.aol.philipphofer.gui.dialog.ConfirmDialog;
 import com.aol.philipphofer.persistence.Data;
