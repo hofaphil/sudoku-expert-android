@@ -36,7 +36,7 @@ Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, job
         jobject jBlock = (*env)->GetObjectArrayElement(env, jBlocks, b);
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                (*env)->CallBooleanMethod(env, jBlock, jInsert, sudoku->blocks->numbers[i][j], i, j);
+                (*env)->CallBooleanMethod(env, jBlock, jInsert, sudoku->blocks[b].numbers[i][j], i, j);
             }
         }
     }
@@ -50,7 +50,7 @@ Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, job
         jobject jBlock = (*env)->GetObjectArrayElement(env, jBlocks, b);
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                (*env)->CallBooleanMethod(env, jBlock, jInsert, sudoku->blocks->numbers[i][j], i, j);
+                (*env)->CallBooleanMethod(env, jBlock, jInsert, sudoku->solution[b].numbers[i][j], i, j);
             }
         }
     }

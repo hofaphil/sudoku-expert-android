@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-
-// TODO: not all methods in header!
 #include "Sudoku.h"
 
 sudoku *new_sudoku()
@@ -22,7 +20,7 @@ int create(sudoku *sudoku, int difficulty)
     generate(sudoku, 1, 1);
 
     for (int i = 0; i < 9; i++)
-        sudoku->solution[i] = new_block();
+        sudoku->solution[i] = new_block_copy(sudoku->blocks[i]);;
 
     return delete_numbers(difficulty, sudoku->blocks);
 }

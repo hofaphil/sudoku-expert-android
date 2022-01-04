@@ -54,9 +54,6 @@ public class MainActivity extends CustomActivity {
 
         DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
 
-        Sudoku test = createSudokuNative(DIFFICULTY.getNumber());
-        test.printSudoku();
-
         setContentView(R.layout.activity_main);
 
         sudokuGrid = findViewById(R.id.sudokuGrid);
@@ -176,7 +173,7 @@ public class MainActivity extends CustomActivity {
 
     public void heavyLoading() {
         timer.stopTimer();
-        sudoku.create(DIFFICULTY.getNumber());
+        sudoku = createSudokuNative(DIFFICULTY.getNumber());
 
         LOADMODE = !LOADMODE;
         data.setLoadmode(LOADMODE);
