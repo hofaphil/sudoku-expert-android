@@ -37,7 +37,7 @@ class ShareClass {
         if (uri == null)
             throw new DataFormatException();
 
-        Sudoku sudoku = new Sudoku(4);
+        Sudoku sudoku = new Sudoku();
 
         String link = uri.getQueryParameter("id");
         assert link != null;
@@ -61,8 +61,9 @@ class ShareClass {
         }
         sudoku.setSudoku(block);
 
-        Block[] solution = sudoku.getSolution(sudoku.getSudoku());
-        sudoku.setSolution(solution);
+        // TODO getSolution with c-code
+        // Block[] solution = sudoku.getSolution(sudoku.getSudoku());
+        // sudoku.setSolution(solution);
 
         return sudoku;
     }

@@ -117,7 +117,7 @@ public class MainActivity extends CustomActivity {
             setFreeFields(81);
             DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
             numberCount = new int[9];
-            sudoku = new Sudoku(4);
+            sudoku = new Sudoku();
 
             data.loadSolution(sudoku);
             data.loadSudoku(sudoku);
@@ -159,7 +159,7 @@ public class MainActivity extends CustomActivity {
                 setFreeFields(81);
                 DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
                 numberCount = new int[9];
-                sudoku = new Sudoku(8);
+                sudoku = new Sudoku();
                 for (int i = 0; i < 9; i++)
                     keyboard.activateNumber(i + 1);
                 setErrors(0);
