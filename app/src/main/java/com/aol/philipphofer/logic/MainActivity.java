@@ -21,6 +21,7 @@ import com.aol.philipphofer.gui.sudoku.SudokuField;
 import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
+import com.aol.philipphofer.sudoku.Block;
 import com.aol.philipphofer.sudoku.Sudoku;
 import com.google.android.gms.ads.AdView;
 
@@ -641,5 +642,6 @@ public class MainActivity extends CustomActivity {
     static {
         System.loadLibrary("generator");
     }
+
     public native Sudoku createSudokuNative(int difficulty);
 }

@@ -1,7 +1,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+
 #include "Sudoku.h"
+
+void shuffle(number *array, int n);
+
+int delete_numbers(int difficulty, block blocks[9]);
+
+void init_block(block block[]);
+
+int check_solutions(int index, int x, int z, int number, block holder_num[9]);
+
+int solve(block blocks[9], int number, int block);
+
+int generate(sudoku *sudoku, int number, int block);
 
 sudoku *new_sudoku()
 {
@@ -20,7 +33,7 @@ int create(sudoku *sudoku, int difficulty)
     generate(sudoku, 1, 1);
 
     for (int i = 0; i < 9; i++)
-        sudoku->solution[i] = new_block_copy(sudoku->blocks[i]);;
+        sudoku->solution[i] = new_block_copy(sudoku->blocks[i]);
 
     return delete_numbers(difficulty, sudoku->blocks);
 }
@@ -187,17 +200,17 @@ int generate(sudoku *sudoku, int number, int block)
     return 1;
 }
 
-block *get_solution(block sudoku[])
+void solve_sudoku(sudoku *sudoku)
 {
     block solution[9];
     init_block(solution);
     for (int i = 0; i < 9; i++)
-        set_numbers(&solution[i], sudoku[i].numbers);
+        set_numbers(&solution[i], sudoku->blocks[i].numbers);
 
     if (!solve(solution, 1, 0))
         exit(0);
 
-    return solution;
+    set_solution(sudoku, solution);
 }
 
 void set_solution(sudoku *sudoku, block blocks[])
@@ -212,11 +225,6 @@ void set_sudoku(sudoku *sudoku, block blocks[])
     for (int i = 0; i < 9; i++) {
         sudoku->blocks[i] = blocks[i];
     }
-}
-
-void print_sudoku(sudoku *sudoku)
-{
-    print_blocks(sudoku->blocks);
 }
 
 void print_blocks(block *blocks)

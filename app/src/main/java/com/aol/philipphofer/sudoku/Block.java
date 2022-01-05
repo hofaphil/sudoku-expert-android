@@ -11,7 +11,7 @@ public class Block {
                 numbers[i][j] = 0;
     }
 
-    Block(Block block) {
+    public Block(Block block) {
         this();
         setNumbers(block.getNumbers());
     }
@@ -36,6 +36,10 @@ public class Block {
 
     public int[][] getNumbers() {
         return this.numbers;
+    }
+
+    public int getNumber(int row, int column) {
+        return this.numbers[row][column];
     }
 
     public void setNumbers(int[][] numbers) {

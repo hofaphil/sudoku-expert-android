@@ -61,10 +61,16 @@ class ShareClass {
         }
         sudoku.setSudoku(block);
 
-        // TODO getSolution with c-code
-        // Block[] solution = sudoku.getSolution(sudoku.getSudoku());
-        // sudoku.setSolution(solution);
+        sudoku.setSolution(solveSudokuNative(sudoku));
 
         return sudoku;
     }
+
+    // JNI
+    static {
+        System.loadLibrary("generator");
+    }
+
+    public native static Block[] solveSudokuNative(Sudoku sudoku);
+
 }
