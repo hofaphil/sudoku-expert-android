@@ -1,5 +1,5 @@
 #include <jni.h>
-#include "Sudoku.h"
+#include "generator/Sudoku.h"
 
 JNIEXPORT jobject JNICALL
 Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, jobject mainActivity, jint jDifficulty)
