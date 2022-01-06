@@ -23,7 +23,7 @@ add_library(
         SHARED
 
         # Provides a relative path to your source file(s).
-        SudokuJNI.c Sudoku.c Block.c Number.c Block.h Number.h Sudoku.h)
+        SudokuJNI.c)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -38,6 +38,9 @@ find_library(
         # Specifies the name of the NDK library that you want CMake to locate.
         log)
 
+# Add the generator c code
+add_subdirectory(generator)
+
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
@@ -45,6 +48,8 @@ find_library(
 target_link_libraries(
         # Specifies the target library.
         generator
+
+        Generator
 
         # Links the target library to the log library included in the NDK.
         ${log-lib})
