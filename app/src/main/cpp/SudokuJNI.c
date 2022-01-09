@@ -88,7 +88,7 @@ Java_com_aol_philipphofer_logic_ShareClass_solveSudokuNative(JNIEnv *env, jobjec
     /**
      * Solve sudoku with c code
      */
-    solve_sudoku(sudoku);
+    solve(sudoku);
 
     /**
      * Set Solution
