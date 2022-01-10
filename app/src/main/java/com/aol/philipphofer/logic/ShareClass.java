@@ -52,7 +52,7 @@ class ShareClass {
         Block[] block = new Block[9];
         int[][] numbers = new int[3][3];
         int k = 1;
-        for (int i = 0; i < 9; i++) {
+        /* for (int i = 0; i < 9; i++) {
             for (int a = 0; a < 3; a++)
                 for (int b = 0; b < 3; b++)
                     numbers[a][b] = Integer.parseInt(id.charAt(k++) + "");
@@ -61,16 +61,16 @@ class ShareClass {
         }
         sudoku.setSudoku(block);
 
-        sudoku.setSolution(solveSudokuNative(sudoku));
+        sudoku.setSolution(solveSudokuNative(sudoku)); */
 
         return sudoku;
     }
 
     // JNI
-    static {
+   /* static {
         System.loadLibrary("generator");
     }
 
-    public native static Block[] solveSudokuNative(Sudoku sudoku);
+    public native static Block[] solveSudokuNative(Sudoku sudoku); */
 
 }

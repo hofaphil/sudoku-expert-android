@@ -63,7 +63,7 @@ public class Data {
         return unique;
     }
 
-    public void saveField(SudokuField field) {
+    /* public void saveField(SudokuField field) {
         editor.putBoolean(field.position + FIELD_IS_CHANGEABLE, field.isChangeable());
         editor.putBoolean(field.position + FIELD_IS_NOTES, field.isNotes());
         editor.putBoolean(field.position + FIELD_ERROR, field.getError());
@@ -90,7 +90,7 @@ public class Data {
             if (field.getNumber() > 0)
                 field.setNumberViewText(field.getNumber());
         }
-    }
+    } */
 
     public void saveInt(String key, int value) {
         editor.putInt(key, value);
@@ -123,7 +123,7 @@ public class Data {
         return data.getString(key, defValue);
     }
 
-    public void saveSolution(Block[] blocks) {
+    /* public void saveSolution(Block[] blocks) {
         int k = 0;
         for (int i = 0; i < 9; i++)
             for (int a = 0; a < 3; a++)
@@ -167,7 +167,7 @@ public class Data {
             block[i].setNumbers(numbers);
         }
         sudoku.setSudoku(block);
-    }
+    } */
 
     public boolean getLoadmode() {
         return data.getBoolean(LOAD_MODE, false);

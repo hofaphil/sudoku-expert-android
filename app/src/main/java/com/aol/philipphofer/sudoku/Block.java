@@ -2,13 +2,13 @@ package com.aol.philipphofer.sudoku;
 
 public class Block {
 
-    private final int[][] numbers;
+    private final Number[][] numbers;
 
     public Block() {
-        numbers = new int[3][3];
+        numbers = new Number[3][3];
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                numbers[i][j] = 0;
+                numbers[i][j] = new Number();
     }
 
     public Block(Block block) {
@@ -16,36 +16,21 @@ public class Block {
         setNumbers(block.getNumbers());
     }
 
-    void insert(int number, int row, int column) {
-        numbers[row][column] = number;
-    }
-
-    boolean delete(int number) {
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
-                if (numbers[i][j] == number) {
-                    numbers[i][j] = 0;
-                    return true;
-                }
-        return false;
-    }
-
-    void delete(int number, int row, int column) {
-        numbers[row][column] = 0;
-    }
-
-    public int[][] getNumbers() {
+    public Number[][] getNumbers() {
         return this.numbers;
     }
 
     public int getNumber(int row, int column) {
-        return this.numbers[row][column];
+        return this.numbers[row][column].getNumber();
     }
 
-    public void setNumbers(int[][] numbers) {
+    public void setNumbers(Number[][] numbers) {
         for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
-                this.numbers[i][j] = numbers[i][j];
+            System.arraycopy(numbers[i], 0, this.numbers[i], 0, 3);
+    }
+
+    public void setNumber(Number number, int row, int col) {
+        this.numbers[row][col] = number;
     }
 
     @Override

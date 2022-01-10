@@ -27,6 +27,8 @@ import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends CustomActivity {
 
+    public Sudoku sudoku;
+
     private int errors;
     private int freeFields; //loaded indirect by fields
     private int[] numberCount;
@@ -34,9 +36,9 @@ public class MainActivity extends CustomActivity {
     public StatusBar statusBar;
     public SudokuGrid sudokuGrid;
     private Keyboard keyboard;
-    public Sudoku sudoku;
     private EndCardDialog endCardDialog;
-    private SudokuField selected;
+
+    private Position selected;
     private boolean notes;
     public static boolean pause;
 
@@ -111,10 +113,10 @@ public class MainActivity extends CustomActivity {
     protected void onStart() {
         super.onStart();
 
-        if (endCardDialog.isShowing())
-            return;
+        /* if (endCardDialog.isShowing())
+            return; */
 
-        if (LOADMODE = data.getLoadmode()) {
+        /* if (LOADMODE = data.getLoadmode()) {
             setFreeFields(81);
             DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
             numberCount = new int[9];
@@ -137,7 +139,7 @@ public class MainActivity extends CustomActivity {
             statusBar.initDifficultyView();
             statusBar.activate();
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
-        }
+        } */
     }
 
     @Override
@@ -147,8 +149,8 @@ public class MainActivity extends CustomActivity {
         pause = true;
         pauseGame();
 
-        if (endCardDialog.isShowing())
-            return;
+        /* if (endCardDialog.isShowing())
+            return; */
 
         if (!(LOADMODE = data.getLoadmode())) {
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING);
@@ -175,22 +177,23 @@ public class MainActivity extends CustomActivity {
     public void heavyLoading() {
         timer.stopTimer();
         sudoku = createSudokuNative(DIFFICULTY.getNumber());
+        System.out.println("heavy loading");
 
         LOADMODE = !LOADMODE;
-        data.setLoadmode(LOADMODE);
+        /* data.setLoadmode(LOADMODE);
         data.saveSolution(sudoku.getSolution());
         data.saveSudoku(sudoku.getSudoku());
         data.saveBoolean(Data.GAME_SHOW_ERRORS, data.loadBoolean(Data.SETTINGS_MARK_ERRORS));
-        data.saveBoolean(Data.GAME_SHOW_TIME, data.loadBoolean(Data.SETTINGS_SHOW_TIME));
+        data.saveBoolean(Data.GAME_SHOW_TIME, data.loadBoolean(Data.SETTINGS_SHOW_TIME)); */
 
         runOnUiThread(() -> {
             sudokuGrid.init(sudoku.getSudoku());
-            for (int i = 0; i < 9; i++)
+            /* for (int i = 0; i < 9; i++)
                 for (int a = 0; a < 3; a++)
                     for (int b = 0; b < 3; b++)
                         sudokuGrid.blocks[i].field[a][b].save();
             data.saveInt(Data.GAME_ERRORS, 0);
-            data.saveInt(Data.GAME_TIME, 0);
+            data.saveInt(Data.GAME_TIME, 0); */
 
             statusBar.initDifficultyView();
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
@@ -208,12 +211,12 @@ public class MainActivity extends CustomActivity {
     protected void onPause() {
         super.onPause();
 
-        for (int i = 0; i < 9; i++)
+        /* for (int i = 0; i < 9; i++)
             for (int a = 0; a < 3; a++)
                 for (int b = 0; b < 3; b++)
                     sudokuGrid.blocks[i].field[a][b].save();
         data.saveInt(Data.GAME_ERRORS, errors);
-        data.saveInt(Data.GAME_DIFFICULTY, DIFFICULTY.getNumber());
+        data.saveInt(Data.GAME_DIFFICULTY, DIFFICULTY.getNumber()); */
         timer.stopTimer();
         data.saveInt(Data.GAME_TIME, timer.getTime());
     }
@@ -224,7 +227,7 @@ public class MainActivity extends CustomActivity {
         timer.killTimer();
     }
 
-    public void select(SudokuField sudokuField) {
+    /* public void select(SudokuField sudokuField) {
         if (this.selected != null) {
             this.selected.unselect();
             unselectPartner(this.selected);
@@ -232,9 +235,14 @@ public class MainActivity extends CustomActivity {
         this.selected = sudokuField;
         selectPartner(sudokuField);
         this.selected.select();
+    } */
+
+    public void select(Position selectedPosition) {
+        System.out.println("selected " + selectedPosition);
+        this.selected = selectedPosition;
     }
 
-    public void unselectPartner(SudokuField sudokuField) {
+    /* public void unselectPartner(SudokuField sudokuField) {
         if (data.loadBoolean(Data.SETTINGS_MARK_NUMBERS) && sudokuField.getNumber() != 0)
             for (int i = 0; i < 9; i++)
                 for (int a = 0; a < 3; a++)
@@ -328,12 +336,12 @@ public class MainActivity extends CustomActivity {
         }
     }
 
-    public void selectPartner(SudokuField sudokuField) {
+    public void selectPartner(SudokuField sudokuField, boolean select) {
         if (data.loadBoolean(Data.SETTINGS_MARK_NUMBERS) && sudokuField.getNumber() != 0)
             for (int i = 0; i < 9; i++)
                 for (int a = 0; a < 3; a++)
                     for (int b = 0; b < 3; b++)
-                        if (sudokuGrid.blocks[i].field[a][b].getNumber() == sudokuField.getNumber())
+                        if (sudoku.getGame()[i].getNumbers()[a][b].getNumber() == sudokuField.getNumber())
                             sudokuGrid.blocks[i].field[a][b].lightSelect();
         if (data.loadBoolean(Data.SETTINGS_MARK_LINES)) {
             for (int i = 0; i < 3; i++) {
@@ -504,9 +512,9 @@ public class MainActivity extends CustomActivity {
                     break;
             }
         }
-    }
+    } */
 
-    public void insert(int number) {
+    /* public void insert(int number) {
         if (selected != null) {
             if (selected.getNumber() != 0)
                 unselectPartner(selected);
@@ -515,14 +523,24 @@ public class MainActivity extends CustomActivity {
             checkNotes(selected, number);
             this.selected.select();
         }
+    } */
+
+    public void insert(int number) {
+        if (this.selected != null) {
+            int b = this.selected.block;
+            int r = this.selected.row, c = this.selected.column;
+            if (notes)
+                this.sudoku.getGame()[b].getNumbers()[r][c].insertNote(number);
+            else
+                this.sudoku.getGame()[b].getNumbers()[r][c].insertNumber(number);
+        }
     }
 
     public void delete() {
         if (selected != null) {
-            unselectPartner(selected);
-            selected.delete();
-            selectPartner(selected);
-            this.selected.select();
+            int b = this.selected.block;
+            int r = this.selected.row, c = this.selected.column;
+            this.sudoku.getGame()[b].getNumbers()[r][c].delete();
         }
     }
 
@@ -554,7 +572,9 @@ public class MainActivity extends CustomActivity {
     }
 
     public void finishSudoku() {
-        for (int i = 0; i < 9; i++)
+        return;
+        // TODO
+        /* for (int i = 0; i < 9; i++)
             for (int x = 0; x < 3; x++)
                 for (int y = 0; y < 3; y++)
                     if (sudokuGrid.blocks[i].field[x][y].getError())
@@ -568,7 +588,7 @@ public class MainActivity extends CustomActivity {
 
         endCardDialog.show(true, t, DIFFICULTY);
 
-        data.addTime(timer.getTime(), DIFFICULTY);
+        data.addTime(timer.getTime(), DIFFICULTY); */
     }
 
     public void abortSudoku() {
@@ -640,7 +660,7 @@ public class MainActivity extends CustomActivity {
 
     // JNI
     static {
-        System.loadLibrary("generator");
+        System.loadLibrary("generator-jni");
     }
 
     public native Sudoku createSudokuNative(int difficulty);

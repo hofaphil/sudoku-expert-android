@@ -26,9 +26,9 @@ public class SudokuGrid extends RelativeLayout {
 
         LayoutInflater.from(context).inflate(R.layout.sudoku_grid, this);
 
-       layout = findViewById(R.id.sudokuGrid);
-       grid = findViewById(R.id.grid);
-       progressBar = findViewById(R.id.progressBar);
+        layout = findViewById(R.id.sudokuGrid);
+        grid = findViewById(R.id.grid);
+        progressBar = findViewById(R.id.progressBar);
 
         blocks = new SudokuBlock[9];
         for (int j = 0; j < 9; j++)
@@ -36,8 +36,8 @@ public class SudokuGrid extends RelativeLayout {
     }
 
     public void init(Block[] block) {
-        for (int j = 0; j < 9; j++)
-            blocks[j].init(block[j], j);
+        for (int i = 0; i < 9; i++)
+            blocks[i].init(block[i], i);
     }
 
     public void changeBackground(BackgroundMode mode) {

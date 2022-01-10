@@ -39,7 +39,7 @@ public class StartActivity extends Activity {
 
         Intent intent = getIntent();
 
-        if (!Objects.equals(intent.getAction(), Intent.ACTION_MAIN)) {
+        /* if (!Objects.equals(intent.getAction(), Intent.ACTION_MAIN)) {
             Uri uri = getIntent().getData();
 
             try {
@@ -54,7 +54,7 @@ public class StartActivity extends Activity {
             } catch (Exception e) {
                 new CustomToast(this, getResources().getString(R.string.error_default)).show();
             }
-        }
+        } */
 
         intent = new Intent(this, MainActivity.class);
         startActivity(intent);
