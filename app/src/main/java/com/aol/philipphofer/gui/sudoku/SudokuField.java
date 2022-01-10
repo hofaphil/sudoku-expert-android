@@ -23,7 +23,7 @@ import java.util.Observer;
 public class SudokuField extends GridLayout implements View.OnClickListener, Observer {
 
     public Position position;
-    private Number number;
+    public Number number;
 
     private final TextView numberView;
     private GridLayout notesLayout = null;
@@ -67,7 +67,10 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
         this.number = number;
         this.number.addObserver(this);
 
-        this.setNumberViewText(this.number.getNumber());
+        if (!number.isChangeable())
+            numberView.setTypeface(numberView.getTypeface(), Typeface.BOLD);
+        this.setNumberViewText(number.getNumber());
+        // TODO better? : this.update(this.number, null);
     }
 
     /* public void load(Position position) {
@@ -84,11 +87,11 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
         Data data = Data.instance(mainActivity);
         data.saveField(this);
     }
+    */
 
-
-    /* public void switchLayout(boolean isNotes) {
+    public void switchLayout(boolean isNotes) {
         if (isNotes) {
-            mainActivity.unselectPartner(this);
+            // mainActivity.selectPartner(this, false);
             this.numberView.setVisibility(INVISIBLE);
             getNotesLayout().setVisibility(VISIBLE);
         } else {
@@ -96,7 +99,7 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
             if (notesLayout != null)
                 getNotesLayout().setVisibility(INVISIBLE);
         }
-    } */
+    }
 
     public void error(boolean error) {
         // TODO mainActivity.addError();
@@ -107,8 +110,8 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
         }
     }
 
-    public void select(boolean select, boolean error) {
-        if (!error || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS)) {
+    public void select(boolean select) {
+        if (!this.number.isError() || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS)) {
             if (select)
                 this.setBackgroundColor(MainActivity.getPrimaryColor(getContext()));
             else
@@ -116,18 +119,13 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
         }
     }
 
-    public void lightSelect(boolean select, boolean error) {
-        if (!error || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS)) {
+    public void lightSelect(boolean select) {
+        if (!this.number.isError() || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS)) {
             if (select)
                 setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lineSelected));
             else
                 setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lineUnselected));
         }
-    }
-
-    public void checkNotes(int number) {
-        if (number != 0 && notesLayout != null)
-            notes[number - 1].setVisibility(INVISIBLE);
     }
 
     public void setNumberViewText(int number) {
@@ -137,18 +135,34 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
             this.numberView.setText("");
     }
 
-    public boolean[] getNotes() {
-        boolean[] returnBool = new boolean[9];
-        for (int i = 0; i < 9; i++)
-            if (notes[i].getVisibility() == VISIBLE)
-                returnBool[i] = true;
-        return returnBool;
-    }
-
     public void setNotes(boolean[] bool) {
         for (int i = 0; i < 9; i++)
             if (bool[i])
                 notes[i].setVisibility(VISIBLE);
+            else
+                notes[i].setVisibility(INVISIBLE);
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        Number n = (Number) observable;
+        this.setNumberViewText(n.getNumber());
+        this.error(n.isError());
+
+        // handle notes
+        this.switchLayout(n.isNotes());
+        if (this.notesLayout != null)
+            this.setNotes(n.getNotes());
+
+        /* System.out.println(observable);
+        System.out.println(observable.hasChanged());
+        System.out.println(observable.countObservers());
+        System.out.println(o); */
+    }
+
+    @Override
+    public void onClick(View view) {
+        mainActivity.select(this.position);
     }
 
     private GridLayout getNotesLayout() {
@@ -160,21 +174,5 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
                 notes[i] = findViewById(getContext().getResources().getIdentifier("tv" + i, "id", getContext().getPackageName()));
         }
         return notesLayout;
-    }
-
-    @Override
-    public void update(Observable observable, Object o) {
-        Number n = (Number) observable;
-        this.setNumberViewText(n.getNumber());
-        this.error(n.isError());
-        System.out.println(observable);
-        System.out.println(observable.hasChanged());
-        System.out.println(observable.countObservers());
-        System.out.println(o);
-    }
-
-    @Override
-    public void onClick(View view) {
-        mainActivity.select(this.position);
     }
 }

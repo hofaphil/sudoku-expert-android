@@ -22,6 +22,7 @@ import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
 import com.aol.philipphofer.sudoku.Block;
+import com.aol.philipphofer.sudoku.Number;
 import com.aol.philipphofer.sudoku.Sudoku;
 import com.google.android.gms.ads.AdView;
 
@@ -238,189 +239,109 @@ public class MainActivity extends CustomActivity {
     } */
 
     public void select(Position selectedPosition) {
-        System.out.println("selected " + selectedPosition);
-        this.selected = selectedPosition;
-    }
+        SudokuField sudokuField;
 
-    /* public void unselectPartner(SudokuField sudokuField) {
-        if (data.loadBoolean(Data.SETTINGS_MARK_NUMBERS) && sudokuField.getNumber() != 0)
-            for (int i = 0; i < 9; i++)
-                for (int a = 0; a < 3; a++)
-                    for (int b = 0; b < 3; b++)
-                        if (sudokuGrid.blocks[i].field[a][b].getNumber() == sudokuField.getNumber())
-                            sudokuGrid.blocks[i].field[a][b].unlightSelect();
-
-        if (data.loadBoolean(Data.SETTINGS_MARK_LINES)) {
-            for (int i = 0; i < 3; i++) {
-                if (i != sudokuField.position.column)
-                    sudokuGrid.blocks[sudokuField.position.parent].field[sudokuField.position.row][i].unlightSelect();
-                if (i != sudokuField.position.row)
-                    sudokuGrid.blocks[sudokuField.position.parent].field[i][sudokuField.position.column].unlightSelect();
-            }
-            switch (sudokuField.position.parent) {
-                case 0:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 1:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 2:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 3:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 4:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 5:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 6:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 7:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 8:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                default:
-                    break;
-            }
+        // unselect first
+        if (this.selected != null) {
+            sudokuField = sudokuGrid.blocks[this.selected.block].field[this.selected.row][this.selected.column];
+            sudokuField.select(false);
+            selectPartner(sudokuField, false);
         }
+        // select new one now
+        this.selected = selectedPosition;
+
+        sudokuField = sudokuGrid.blocks[selectedPosition.block].field[selectedPosition.row][selectedPosition.column];
+        selectPartner(sudokuField, true);
+        sudokuField.select(true);
     }
 
     public void selectPartner(SudokuField sudokuField, boolean select) {
-        if (data.loadBoolean(Data.SETTINGS_MARK_NUMBERS) && sudokuField.getNumber() != 0)
-            for (int i = 0; i < 9; i++)
+        if (data.loadBoolean(Data.SETTINGS_MARK_NUMBERS) && sudokuField.number.getNumber() != 0)
+            for (int i = 0; i < 9; i++) {
+                Number[][] numbers = sudoku.getGame()[i].getNumbers();
                 for (int a = 0; a < 3; a++)
                     for (int b = 0; b < 3; b++)
-                        if (sudoku.getGame()[i].getNumbers()[a][b].getNumber() == sudokuField.getNumber())
-                            sudokuGrid.blocks[i].field[a][b].lightSelect();
+                        if (numbers[a][b].getNumber() == sudokuField.number.getNumber())
+                            sudokuGrid.blocks[i].field[a][b].lightSelect(select);
+            }
         if (data.loadBoolean(Data.SETTINGS_MARK_LINES)) {
             for (int i = 0; i < 3; i++) {
                 if (i != sudokuField.position.column)
-                    sudokuGrid.blocks[sudokuField.position.parent].field[sudokuField.position.row][i].lightSelect();
+                    sudokuGrid.blocks[sudokuField.position.block].field[sudokuField.position.row][i].lightSelect(select);
                 if (i != sudokuField.position.row)
-                    sudokuGrid.blocks[sudokuField.position.parent].field[i][sudokuField.position.column].lightSelect();
+                    sudokuGrid.blocks[sudokuField.position.block].field[i][sudokuField.position.column].lightSelect(select);
             }
-            switch (sudokuField.position.parent) {
+            switch (sudokuField.position.block) {
                 case 0:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].lightSelect();
+                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].lightSelect(select);
+                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].lightSelect(select);
                     }
                     break;
                 case 1:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].lightSelect();
+                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].lightSelect(select);
+                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].lightSelect(select);
                     }
                     break;
                 case 2:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].lightSelect();
+                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].lightSelect(select);
+                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].lightSelect(select);
                     }
                     break;
                 case 3:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].lightSelect();
+                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].lightSelect(select);
+                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].lightSelect(select);
                     }
                     break;
                 case 4:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].lightSelect();
+                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].lightSelect(select);
+                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].lightSelect(select);
                     }
                     break;
                 case 5:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].lightSelect();
+                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].lightSelect(select);
+                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].lightSelect(select);
                     }
                     break;
                 case 6:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].lightSelect();
+                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].lightSelect(select);
+                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].lightSelect(select);
                     }
                     break;
                 case 7:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].lightSelect();
+                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].lightSelect(select);
+                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].lightSelect(select);
                     }
                     break;
                 case 8:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].lightSelect();
+                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].lightSelect(select);
+                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].lightSelect(select);
+                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].lightSelect(select);
                     }
                     break;
                 default:
@@ -428,7 +349,7 @@ public class MainActivity extends CustomActivity {
             }
         }
     }
-
+/*
     private void checkNotes(SudokuField sudokuField, int number) {
         if (data.loadBoolean(Data.SETTINGS_CHECK_NOTES) && !isNotes()) {
             for (int i = 0; i < 3; i++)
@@ -527,20 +448,24 @@ public class MainActivity extends CustomActivity {
 
     public void insert(int number) {
         if (this.selected != null) {
+            selectPartner(sudokuGrid.blocks[this.selected.block].field[this.selected.row][this.selected.column], false);
             int b = this.selected.block;
             int r = this.selected.row, c = this.selected.column;
             if (notes)
                 this.sudoku.getGame()[b].getNumbers()[r][c].insertNote(number);
             else
                 this.sudoku.getGame()[b].getNumbers()[r][c].insertNumber(number);
+            this.select(this.selected);
         }
     }
 
     public void delete() {
         if (selected != null) {
+            selectPartner(sudokuGrid.blocks[this.selected.block].field[this.selected.row][this.selected.column], false);
             int b = this.selected.block;
             int r = this.selected.row, c = this.selected.column;
             this.sudoku.getGame()[b].getNumbers()[r][c].delete();
+            this.select(this.selected);
         }
     }
 

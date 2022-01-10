@@ -69,37 +69,26 @@ public class Number extends Observable {
     // changing methods
     public void insertNumber(int number) {
         if (isChangeable()) {
-            System.out.println("insert " + number + " obs count " + this.countObservers());
-            this.isNotes = false;
-            this.isError = number != this.solution;
-            this.number = number;
-            setChanged();
-            this.notifyObservers();
+            if (number == this.number)
+                delete();
+            else {
+                if (isNotes)
+                    delete();
+                this.isNotes = false;
+                this.isError = number != this.solution;
+                this.number = number;
+                setChanged();
+                this.notifyObservers();
+            }
         }
     }
 
     public void insertNote(int number) {
         if (isChangeable()) {
+            this.number = 0;
             this.isNotes = true;
             this.isError = false;
-            notes[number - 1] = true;
-            setChanged();
-            this.notifyObservers();
-        }
-    }
-
-    public void deleteNumber() {
-        if (isChangeable()) {
-            this.number = 0;
-            this.isError = false;
-            setChanged();
-            this.notifyObservers();
-        }
-    }
-
-    public void deleteNote(int number) {
-        if (isChangeable()) {
-            this.notes[number] = false;
+            notes[number - 1] = !notes[number - 1];
             setChanged();
             this.notifyObservers();
         }
@@ -108,6 +97,7 @@ public class Number extends Observable {
     public void delete() {
         if (isChangeable()) {
             this.number = 0;
+            this.isError = false;
             // TODO maybe: this.isNotes = false;
             for (int i = 0; i < 9; i++) {
                 notes[i] = false;
