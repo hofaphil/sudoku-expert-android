@@ -5,9 +5,12 @@ import android.content.SharedPreferences;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.sudoku.SudokuField;
+import com.aol.philipphofer.logic.Position;
 import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.sudoku.Block;
+import com.aol.philipphofer.sudoku.Number;
 import com.aol.philipphofer.sudoku.Sudoku;
+import com.google.gson.Gson;
 
 public class Data {
 
@@ -17,8 +20,8 @@ public class Data {
 
     private final static String NAME = "data";
 
-    private final static String SOLUTION_FIELD_NAME = "solutionfield";
-    private final static String SUDOKU_FIELD_NAME = "sudokufieldname";
+    private final static String SUDOKU_GAME_NAME = "game-field";
+    private final static String SUDOKU_FIELD_NAME = "sudoku-field";
 
     private final static String LOAD_MODE = "loadmode";
 
@@ -123,51 +126,54 @@ public class Data {
         return data.getString(key, defValue);
     }
 
-    /* public void saveSolution(Block[] blocks) {
-        int k = 0;
-        for (int i = 0; i < 9; i++)
-            for (int a = 0; a < 3; a++)
-                for (int b = 0; b < 3; b++)
-                    editor.putInt(SOLUTION_FIELD_NAME + k++, blocks[i].getNumbers()[a][b]);
-        editor.apply();
+    public void saveGameNumber(Number number, Position position) {
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(number));
+        editor.putString(SUDOKU_GAME_NAME + position, gson.toJson(number));
+
+        editor.commit();
     }
 
-    public void loadSolution(Sudoku sudoku) {
+    public void saveSudoku(Sudoku sudoku) {
+        Gson gson = new Gson();
         int k = 0;
-        Block[] block = new Block[9];
-        int[][] numbers = new int[3][3];
-        for (int i = 0; i < 9; i++) {
-            for (int a = 0; a < 3; a++)
-                for (int b = 0; b < 3; b++)
-                    numbers[a][b] = data.getInt(SOLUTION_FIELD_NAME + k++, 0);
-            block[i] = new Block();
-            block[i].setNumbers(numbers);
-        }
-        sudoku.setSolution(block);
+        for (int h = 0; h < 9; h++)
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++) {
+                    try {
+                        editor.putString(SUDOKU_FIELD_NAME + new Position(i, j, h), gson.toJson(sudoku.getSudoku()[h].getNumbers()[i][j]));
+                        editor.putString(SUDOKU_GAME_NAME + new Position(i, j, h), gson.toJson(sudoku.getGame()[h].getNumbers()[i][j]));
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                }
+        editor.commit();
     }
 
-    public void saveSudoku(Block[] blocks) {
-        int k = 0;
-        for (int i = 0; i < 9; i++)
-            for (int a = 0; a < 3; a++)
-                for (int b = 0; b < 3; b++)
-                    editor.putInt(SUDOKU_FIELD_NAME + k++, blocks[i].getNumbers()[a][b]);
-        editor.apply();
-    }
+    public Sudoku loadSudoku() {
+        Gson gson = new Gson();
+        Sudoku sudoku = new Sudoku();
 
-    public void loadSudoku(Sudoku sudoku) {
         int k = 0;
-        Block[] block = new Block[9];
-        int[][] numbers = new int[3][3];
-        for (int i = 0; i < 9; i++) {
-            for (int a = 0; a < 3; a++)
-                for (int b = 0; b < 3; b++)
-                    numbers[a][b] = data.getInt(SUDOKU_FIELD_NAME + k++, 0);
-            block[i] = new Block();
-            block[i].setNumbers(numbers);
-        }
-        sudoku.setSudoku(block);
-    } */
+        for (int h = 0; h < 9; h++)
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++) {
+                    String sudokuJson = data.getString(SUDOKU_FIELD_NAME + new Position(i, j, h), "");
+                    if (sudokuJson != null && !sudokuJson.isEmpty())
+                        sudoku.getSudoku()[h].getNumbers()[i][j] = gson.fromJson(sudokuJson, Number.class);
+                    else
+                        sudoku.getSudoku()[h].getNumbers()[i][j] = new Number();
+
+                    String gameJson = data.getString(SUDOKU_GAME_NAME + new Position(i, j, h), "");
+                    System.out.println(gameJson);
+                    if (gameJson != null && !gameJson.isEmpty())
+                        sudoku.getGame()[h].getNumbers()[i][j] = gson.fromJson(gameJson, Number.class);
+                    else
+                        sudoku.getGame()[h].getNumbers()[i][j] = new Number();
+                }
+
+        return sudoku;
+    }
 
     public boolean getLoadmode() {
         return data.getBoolean(LOAD_MODE, false);

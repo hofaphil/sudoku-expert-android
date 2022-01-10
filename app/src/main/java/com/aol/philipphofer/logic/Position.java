@@ -12,7 +12,7 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Position in block[" + block + "] and row = " + row + " column = " + column;
+        return "[" + block + "][" + row + "][" + column + "]";
     }
 
     @Override

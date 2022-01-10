@@ -40,7 +40,7 @@ public class MainActivity extends CustomActivity {
     private EndCardDialog endCardDialog;
 
     private Position selected;
-    private boolean notes;
+    private boolean isNotes;
     public static boolean pause;
 
     private Timer timer;
@@ -117,30 +117,31 @@ public class MainActivity extends CustomActivity {
         /* if (endCardDialog.isShowing())
             return; */
 
-        /* if (LOADMODE = data.getLoadmode()) {
+        if (LOADMODE = data.getLoadmode()) {
+            System.out.println("loading");
+
             setFreeFields(81);
             DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
             numberCount = new int[9];
-            sudoku = new Sudoku();
+            sudoku = data.loadSudoku();
 
-            data.loadSolution(sudoku);
-            data.loadSudoku(sudoku);
+            sudokuGrid.init(sudoku.getGame());
 
-            if (SHARED) {
+            /* if (SHARED) {
                 sudokuGrid.init(sudoku.getSudoku());
                 SHARED = false;
             } else
                 for (int i = 0; i < 9; i++)
                     for (int a = 0; a < 3; a++)
                         for (int b = 0; b < 3; b++)
-                            sudokuGrid.blocks[i].field[a][b].load(new Position(a, b, i));
+                            sudokuGrid.blocks[i].field[a][b].load(new Position(a, b, i)); */
 
             setErrors(data.loadInt(Data.GAME_ERRORS));
 
             statusBar.initDifficultyView();
             statusBar.activate();
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
-        } */
+        }
     }
 
     @Override
@@ -154,6 +155,7 @@ public class MainActivity extends CustomActivity {
             return; */
 
         if (!(LOADMODE = data.getLoadmode())) {
+            // TODO: somehow the fields still remain colored
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING);
 
             keyboard.deactivate();
@@ -178,23 +180,18 @@ public class MainActivity extends CustomActivity {
     public void heavyLoading() {
         timer.stopTimer();
         sudoku = createSudokuNative(DIFFICULTY.getNumber());
-        System.out.println("heavy loading");
 
         LOADMODE = !LOADMODE;
-        /* data.setLoadmode(LOADMODE);
-        data.saveSolution(sudoku.getSolution());
-        data.saveSudoku(sudoku.getSudoku());
+        data.setLoadmode(LOADMODE);
+        data.saveSudoku(sudoku);
         data.saveBoolean(Data.GAME_SHOW_ERRORS, data.loadBoolean(Data.SETTINGS_MARK_ERRORS));
-        data.saveBoolean(Data.GAME_SHOW_TIME, data.loadBoolean(Data.SETTINGS_SHOW_TIME)); */
+        data.saveBoolean(Data.GAME_SHOW_TIME, data.loadBoolean(Data.SETTINGS_SHOW_TIME));
 
         runOnUiThread(() -> {
-            sudokuGrid.init(sudoku.getSudoku());
-            /* for (int i = 0; i < 9; i++)
-                for (int a = 0; a < 3; a++)
-                    for (int b = 0; b < 3; b++)
-                        sudokuGrid.blocks[i].field[a][b].save();
+            sudokuGrid.init(sudoku.getGame());
+
             data.saveInt(Data.GAME_ERRORS, 0);
-            data.saveInt(Data.GAME_TIME, 0); */
+            data.saveInt(Data.GAME_TIME, 0);
 
             statusBar.initDifficultyView();
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
@@ -212,31 +209,18 @@ public class MainActivity extends CustomActivity {
     protected void onPause() {
         super.onPause();
 
-        /* for (int i = 0; i < 9; i++)
-            for (int a = 0; a < 3; a++)
-                for (int b = 0; b < 3; b++)
-                    sudokuGrid.blocks[i].field[a][b].save();
         data.saveInt(Data.GAME_ERRORS, errors);
-        data.saveInt(Data.GAME_DIFFICULTY, DIFFICULTY.getNumber()); */
+        data.saveInt(Data.GAME_DIFFICULTY, DIFFICULTY.getNumber());
         timer.stopTimer();
         data.saveInt(Data.GAME_TIME, timer.getTime());
     }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         timer.killTimer();
     }
-
-    /* public void select(SudokuField sudokuField) {
-        if (this.selected != null) {
-            this.selected.unselect();
-            unselectPartner(this.selected);
-        }
-        this.selected = sudokuField;
-        selectPartner(sudokuField);
-        this.selected.select();
-    } */
 
     public void select(Position selectedPosition) {
         SudokuField sudokuField;
@@ -351,7 +335,7 @@ public class MainActivity extends CustomActivity {
     }
 
     private void checkNotes(Position position, int number) {
-        if (data.loadBoolean(Data.SETTINGS_CHECK_NOTES) && !isNotes()) {
+        if (data.loadBoolean(Data.SETTINGS_CHECK_NOTES) && !isNotes) {
             Block[] gameBlock = sudoku.getGame();
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
@@ -442,10 +426,11 @@ public class MainActivity extends CustomActivity {
             this.checkNotes(this.selected, number);
             int b = this.selected.block;
             int r = this.selected.row, c = this.selected.column;
-            if (notes)
+            if (isNotes)
                 this.sudoku.getGame()[b].getNumbers()[r][c].insertNote(number);
             else
                 this.sudoku.getGame()[b].getNumbers()[r][c].insertNumber(number);
+            data.saveGameNumber(this.sudoku.getGame()[b].getNumbers()[r][c], this.selected);
             this.select(this.selected);
         }
     }
@@ -456,17 +441,14 @@ public class MainActivity extends CustomActivity {
             int b = this.selected.block;
             int r = this.selected.row, c = this.selected.column;
             this.sudoku.getGame()[b].getNumbers()[r][c].delete();
+            data.saveGameNumber(this.sudoku.getGame()[b].getNumbers()[r][c], this.selected);
             this.select(this.selected);
         }
     }
 
     public boolean notesMode() {
-        notes = !notes;
-        return notes;
-    }
-
-    public boolean isNotes() {
-        return this.notes;
+        isNotes = !isNotes;
+        return isNotes;
     }
 
     public void addError() {

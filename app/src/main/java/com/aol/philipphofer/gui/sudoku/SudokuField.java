@@ -69,8 +69,7 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
 
         if (!number.isChangeable())
             numberView.setTypeface(numberView.getTypeface(), Typeface.BOLD);
-        this.setNumberViewText(number.getNumber());
-        // TODO better? : this.update(this.number, null);
+        this.update(this.number, null);
     }
 
     /* public void load(Position position) {
