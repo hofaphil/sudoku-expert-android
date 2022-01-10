@@ -15,12 +15,13 @@ public class Number extends Observable {
     public Number() {
         this.number = 0;
         this.solution = 0;
-        this.isChangeable = true;
 
         notes = new boolean[9];
         for (int i = 0; i < 9; i++) {
             notes[i] = false;
         }
+
+        this.isChangeable = true;
         this.isNotes = false;
         this.isError = false;
     }
@@ -28,12 +29,13 @@ public class Number extends Observable {
     public Number(int number, int solution, boolean isChangeable) {
         this.number = number;
         this.solution = solution;
-        this.isChangeable = isChangeable;
 
         this.notes = new boolean[9];
         for (int i = 0; i < 9; i++) {
             notes[i] = false;
         }
+
+        this.isChangeable = isChangeable;
         this.isNotes = false;
         this.isError = false;
     }
@@ -44,9 +46,9 @@ public class Number extends Observable {
 
         this.notes = new boolean[9];
         System.arraycopy(notes, 0, this.notes, 0, 9);
-        this.isNotes = isNotes;
 
         this.isChangeable = isChangeable;
+        this.isNotes = isNotes;
         this.isError = isError;
     }
 
@@ -102,6 +104,14 @@ public class Number extends Observable {
             for (int i = 0; i < 9; i++) {
                 notes[i] = false;
             }
+            setChanged();
+            this.notifyObservers();
+        }
+    }
+
+    public void checkNote(int number) {
+        if (this.notes[number - 1]) {
+            this.notes[number - 1] = false;
             setChanged();
             this.notifyObservers();
         }

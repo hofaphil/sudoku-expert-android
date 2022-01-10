@@ -91,7 +91,6 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
 
     public void switchLayout(boolean isNotes) {
         if (isNotes) {
-            // mainActivity.selectPartner(this, false);
             this.numberView.setVisibility(INVISIBLE);
             getNotesLayout().setVisibility(VISIBLE);
         } else {
@@ -105,8 +104,6 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
         // TODO mainActivity.addError();
         if (error && Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS)) {
             setBackgroundColor(ContextCompat.getColor(getContext(), R.color.error));
-        } else {
-            setBackgroundColor(ContextCompat.getColor(getContext(), R.color.selected));
         }
     }
 
@@ -146,18 +143,15 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
     @Override
     public void update(Observable observable, Object o) {
         Number n = (Number) observable;
-        this.setNumberViewText(n.getNumber());
         this.error(n.isError());
+
+        // handle number
+        this.setNumberViewText(n.getNumber());
 
         // handle notes
         this.switchLayout(n.isNotes());
         if (this.notesLayout != null)
             this.setNotes(n.getNotes());
-
-        /* System.out.println(observable);
-        System.out.println(observable.hasChanged());
-        System.out.println(observable.countObservers());
-        System.out.println(o); */
     }
 
     @Override

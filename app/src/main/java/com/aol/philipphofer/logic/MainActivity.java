@@ -241,7 +241,7 @@ public class MainActivity extends CustomActivity {
     public void select(Position selectedPosition) {
         SudokuField sudokuField;
 
-        // unselect first
+        // unselect old field first
         if (this.selected != null) {
             sudokuField = sudokuGrid.blocks[this.selected.block].field[this.selected.row][this.selected.column];
             sudokuField.select(false);
@@ -349,106 +349,97 @@ public class MainActivity extends CustomActivity {
             }
         }
     }
-/*
-    private void checkNotes(SudokuField sudokuField, int number) {
+
+    private void checkNotes(Position position, int number) {
         if (data.loadBoolean(Data.SETTINGS_CHECK_NOTES) && !isNotes()) {
+            Block[] gameBlock = sudoku.getGame();
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
-                    sudokuGrid.blocks[sudokuField.position.parent].field[i][j].checkNotes(number);
+                    gameBlock[position.block].getNumbers()[i][j].checkNote(number);
 
-            switch (sudokuField.position.parent) {
+            switch (position.block) {
                 case 0:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].checkNotes(number);
+                        gameBlock[1].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[2].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[3].getNumbers()[i][position.column].checkNote(number);
+                        gameBlock[6].getNumbers()[i][position.column].checkNote(number);
                     }
                     break;
                 case 1:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].checkNotes(number);
+                        gameBlock[0].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[2].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[4].getNumbers()[i][position.column].checkNote(number);
+                        gameBlock[7].getNumbers()[i][position.column].checkNote(number);
                     }
                     break;
                 case 2:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].checkNotes(number);
+                        gameBlock[0].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[1].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[5].getNumbers()[i][position.column].checkNote(number);
+                        gameBlock[8].getNumbers()[i][position.column].checkNote(number);
                     }
                     break;
                 case 3:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].checkNotes(number);
+                        gameBlock[4].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[5].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[0].getNumbers()[i][position.column].checkNote(number);
+                        gameBlock[6].getNumbers()[i][position.column].checkNote(number);
                     }
                     break;
                 case 4:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].checkNotes(number);
+                        gameBlock[3].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[5].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[1].getNumbers()[i][position.column].checkNote(number);
+                        gameBlock[7].getNumbers()[i][position.column].checkNote(number);
                     }
                     break;
                 case 5:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].checkNotes(number);
+                        gameBlock[3].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[4].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[2].getNumbers()[i][position.column].checkNote(number);
+                        gameBlock[8].getNumbers()[i][position.column].checkNote(number);
                     }
                     break;
                 case 6:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].checkNotes(number);
+                        gameBlock[7].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[8].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[0].getNumbers()[i][position.column].checkNote(number);
+                        gameBlock[3].getNumbers()[i][position.column].checkNote(number);
                     }
                     break;
                 case 7:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].checkNotes(number);
+                        gameBlock[6].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[8].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[1].getNumbers()[i][position.column].checkNote(number);
+                        gameBlock[4].getNumbers()[i][position.column].checkNote(number);
                     }
                     break;
                 case 8:
                     for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].checkNotes(number);
+                        gameBlock[6].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[7].getNumbers()[position.row][i].checkNote(number);
+                        gameBlock[2].getNumbers()[i][position.column].checkNote(number);
+                        gameBlock[5].getNumbers()[i][position.column].checkNote(number);
                     }
                     break;
                 default:
                     break;
             }
         }
-    } */
-
-    /* public void insert(int number) {
-        if (selected != null) {
-            if (selected.getNumber() != 0)
-                unselectPartner(selected);
-            selected.insert(number);
-            selectPartner(selected);
-            checkNotes(selected, number);
-            this.selected.select();
-        }
-    } */
+    }
 
     public void insert(int number) {
         if (this.selected != null) {
-            selectPartner(sudokuGrid.blocks[this.selected.block].field[this.selected.row][this.selected.column], false);
+            this.selectPartner(sudokuGrid.blocks[this.selected.block].field[this.selected.row][this.selected.column], false);
+            this.checkNotes(this.selected, number);
             int b = this.selected.block;
             int r = this.selected.row, c = this.selected.column;
             if (notes)
