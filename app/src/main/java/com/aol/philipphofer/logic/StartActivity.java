@@ -2,17 +2,12 @@ package com.aol.philipphofer.logic;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 
-import com.aol.philipphofer.R;
-import com.aol.philipphofer.gui.custom.CustomToast;
 import com.aol.philipphofer.persistence.Data;
-import com.aol.philipphofer.sudoku.Sudoku;
+import com.aol.philipphofer.logic.sudoku.Sudoku;
 import com.google.android.gms.ads.MobileAds;
-
-import java.util.Objects;
 
 public class StartActivity extends Activity {
 

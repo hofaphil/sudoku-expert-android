@@ -7,7 +7,7 @@ import android.widget.GridLayout;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.logic.Position;
-import com.aol.philipphofer.sudoku.Block;
+import com.aol.philipphofer.logic.sudoku.Block;
 
 public class SudokuBlock extends GridLayout {
 

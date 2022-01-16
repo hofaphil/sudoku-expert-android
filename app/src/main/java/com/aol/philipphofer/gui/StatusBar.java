@@ -101,7 +101,7 @@ public class StatusBar extends RelativeLayout {
         initDifficultyView();
 
         errorView = findViewById(R.id.errorView);
-        errorView.setText(getResources().getString(R.string.statusbar_errors, mainActivity.getErrors(), MainActivity.MAXERROR));
+        errorView.setText(getResources().getString(R.string.statusbar_errors, mainActivity.getOverallErrors(), MainActivity.MAXERROR));
         initError();
     }
 
@@ -117,7 +117,7 @@ public class StatusBar extends RelativeLayout {
     }
 
     public void setError() {
-        errorView.setText(getResources().getString(R.string.statusbar_errors, mainActivity.getErrors(), MainActivity.MAXERROR));
+        errorView.setText(getResources().getString(R.string.statusbar_errors, mainActivity.getOverallErrors(), MainActivity.MAXERROR));
     }
 
     public void setTime(int time) {

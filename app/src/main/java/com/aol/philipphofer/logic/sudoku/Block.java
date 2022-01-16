@@ -1,4 +1,6 @@
-package com.aol.philipphofer.sudoku;
+package com.aol.philipphofer.logic.sudoku;
+
+import com.aol.philipphofer.logic.Position;
 
 public class Block {
 
@@ -16,12 +18,21 @@ public class Block {
         setNumbers(block.getNumbers());
     }
 
+    public void insert(int number, Position position, boolean note) {
+        this.numbers[position.row][position.column].insert(number, note);
+    }
+
+    public void delete(Position position) {
+        this.numbers[position.row][position.column].delete();
+    }
+
+    // TODO do we need all this?
     public Number[][] getNumbers() {
         return this.numbers;
     }
 
-    public int getNumber(int row, int column) {
-        return this.numbers[row][column].getNumber();
+    public Number getNumber(int row, int column) {
+        return this.numbers[row][column];
     }
 
     public void setNumbers(Number[][] numbers) {

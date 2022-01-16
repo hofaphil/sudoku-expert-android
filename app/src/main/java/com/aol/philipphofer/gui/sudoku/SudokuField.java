@@ -15,7 +15,7 @@ import com.aol.philipphofer.R;
 import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Position;
 import com.aol.philipphofer.persistence.Data;
-import com.aol.philipphofer.sudoku.Number;
+import com.aol.philipphofer.logic.sudoku.Number;
 
 import java.util.Observable;
 import java.util.Observer;

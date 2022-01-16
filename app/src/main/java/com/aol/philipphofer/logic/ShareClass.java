@@ -6,8 +6,8 @@ import android.net.Uri;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.logic.help.LinkShorter;
-import com.aol.philipphofer.sudoku.Block;
-import com.aol.philipphofer.sudoku.Sudoku;
+import com.aol.philipphofer.logic.sudoku.Block;
+import com.aol.philipphofer.logic.sudoku.Sudoku;
 
 import java.util.zip.DataFormatException;
 

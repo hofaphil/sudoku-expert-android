@@ -1,4 +1,4 @@
-package com.aol.philipphofer.sudoku;
+package com.aol.philipphofer.logic.sudoku;
 
 import java.util.Observable;
 
@@ -69,7 +69,14 @@ public class Number extends Observable {
     }
 
     // changing methods
-    public void insertNumber(int number) {
+    public void insert(int number, boolean note) {
+        if (note)
+            this.insertNote(number);
+        else
+            this.insertNumber(number);
+    }
+
+    private void insertNumber(int number) {
         if (isChangeable()) {
             if (number == this.number)
                 delete();
@@ -85,7 +92,7 @@ public class Number extends Observable {
         }
     }
 
-    public void insertNote(int number) {
+    private void insertNote(int number) {
         if (isChangeable()) {
             this.number = 0;
             this.isNotes = true;

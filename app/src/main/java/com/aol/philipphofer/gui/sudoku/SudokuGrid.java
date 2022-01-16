@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.logic.MainActivity;
-import com.aol.philipphofer.sudoku.Block;
+import com.aol.philipphofer.logic.sudoku.Block;
 
 public class SudokuGrid extends RelativeLayout {
 

@@ -21,18 +21,15 @@ import com.aol.philipphofer.gui.sudoku.SudokuField;
 import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
-import com.aol.philipphofer.sudoku.Block;
-import com.aol.philipphofer.sudoku.Number;
-import com.aol.philipphofer.sudoku.Sudoku;
+import com.aol.philipphofer.logic.sudoku.Block;
+import com.aol.philipphofer.logic.sudoku.Number;
+import com.aol.philipphofer.logic.sudoku.Sudoku;
 import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends CustomActivity {
 
-    public Sudoku sudoku;
-
-    private int errors;
-    private int freeFields; //loaded indirect by fields
-    private int[] numberCount;
+    public Sudoku base; // current sudoku to be filled out (base of game)
+    public Sudoku game; // the current game (with user input)
 
     public StatusBar statusBar;
     public SudokuGrid sudokuGrid;
@@ -120,12 +117,12 @@ public class MainActivity extends CustomActivity {
         if (LOADMODE = data.getLoadmode()) {
             System.out.println("loading");
 
-            setFreeFields(81);
             DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
-            numberCount = new int[9];
-            sudoku = data.loadSudoku();
+            // TODO
+            game = data.loadSudoku();
+            // base = data.loadBase();
 
-            sudokuGrid.init(sudoku.getGame());
+            sudokuGrid.init(game.getSudoku());
 
             /* if (SHARED) {
                 sudokuGrid.init(sudoku.getSudoku());
@@ -135,8 +132,6 @@ public class MainActivity extends CustomActivity {
                     for (int a = 0; a < 3; a++)
                         for (int b = 0; b < 3; b++)
                             sudokuGrid.blocks[i].field[a][b].load(new Position(a, b, i)); */
-
-            setErrors(data.loadInt(Data.GAME_ERRORS));
 
             statusBar.initDifficultyView();
             statusBar.activate();
@@ -162,13 +157,11 @@ public class MainActivity extends CustomActivity {
             statusBar.deactivate();
 
             if (!t.isAlive()) {
-                setFreeFields(81);
                 DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
-                numberCount = new int[9];
-                sudoku = new Sudoku();
+                base = new Sudoku();
+                game = new Sudoku();
                 for (int i = 0; i < 9; i++)
                     keyboard.activateNumber(i + 1);
-                setErrors(0);
                 t = new Thread(this::heavyLoading);
                 t.start();
             }
@@ -179,16 +172,18 @@ public class MainActivity extends CustomActivity {
 
     public void heavyLoading() {
         timer.stopTimer();
-        sudoku = createSudokuNative(DIFFICULTY.getNumber());
+        base = createSudokuNative(DIFFICULTY.getNumber());
+        // TODO set game to base
 
         LOADMODE = !LOADMODE;
         data.setLoadmode(LOADMODE);
-        data.saveSudoku(sudoku);
+        // TODO saving mechanism with two sudoku now...
+        data.saveSudoku(base);
         data.saveBoolean(Data.GAME_SHOW_ERRORS, data.loadBoolean(Data.SETTINGS_MARK_ERRORS));
         data.saveBoolean(Data.GAME_SHOW_TIME, data.loadBoolean(Data.SETTINGS_SHOW_TIME));
 
         runOnUiThread(() -> {
-            sudokuGrid.init(sudoku.getGame());
+            sudokuGrid.init(game.getSudoku());
 
             data.saveInt(Data.GAME_ERRORS, 0);
             data.saveInt(Data.GAME_TIME, 0);
@@ -209,7 +204,7 @@ public class MainActivity extends CustomActivity {
     protected void onPause() {
         super.onPause();
 
-        data.saveInt(Data.GAME_ERRORS, errors);
+        // TODO data.saveInt(Data.GAME_ERRORS, errors);
         data.saveInt(Data.GAME_DIFFICULTY, DIFFICULTY.getNumber());
         timer.stopTimer();
         data.saveInt(Data.GAME_TIME, timer.getTime());
@@ -242,7 +237,7 @@ public class MainActivity extends CustomActivity {
     public void selectPartner(SudokuField sudokuField, boolean select) {
         if (data.loadBoolean(Data.SETTINGS_MARK_NUMBERS) && sudokuField.number.getNumber() != 0)
             for (int i = 0; i < 9; i++) {
-                Number[][] numbers = sudoku.getGame()[i].getNumbers();
+                Number[][] numbers = game.getSudoku()[i].getNumbers();
                 for (int a = 0; a < 3; a++)
                     for (int b = 0; b < 3; b++)
                         if (numbers[a][b].getNumber() == sudokuField.number.getNumber())
@@ -336,7 +331,7 @@ public class MainActivity extends CustomActivity {
 
     private void checkNotes(Position position, int number) {
         if (data.loadBoolean(Data.SETTINGS_CHECK_NOTES) && !isNotes) {
-            Block[] gameBlock = sudoku.getGame();
+            Block[] gameBlock = game.getSudoku();
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
                     gameBlock[position.block].getNumbers()[i][j].checkNote(number);
@@ -421,28 +416,26 @@ public class MainActivity extends CustomActivity {
     }
 
     public void insert(int number) {
-        if (this.selected != null) {
-            this.selectPartner(sudokuGrid.blocks[this.selected.block].field[this.selected.row][this.selected.column], false);
-            this.checkNotes(this.selected, number);
-            int b = this.selected.block;
-            int r = this.selected.row, c = this.selected.column;
-            if (isNotes)
-                this.sudoku.getGame()[b].getNumbers()[r][c].insertNote(number);
-            else
-                this.sudoku.getGame()[b].getNumbers()[r][c].insertNumber(number);
-            data.saveGameNumber(this.sudoku.getGame()[b].getNumbers()[r][c], this.selected);
-            this.select(this.selected);
+        if (selected != null) {
+            selectPartner(sudokuGrid.blocks[selected.block].field[selected.row][selected.column], false);
+            checkNotes(selected, number);
+            game.insert(number, selected, isNotes);
+            // TODO two times this.selected, maybe this can be done nicer
+            data.saveGameNumber(game.getNumber(selected), selected);
+            select(selected);
+
+            // check if sudoku-game is finished
+            checkSudoku();
         }
     }
 
     public void delete() {
         if (selected != null) {
-            selectPartner(sudokuGrid.blocks[this.selected.block].field[this.selected.row][this.selected.column], false);
-            int b = this.selected.block;
-            int r = this.selected.row, c = this.selected.column;
-            this.sudoku.getGame()[b].getNumbers()[r][c].delete();
-            data.saveGameNumber(this.sudoku.getGame()[b].getNumbers()[r][c], this.selected);
-            this.select(this.selected);
+            selectPartner(sudokuGrid.blocks[selected.block].field[selected.row][selected.column], false);
+            game.delete(selected);
+            // TODO two times this.selected, maybe this can be done nicer
+            data.saveGameNumber(game.getNumber(selected), selected);
+            select(selected);
         }
     }
 
@@ -451,33 +444,19 @@ public class MainActivity extends CustomActivity {
         return isNotes;
     }
 
-    public void addError() {
-        this.errors++;
-        if (errors >= MAXERROR && data.loadBoolean(Data.GAME_SHOW_ERRORS))
+    public int getOverallErrors() {
+        return game.overallErrors;
+    }
+
+    public void checkSudoku() {
+        if (game.currentErrors == 0 && game.freeFields != 0)
+            finishSudoku();
+        else if (game.overallErrors > MAXERROR)
             abortSudoku();
-        else {
-            statusBar.setError();
-        }
     }
 
-    public int getErrors() {
-        return this.errors;
-    }
-
-    private void setErrors(int errors) {
-        this.errors = errors;
-        statusBar.setError();
-    }
-
-    public void finishSudoku() {
-        return;
-        // TODO
-        /* for (int i = 0; i < 9; i++)
-            for (int x = 0; x < 3; x++)
-                for (int y = 0; y < 3; y++)
-                    if (sudokuGrid.blocks[i].field[x][y].getError())
-                        return;
-
+    private void finishSudoku() {
+        // TODO are these the right savings?
 
         timer.stopTimer();
         data.setLoadmode(false);
@@ -486,10 +465,12 @@ public class MainActivity extends CustomActivity {
 
         endCardDialog.show(true, t, DIFFICULTY);
 
-        data.addTime(timer.getTime(), DIFFICULTY); */
+        data.addTime(timer.getTime(), DIFFICULTY);
     }
 
-    public void abortSudoku() {
+    private void abortSudoku() {
+        // TODO are these the right savings?
+
         data.setLoadmode(false);
         timer.stopTimer();
 
@@ -508,35 +489,9 @@ public class MainActivity extends CustomActivity {
         return pause;
     }
 
-    public void subNumberCount(int number) {
-        if (number != 0) {
-            if (--numberCount[number - 1] < 9)
-                keyboard.activateNumber(number);
-        }
-    }
-
-    public void addNumberCount(int number) {
-        if (number != 0) {
-            if (++numberCount[number - 1] == 9)
-                keyboard.deactivateNumber(number);
-            else
-                keyboard.activateNumber(number);
-        }
-    }
-
-    public void setFreeFields(int number) {
-        this.freeFields = number;
-        if (freeFields == 0)
-            finishSudoku();
-    }
-
-    public int getFreeFields() {
-        return this.freeFields;
-    }
-
     public void share() {
         try {
-            ShareClass.share(sudoku, this);
+            ShareClass.share(base, this);
         } catch (Exception e) {
             new CustomToast(this, getResources().getString(R.string.error_default)).show();
         }
