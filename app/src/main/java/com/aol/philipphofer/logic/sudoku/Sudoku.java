@@ -2,16 +2,14 @@ package com.aol.philipphofer.logic.sudoku;
 
 import com.aol.philipphofer.logic.Position;
 
-import java.util.Observable;
-
 public class Sudoku {
 
     private Block[] blocks;
 
     // TODO
-    public int freeFields;
-    public int currentErrors;
-    public int overallErrors;
+    public int freeFields = 40;
+    public int currentErrors = 0;
+    public int overallErrors = 0;
 
     public Sudoku() {
         blocks = new Block[9];

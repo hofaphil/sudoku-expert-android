@@ -28,7 +28,6 @@ import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends CustomActivity {
 
-    public Sudoku base; // current sudoku to be filled out (base of game)
     public Sudoku game; // the current game (with user input)
 
     public StatusBar statusBar;
@@ -158,7 +157,6 @@ public class MainActivity extends CustomActivity {
 
             if (!t.isAlive()) {
                 DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
-                base = new Sudoku();
                 game = new Sudoku();
                 for (int i = 0; i < 9; i++)
                     keyboard.activateNumber(i + 1);
@@ -172,13 +170,12 @@ public class MainActivity extends CustomActivity {
 
     public void heavyLoading() {
         timer.stopTimer();
-        base = createSudokuNative(DIFFICULTY.getNumber());
+        game = createSudokuNative(DIFFICULTY.getNumber());
         // TODO set game to base
 
         LOADMODE = !LOADMODE;
         data.setLoadmode(LOADMODE);
-        // TODO saving mechanism with two sudoku now...
-        data.saveSudoku(base);
+        data.saveSudoku(game);
         data.saveBoolean(Data.GAME_SHOW_ERRORS, data.loadBoolean(Data.SETTINGS_MARK_ERRORS));
         data.saveBoolean(Data.GAME_SHOW_TIME, data.loadBoolean(Data.SETTINGS_SHOW_TIME));
 
@@ -445,11 +442,13 @@ public class MainActivity extends CustomActivity {
     }
 
     public int getOverallErrors() {
-        return game.overallErrors;
+        return 0;
+        // TODO
+        // return game.overallErrors;
     }
 
     public void checkSudoku() {
-        if (game.currentErrors == 0 && game.freeFields != 0)
+        if (game.currentErrors == 0 && game.freeFields == 0)
             finishSudoku();
         else if (game.overallErrors > MAXERROR)
             abortSudoku();
@@ -491,7 +490,8 @@ public class MainActivity extends CustomActivity {
 
     public void share() {
         try {
-            ShareClass.share(base, this);
+            // TODO: share only non-changeable fields
+            ShareClass.share(game, this);
         } catch (Exception e) {
             new CustomToast(this, getResources().getString(R.string.error_default)).show();
         }

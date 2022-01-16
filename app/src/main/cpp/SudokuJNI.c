@@ -7,25 +7,23 @@ Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, job
     /**
      * Sudoku
      */
-    jclass jSudokuClass = (*env)->FindClass(env, "com/aol/philipphofer/sudoku/Sudoku");
+    jclass jSudokuClass = (*env)->FindClass(env, "com/aol/philipphofer/logic/sudoku/Sudoku");
     jmethodID jNewSudoku = (*env)->GetMethodID(env, jSudokuClass, "<init>", "()V");
     jobject jSudoku = (*env)->NewObject(env, jSudokuClass, jNewSudoku);
 
-    jmethodID jSetSudoku = (*env)->GetMethodID(env, jSudokuClass, "setSudoku", "([Lcom/aol/philipphofer/sudoku/Block;)V");
-    jmethodID jGetSudoku = (*env)->GetMethodID(env, jSudokuClass, "getSudoku", "()[Lcom/aol/philipphofer/sudoku/Block;");
-    jmethodID jSetGame = (*env)->GetMethodID(env, jSudokuClass, "setGame", "([Lcom/aol/philipphofer/sudoku/Block;)V");
-    jmethodID jGetGame = (*env)->GetMethodID(env, jSudokuClass, "getGame", "()[Lcom/aol/philipphofer/sudoku/Block;");
+    jmethodID jSetSudoku = (*env)->GetMethodID(env, jSudokuClass, "setSudoku", "([Lcom/aol/philipphofer/logic/sudoku/Block;)V");
+    jmethodID jGetSudoku = (*env)->GetMethodID(env, jSudokuClass, "getSudoku", "()[Lcom/aol/philipphofer/logic/sudoku/Block;");
 
     /**
      * Block
      */
-    jclass jBlockClass = (*env)->FindClass(env, "com/aol/philipphofer/sudoku/Block");
-    jmethodID jSetNumber = (*env)->GetMethodID(env, jBlockClass, "setNumber", "(Lcom/aol/philipphofer/sudoku/Number;II)V");
+    jclass jBlockClass = (*env)->FindClass(env, "com/aol/philipphofer/logic/sudoku/Block");
+    jmethodID jSetNumber = (*env)->GetMethodID(env, jBlockClass, "setNumber", "(Lcom/aol/philipphofer/logic/sudoku/Number;II)V");
 
     /**
      * Number
      */
-    jclass jNumberClass = (*env)->FindClass(env, "com/aol/philipphofer/sudoku/Number");
+    jclass jNumberClass = (*env)->FindClass(env, "com/aol/philipphofer/logic/sudoku/Number");
     jmethodID jNewNumber = (*env)->GetMethodID(env, jNumberClass, "<init>", "(IIZ)V");
 
     /**
@@ -38,10 +36,8 @@ Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, job
      * Set Sudoku
      */
     jobjectArray jBlocks = (*env)->CallObjectMethod(env, jSudoku, jGetSudoku);
-    jobjectArray jGame = (*env)->CallObjectMethod(env, jSudoku, jGetGame);
     for (int b = 0; b < 9; b++) {
         jobject jBlock = (*env)->GetObjectArrayElement(env, jBlocks, b);
-        jobject jGameBlock = (*env)->GetObjectArrayElement(env, jGame, b);
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
                 int number = sudoku->blocks[b].numbers[i][j];
@@ -50,11 +46,9 @@ Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, job
                 jobject jNumber = (*env)->NewObject(env, jNumberClass, jNewNumber, number, solution, changeable);
 
                 (*env)->CallVoidMethod(env, jBlock, jSetNumber, jNumber, i, j);
-                (*env)->CallVoidMethod(env, jGameBlock, jSetNumber, jNumber, i, j);
             }
     }
     (*env)->CallVoidMethod(env, jSudoku, jSetSudoku, jBlocks);
-    (*env)->CallVoidMethod(env, jSudoku, jSetGame, jBlocks);
 
     return jSudoku;
 }

@@ -4,12 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.aol.philipphofer.R;
-import com.aol.philipphofer.gui.sudoku.SudokuField;
 import com.aol.philipphofer.logic.Position;
 import com.aol.philipphofer.logic.help.Difficulty;
-import com.aol.philipphofer.sudoku.Block;
-import com.aol.philipphofer.sudoku.Number;
-import com.aol.philipphofer.sudoku.Sudoku;
+import com.aol.philipphofer.logic.sudoku.Number;
+import com.aol.philipphofer.logic.sudoku.Sudoku;
 import com.google.gson.Gson;
 
 public class Data {
@@ -20,7 +18,6 @@ public class Data {
 
     private final static String NAME = "data";
 
-    private final static String SUDOKU_GAME_NAME = "game-field";
     private final static String SUDOKU_FIELD_NAME = "sudoku-field";
 
     private final static String LOAD_MODE = "loadmode";
@@ -127,49 +124,38 @@ public class Data {
     }
 
     public void saveGameNumber(Number number, Position position) {
-        Gson gson = new Gson();
-        System.out.println(gson.toJson(number));
-        editor.putString(SUDOKU_GAME_NAME + position, gson.toJson(number));
-
-        editor.commit();
+        editor.putString(SUDOKU_FIELD_NAME + position, new Gson().toJson(number)).apply();
     }
 
     public void saveSudoku(Sudoku sudoku) {
         Gson gson = new Gson();
-        int k = 0;
         for (int h = 0; h < 9; h++)
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++) {
                     try {
-                        editor.putString(SUDOKU_FIELD_NAME + new Position(i, j, h), gson.toJson(sudoku.getSudoku()[h].getNumbers()[i][j]));
-                        editor.putString(SUDOKU_GAME_NAME + new Position(i, j, h), gson.toJson(sudoku.getGame()[h].getNumbers()[i][j]));
+                        Position position = new Position(i, j, h);
+                        editor.putString(SUDOKU_FIELD_NAME + position, gson.toJson(sudoku.getNumber(position)));
                     } catch (Exception e) {
-                        System.out.println(e);
+                        e.printStackTrace();
                     }
                 }
-        editor.commit();
+        editor.apply();
     }
 
     public Sudoku loadSudoku() {
         Gson gson = new Gson();
         Sudoku sudoku = new Sudoku();
 
-        int k = 0;
         for (int h = 0; h < 9; h++)
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++) {
-                    String sudokuJson = data.getString(SUDOKU_FIELD_NAME + new Position(i, j, h), "");
+                    Position position = new Position(i, j, h);
+                    String sudokuJson = data.getString(SUDOKU_FIELD_NAME + position, "");
+                    // TODO do we need to insert here, so that sudoku-vars like overallError etc. get restored?
                     if (sudokuJson != null && !sudokuJson.isEmpty())
                         sudoku.getSudoku()[h].getNumbers()[i][j] = gson.fromJson(sudokuJson, Number.class);
                     else
                         sudoku.getSudoku()[h].getNumbers()[i][j] = new Number();
-
-                    String gameJson = data.getString(SUDOKU_GAME_NAME + new Position(i, j, h), "");
-                    System.out.println(gameJson);
-                    if (gameJson != null && !gameJson.isEmpty())
-                        sudoku.getGame()[h].getNumbers()[i][j] = gson.fromJson(gameJson, Number.class);
-                    else
-                        sudoku.getGame()[h].getNumbers()[i][j] = new Number();
                 }
 
         return sudoku;
