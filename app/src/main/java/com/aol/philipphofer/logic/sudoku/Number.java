@@ -1,5 +1,6 @@
 package com.aol.philipphofer.logic.sudoku;
 
+import java.util.Arrays;
 import java.util.Observable;
 
 public class Number extends Observable {
@@ -16,10 +17,8 @@ public class Number extends Observable {
         this.number = 0;
         this.solution = 0;
 
-        notes = new boolean[9];
-        for (int i = 0; i < 9; i++) {
-            notes[i] = false;
-        }
+        this.notes = new boolean[9];
+        Arrays.fill(this.notes, Boolean.FALSE);
 
         this.isChangeable = true;
         this.isNotes = false;
@@ -31,9 +30,7 @@ public class Number extends Observable {
         this.solution = solution;
 
         this.notes = new boolean[9];
-        for (int i = 0; i < 9; i++) {
-            notes[i] = false;
-        }
+        Arrays.fill(this.notes, Boolean.FALSE);
 
         this.isChangeable = isChangeable;
         this.isNotes = false;
@@ -69,41 +66,42 @@ public class Number extends Observable {
     }
 
     // changing methods
-    public void insert(int number, boolean note) {
+    public Number insert(int number, boolean note) {
+        if (!isChangeable())
+            return this;
+
         if (note)
-            this.insertNote(number);
+            return this.insertNote(number);
         else
-            this.insertNumber(number);
+            return this.insertNumber(number);
     }
 
-    private void insertNumber(int number) {
-        if (isChangeable()) {
-            if (number == this.number)
+    private Number insertNumber(int number) {
+        if (number == this.number)
+            return delete();
+        else {
+            if (isNotes)
                 delete();
-            else {
-                if (isNotes)
-                    delete();
-                this.isNotes = false;
-                this.isError = number != this.solution;
-                this.number = number;
-                setChanged();
-                this.notifyObservers();
-            }
-        }
-    }
-
-    private void insertNote(int number) {
-        if (isChangeable()) {
-            this.number = 0;
-            this.isNotes = true;
-            this.isError = false;
-            notes[number - 1] = !notes[number - 1];
+            this.isNotes = false;
+            this.isError = number != this.solution;
+            this.number = number;
             setChanged();
             this.notifyObservers();
+            return this;
         }
     }
 
-    public void delete() {
+    private Number insertNote(int number) {
+        this.number = 0;
+        this.isNotes = true;
+        this.isError = false;
+        notes[number - 1] = !notes[number - 1];
+        setChanged();
+        this.notifyObservers();
+        return this;
+    }
+
+    public Number delete() {
         if (isChangeable()) {
             this.number = 0;
             this.isError = false;
@@ -114,6 +112,7 @@ public class Number extends Observable {
             setChanged();
             this.notifyObservers();
         }
+        return this;
     }
 
     public void checkNote(int number) {

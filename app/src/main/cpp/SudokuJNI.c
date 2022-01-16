@@ -10,8 +10,6 @@ Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, job
     jclass jSudokuClass = (*env)->FindClass(env, "com/aol/philipphofer/logic/sudoku/Sudoku");
     jmethodID jNewSudoku = (*env)->GetMethodID(env, jSudokuClass, "<init>", "()V");
     jobject jSudoku = (*env)->NewObject(env, jSudokuClass, jNewSudoku);
-
-    jmethodID jSetSudoku = (*env)->GetMethodID(env, jSudokuClass, "setSudoku", "([Lcom/aol/philipphofer/logic/sudoku/Block;)V");
     jmethodID jGetSudoku = (*env)->GetMethodID(env, jSudokuClass, "getSudoku", "()[Lcom/aol/philipphofer/logic/sudoku/Block;");
 
     /**
@@ -48,7 +46,6 @@ Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, job
                 (*env)->CallVoidMethod(env, jBlock, jSetNumber, jNumber, i, j);
             }
     }
-    (*env)->CallVoidMethod(env, jSudoku, jSetSudoku, jBlocks);
 
     return jSudoku;
 }

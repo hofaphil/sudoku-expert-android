@@ -7,9 +7,7 @@ public class Sudoku {
     private Block[] blocks;
 
     // TODO
-    public int freeFields = 40;
-    public int currentErrors = 0;
-    public int overallErrors = 0;
+    private int overallErrors = 0;
 
     public Sudoku() {
         blocks = new Block[9];
@@ -26,10 +24,33 @@ public class Sudoku {
         blocks[position.block].delete(position);
     }
 
+    public int freeFields() {
+        int freeFields = 0;
+
+        for (int k = 0; k < 9; k++)
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                    if (getNumber(new Position(i, j, k)).getNumber() == 0)
+                        freeFields++;
+
+        return freeFields;
+    }
+
+    public int currentErrors() {
+        int currentErrors = 0;
+
+        for (int k = 0; k < 9; k++)
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                    if (getNumber(new Position(i, j, k)).isError())
+                        currentErrors++;
+
+        return currentErrors;
+    }
+
     public Number getNumber(Position position) {
         return this.blocks[position.block].getNumber(position.row, position.column);
     }
-
 
     // TODO do we need all this?
     public Block[] getSudoku() {
@@ -62,17 +83,20 @@ public class Sudoku {
         }
     }
 
-    public static void printBlocks(Block[] blocks) {
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 9; i = i + 3) {
             for (int k = 0; k < 3; k++) {
                 for (int j = i; j < i + 3; j++) {
                     for (int a = 0; a < 3; a++)
-                        System.out.print(blocks[j].getNumbers()[k][a].getNumber());
-                    System.out.print(" ");
+                        sb.append(blocks[j].getNumbers()[k][a].getNumber());
+                    sb.append(" ");
                 }
-                System.out.println();
+                sb.append("\n");
             }
-            System.out.println();
+            sb.append("\n");
         }
+        return sb.toString();
     }
 }

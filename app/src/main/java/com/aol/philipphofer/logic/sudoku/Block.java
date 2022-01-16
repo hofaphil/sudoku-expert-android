@@ -18,12 +18,12 @@ public class Block {
         setNumbers(block.getNumbers());
     }
 
-    public void insert(int number, Position position, boolean note) {
-        this.numbers[position.row][position.column].insert(number, note);
+    public Number insert(int number, Position position, boolean note) {
+        return this.numbers[position.row][position.column].insert(number, note);
     }
 
-    public void delete(Position position) {
-        this.numbers[position.row][position.column].delete();
+    public Number delete(Position position) {
+        return this.numbers[position.row][position.column].delete();
     }
 
     // TODO do we need all this?
@@ -58,12 +58,12 @@ public class Block {
 
     @Override
     public String toString() {
-        StringBuilder ret = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++)
-                ret.append(numbers[i][j]).append(" ");
-            ret.append("\n");
+                sb.append(numbers[i][j]).append(" ");
+            sb.append("\n");
         }
-        return ret.toString();
+        return sb.toString();
     }
 }

@@ -448,10 +448,11 @@ public class MainActivity extends CustomActivity {
     }
 
     public void checkSudoku() {
-        if (game.currentErrors == 0 && game.freeFields == 0)
+        if (game.currentErrors() == 0 && game.freeFields() == 0)
             finishSudoku();
-        else if (game.overallErrors > MAXERROR)
-            abortSudoku();
+        // TODO
+        //  else if (game.overallErrors > MAXERROR)
+        //    abortSudoku();
     }
 
     private void finishSudoku() {
