@@ -69,6 +69,9 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
 
         if (!number.isChangeable())
             numberView.setTypeface(numberView.getTypeface(), Typeface.BOLD);
+        else
+            numberView.setTypeface(numberView.getTypeface(), Typeface.ITALIC);
+
         this.update(this.number, null);
     }
 
@@ -80,13 +83,7 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
         if (getError())
             if (Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
                 this.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.error));
-    }
-
-    public void save() {
-        Data data = Data.instance(mainActivity);
-        data.saveField(this);
-    }
-    */
+    } */
 
     public void switchLayout(boolean isNotes) {
         if (isNotes) {
@@ -101,9 +98,10 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
 
     public void error(boolean error) {
         // TODO mainActivity.addError();
-        if (error && Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS)) {
+        if (error && Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
             setBackgroundColor(ContextCompat.getColor(getContext(), R.color.error));
-        }
+        else
+            this.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.unselected));
     }
 
     public void select(boolean select) {
