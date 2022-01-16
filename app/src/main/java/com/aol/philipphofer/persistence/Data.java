@@ -18,16 +18,9 @@ public class Data {
 
     private final static String NAME = "data";
 
-    private final static String SUDOKU_FIELD_NAME = "sudoku-field";
-
+    // for game loading
+    private final static String SUDOKU_FIELD_NAME = "sudokufield";
     private final static String LOAD_MODE = "loadmode";
-
-    // for fields
-    private final static String FIELD_IS_CHANGEABLE = "changeable";
-    private final static String FIELD_IS_NOTES = "isnotes";
-    private final static String FIELD_NUMBER = "fieldnumber";
-    private final static String FIELD_ERROR = "fielderror";
-    private final static String FIELD_NOTES = "notes";
 
     // for settings
     public final static String SETTINGS_MARK_LINES = "marklines";
@@ -63,38 +56,10 @@ public class Data {
         return unique;
     }
 
-    /* public void saveField(SudokuField field) {
-        editor.putBoolean(field.position + FIELD_IS_CHANGEABLE, field.isChangeable());
-        editor.putBoolean(field.position + FIELD_IS_NOTES, field.isNotes());
-        editor.putBoolean(field.position + FIELD_ERROR, field.getError());
-        if (field.isNotes())
-            for (int i = 0; i < 9; i++)
-                editor.putBoolean(field.position + FIELD_NOTES + i, field.getNotes()[i]);
-        else
-            editor.putInt(field.position + FIELD_NUMBER, field.getNumber());
-        editor.apply();
-    }
-
-    public void loadField(SudokuField field) {
-        field.setIsNotes(data.getBoolean(field.position + FIELD_IS_NOTES, false));
-        field.switchLayout(field.isNotes());
-        field.setError(data.getBoolean(field.position + FIELD_ERROR, false));
-        field.setChangeable(data.getBoolean(field.position + FIELD_IS_CHANGEABLE, false));
-        if (field.isNotes()) {
-            boolean[] bool = new boolean[9];
-            for (int i = 0; i < 9; i++)
-                bool[i] = data.getBoolean(field.position + FIELD_NOTES + i, false);
-            field.setNotes(bool);
-        } else {
-            field.setNumber(data.getInt(field.position + FIELD_NUMBER, 0));
-            if (field.getNumber() > 0)
-                field.setNumberViewText(field.getNumber());
-        }
-    } */
-
+    // datatype save and load methods
     public void saveInt(String key, int value) {
         editor.putInt(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public int loadInt(String key) {
@@ -114,15 +79,7 @@ public class Data {
         return data.getBoolean(key, defValue);
     }
 
-    public void saveString(String key, String string) {
-        editor.putString(key, string);
-        editor.apply();
-    }
-
-    public String loadString(String key, String defValue) {
-        return data.getString(key, defValue);
-    }
-
+    // sudoku save and load methods
     public void saveGameNumber(Number number, Position position) {
         editor.putString(SUDOKU_FIELD_NAME + position, new Gson().toJson(number)).apply();
     }
@@ -161,13 +118,14 @@ public class Data {
         return sudoku;
     }
 
+    // game save and load methods
     public boolean getLoadmode() {
         return data.getBoolean(LOAD_MODE, false);
     }
 
     public void setLoadmode(boolean loadmode) {
         editor.putBoolean(LOAD_MODE, loadmode);
-        editor.commit();
+        editor.apply();
     }
 
     public void addTime(int time, Difficulty difficulty) {
@@ -204,9 +162,10 @@ public class Data {
                 editor.putInt(SETTINGS_COLOR, R.style.AppTheme);
                 break;
         }
-        editor.commit();
+        editor.apply();
     }
 
+    // other
     public void drop() {
         boolean supporter = loadBoolean(SETTINGS_SUPPORTER, false);
 
