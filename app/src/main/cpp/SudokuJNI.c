@@ -2,7 +2,7 @@
 #include "generator/Sudoku.h"
 
 JNIEXPORT jobject JNICALL
-Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, jobject mainActivity, jint jDifficulty)
+Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, jobject mainActivity, jint jFreeFields)
 {
     /**
      * Sudoku
@@ -28,7 +28,7 @@ Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, job
      * Generate sudoku with c code
      */
     sudoku *sudoku = new_sudoku();
-    create(sudoku, jDifficulty);
+    create(sudoku, jFreeFields);
 
     /**
      * Set Sudoku

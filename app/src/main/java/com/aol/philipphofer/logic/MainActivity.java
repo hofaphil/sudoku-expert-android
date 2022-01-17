@@ -151,7 +151,7 @@ public class MainActivity extends CustomActivity {
 
     public void heavyLoading() {
         timer.stopTimer();
-        game = createSudokuNative(DIFFICULTY.getNumber());
+        game = createSudokuNative(7 * DIFFICULTY.getNumber() + 42);
 
         LOAD_MODE = !LOAD_MODE;
         data.setLoadmode(LOAD_MODE);
@@ -500,6 +500,6 @@ public class MainActivity extends CustomActivity {
         System.loadLibrary("generator-jni");
     }
 
-    public native Sudoku createSudokuNative(int difficulty);
+    public native Sudoku createSudokuNative(int freeFields);
 
 }
