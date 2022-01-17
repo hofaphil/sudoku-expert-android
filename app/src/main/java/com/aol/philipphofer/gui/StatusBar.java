@@ -116,7 +116,7 @@ public class StatusBar extends RelativeLayout {
     }
 
     public void setError(int error) {
-        errorView.setText(getResources().getString(R.string.statusbar_errors, error, MainActivity.MAXERROR));
+        errorView.setText(getResources().getString(R.string.statusbar_errors, error, MainActivity.MAX_ERROR));
     }
 
     public void setTime(int time) {

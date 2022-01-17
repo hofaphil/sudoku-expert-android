@@ -26,10 +26,6 @@ import com.aol.philipphofer.logic.sudoku.Number;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
 import com.google.android.gms.ads.AdView;
 
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
-
 public class MainActivity extends CustomActivity {
 
     public Sudoku game; // the current game
@@ -45,9 +41,10 @@ public class MainActivity extends CustomActivity {
 
     private Timer timer;
 
-    public static int MAXERROR = 3;
+    public static int MAX_ERROR = 3;
     public static Difficulty DIFFICULTY = Difficulty.ADVANCED;
-    public static boolean LOADMODE = false;
+    public static boolean LOAD_MODE = false;
+    // TODO load a shared game
     public static boolean SHARED = false;
 
     private Thread t = new Thread();
@@ -55,8 +52,6 @@ public class MainActivity extends CustomActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
 
         setContentView(R.layout.activity_main);
 
@@ -113,16 +108,16 @@ public class MainActivity extends CustomActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        System.out.println("onStart");
 
-        /* if (endCardDialog.isShowing())
-            return; */
-
-        if (LOADMODE = data.getLoadmode()) {
-
+        // Load a game from data
+        if (LOAD_MODE = data.getLoadmode()) {
             game = data.loadSudoku();
             sudokuGrid.init(game.getSudoku());
 
             statusBar.activate();
+            keyboard.activate();
+
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
         }
     }
@@ -134,10 +129,8 @@ public class MainActivity extends CustomActivity {
         pause = true;
         pauseGame();
 
-        /* if (endCardDialog.isShowing())
-            return; */
-
-        if (!(LOADMODE = data.getLoadmode())) {
+        // create a new game
+        if (!(LOAD_MODE = data.getLoadmode())) {
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING);
 
             keyboard.deactivate();
@@ -150,29 +143,37 @@ public class MainActivity extends CustomActivity {
         } else {
             getWindow().getDecorView().post(() -> timer.startTimer(data.loadInt(Data.GAME_TIME)));
         }
+
+        DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
+        statusBar.setDifficulty(DIFFICULTY);
+        statusBar.setError(game.overallErrors);
     }
 
     public void heavyLoading() {
         timer.stopTimer();
         game = createSudokuNative(DIFFICULTY.getNumber());
-        // TODO set game to base
 
-        LOADMODE = !LOADMODE;
-        data.setLoadmode(LOADMODE);
+        LOAD_MODE = !LOAD_MODE;
+        data.setLoadmode(LOAD_MODE);
         data.saveSudoku(game);
+
+        // save the setting that apply at first next game
         data.saveBoolean(Data.GAME_SHOW_ERRORS, data.loadBoolean(Data.SETTINGS_MARK_ERRORS));
         data.saveBoolean(Data.GAME_SHOW_TIME, data.loadBoolean(Data.SETTINGS_SHOW_TIME));
 
+        // reset errors and time
+        data.saveInt(Data.GAME_ERRORS, 0);
+        data.saveInt(Data.GAME_TIME, 0);
+
         runOnUiThread(() -> {
             sudokuGrid.init(game.getSudoku());
-
-            data.saveInt(Data.GAME_ERRORS, 0);
-            data.saveInt(Data.GAME_TIME, 0);
 
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
 
             statusBar.activate();
             keyboard.activate();
+
+            statusBar.setError(game.overallErrors);
 
             getWindow().getDecorView().post(() -> timer.startTimer(0));
         });
@@ -182,10 +183,9 @@ public class MainActivity extends CustomActivity {
     protected void onPause() {
         super.onPause();
 
-        // TODO data.saveInt(Data.GAME_ERRORS, errors);
-        data.saveInt(Data.GAME_DIFFICULTY, DIFFICULTY.getNumber());
         timer.stopTimer();
         data.saveInt(Data.GAME_TIME, timer.getTime());
+        data.saveInt(Data.GAME_ERRORS, game.overallErrors);
     }
 
 
@@ -426,16 +426,17 @@ public class MainActivity extends CustomActivity {
     }
 
     public void checkSudoku() {
-        if (game.currentErrors == 0 && game.freeFields == 0)
+        if (game.currentErrors() == 0 && game.freeFields() == 0)
             finishSudoku();
-        else if (game.overallErrors > MAXERROR)
-            abortSudoku();
-        else
+        else {
             this.checkErrors();
+            if (game.overallErrors >= MAX_ERROR)
+                abortSudoku();
+        }
     }
 
     public void checkErrors() {
-        this.statusBar.setError(game.currentErrors);
+        this.statusBar.setError(game.overallErrors);
     }
 
     private void finishSudoku() {

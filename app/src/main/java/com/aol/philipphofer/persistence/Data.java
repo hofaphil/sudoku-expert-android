@@ -33,8 +33,8 @@ public class Data {
     public final static String SETTINGS_SUPPORTER = "supporter";
 
     // for actual game
-    public final static String GAME_ERRORS = "errors";
     public final static String GAME_DIFFICULTY = "difficulty";
+    public final static String GAME_ERRORS = "errors";
     public final static String GAME_TIME = "time";
     public final static String GAME_SHOW_ERRORS = "main_show_errors";
     public final static String GAME_SHOW_TIME = "main_show_time";
