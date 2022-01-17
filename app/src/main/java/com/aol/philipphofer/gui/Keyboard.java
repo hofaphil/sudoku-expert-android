@@ -49,12 +49,12 @@ public class Keyboard extends GridLayout implements View.OnClickListener {
         mainActivity.insert((int) view.getTag());
     }
 
-    public void deactivateNumber(int number) {
+    private void deactivateNumber(int number) {
         keys[number - 1].setEnabled(false);
         keys[number - 1].setVisibility(View.INVISIBLE);
     }
 
-    public void activateNumber(int number) {
+    private void activateNumber(int number) {
         keys[number - 1].setEnabled(true);
         keys[number - 1].setVisibility(View.VISIBLE);
     }

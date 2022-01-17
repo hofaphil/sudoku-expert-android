@@ -66,19 +66,20 @@ public class Number extends Observable {
     }
 
     // changing methods
-    public Number insert(int number, boolean note) {
+    public boolean insert(int number, boolean note) {
         if (!isChangeable())
-            return this;
+            return false;
 
         if (note)
-            return this.insertNote(number);
+            this.insertNote(number);
         else
-            return this.insertNumber(number);
+            this.insertNumber(number);
+        return this.isError;
     }
 
-    private Number insertNumber(int number) {
+    private void insertNumber(int number) {
         if (number == this.number)
-            return delete();
+            delete();
         else {
             if (isNotes)
                 delete();
@@ -87,21 +88,19 @@ public class Number extends Observable {
             this.number = number;
             setChanged();
             this.notifyObservers();
-            return this;
         }
     }
 
-    private Number insertNote(int number) {
+    private void insertNote(int number) {
         this.number = 0;
         this.isNotes = true;
         this.isError = false;
         notes[number - 1] = !notes[number - 1];
         setChanged();
         this.notifyObservers();
-        return this;
     }
 
-    public Number delete() {
+    public void delete() {
         if (isChangeable()) {
             this.number = 0;
             this.isError = false;
@@ -112,7 +111,6 @@ public class Number extends Observable {
             setChanged();
             this.notifyObservers();
         }
-        return this;
     }
 
     public void checkNote(int number) {

@@ -18,12 +18,12 @@ public class Block {
         setNumbers(block.getNumbers());
     }
 
-    public Number insert(int number, Position position, boolean note) {
+    public boolean insert(int number, Position position, boolean note) {
         return this.numbers[position.row][position.column].insert(number, note);
     }
 
-    public Number delete(Position position) {
-        return this.numbers[position.row][position.column].delete();
+    public void delete(Position position) {
+        this.numbers[position.row][position.column].delete();
     }
 
     // TODO do we need all this?

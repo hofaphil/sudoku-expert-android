@@ -96,32 +96,31 @@ public class StatusBar extends RelativeLayout {
         });
 
         timeView = findViewById(R.id.timeView);
-
         difficultyView = findViewById(R.id.difficultyView);
-        initDifficultyView();
-
         errorView = findViewById(R.id.errorView);
-        errorView.setText(getResources().getString(R.string.statusbar_errors, mainActivity.getOverallErrors(), MainActivity.MAXERROR));
-        initError();
     }
 
-    public void initDifficultyView() {
-        difficultyView.setText(MainActivity.DIFFICULTY.getText(getContext()));
-    }
-
-    public void initError() {
+    public void initView(Difficulty difficulty) {
+        difficultyView.setText(difficulty.getText(mainActivity));
         if (!Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
             errorView.setVisibility(View.INVISIBLE);
         else
             errorView.setVisibility(View.VISIBLE);
+
+        setDifficulty(Difficulty.ADVANCED);
+        setError(0);
     }
 
-    public void setError() {
-        errorView.setText(getResources().getString(R.string.statusbar_errors, mainActivity.getOverallErrors(), MainActivity.MAXERROR));
+    public void setDifficulty(Difficulty difficulty) {
+        difficultyView.setText(difficulty.getText(getContext()));
+    }
+
+    public void setError(int error) {
+        errorView.setText(getResources().getString(R.string.statusbar_errors, error, MainActivity.MAXERROR));
     }
 
     public void setTime(int time) {
-        if (Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_TIME))
+        if (Data.instance(getContext()).loadBoolean(Data.GAME_SHOW_TIME))
             this.timeView.setText(Timer.timeToString(time));
         else
             this.timeView.setText("--:--");

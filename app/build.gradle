@@ -4,7 +4,7 @@ android {
     compileSdkVersion 31
     defaultConfig {
         applicationId "com.aol.philipphofer"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 31
         versionCode 36
         versionName "2.3.10"

@@ -26,9 +26,13 @@ import com.aol.philipphofer.logic.sudoku.Number;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
 import com.google.android.gms.ads.AdView;
 
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
+
 public class MainActivity extends CustomActivity {
 
-    public Sudoku game; // the current game (with user input)
+    public Sudoku game; // the current game
 
     public StatusBar statusBar;
     public SudokuGrid sudokuGrid;
@@ -114,25 +118,10 @@ public class MainActivity extends CustomActivity {
             return; */
 
         if (LOADMODE = data.getLoadmode()) {
-            System.out.println("loading");
 
-            DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
-            // TODO
             game = data.loadSudoku();
-            // base = data.loadBase();
-
             sudokuGrid.init(game.getSudoku());
 
-            /* if (SHARED) {
-                sudokuGrid.init(sudoku.getSudoku());
-                SHARED = false;
-            } else
-                for (int i = 0; i < 9; i++)
-                    for (int a = 0; a < 3; a++)
-                        for (int b = 0; b < 3; b++)
-                            sudokuGrid.blocks[i].field[a][b].load(new Position(a, b, i)); */
-
-            statusBar.initDifficultyView();
             statusBar.activate();
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
         }
@@ -149,17 +138,12 @@ public class MainActivity extends CustomActivity {
             return; */
 
         if (!(LOADMODE = data.getLoadmode())) {
-            // TODO: somehow the fields still remain colored
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING);
 
             keyboard.deactivate();
             statusBar.deactivate();
 
             if (!t.isAlive()) {
-                DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
-                game = new Sudoku();
-                for (int i = 0; i < 9; i++)
-                    keyboard.activateNumber(i + 1);
                 t = new Thread(this::heavyLoading);
                 t.start();
             }
@@ -185,15 +169,12 @@ public class MainActivity extends CustomActivity {
             data.saveInt(Data.GAME_ERRORS, 0);
             data.saveInt(Data.GAME_TIME, 0);
 
-            statusBar.initDifficultyView();
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
 
             statusBar.activate();
             keyboard.activate();
 
             getWindow().getDecorView().post(() -> timer.startTimer(0));
-
-            statusBar.initError();
         });
     }
 
@@ -433,6 +414,9 @@ public class MainActivity extends CustomActivity {
             // TODO two times this.selected, maybe this can be done nicer
             data.saveGameNumber(game.getNumber(selected), selected);
             select(selected);
+
+            // check new current errors
+            checkErrors();
         }
     }
 
@@ -441,18 +425,17 @@ public class MainActivity extends CustomActivity {
         return isNotes;
     }
 
-    public int getOverallErrors() {
-        return 0;
-        // TODO
-        // return game.overallErrors;
+    public void checkSudoku() {
+        if (game.currentErrors == 0 && game.freeFields == 0)
+            finishSudoku();
+        else if (game.overallErrors > MAXERROR)
+            abortSudoku();
+        else
+            this.checkErrors();
     }
 
-    public void checkSudoku() {
-        if (game.currentErrors() == 0 && game.freeFields() == 0)
-            finishSudoku();
-        // TODO
-        //  else if (game.overallErrors > MAXERROR)
-        //    abortSudoku();
+    public void checkErrors() {
+        this.statusBar.setError(game.currentErrors);
     }
 
     private void finishSudoku() {
@@ -507,9 +490,8 @@ public class MainActivity extends CustomActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0)
-            if (resultCode == 1)
-                recreate();
+        if (requestCode == 0 && resultCode == 1)
+            recreate();
     }
 
     // JNI
@@ -518,4 +500,5 @@ public class MainActivity extends CustomActivity {
     }
 
     public native Sudoku createSudokuNative(int difficulty);
+
 }
