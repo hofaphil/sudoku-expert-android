@@ -23,17 +23,9 @@ public class SudokuBlock extends GridLayout {
 
         field = new SudokuField[3][3];
         for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < 3; j++)
                 field[i][j] = findViewById(context.getResources().getIdentifier("btn" + i + j, "id", context.getPackageName()));
-                // TODO field[i][j].setBackgroundColor(Color.GRAY);
-            }
     }
-
-    /* public void init(Block block, int parent) {
-        for (int i = 0; i < 3; i++)
-            for(int j = 0; j < 3; j++)
-                field[i][j].init(block.getNumbers()[i][j], new Position(i, j, parent));
-    } */
 
     public void init(Block block, int parent) {
         for (int i = 0; i < 3; i++)

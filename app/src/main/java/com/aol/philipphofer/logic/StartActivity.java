@@ -2,12 +2,17 @@ package com.aol.philipphofer.logic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 
+import com.aol.philipphofer.R;
+import com.aol.philipphofer.gui.custom.CustomToast;
 import com.aol.philipphofer.persistence.Data;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
 import com.google.android.gms.ads.MobileAds;
+
+import java.util.Objects;
 
 public class StartActivity extends Activity {
 
@@ -34,14 +39,13 @@ public class StartActivity extends Activity {
 
         Intent intent = getIntent();
 
-        /* if (!Objects.equals(intent.getAction(), Intent.ACTION_MAIN)) {
+        if (!Objects.equals(intent.getAction(), Intent.ACTION_MAIN)) {
             Uri uri = getIntent().getData();
 
             try {
                 sudoku = ShareClass.load(uri);
                 MainActivity.SHARED = true;
-                data.saveSudoku(sudoku.getSudoku());
-                data.saveSolution(sudoku.getSolution());
+                data.saveSudoku(sudoku);
                 data.saveInt(Data.GAME_DIFFICULTY, difficulty);
                 data.saveInt(Data.GAME_ERRORS, 0);
                 data.saveInt(Data.GAME_TIME, 0);
@@ -49,7 +53,7 @@ public class StartActivity extends Activity {
             } catch (Exception e) {
                 new CustomToast(this, getResources().getString(R.string.error_default)).show();
             }
-        } */
+        }
 
         intent = new Intent(this, MainActivity.class);
         startActivity(intent);

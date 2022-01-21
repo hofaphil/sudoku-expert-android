@@ -151,7 +151,7 @@ public class MainActivity extends CustomActivity {
 
     public void heavyLoading() {
         timer.stopTimer();
-        game = createSudokuNative(7 * DIFFICULTY.getNumber() + 42);
+        game = createSudokuNative(2);
 
         LOAD_MODE = !LOAD_MODE;
         data.setLoadmode(LOAD_MODE);
@@ -475,7 +475,6 @@ public class MainActivity extends CustomActivity {
 
     public void share() {
         try {
-            // TODO: share only non-changeable fields
             ShareClass.share(game, this);
         } catch (Exception e) {
             new CustomToast(this, getResources().getString(R.string.error_default)).show();

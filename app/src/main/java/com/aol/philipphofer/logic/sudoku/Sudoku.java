@@ -2,10 +2,6 @@ package com.aol.philipphofer.logic.sudoku;
 
 import com.aol.philipphofer.logic.Position;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Observable;
-
 public class Sudoku {
 
     private Block[] blocks;
@@ -51,35 +47,12 @@ public class Sudoku {
         return blocks[position.block].getNumber(position.row, position.column);
     }
 
-    // TODO do we need all this?
+    public void setNumber(Position position, Number number) {
+        blocks[position.block].setNumber(position.row, position.column, number);
+    }
+
     public Block[] getSudoku() {
         return blocks;
-    }
-
-    public void setSudoku(Block[] blocks) {
-        blocks = blocks;
-    }
-
-    public int[][][] getSolution() {
-        int[][][] solution = new int[9][3][3];
-        for (int k = 0; k < 9; k++) {
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    solution[k][i][j] = blocks[k].getNumbers()[i][j].getSolution();
-                }
-            }
-        }
-        return solution;
-    }
-
-    public void setSolution(int[][][] solution) {
-        for (int k = 0; k < 9; k++) {
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    blocks[k].getNumbers()[i][j].setSolution(solution[k][i][j]);
-                }
-            }
-        }
     }
 
     @Override
