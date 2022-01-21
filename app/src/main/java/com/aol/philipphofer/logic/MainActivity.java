@@ -151,7 +151,8 @@ public class MainActivity extends CustomActivity {
 
     public void heavyLoading() {
         timer.stopTimer();
-        game = createSudokuNative(2);
+        // 7 * DIFFICULTY.getNumber() + 42
+        game = createSudokuNative(7 * DIFFICULTY.getNumber() + 42);
 
         LOAD_MODE = !LOAD_MODE;
         data.setLoadmode(LOAD_MODE);
