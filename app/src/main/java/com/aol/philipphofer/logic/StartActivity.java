@@ -9,7 +9,7 @@ import android.os.StrictMode;
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomToast;
 import com.aol.philipphofer.persistence.Data;
-import com.aol.philipphofer.sudoku.Sudoku;
+import com.aol.philipphofer.logic.sudoku.Sudoku;
 import com.google.android.gms.ads.MobileAds;
 
 import java.util.Objects;
@@ -45,8 +45,7 @@ public class StartActivity extends Activity {
             try {
                 sudoku = ShareClass.load(uri);
                 MainActivity.SHARED = true;
-                data.saveSudoku(sudoku.getSudoku());
-                data.saveSolution(sudoku.getSolution());
+                data.saveSudoku(sudoku);
                 data.saveInt(Data.GAME_DIFFICULTY, difficulty);
                 data.saveInt(Data.GAME_ERRORS, 0);
                 data.saveInt(Data.GAME_TIME, 0);

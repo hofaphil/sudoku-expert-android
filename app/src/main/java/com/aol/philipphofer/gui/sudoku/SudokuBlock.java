@@ -1,14 +1,13 @@
 package com.aol.philipphofer.gui.sudoku;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.GridLayout;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.logic.Position;
-import com.aol.philipphofer.sudoku.Block;
+import com.aol.philipphofer.logic.sudoku.Block;
 
 public class SudokuBlock extends GridLayout {
 
@@ -24,15 +23,13 @@ public class SudokuBlock extends GridLayout {
 
         field = new SudokuField[3][3];
         for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < 3; j++)
                 field[i][j] = findViewById(context.getResources().getIdentifier("btn" + i + j, "id", context.getPackageName()));
-                field[i][j].setBackgroundColor(Color.GRAY);
-            }
     }
 
     public void init(Block block, int parent) {
         for (int i = 0; i < 3; i++)
-            for(int j = 0; j < 3; j++)
+            for (int j = 0; j < 3; j++)
                 field[i][j].init(block.getNumbers()[i][j], new Position(i, j, parent));
     }
 }

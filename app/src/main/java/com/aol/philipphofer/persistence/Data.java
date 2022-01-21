@@ -4,10 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.aol.philipphofer.R;
-import com.aol.philipphofer.gui.sudoku.SudokuField;
+import com.aol.philipphofer.logic.Position;
 import com.aol.philipphofer.logic.help.Difficulty;
-import com.aol.philipphofer.sudoku.Block;
-import com.aol.philipphofer.sudoku.Sudoku;
+import com.aol.philipphofer.logic.sudoku.Number;
+import com.aol.philipphofer.logic.sudoku.Sudoku;
+import com.google.gson.Gson;
 
 public class Data {
 
@@ -17,17 +18,9 @@ public class Data {
 
     private final static String NAME = "data";
 
-    private final static String SOLUTION_FIELD_NAME = "solutionfield";
-    private final static String SUDOKU_FIELD_NAME = "sudokufieldname";
-
+    // for game loading
+    private final static String SUDOKU_FIELD_NAME = "sudokufield";
     private final static String LOAD_MODE = "loadmode";
-
-    // for fields
-    private final static String FIELD_IS_CHANGEABLE = "changeable";
-    private final static String FIELD_IS_NOTES = "isnotes";
-    private final static String FIELD_NUMBER = "fieldnumber";
-    private final static String FIELD_ERROR = "fielderror";
-    private final static String FIELD_NOTES = "notes";
 
     // for settings
     public final static String SETTINGS_MARK_LINES = "marklines";
@@ -40,8 +33,8 @@ public class Data {
     public final static String SETTINGS_SUPPORTER = "supporter";
 
     // for actual game
-    public final static String GAME_ERRORS = "errors";
     public final static String GAME_DIFFICULTY = "difficulty";
+    public final static String GAME_ERRORS = "errors";
     public final static String GAME_TIME = "time";
     public final static String GAME_SHOW_ERRORS = "main_show_errors";
     public final static String GAME_SHOW_TIME = "main_show_time";
@@ -63,38 +56,10 @@ public class Data {
         return unique;
     }
 
-    public void saveField(SudokuField field) {
-        editor.putBoolean(field.position + FIELD_IS_CHANGEABLE, field.isChangeable());
-        editor.putBoolean(field.position + FIELD_IS_NOTES, field.isNotes());
-        editor.putBoolean(field.position + FIELD_ERROR, field.getError());
-        if (field.isNotes())
-            for (int i = 0; i < 9; i++)
-                editor.putBoolean(field.position + FIELD_NOTES + i, field.getNotes()[i]);
-        else
-            editor.putInt(field.position + FIELD_NUMBER, field.getNumber());
-        editor.apply();
-    }
-
-    public void loadField(SudokuField field) {
-        field.setIsNotes(data.getBoolean(field.position + FIELD_IS_NOTES, false));
-        field.switchLayout(field.isNotes());
-        field.setError(data.getBoolean(field.position + FIELD_ERROR, false));
-        field.setChangeable(data.getBoolean(field.position + FIELD_IS_CHANGEABLE, false));
-        if (field.isNotes()) {
-            boolean[] bool = new boolean[9];
-            for (int i = 0; i < 9; i++)
-                bool[i] = data.getBoolean(field.position + FIELD_NOTES + i, false);
-            field.setNotes(bool);
-        } else {
-            field.setNumber(data.getInt(field.position + FIELD_NUMBER, 0));
-            if (field.getNumber() > 0)
-                field.setNumberViewText(field.getNumber());
-        }
-    }
-
+    // datatype save and load methods
     public void saveInt(String key, int value) {
         editor.putInt(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public int loadInt(String key) {
@@ -114,68 +79,53 @@ public class Data {
         return data.getBoolean(key, defValue);
     }
 
-    public void saveString(String key, String string) {
-        editor.putString(key, string);
+    // sudoku save and load methods
+    public void saveGameNumber(Number number, Position position) {
+        editor.putString(SUDOKU_FIELD_NAME + position, new Gson().toJson(number)).apply();
+    }
+
+    public void saveSudoku(Sudoku sudoku) {
+        Gson gson = new Gson();
+        for (int h = 0; h < 9; h++)
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++) {
+                    try {
+                        Position position = new Position(i, j, h);
+                        editor.putString(SUDOKU_FIELD_NAME + position, gson.toJson(sudoku.getNumber(position)));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
         editor.apply();
     }
 
-    public String loadString(String key, String defValue) {
-        return data.getString(key, defValue);
+    public Sudoku loadSudoku() {
+        Gson gson = new Gson();
+        Sudoku sudoku = new Sudoku();
+
+        for (int h = 0; h < 9; h++)
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++) {
+                    Position position = new Position(i, j, h);
+                    String sudokuJson = data.getString(SUDOKU_FIELD_NAME + position, "");
+                    // TODO do we need to insert here, so that sudoku-vars like overallError etc. get restored?
+                    if (sudokuJson != null && !sudokuJson.isEmpty())
+                        sudoku.getSudoku()[h].getNumbers()[i][j] = gson.fromJson(sudokuJson, Number.class);
+                    else
+                        sudoku.getSudoku()[h].getNumbers()[i][j] = new Number();
+                }
+
+        return sudoku;
     }
 
-    public void saveSolution(Block[] blocks) {
-        int k = 0;
-        for (int i = 0; i < 9; i++)
-            for (int a = 0; a < 3; a++)
-                for (int b = 0; b < 3; b++)
-                    editor.putInt(SOLUTION_FIELD_NAME + k++, blocks[i].getNumbers()[a][b]);
-        editor.apply();
-    }
-
-    public void loadSolution(Sudoku sudoku) {
-        int k = 0;
-        Block[] block = new Block[9];
-        int[][] numbers = new int[3][3];
-        for (int i = 0; i < 9; i++) {
-            for (int a = 0; a < 3; a++)
-                for (int b = 0; b < 3; b++)
-                    numbers[a][b] = data.getInt(SOLUTION_FIELD_NAME + k++, 0);
-            block[i] = new Block();
-            block[i].setNumbers(numbers);
-        }
-        sudoku.setSolution(block);
-    }
-
-    public void saveSudoku(Block[] blocks) {
-        int k = 0;
-        for (int i = 0; i < 9; i++)
-            for (int a = 0; a < 3; a++)
-                for (int b = 0; b < 3; b++)
-                    editor.putInt(SUDOKU_FIELD_NAME + k++, blocks[i].getNumbers()[a][b]);
-        editor.apply();
-    }
-
-    public void loadSudoku(Sudoku sudoku) {
-        int k = 0;
-        Block[] block = new Block[9];
-        int[][] numbers = new int[3][3];
-        for (int i = 0; i < 9; i++) {
-            for (int a = 0; a < 3; a++)
-                for (int b = 0; b < 3; b++)
-                    numbers[a][b] = data.getInt(SUDOKU_FIELD_NAME + k++, 0);
-            block[i] = new Block();
-            block[i].setNumbers(numbers);
-        }
-        sudoku.setSudoku(block);
-    }
-
+    // game save and load methods
     public boolean getLoadmode() {
         return data.getBoolean(LOAD_MODE, false);
     }
 
     public void setLoadmode(boolean loadmode) {
         editor.putBoolean(LOAD_MODE, loadmode);
-        editor.commit();
+        editor.apply();
     }
 
     public void addTime(int time, Difficulty difficulty) {
@@ -212,9 +162,10 @@ public class Data {
                 editor.putInt(SETTINGS_COLOR, R.style.AppTheme);
                 break;
         }
-        editor.commit();
+        editor.apply();
     }
 
+    // other
     public void drop() {
         boolean supporter = loadBoolean(SETTINGS_SUPPORTER, false);
 
