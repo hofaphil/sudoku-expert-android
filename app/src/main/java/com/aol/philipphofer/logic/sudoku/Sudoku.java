@@ -4,7 +4,7 @@ import com.aol.philipphofer.logic.Position;
 
 public class Sudoku {
 
-    private Block[] blocks;
+    private final Block[] blocks;
     public int overallErrors = 0;
 
     public Sudoku() {
