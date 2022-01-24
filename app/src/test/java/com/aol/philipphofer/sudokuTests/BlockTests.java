@@ -31,6 +31,7 @@ public class BlockTests {
 
         when(numberMock.insert(eq(correctNumber), anyBoolean())).thenReturn(true);
         when(numberMock.insert(eq(falseNumber), eq(false))).thenReturn(false);
+        when(numberMock.insert(anyInt(), eq(true))).thenReturn(true);
     }
 
     /**
@@ -45,7 +46,7 @@ public class BlockTests {
     }
 
     /**
-     * public boolean insert(int number, Position position, boolean note)
+     * boolean insert(int number, Position position, boolean note)
      */
     @Test
     public void testInsert() {
@@ -58,10 +59,10 @@ public class BlockTests {
 
     @Test
     public void testInsertNote() {
-        boolean returnVal = testBlock.insert(correctNumber, position, true);
+        boolean returnVal = testBlock.insert(falseNumber, position, true);
 
         assertTrue(returnVal);
-        verify(numberMock, times(1)).insert(correctNumber, true);
+        verify(numberMock, times(1)).insert(falseNumber, true);
         verifyNoMoreInteractions(numberMock);
     }
 
@@ -75,7 +76,7 @@ public class BlockTests {
     }
 
     /**
-     * public void delete(Position position)
+     * void delete(Position position)
      */
     @Test
     public void testDelete() {
@@ -86,7 +87,7 @@ public class BlockTests {
     }
 
     /**
-     * public Number getNumber(int row, int column)
+     * Number getNumber(int row, int column)
      */
     @Test
     public void testGetNumbers() {
@@ -96,7 +97,7 @@ public class BlockTests {
     }
 
     /**
-     * public void setNumber(int row, int col, Number number)
+     * void setNumber(int row, int col, Number number)
      */
     @Test
     public void testSetNumber() {

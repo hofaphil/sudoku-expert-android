@@ -56,7 +56,7 @@ public class SudokuTests {
     }
 
     /**
-     * public void insert(int Number, Position position, boolean note)
+     * void insert(int Number, Position position, boolean note)
      */
     @Test
     public void testInsert() {
@@ -90,7 +90,7 @@ public class SudokuTests {
     }
 
     /**
-     * public void delete(Position position)
+     * void delete(Position position)
      */
     @Test
     public void testDelete() {
@@ -102,7 +102,7 @@ public class SudokuTests {
     }
 
     /**
-     * public int freeField()
+     * int freeField()
      */
     @Test
     public void testFreeFields() {
@@ -129,7 +129,7 @@ public class SudokuTests {
     }
 
     /**
-     * public int currentErrors()
+     * int currentErrors()
      */
     @Test
     public void testCurrentErrors() {
@@ -149,8 +149,8 @@ public class SudokuTests {
     }
 
     /**
-     * public Number getNumber(Position position)
-     * public Number setNumber(Position position, Number number)
+     * Number getNumber(Position position)
+     * Number setNumber(Position position, Number number)
      */
     @Test
     public void testGetNumber() {
