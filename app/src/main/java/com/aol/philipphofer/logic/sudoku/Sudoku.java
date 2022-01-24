@@ -15,7 +15,7 @@ public class Sudoku {
     }
 
     public void insert(int number, Position position, boolean note) {
-        if (blocks[position.block].insert(number, position, note))
+        if (!blocks[position.block].insert(number, position, note))
             overallErrors++;
     }
 

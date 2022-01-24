@@ -6,7 +6,6 @@ import com.aol.philipphofer.logic.sudoku.Number;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +30,7 @@ public class BlockTests {
         testBlock.setNumber(1, 2, numberMock);
 
         when(numberMock.insert(eq(correctNumber), anyBoolean())).thenReturn(true);
-        when(numberMock.insert(eq(falseNumber), anyBoolean())).thenReturn(false);
+        when(numberMock.insert(eq(falseNumber), eq(false))).thenReturn(false);
     }
 
     /**
