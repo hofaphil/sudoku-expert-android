@@ -11,7 +11,6 @@ public class Number extends Observable {
 
     private final boolean isChangeable;
     private boolean isNotes;
-    private boolean isError;
 
     public Number() {
         this.number = 0;
@@ -22,7 +21,6 @@ public class Number extends Observable {
 
         this.isChangeable = true;
         this.isNotes = false;
-        this.isError = false;
     }
 
     public Number(int number, int solution, boolean isChangeable) {
@@ -34,19 +32,6 @@ public class Number extends Observable {
 
         this.isChangeable = isChangeable;
         this.isNotes = false;
-        this.isError = false;
-    }
-
-    public Number(int number, int solution, boolean[] notes, boolean isChangeable, boolean isNotes, boolean isError) {
-        this.number = number;
-        this.solution = solution;
-
-        this.notes = new boolean[9];
-        System.arraycopy(notes, 0, this.notes, 0, 9);
-
-        this.isChangeable = isChangeable;
-        this.isNotes = isNotes;
-        this.isError = isError;
     }
 
     public int getNumber() {
@@ -74,7 +59,7 @@ public class Number extends Observable {
             this.insertNote(number);
         else
             this.insertNumber(number);
-        return this.isError;
+        return this.isError();
     }
 
     private void insertNumber(int number) {
@@ -84,7 +69,6 @@ public class Number extends Observable {
             if (isNotes)
                 delete();
             this.isNotes = false;
-            this.isError = number != this.solution;
             this.number = number;
             setChanged();
             this.notifyObservers();
@@ -94,7 +78,6 @@ public class Number extends Observable {
     private void insertNote(int number) {
         this.number = 0;
         this.isNotes = true;
-        this.isError = false;
         notes[number - 1] = !notes[number - 1];
         setChanged();
         this.notifyObservers();
@@ -103,8 +86,6 @@ public class Number extends Observable {
     public void delete() {
         if (isChangeable()) {
             this.number = 0;
-            this.isError = false;
-            // TODO maybe: this.isNotes = false;
             for (int i = 0; i < 9; i++) {
                 notes[i] = false;
             }
@@ -131,7 +112,7 @@ public class Number extends Observable {
     }
 
     public boolean isError() {
-        return this.isError;
+        return !(number == 0 || number == solution);
     }
 }
 

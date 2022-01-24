@@ -4,7 +4,7 @@ import com.aol.philipphofer.logic.Position;
 
 public class Sudoku {
 
-    private Block[] blocks;
+    private final Block[] blocks;
     public int overallErrors = 0;
 
     public Sudoku() {
@@ -15,7 +15,7 @@ public class Sudoku {
     }
 
     public void insert(int number, Position position, boolean note) {
-        if (blocks[position.block].insert(number, position, note))
+        if (!blocks[position.block].insert(number, position, note))
             overallErrors++;
     }
 
