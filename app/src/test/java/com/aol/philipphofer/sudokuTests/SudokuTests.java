@@ -153,7 +153,7 @@ public class SudokuTests {
      * Number setNumber(Position position, Number number)
      */
     @Test
-    public void testGetNumber() {
+    public void testGetSetNumber() {
         Sudoku sudoku = new Sudoku();
         Number number = new Number(0, correctNumber, true);
         sudoku.setNumber(position, number);

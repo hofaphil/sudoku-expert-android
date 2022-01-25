@@ -60,7 +60,7 @@ public class MainActivity extends CustomActivity {
         keyboard = findViewById(R.id.keyboard);
         endCardDialog = new EndCardDialog(this);
 
-        timer = new Timer(this);
+        timer = new Timer();
         timer.start();
 
         ViewTreeObserver observer = sudokuGrid.getViewTreeObserver();
