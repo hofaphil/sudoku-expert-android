@@ -1,7 +1,8 @@
 package com.aol.philipphofer.logic.help;
 
-public class LinkShorter {
+public class LinkShortener {
 
+    // only use for numeric ids ([0-9]*)
     public static String getLink(String id) {
         String link = id;
 

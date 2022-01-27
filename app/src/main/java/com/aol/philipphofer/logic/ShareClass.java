@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.aol.philipphofer.R;
-import com.aol.philipphofer.logic.help.LinkShorter;
+import com.aol.philipphofer.logic.help.LinkShortener;
 import com.aol.philipphofer.logic.sudoku.Number;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
 
@@ -30,7 +30,7 @@ class ShareClass {
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Sudoku");
 
         String shareMessage = context.getResources().getString(R.string.share_description) + "\n\n";
-        shareMessage = shareMessage + URL + "share?id=" + LinkShorter.getLink(id.toString()) + "\n";
+        shareMessage = shareMessage + URL + "share?id=" + LinkShortener.getLink(id.toString()) + "\n";
         shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
         context.startActivity(Intent.createChooser(shareIntent, context.getResources().getString(R.string.share_title)));
     }
@@ -43,7 +43,7 @@ class ShareClass {
         String link = uri.getQueryParameter("id");
         // TODO: error handling!
         assert link != null;
-        String id = LinkShorter.getId(link);
+        String id = LinkShortener.getId(link);
 
         int difficulty = Integer.parseInt(id.charAt(0) + "");
         if (difficulty < 0 || difficulty > 3)

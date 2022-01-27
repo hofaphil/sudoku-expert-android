@@ -1,4 +1,4 @@
-package com.aol.philipphofer.sudokuTests;
+package com.aol.philipphofer;
 
 import com.aol.philipphofer.logic.Timer;
 
