@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 import static java.lang.Thread.sleep;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -13,13 +14,22 @@ import org.junit.runners.JUnit4;
 @RunWith(JUnit4.class)
 public class TimerTests {
 
+    private Timer.TimerListener timerListener;
+    private int time;
+
+    @Before
+    public void setup() {
+        this.timerListener = t -> time = t;
+    }
+
     /**
      * Constructor
      */
     @Test
     public void testTime() {
-        Timer t = new Timer();
+        Timer t = new Timer(this.timerListener);
         assertEquals(0, t.getTime());
+        assertEquals(0, time);
         assertFalse(t.isRunning());
     }
 
@@ -52,10 +62,11 @@ public class TimerTests {
      */
     @Test
     public void testStartTimer() {
-        Timer t = new Timer();
+        Timer t = new Timer(this.timerListener);
 
         t.startTimer(23);
         assertEquals(23, t.getTime());
+        assertEquals(23, time);
         assertTrue(t.isRunning());
 
         try {
@@ -65,6 +76,7 @@ public class TimerTests {
         }
 
         assertEquals(25, t.getTime());
+        assertEquals(25, time);
         assertTrue(t.isRunning());
     }
 
@@ -73,7 +85,7 @@ public class TimerTests {
      */
     @Test
     public void testStopTimer() {
-        Timer t = new Timer();
+        Timer t = new Timer(this.timerListener);
         t.startTimer(23);
 
         try {
@@ -83,11 +95,13 @@ public class TimerTests {
         }
 
         assertEquals(25, t.getTime());
+        assertEquals(25, time);
         assertTrue(t.isRunning());
 
         t.stopTimer();
 
         assertEquals(25, t.getTime());
+        assertEquals(25, time);
         assertFalse(t.isRunning());
 
         try {
@@ -97,6 +111,7 @@ public class TimerTests {
         }
 
         assertEquals(25, t.getTime());
+        assertEquals(25, time);
         assertFalse(t.isRunning());
     }
 
@@ -105,7 +120,7 @@ public class TimerTests {
      */
     @Test
     public void testKillTimer() {
-        Timer t = new Timer();
+        Timer t = new Timer(this.timerListener);
         t.startTimer(23);
 
         try {
@@ -115,11 +130,13 @@ public class TimerTests {
         }
 
         assertEquals(25, t.getTime());
+        assertEquals(25, time);
         assertTrue(t.isRunning());
 
         t.killTimer();
 
         assertEquals(25, t.getTime());
+        assertEquals(25, time);
         assertFalse(t.isRunning());
 
         try {
@@ -129,6 +146,7 @@ public class TimerTests {
         }
 
         assertEquals(25, t.getTime());
+        assertEquals(25, time);
         assertFalse(t.isRunning());
     }
 }

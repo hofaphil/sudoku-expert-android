@@ -4,13 +4,16 @@ import java.util.Locale;
 
 public class Timer {
 
+    private final TimerListener timerListener;
+
     private boolean stopped = false;
     private boolean running = false;
     private int time; // in seconds
 
-    public Timer() {
-        this.time = 0;
+    public Timer(TimerListener timerListener) {
+        this.timerListener = timerListener;
         this.init();
+        setTime(0);
     }
 
     private void init() {
@@ -21,8 +24,9 @@ public class Timer {
                     while (running) {
                         try {
                             sleep(1000);
-                            if (running)
-                                time++;
+                            if (running) {
+                                setTime(++time);
+                            }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -30,6 +34,11 @@ public class Timer {
                 }
             }
         }.start();
+    }
+
+    private void setTime(int time) {
+        this.time = time;
+        this.timerListener.timeUpdate(this.time);
     }
 
     public int getTime() {
@@ -41,7 +50,7 @@ public class Timer {
     }
 
     public void startTimer(int time) {
-        this.time = time;
+        setTime(time);
         this.running = true;
     }
 
@@ -62,5 +71,9 @@ public class Timer {
         if (hours > 0)
             return String.format(Locale.ENGLISH, "%d:%02d:%02d", hours, minutes, seconds);
         return String.format(Locale.ENGLISH, "%02d:%02d", minutes, seconds);
+    }
+
+    public interface TimerListener {
+        void timeUpdate(int time);
     }
 }
