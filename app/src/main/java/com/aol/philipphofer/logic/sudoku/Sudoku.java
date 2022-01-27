@@ -28,7 +28,7 @@ public class Sudoku {
         for (int k = 0; k < 9; k++)
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
-                    if (getNumber(new Position(i, j, k)).getNumber() == 0)
+                    if (getNumber(new Position(k, i, j)).getNumber() == 0)
                         freeFields++;
         return freeFields;
     }
@@ -38,7 +38,7 @@ public class Sudoku {
         for (int k = 0; k < 9; k++)
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
-                    if (getNumber(new Position(i, j, k)).isError())
+                    if (getNumber(new Position(k, i, j)).isError())
                         currentErrors++;
         return currentErrors;
     }

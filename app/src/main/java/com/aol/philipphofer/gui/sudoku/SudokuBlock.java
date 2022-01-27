@@ -30,6 +30,6 @@ public class SudokuBlock extends GridLayout {
     public void init(Block block, int parent) {
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                field[i][j].init(block.getNumbers()[i][j], new Position(i, j, parent));
+                field[i][j].init(block.getNumbers()[i][j], new Position(parent, i, j));
     }
 }

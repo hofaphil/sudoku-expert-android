@@ -23,7 +23,7 @@ class ShareClass {
         for (int b = 0; b < 9; b++)
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
-                    id.append(sudoku.getNumber(new Position(i, j, b)).getNumber());
+                    id.append(sudoku.getNumber(new Position(b, i, j)).getNumber());
 
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
@@ -58,7 +58,7 @@ class ShareClass {
         for (int b = 0; b < 9; b++)
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++) {
-                    Position p = new Position(i, j, b);
+                    Position p = new Position(b, i, j);
                     int number = Integer.parseInt(id.charAt(k++) + "");
                     Number n = new Number(number, number, false);
                     sudoku.setNumber(p, n);

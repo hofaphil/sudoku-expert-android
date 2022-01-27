@@ -26,7 +26,7 @@ public class SudokuTests {
 
     Sudoku testSudoku;
 
-    Position position = new Position(1, 2, 3);
+    Position position = new Position(3, 2, 1);
     private final int correctNumber = 3, falseNumber = 4;
 
     @Before

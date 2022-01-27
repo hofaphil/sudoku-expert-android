@@ -90,7 +90,7 @@ public class Data {
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++) {
                     try {
-                        Position position = new Position(i, j, h);
+                        Position position = new Position(h, i, j);
                         editor.putString(SUDOKU_FIELD_NAME + position, gson.toJson(sudoku.getNumber(position)));
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -106,7 +106,7 @@ public class Data {
         for (int h = 0; h < 9; h++)
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++) {
-                    Position position = new Position(i, j, h);
+                    Position position = new Position(h, i, j);
                     String sudokuJson = data.getString(SUDOKU_FIELD_NAME + position, "");
                     // TODO do we need to insert here, so that sudoku-vars like overallError etc. get restored?
                     if (sudokuJson != null && !sudokuJson.isEmpty())

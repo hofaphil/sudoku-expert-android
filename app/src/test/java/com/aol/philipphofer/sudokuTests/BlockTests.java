@@ -21,7 +21,7 @@ public class BlockTests {
 
     private Block testBlock;
 
-    Position position = new Position(1, 2, 3);
+    Position position = new Position(3, 1, 2);
     private final int correctNumber = 3, falseNumber = 4;
 
     @Before
