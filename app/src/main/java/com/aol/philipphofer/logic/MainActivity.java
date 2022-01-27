@@ -61,7 +61,7 @@ public class MainActivity extends CustomActivity {
         endCardDialog = new EndCardDialog(this);
 
         timer = new Timer();
-        timer.start();
+// TODO        timer.start();
 
         ViewTreeObserver observer = sudokuGrid.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {

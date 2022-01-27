@@ -1,32 +1,19 @@
 package com.aol.philipphofer.logic;
 
-import android.content.Context;
-
 import java.util.Locale;
-import java.util.Observable;
 
-public class Timer extends Observable {
+public class Timer {
 
     private boolean stopped = false;
     private boolean running = false;
-    private int time; //in sec
+    private int time; // in seconds
 
     public Timer() {
-        setTime(0);
+        this.time = 0;
+        this.init();
     }
 
-    public static String timeToString(int timeInSeconds) {
-
-        int hours = timeInSeconds / 3600;
-        int minutes = (timeInSeconds % 3600) / 60;
-        int seconds = timeInSeconds % 60;
-
-        if (hours > 0)
-            return String.format(Locale.ENGLISH, "%d:%02d:%02d", hours, minutes, seconds);
-        return String.format(Locale.ENGLISH, "%02d:%02d", minutes, seconds);
-    }
-
-    public void start() {
+    private void init() {
         new Thread() {
             @Override
             public void run() {
@@ -34,13 +21,11 @@ public class Timer extends Observable {
                     while (running) {
                         try {
                             sleep(1000);
-                            if (!MainActivity.pause)
+                            if (running)
                                 time++;
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        setChanged();
-                        notifyObservers();
                     }
                 }
             }
@@ -51,17 +36,13 @@ public class Timer extends Observable {
         return this.time;
     }
 
-    private void setTime(int time) {
-        this.time = time;
-    }
-
-    private void startTimer() {
-        running = true;
+    public boolean isRunning() {
+        return this.running;
     }
 
     public void startTimer(int time) {
-        this.setTime(time);
-        this.startTimer();
+        this.time = time;
+        this.running = true;
     }
 
     public void stopTimer() {
@@ -69,7 +50,17 @@ public class Timer extends Observable {
     }
 
     public void killTimer() {
+        this.stopTimer();
         this.stopped = true;
     }
 
+    public static String timeToString(int timeInSeconds) {
+        int hours = timeInSeconds / 3600;
+        int minutes = (timeInSeconds % 3600) / 60;
+        int seconds = timeInSeconds % 60;
+
+        if (hours > 0)
+            return String.format(Locale.ENGLISH, "%d:%02d:%02d", hours, minutes, seconds);
+        return String.format(Locale.ENGLISH, "%02d:%02d", minutes, seconds);
+    }
 }
