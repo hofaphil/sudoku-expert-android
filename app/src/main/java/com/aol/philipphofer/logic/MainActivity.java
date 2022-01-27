@@ -26,7 +26,7 @@ import com.aol.philipphofer.logic.sudoku.Number;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
 import com.google.android.gms.ads.AdView;
 
-public class MainActivity extends CustomActivity {
+public class MainActivity extends CustomActivity implements Timer.TimerListener {
 
     public Sudoku game; // the current game
 
@@ -61,7 +61,7 @@ public class MainActivity extends CustomActivity {
         endCardDialog = new EndCardDialog(this);
 
         timer = new Timer(this);
-        timer.start();
+        timer.startTimer(0);
 
         ViewTreeObserver observer = sudokuGrid.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -495,11 +495,15 @@ public class MainActivity extends CustomActivity {
             recreate();
     }
 
+    @Override
+    public void timeUpdate(int time) {
+        this.statusBar.setTime(time);
+    }
+
     // JNI
     static {
         System.loadLibrary("generator-jni");
     }
 
     public native Sudoku createSudokuNative(int freeFields);
-
 }
