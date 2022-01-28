@@ -59,7 +59,7 @@ public class Number extends Observable {
             this.insertNote(number);
         else
             this.insertNumber(number);
-        return this.isError();
+        return !this.isError();
     }
 
     private void insertNumber(int number) {
@@ -112,7 +112,30 @@ public class Number extends Observable {
     }
 
     public boolean isError() {
-        return !(number == 0 || number == solution);
+        return number != 0 && number != solution;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Number number1 = (Number) o;
+        return number == number1.number
+                && solution == number1.solution
+                && isChangeable == number1.isChangeable
+                && isNotes == number1.isNotes
+                && Arrays.equals(notes, number1.notes);
+    }
+
+    @Override
+    public String toString() {
+        return "Number{" +
+                "number=" + number +
+                ", solution=" + solution +
+                ", notes=" + Arrays.toString(notes) +
+                ", isChangeable=" + isChangeable +
+                ", isNotes=" + isNotes +
+                '}';
     }
 }
 

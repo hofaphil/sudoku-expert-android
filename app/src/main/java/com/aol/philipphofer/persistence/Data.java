@@ -47,7 +47,6 @@ public class Data {
     private Data(Context context) {
         data = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
         editor = data.edit();
-        editor.apply();
     }
 
     public static Data instance(Context context) {
@@ -58,8 +57,7 @@ public class Data {
 
     // datatype save and load methods
     public void saveInt(String key, int value) {
-        editor.putInt(key, value);
-        editor.apply();
+        editor.putInt(key, value).apply();
     }
 
     public int loadInt(String key) {
@@ -67,8 +65,7 @@ public class Data {
     }
 
     public void saveBoolean(String key, boolean bool) {
-        editor.putBoolean(key, bool);
-        editor.apply();
+        editor.putBoolean(key, bool).apply();
     }
 
     public boolean loadBoolean(String key) {
@@ -96,7 +93,7 @@ public class Data {
                         e.printStackTrace();
                     }
                 }
-        editor.apply();
+        editor.putInt(GAME_ERRORS, sudoku.overallErrors).apply();
     }
 
     public Sudoku loadSudoku() {
@@ -108,13 +105,12 @@ public class Data {
                 for (int j = 0; j < 3; j++) {
                     Position position = new Position(h, i, j);
                     String sudokuJson = data.getString(SUDOKU_FIELD_NAME + position, "");
-                    // TODO do we need to insert here, so that sudoku-vars like overallError etc. get restored?
                     if (sudokuJson != null && !sudokuJson.isEmpty())
                         sudoku.getSudoku()[h].getNumbers()[i][j] = gson.fromJson(sudokuJson, Number.class);
                     else
                         sudoku.getSudoku()[h].getNumbers()[i][j] = new Number();
                 }
-
+        sudoku.overallErrors = data.getInt(GAME_ERRORS, 0);
         return sudoku;
     }
 
@@ -128,6 +124,7 @@ public class Data {
         editor.apply();
     }
 
+    // TODO: change to statistics model
     public void addTime(int time, Difficulty difficulty) {
         int timesPlayed = loadInt(Data.STATISTICS_TIMESPLAYED + difficulty.getNumber()) + 1;
         int timeOverall = loadInt(Data.STATISTICS_TIMEOVERALL + difficulty.getNumber()) + time;

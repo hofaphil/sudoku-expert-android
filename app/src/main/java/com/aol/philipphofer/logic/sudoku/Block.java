@@ -2,6 +2,8 @@ package com.aol.philipphofer.logic.sudoku;
 
 import com.aol.philipphofer.logic.Position;
 
+import java.util.Arrays;
+
 public class Block {
 
     private final Number[][] numbers;
@@ -31,5 +33,13 @@ public class Block {
 
     public void setNumber(int row, int col, Number number) {
         this.numbers[row][col] = number;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Block block = (Block) o;
+        return Arrays.deepEquals(numbers, block.numbers);
     }
 }

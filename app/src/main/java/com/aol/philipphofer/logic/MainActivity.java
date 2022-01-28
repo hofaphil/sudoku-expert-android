@@ -186,7 +186,6 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
 
         timer.stopTimer();
         data.saveInt(Data.GAME_TIME, timer.getTime());
-        data.saveInt(Data.GAME_ERRORS, game.overallErrors);
     }
 
 

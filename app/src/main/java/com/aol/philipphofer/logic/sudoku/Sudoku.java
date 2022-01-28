@@ -2,6 +2,8 @@ package com.aol.philipphofer.logic.sudoku;
 
 import com.aol.philipphofer.logic.Position;
 
+import java.util.Arrays;
+
 public class Sudoku {
 
     private final Block[] blocks;
@@ -70,5 +72,13 @@ public class Sudoku {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sudoku sudoku = (Sudoku) o;
+        return overallErrors == sudoku.overallErrors && Arrays.equals(blocks, sudoku.blocks);
     }
 }

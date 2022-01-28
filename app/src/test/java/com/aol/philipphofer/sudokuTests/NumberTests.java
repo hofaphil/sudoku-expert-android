@@ -118,12 +118,12 @@ public class NumberTests {
         // insert note to check if it gets deleted right
         number.insert(correctNumber, true);
 
-        boolean error = number.insert(falseNumber, false);
+        boolean success = number.insert(falseNumber, false);
         assertTrue(number.isError());
-        assertTrue(error);
+        assertFalse(success);
 
-        error = number.insert(correctNumber, false);
-        assertFalse(error);
+        success = number.insert(correctNumber, false);
+        assertTrue(success);
 
         assertEquals(correctNumber, number.getNumber());
         assertEquals(correctNumber, number.getSolution());
@@ -138,12 +138,12 @@ public class NumberTests {
         boolean isChangeable = true;
         Number number = new Number(0, correctNumber, isChangeable);
 
-        boolean error = number.insert(falseNumber, false);
+        boolean success = number.insert(falseNumber, false);
         assertTrue(number.isError());
-        assertTrue(error);
+        assertFalse(success);
 
-        error = number.insert(falseNumber, false);
-        assertFalse(error);
+        success = number.insert(falseNumber, false);
+        assertTrue(success);
 
         assertEquals(0, number.getNumber());
         assertEquals(correctNumber, number.getSolution());
@@ -160,9 +160,9 @@ public class NumberTests {
         boolean[] expected = new boolean[9];
         expected[falseNumber - 1] = true;
 
-        boolean error = number.insert(falseNumber, true);
+        boolean success = number.insert(falseNumber, true);
 
-        assertFalse(error);
+        assertTrue(success);
         assertEquals(0, number.getNumber());
         assertEquals(correctNumber, number.getSolution());
         assertArrayEquals(expected, number.getNotes());
@@ -172,14 +172,14 @@ public class NumberTests {
     }
 
     @Test
-    public void testInsertNoteTwoTiems() {
+    public void testInsertNoteTwoTims() {
         boolean isChangeable = true;
         Number number = new Number(falseNumber, correctNumber, isChangeable);
 
         number.insert(falseNumber, true);
-        boolean error = number.insert(falseNumber, true);
+        boolean success = number.insert(falseNumber, true);
 
-        assertFalse(error);
+        assertTrue(success);
         assertEquals(0, number.getNumber());
         assertEquals(correctNumber, number.getSolution());
         assertArrayEquals(new boolean[9], number.getNotes());
