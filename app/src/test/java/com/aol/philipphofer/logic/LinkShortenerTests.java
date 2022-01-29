@@ -1,4 +1,4 @@
-package com.aol.philipphofer;
+package com.aol.philipphofer.logic;
 
 import com.aol.philipphofer.logic.help.LinkShortener;
 

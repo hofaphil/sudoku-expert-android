@@ -1,6 +1,4 @@
-package com.aol.philipphofer;
-
-import com.aol.philipphofer.logic.Timer;
+package com.aol.philipphofer.logic;
 
 import static org.junit.Assert.*;
 

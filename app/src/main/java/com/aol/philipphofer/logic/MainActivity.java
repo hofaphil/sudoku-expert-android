@@ -32,8 +32,8 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
 
     public StatusBar statusBar;
     public SudokuGrid sudokuGrid;
-    private Keyboard keyboard;
-    private EndCardDialog endCardDialog;
+    public Keyboard keyboard;
+    public EndCardDialog endCardDialog;
 
     private Position selected;
     private boolean isNotes;

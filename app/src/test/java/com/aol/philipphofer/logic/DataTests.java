@@ -1,8 +1,9 @@
-package com.aol.philipphofer;
+package com.aol.philipphofer.logic;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.aol.philipphofer.R;
 import com.aol.philipphofer.logic.Position;
 import com.aol.philipphofer.logic.sudoku.Number;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
@@ -11,6 +12,7 @@ import com.aol.philipphofer.persistence.Data;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -198,7 +200,7 @@ public class DataTests {
     @Test
     public void testSetGetTheme() {
         int theme = testData.getTheme();
-        assertEquals(R.style.AppTheme, theme);
+        Assert.assertEquals(R.style.AppTheme, theme);
 
         testData.saveTheme(2);
         assertEquals(R.style.AppTheme_Blue, testData.getTheme());
