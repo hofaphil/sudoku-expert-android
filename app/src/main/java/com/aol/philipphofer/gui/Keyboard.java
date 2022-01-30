@@ -49,38 +49,21 @@ public class Keyboard extends GridLayout implements View.OnClickListener {
         mainActivity.insert((int) view.getTag());
     }
 
-    public void activatePauseMode() {
-        for (int i = 0; i < 9; i++)
-            keys[i].setEnabled(false);
-
-        pauseButton.setBackgroundColor(MainActivity.getPrimaryColor(getContext()));
-        delButton.setEnabled(false);
-        notesButton.setEnabled(false);
-    }
-
-    public void deactivatePauseMode() {
-        for (int i = 0; i < 9; i++)
-            if (keys[i].getVisibility() == View.VISIBLE)
-                keys[i].setEnabled(true);
-        pauseButton.setBackgroundColor(getResources().getColor(R.color.transparent));
-        delButton.setEnabled(true);
-        notesButton.setEnabled(true);
-    }
-
-    public void activate() {
-        for (int i = 0; i < 9; i++)
-            keys[i].setEnabled(true);
+    public void pauseMode(boolean isPauseMode) {
+        activate(!isPauseMode);
         pauseButton.setEnabled(true);
-        delButton.setEnabled(true);
-        notesButton.setEnabled(true);
+
+        if (isPauseMode)
+            pauseButton.setBackgroundColor(MainActivity.getPrimaryColor(getContext()));
+        else
+            pauseButton.setBackgroundColor(getResources().getColor(R.color.transparent));
     }
 
-    public void deactivate() {
+    public void activate(boolean activate) {
         for (int i = 0; i < 9; i++)
-            keys[i].setEnabled(false);
-        pauseButton.setEnabled(false);
-        delButton.setEnabled(false);
-        notesButton.setEnabled(false);
+            keys[i].setEnabled(activate);
+        pauseButton.setEnabled(activate);
+        delButton.setEnabled(activate);
+        notesButton.setEnabled(activate);
     }
-
 }

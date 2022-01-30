@@ -110,13 +110,14 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
         super.onStart();
         System.out.println("onStart");
 
+        game = new Sudoku();
         // Load a game from data
         if (LOAD_MODE = data.getLoadmode()) {
             game = data.loadSudoku();
             sudokuGrid.init(game.getSudoku());
 
             statusBar.activate();
-            keyboard.activate();
+            keyboard.activate(true);
 
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
         }
@@ -133,7 +134,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
         if (!(LOAD_MODE = data.getLoadmode())) {
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING);
 
-            keyboard.deactivate();
+            keyboard.activate(false);
             statusBar.deactivate();
 
             if (!t.isAlive()) {
@@ -172,7 +173,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
 
             statusBar.activate();
-            keyboard.activate();
+            keyboard.activate(true);
 
             statusBar.setError(game.overallErrors);
 
@@ -462,13 +463,12 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
     }
 
     public boolean pauseGame() {
-        if (!pause) {
+        if (!pause)
             sudokuGrid.setVisibility(View.INVISIBLE);
-            keyboard.activatePauseMode();
-        } else {
+        else
             sudokuGrid.setVisibility(View.VISIBLE);
-            keyboard.deactivatePauseMode();
-        }
+        keyboard.pauseMode(!pause);
+
         pause = !pause;
         return pause;
     }
