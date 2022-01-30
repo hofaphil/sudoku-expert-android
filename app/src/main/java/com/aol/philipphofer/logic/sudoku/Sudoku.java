@@ -59,7 +59,7 @@ public class Sudoku {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("\n");
         for (int i = 0; i < 9; i = i + 3) {
             for (int k = 0; k < 3; k++) {
                 for (int j = i; j < i + 3; j++) {

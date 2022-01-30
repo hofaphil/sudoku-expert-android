@@ -28,23 +28,23 @@ import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends CustomActivity implements Timer.TimerListener {
 
-    public Sudoku game; // the current game
+    public Sudoku game;
 
     public StatusBar statusBar;
     public SudokuGrid sudokuGrid;
     public Keyboard keyboard;
     public EndCardDialog endCardDialog;
 
-    private Position selected;
-    private boolean isNotes;
-    public static boolean pause;
+    public Position selected;
+    public boolean isNotes;
+    public boolean pause;
 
-    private Timer timer;
+    public Timer timer;
 
     public static int MAX_ERROR = 3;
-    public static Difficulty DIFFICULTY = Difficulty.ADVANCED;
+    public static Difficulty DIFFICULTY = Difficulty.BEGINNER;
+
     public static boolean LOAD_MODE = false;
-    // TODO load a shared game
     public static boolean SHARED = false;
 
     private Thread t = new Thread();
@@ -108,9 +108,9 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
     @Override
     protected void onStart() {
         super.onStart();
-        System.out.println("onStart");
 
         game = new Sudoku();
+
         // Load a game from data
         if (LOAD_MODE = data.getLoadmode()) {
             game = data.loadSudoku();
@@ -152,18 +152,17 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
 
     public void heavyLoading() {
         timer.stopTimer();
-        // 7 * DIFFICULTY.getNumber() + 42
-        game = createSudokuNative(7 * DIFFICULTY.getNumber() + 42);
+        game = createSudokuNative(DIFFICULTY.getFreeFields());
 
-        LOAD_MODE = !LOAD_MODE;
-        data.setLoadmode(LOAD_MODE);
+        // game created -> save and set load-mode to load sudoku next time
         data.saveSudoku(game);
+        data.setLoadmode(LOAD_MODE = !LOAD_MODE);
 
         // save the setting that apply at first next game
         data.saveBoolean(Data.GAME_SHOW_ERRORS, data.loadBoolean(Data.SETTINGS_MARK_ERRORS));
         data.saveBoolean(Data.GAME_SHOW_TIME, data.loadBoolean(Data.SETTINGS_SHOW_TIME));
 
-        // reset errors and time
+        // reset game errors and time
         data.saveInt(Data.GAME_ERRORS, 0);
         data.saveInt(Data.GAME_TIME, 0);
 

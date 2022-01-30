@@ -15,13 +15,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.matcher.BoundedMatcher;
 import androidx.test.espresso.matcher.ViewMatchers;
@@ -33,8 +26,14 @@ import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Position;
 import com.aol.philipphofer.persistence.Data;
 
-import java.util.Random;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import java.util.Random;
 
 @RunWith(AndroidJUnit4.class)
 public class KeyboardTests {
