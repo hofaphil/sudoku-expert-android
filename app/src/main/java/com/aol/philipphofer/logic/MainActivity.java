@@ -116,7 +116,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
             game = data.loadSudoku();
             sudokuGrid.init(game.getSudoku());
 
-            statusBar.activate();
+            statusBar.activate(true);
             keyboard.activate(true);
 
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
@@ -135,7 +135,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING);
 
             keyboard.activate(false);
-            statusBar.deactivate();
+            statusBar.activate(false);
 
             if (!t.isAlive()) {
                 t = new Thread(this::heavyLoading);
@@ -171,7 +171,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
 
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
 
-            statusBar.activate();
+            statusBar.activate(true);
             keyboard.activate(true);
 
             statusBar.setError(game.overallErrors);

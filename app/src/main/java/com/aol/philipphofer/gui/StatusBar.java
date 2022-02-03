@@ -78,13 +78,12 @@ public class StatusBar extends RelativeLayout {
             PopupMenu popup = new PopupMenu(context, newButton);
             popup.getMenuInflater().inflate(R.menu.popup_new, popup.getMenu());
             popup.setOnMenuItemClickListener((MenuItem item) -> {
-                if (item.getItemId() == R.id.popup_advanced) {
+                if (item.getItemId() == R.id.popup_advanced)
                     Data.instance(context).saveInt(Data.GAME_DIFFICULTY, Difficulty.ADVANCED.getNumber());
-                } else if (item.getItemId() == R.id.popup_expert) {
+                else if (item.getItemId() == R.id.popup_expert)
                     Data.instance(context).saveInt(Data.GAME_DIFFICULTY, Difficulty.EXPERT.getNumber());
-                } else {
+                else
                     Data.instance(context).saveInt(Data.GAME_DIFFICULTY, Difficulty.BEGINNER.getNumber());
-                }
                 Data.instance(context).setLoadmode(false);
                 mainActivity.onResume();
                 return true;
@@ -98,17 +97,6 @@ public class StatusBar extends RelativeLayout {
         timeView = findViewById(R.id.timeView);
         difficultyView = findViewById(R.id.difficultyView);
         errorView = findViewById(R.id.errorView);
-    }
-
-    public void initView(Difficulty difficulty) {
-        difficultyView.setText(difficulty.getText(mainActivity));
-        if (!Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
-            errorView.setVisibility(View.INVISIBLE);
-        else
-            errorView.setVisibility(View.VISIBLE);
-
-        setDifficulty(Difficulty.ADVANCED);
-        setError(0);
     }
 
     public void setDifficulty(Difficulty difficulty) {
@@ -126,14 +114,9 @@ public class StatusBar extends RelativeLayout {
             this.timeView.setText("--:--");
     }
 
-    public void deactivate() {
-        moreButton.setEnabled(false);
-        newButton.setEnabled(false);
-    }
-
-    public void activate() {
-        moreButton.setEnabled(true);
-        newButton.setEnabled(true);
+    public void activate(boolean activate) {
+        moreButton.setEnabled(activate);
+        newButton.setEnabled(activate);
     }
 }
 
