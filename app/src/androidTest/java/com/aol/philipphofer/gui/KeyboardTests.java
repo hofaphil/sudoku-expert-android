@@ -7,16 +7,15 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.isNotEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static com.aol.philipphofer.helper.CustomMatchers.backgroundColor;
+import static com.aol.philipphofer.helper.CustomMatchers.btn;
+import static com.aol.philipphofer.helper.CustomMatchers.blocks;
+import static com.aol.philipphofer.helper.CustomMatchers.keys;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.not;
 
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-
 import androidx.test.espresso.ViewInteraction;
-import androidx.test.espresso.matcher.BoundedMatcher;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -26,8 +25,6 @@ import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Position;
 import com.aol.philipphofer.persistence.Data;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -37,20 +34,6 @@ import java.util.Random;
 
 @RunWith(AndroidJUnit4.class)
 public class KeyboardTests {
-
-    private static final int[] keys = {
-            R.id.num1, R.id.num2, R.id.num3, R.id.num4, R.id.num5, R.id.num6, R.id.num7, R.id.num8, R.id.num9
-    };
-
-    private static final int[][] btn = {
-            {R.id.btn00, R.id.btn01, R.id.btn02},
-            {R.id.btn10, R.id.btn11, R.id.btn12},
-            {R.id.btn20, R.id.btn21, R.id.btn22}
-    };
-
-    private static final int[] blocks = {
-            R.id.blk0, R.id.blk1, R.id.blk2, R.id.blk3, R.id.blk4, R.id.blk5, R.id.blk6, R.id.blk7, R.id.blk8
-    };
 
     private Position position;
 
@@ -217,25 +200,5 @@ public class KeyboardTests {
 
         // notes grid layout should have been inflated
         selectedFieldNotes.check(matches(isDisplayed()));
-    }
-
-    private static Matcher<View> backgroundColor(final int backgroundColorId) {
-        return new BoundedMatcher<View, View>(View.class) {
-            @Override
-            public boolean matchesSafely(final View view) {
-                Drawable background = view.getBackground();
-                if (background instanceof ColorDrawable) {
-                    int expected = ((ColorDrawable) background).getColor();
-                    int actual = view.getContext().getColor(backgroundColorId);
-                    return expected == actual;
-                }
-                return false;
-            }
-
-            @Override
-            public void describeTo(final Description description) {
-                description.appendText("The background color of the resource " + backgroundColorId);
-            }
-        };
     }
 }

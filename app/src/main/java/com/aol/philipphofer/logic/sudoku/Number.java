@@ -53,7 +53,7 @@ public class Number extends Observable {
     // changing methods
     public boolean insert(int number, boolean note) {
         if (!isChangeable())
-            return false;
+            return true;
 
         if (note)
             this.insertNote(number);

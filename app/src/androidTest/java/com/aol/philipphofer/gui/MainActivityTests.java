@@ -68,6 +68,7 @@ public class MainActivityTests {
     @Test
     public void testRestart() {
         Sudoku sudoku = new Sudoku();
+        sudoku.overallErrors = 1;
         final int gameTime = 300;
 
         mainActivity.onActivity(mainActivity -> {
@@ -89,6 +90,8 @@ public class MainActivityTests {
 
             // set new timer
             mainActivity.timer.startTimer(gameTime);
+
+            assertEquals(Difficulty.BEGINNER, MainActivity.DIFFICULTY);
         });
 
         // restart activity
@@ -100,6 +103,12 @@ public class MainActivityTests {
 
             // check for correct game-time
             assertEquals(gameTime, mainActivity.timer.getTime());
+
+            // check for same errors
+            assertEquals(1, mainActivity.game.currentErrors());
+            assertEquals(1, mainActivity.game.overallErrors);
+
+            assertEquals(Difficulty.BEGINNER, MainActivity.DIFFICULTY);
         });
     }
 }

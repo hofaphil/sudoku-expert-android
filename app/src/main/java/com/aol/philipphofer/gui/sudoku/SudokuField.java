@@ -116,9 +116,9 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
     public void lightSelect(boolean select) {
         if (!this.number.isError() || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS)) {
             if (select)
-                setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lineSelected));
+                setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lightSelected));
             else
-                setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lineUnselected));
+                setBackgroundColor(ContextCompat.getColor(getContext(), R.color.unselected));
         }
     }
 
