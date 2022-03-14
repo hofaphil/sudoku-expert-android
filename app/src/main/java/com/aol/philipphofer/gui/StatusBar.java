@@ -104,7 +104,10 @@ public class StatusBar extends RelativeLayout {
     }
 
     public void setError(int error) {
-        errorView.setText(getResources().getString(R.string.statusbar_errors, error, MainActivity.MAX_ERROR));
+        if (Data.instance(getContext()).loadBoolean(Data.GAME_SHOW_ERRORS))
+            errorView.setText(getResources().getString(R.string.statusbar_errors, error, MainActivity.MAX_ERROR));
+        else
+            errorView.setText(getResources().getString(R.string.statusbar_errors_not_enabled));
     }
 
     public void setTime(int time) {

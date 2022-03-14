@@ -12,6 +12,7 @@
     <string name="statusbar_settings">Settings</string>
     <string name="statusbar_statistics">Statistics</string>
     <string name="statusbar_errors">%1$d/%2$d Errors</string>
+    <string name="statusbar_errors_not_enabled">-/- Errors</string>
     <string name="statusbar_share">Share</string>
     <string name="statusbar_rate">Rate</string>
 

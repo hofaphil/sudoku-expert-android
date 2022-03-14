@@ -1,5 +1,7 @@
 package com.aol.philipphofer.logic;
 
+import static com.aol.philipphofer.persistence.Data.GAME_SHOW_ERRORS;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -159,7 +161,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
         data.setLoadmode(LOAD_MODE = !LOAD_MODE);
 
         // save the setting that apply at first next game
-        data.saveBoolean(Data.GAME_SHOW_ERRORS, data.loadBoolean(Data.SETTINGS_MARK_ERRORS));
+        data.saveBoolean(GAME_SHOW_ERRORS, data.loadBoolean(Data.SETTINGS_MARK_ERRORS));
         data.saveBoolean(Data.GAME_SHOW_TIME, data.loadBoolean(Data.SETTINGS_SHOW_TIME));
 
         // reset game errors and time
@@ -429,7 +431,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
     public void checkSudoku() {
         if (game.currentErrors() == 0 && game.freeFields() == 0)
             finishSudoku();
-        else {
+        else if (data.loadBoolean(GAME_SHOW_ERRORS)){
             this.checkErrors();
             if (game.overallErrors >= MAX_ERROR)
                 abortSudoku();

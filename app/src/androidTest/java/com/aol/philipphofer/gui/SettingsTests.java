@@ -2,12 +2,16 @@ package com.aol.philipphofer.gui;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static com.aol.philipphofer.helper.CustomMatchers.backgroundColor;
 import static com.aol.philipphofer.helper.CustomMatchers.blocks;
 import static com.aol.philipphofer.helper.CustomMatchers.btn;
+import static com.aol.philipphofer.persistence.Data.SETTINGS_MARK_ERRORS;
 import static com.aol.philipphofer.persistence.Data.SETTINGS_MARK_LINES;
 import static com.aol.philipphofer.persistence.Data.SETTINGS_MARK_NUMBERS;
 import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.not;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.ViewInteraction;
@@ -33,8 +37,8 @@ public class SettingsTests {
 
     @Before
     public void setup() {
-        mainActivity = ActivityScenario.launch(MainActivity.class);
         Data.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
+        mainActivity = ActivityScenario.launch(MainActivity.class);
     }
 
     @After
@@ -178,5 +182,79 @@ public class SettingsTests {
                     ));
                     field.check(matches(backgroundColor(R.color.unselected)));
                 }
+    }
+
+    @Test
+    public void testMarkErrors() {
+        Position position = new Position(0, 0, 0);
+
+        // With mark-errors on
+        mainActivity.onActivity(main -> {
+            // insert a wrong number
+            wrongNumberInserted:
+            for (int block = 0; block < 9; block++)
+                for (int row = 0; row < 3; row++)
+                    for (int col = 0; col < 3; col++) {
+                        Position pos = new Position(block, row, col);
+                        if (main.game.getNumber(pos).isChangeable()) {
+                            int solution = main.game.getNumber(pos).getSolution();
+                            main.select(pos);
+                            main.insert(solution == 9 ? solution - 1 : solution + 1);
+                            position.row = pos.row;
+                            position.column = pos.column;
+                            position.block = pos.block;
+                            break wrongNumberInserted;
+                        }
+                    }
+        });
+
+        ViewInteraction fieldWithWrongNumber = onView(allOf(
+                ViewMatchers.withId(btn[position.row][position.column]),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block]))
+        ));
+
+        fieldWithWrongNumber.check(matches(backgroundColor(R.color.error)));
+
+        ViewInteraction errorView = onView(ViewMatchers.withId(R.id.errorView));
+        errorView.check(matches(withText(InstrumentationRegistry
+                .getInstrumentation().getTargetContext().getResources()
+                .getString(R.string.statusbar_errors, 1, MainActivity.MAX_ERROR))));
+
+        // Restart app and create a new game
+        mainActivity.onActivity(main -> {
+            Data.instance(main).saveBoolean(SETTINGS_MARK_ERRORS, false);
+            Data.instance(main).setLoadmode(false);
+        });
+        mainActivity.recreate();
+
+        // With mark-errors off
+        mainActivity.onActivity(main -> {
+            // insert a wrong number
+            wrongNumberInserted:
+            for (int block = 0; block < 9; block++)
+                for (int row = 0; row < 3; row++)
+                    for (int col = 0; col < 3; col++) {
+                        Position pos = new Position(block, row, col);
+                        if (main.game.getNumber(pos).isChangeable()) {
+                            int solution = main.game.getNumber(pos).getSolution();
+                            main.select(pos);
+                            main.insert(solution == 9 ? solution - 1 : solution + 1);
+                            position.row = pos.row;
+                            position.column = pos.column;
+                            position.block = pos.block;
+                            break wrongNumberInserted;
+                        }
+                    }
+        });
+
+        fieldWithWrongNumber = onView(allOf(
+                ViewMatchers.withId(btn[position.row][position.column]),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block]))
+        ));
+
+        fieldWithWrongNumber.check(matches(backgroundColor(R.color.selected)));
+
+        errorView = onView(ViewMatchers.withId(R.id.errorView));
+        errorView.check(matches(withText(R.string.statusbar_errors_not_enabled)));
     }
 }

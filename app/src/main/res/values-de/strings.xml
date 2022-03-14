@@ -12,6 +12,7 @@
     <string name="statusbar_settings">Einstellungen</string>
     <string name="statusbar_statistics">Statistik</string>
     <string name="statusbar_errors">%1$d/%2$d Fehler</string>
+    <string name="statusbar_errors_not_enabled">-/- Fehler</string>
     <string name="statusbar_share">Teilen</string>
     <string name="statusbar_rate">Bewerten</string>
 
