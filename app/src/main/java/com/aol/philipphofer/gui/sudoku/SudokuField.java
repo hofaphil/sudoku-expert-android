@@ -109,6 +109,9 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
 
     @Override
     public void update(Observable observable, Object o) {
+        if (!(observable instanceof Number))
+            return;
+
         Number n = (Number) observable;
         this.error(n.isError());
 
@@ -119,6 +122,9 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
         this.switchLayout(n.isNotes());
         if (this.notesLayout != null)
             this.setNotes(n.getNotes());
+
+        // save changes to data
+        Data.instance(getContext()).saveGameNumber(n, position);
     }
 
     @Override

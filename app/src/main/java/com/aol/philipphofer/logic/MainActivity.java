@@ -277,7 +277,6 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
             checkNotes(selected, number);
             game.insert(number, selected, isNotes);
             // TODO two times this.selected, maybe this can be done nicer
-            data.saveGameNumber(game.getNumber(selected), selected);
             select(selected);
 
             // check if sudoku-game is finished
@@ -290,7 +289,6 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
             selectPartner(sudokuGrid.blocks[selected.block].field[selected.row][selected.column], false);
             game.delete(selected);
             // TODO two times this.selected, maybe this can be done nicer
-            data.saveGameNumber(game.getNumber(selected), selected);
             select(selected);
 
             // check new current errors
