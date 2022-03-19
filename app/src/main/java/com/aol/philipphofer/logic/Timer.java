@@ -54,6 +54,10 @@ public class Timer {
         this.running = true;
     }
 
+    public void startTimer() {
+        this.running = true;
+    }
+
     public void stopTimer() {
         this.running = false;
     }

@@ -339,10 +339,13 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
     }
 
     public boolean pauseGame() {
-        if (!pause)
+        if (!pause) {
             sudokuGrid.setVisibility(View.INVISIBLE);
-        else
+            timer.stopTimer();
+        } else {
             sudokuGrid.setVisibility(View.VISIBLE);
+            timer.startTimer();
+        }
         keyboard.pauseMode(!pause);
 
         pause = !pause;

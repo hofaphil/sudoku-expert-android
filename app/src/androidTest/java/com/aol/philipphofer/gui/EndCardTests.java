@@ -2,16 +2,10 @@ package com.aol.philipphofer.gui;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static com.aol.philipphofer.helper.AssertionHelpers.isNewGame;
-import static com.aol.philipphofer.helper.CustomMatchers.blocks;
-import static com.aol.philipphofer.helper.CustomMatchers.btn;
 import static com.aol.philipphofer.persistence.Data.GAME_DIFFICULTY;
-import static com.aol.philipphofer.persistence.Data.SETTINGS_MARK_ERRORS;
 import static com.aol.philipphofer.persistence.Data.STATISTICS_BESTTIME;
 import static com.aol.philipphofer.persistence.Data.STATISTICS_TIMEOVERALL;
 import static com.aol.philipphofer.persistence.Data.STATISTICS_TIMESPLAYED;
-
-import static org.hamcrest.CoreMatchers.allOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

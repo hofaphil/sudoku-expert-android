@@ -14,6 +14,8 @@ import static com.aol.philipphofer.helper.CustomMatchers.keys;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.matcher.ViewMatchers;
@@ -46,7 +48,6 @@ public class KeyboardTests {
     ViewInteraction selectedField;
     ViewInteraction selectedFieldNumber;
     ViewInteraction selectedFieldNotes;
-
 
     @Before
     public void setup() {
@@ -85,7 +86,11 @@ public class KeyboardTests {
 
         pauseButton.perform(click());
 
-        // everything should be disabled
+        // pause
+        mainActivity.getScenario().onActivity(main -> {
+            assertFalse(main.timer.isRunning());
+        });
+
         for (int key : keys)
             onView(ViewMatchers.withId(key)).check(matches(isNotEnabled()));
         noteButton.check(matches(isNotEnabled()));
@@ -97,7 +102,11 @@ public class KeyboardTests {
 
         pauseButton.perform(click());
 
-        // everything should be enabled again
+        // no pause
+        mainActivity.getScenario().onActivity(main -> {
+            assertTrue(main.timer.isRunning());
+        });
+
         for (int key : keys)
             onView(ViewMatchers.withId(key)).check(matches(isEnabled()));
         noteButton.check(matches(isEnabled()));
