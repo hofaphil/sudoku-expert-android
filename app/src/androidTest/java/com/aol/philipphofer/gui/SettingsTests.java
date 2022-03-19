@@ -2,7 +2,6 @@ package com.aol.philipphofer.gui;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static com.aol.philipphofer.helper.CustomMatchers.backgroundColor;
 import static com.aol.philipphofer.helper.CustomMatchers.blocks;
@@ -11,7 +10,8 @@ import static com.aol.philipphofer.persistence.Data.SETTINGS_MARK_ERRORS;
 import static com.aol.philipphofer.persistence.Data.SETTINGS_MARK_LINES;
 import static com.aol.philipphofer.persistence.Data.SETTINGS_MARK_NUMBERS;
 import static org.hamcrest.CoreMatchers.allOf;
-import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.ViewInteraction;
@@ -257,4 +257,95 @@ public class SettingsTests {
         errorView = onView(ViewMatchers.withId(R.id.errorView));
         errorView.check(matches(withText(R.string.statusbar_errors_not_enabled)));
     }
+
+    @Test
+    public void testShowTime() {
+        // With show-time off
+        mainActivity.onActivity(main -> {
+            Data.instance(main).saveBoolean(Data.SETTINGS_SHOW_TIME, false);
+            Data.instance(main).setLoadmode(false);
+        });
+
+        mainActivity.recreate();
+
+        ViewInteraction errorView = onView(ViewMatchers.withId(R.id.timeView));
+        errorView.check(matches(withText("--:--")));
+
+        // With show-time on
+        mainActivity.onActivity(main -> {
+            Data.instance(main).saveBoolean(Data.SETTINGS_SHOW_TIME, true);
+            Data.instance(main).setLoadmode(false);
+        });
+
+        mainActivity.recreate();
+
+        errorView = onView(ViewMatchers.withId(R.id.timeView));
+        errorView.check(matches(withText("00:00")));
+    }
+
+    @Test
+    public void testCheckNotes() {
+        final int number = 4;
+        boolean[] hasNote = new boolean[9];
+        hasNote[number - 1] = true;
+        boolean[] noNotes = new boolean[9];
+
+        Position numberPosition = new Position(0, 0, 0);
+        Position[] notePosition = {
+                new Position(2, 0, 0),
+                new Position(6, 0, 0),
+                new Position(0, 1, 1)
+        };
+
+        // With check-notes on
+        mainActivity.onActivity(main -> {
+            // clear sudoku
+            main.game = new Sudoku();
+            main.sudokuGrid.init(main.game.getSudoku());
+
+            main.notesMode();
+
+            for (int i = 0; i < 3; i++) {
+                main.select(notePosition[i]);
+                main.insert(number);
+            }
+
+            main.notesMode();
+            main.select(numberPosition);
+            main.insert(number);
+
+            for (int i = 0; i < 3; i++)
+                assertArrayEquals(noNotes, main.game.getNumber(notePosition[i]).getNotes());
+        });
+
+        // With check-notes off
+        mainActivity.onActivity(main -> {
+            Data.instance(main).saveBoolean(Data.SETTINGS_CHECK_NOTES, false);
+            Data.instance(main).setLoadmode(false);
+        });
+
+        mainActivity.onActivity(main -> {
+            // clear sudoku
+            main.game = new Sudoku();
+            main.sudokuGrid.init(main.game.getSudoku());
+
+            main.notesMode();
+
+            for (int i = 0; i < 3; i++) {
+                main.select(notePosition[i]);
+                main.insert(number);
+            }
+
+            main.notesMode();
+            main.select(numberPosition);
+            main.insert(number);
+
+            for (int i = 0; i < 3; i++) {
+                assertTrue(main.game.getNumber(notePosition[i]).isNotes());
+                assertArrayEquals(hasNote, main.game.getNumber(notePosition[i]).getNotes());
+            }
+        });
+    }
+
+    // TODO: colors, reset
 }
