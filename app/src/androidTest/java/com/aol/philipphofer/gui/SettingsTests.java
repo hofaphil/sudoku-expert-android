@@ -321,7 +321,6 @@ public class SettingsTests {
         // With check-notes off
         mainActivity.onActivity(main -> {
             Data.instance(main).saveBoolean(Data.SETTINGS_CHECK_NOTES, false);
-            Data.instance(main).setLoadmode(false);
         });
 
         mainActivity.onActivity(main -> {

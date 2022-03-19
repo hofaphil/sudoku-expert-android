@@ -124,14 +124,19 @@ public class Data {
         editor.apply();
     }
 
-    // TODO: change to statistics model
+    // TODO: change to a statistics model
     public void addTime(int time, Difficulty difficulty) {
+        // number of times played
         int timesPlayed = loadInt(Data.STATISTICS_TIMESPLAYED + difficulty.getNumber()) + 1;
-        int timeOverall = loadInt(Data.STATISTICS_TIMEOVERALL + difficulty.getNumber()) + time;
         saveInt(Data.STATISTICS_TIMESPLAYED + difficulty.getNumber(), timesPlayed);
+
+        // time overall played
+        int timeOverall = loadInt(Data.STATISTICS_TIMEOVERALL + difficulty.getNumber()) + time;
         saveInt(Data.STATISTICS_TIMEOVERALL + difficulty.getNumber(), timeOverall);
-        if (loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber()) > time ||
-                loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber()) == 0)
+
+        // save best-time
+        int oldBestTime = loadInt(Data.STATISTICS_BESTTIME + difficulty.getNumber());
+        if (oldBestTime > time || oldBestTime == 0)
             saveInt(Data.STATISTICS_BESTTIME + difficulty.getNumber(), time);
     }
 

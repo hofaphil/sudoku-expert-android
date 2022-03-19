@@ -1,5 +1,7 @@
 package com.aol.philipphofer.logic.sudoku;
 
+import com.aol.philipphofer.persistence.Data;
+
 import java.util.Arrays;
 import java.util.Observable;
 
@@ -13,14 +15,14 @@ public class Number extends Observable {
     private boolean isNotes;
 
     public Number() {
-        this.number = 0;
-        this.solution = 0;
+        number = 0;
+        solution = 0;
 
-        this.notes = new boolean[9];
-        Arrays.fill(this.notes, Boolean.FALSE);
+        notes = new boolean[9];
+        Arrays.fill(notes, Boolean.FALSE);
 
-        this.isChangeable = true;
-        this.isNotes = false;
+        isChangeable = true;
+        isNotes = false;
     }
 
     public Number(int number, int solution, boolean isChangeable) {
@@ -43,7 +45,7 @@ public class Number extends Observable {
     }
 
     public int getSolution() {
-        return this.solution;
+        return solution;
     }
 
     public void setSolution(int solution) {
@@ -56,41 +58,41 @@ public class Number extends Observable {
             return true;
 
         if (note)
-            this.insertNote(number);
+            insertNote(number);
         else
-            this.insertNumber(number);
-        return !this.isError();
+            insertNumber(number);
+        return !isError();
     }
 
     private void insertNumber(int number) {
         if (number == this.number)
             delete();
         else {
-            if (isNotes)
+            if (this.isNotes)
                 delete();
             this.isNotes = false;
             this.number = number;
             setChanged();
-            this.notifyObservers();
+            notifyObservers();
         }
     }
 
     private void insertNote(int number) {
         this.number = 0;
         this.isNotes = true;
-        notes[number - 1] = !notes[number - 1];
+        this.notes[number - 1] = !this.notes[number - 1];
         setChanged();
-        this.notifyObservers();
+        notifyObservers();
     }
 
     public void delete() {
         if (isChangeable()) {
-            this.number = 0;
+            number = 0;
             for (int i = 0; i < 9; i++) {
                 notes[i] = false;
             }
             setChanged();
-            this.notifyObservers();
+            notifyObservers();
         }
     }
 
@@ -98,17 +100,17 @@ public class Number extends Observable {
         if (this.notes[number - 1]) {
             this.notes[number - 1] = false;
             setChanged();
-            this.notifyObservers();
+            notifyObservers();
         }
     }
 
     // flags
     public boolean isChangeable() {
-        return this.isChangeable;
+        return isChangeable;
     }
 
     public boolean isNotes() {
-        return this.isNotes;
+        return isNotes;
     }
 
     public boolean isError() {

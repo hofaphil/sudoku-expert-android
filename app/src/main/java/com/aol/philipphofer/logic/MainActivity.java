@@ -51,6 +51,18 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
 
     private Thread t = new Thread();
 
+    private final static int[][] partnerBlockLookup = {
+            {1, 2, 3, 6},
+            {0, 2, 4, 7},
+            {0, 1, 5, 8},
+            {4, 5, 0, 6},
+            {3, 5, 1, 7},
+            {3, 4, 2, 8},
+            {7, 8, 0, 3},
+            {6, 8, 1, 4},
+            {6, 7, 2, 5},
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -225,87 +237,19 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
                             sudokuGrid.blocks[i].field[a][b].lightSelect(select);
             }
         if (data.loadBoolean(Data.SETTINGS_MARK_LINES)) {
+            // own block
             for (int i = 0; i < 3; i++) {
                 if (i != sudokuField.position.column)
                     sudokuGrid.blocks[sudokuField.position.block].field[sudokuField.position.row][i].lightSelect(select);
                 if (i != sudokuField.position.row)
                     sudokuGrid.blocks[sudokuField.position.block].field[i][sudokuField.position.column].lightSelect(select);
             }
-            switch (sudokuField.position.block) {
-                case 0:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].lightSelect(select);
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].lightSelect(select);
-                    }
-                    break;
-                case 1:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].lightSelect(select);
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].lightSelect(select);
-                    }
-                    break;
-                case 2:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].lightSelect(select);
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].lightSelect(select);
-                    }
-                    break;
-                case 3:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].lightSelect(select);
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].lightSelect(select);
-                    }
-                    break;
-                case 4:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].lightSelect(select);
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].lightSelect(select);
-                    }
-                    break;
-                case 5:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].lightSelect(select);
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].lightSelect(select);
-                    }
-                    break;
-                case 6:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].lightSelect(select);
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].lightSelect(select);
-                    }
-                    break;
-                case 7:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].lightSelect(select);
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].lightSelect(select);
-                    }
-                    break;
-                case 8:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].lightSelect(select);
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].lightSelect(select);
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].lightSelect(select);
-                    }
-                    break;
-                default:
-                    break;
+            // other blocks
+            for (int i = 0; i < 3; i++) {
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][0]].field[sudokuField.position.row][i].lightSelect(select);
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][1]].field[sudokuField.position.row][i].lightSelect(select);
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][2]].field[i][sudokuField.position.column].lightSelect(select);
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][3]].field[i][sudokuField.position.column].lightSelect(select);
             }
         }
     }
@@ -313,85 +257,16 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
     private void checkNotes(Position position, int number) {
         if (data.loadBoolean(Data.SETTINGS_CHECK_NOTES) && !isNotes) {
             Block[] gameBlock = game.getSudoku();
+            // own block
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
                     gameBlock[position.block].getNumbers()[i][j].checkNote(number);
-
-            switch (position.block) {
-                case 0:
-                    for (int i = 0; i < 3; i++) {
-                        gameBlock[1].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[2].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[3].getNumbers()[i][position.column].checkNote(number);
-                        gameBlock[6].getNumbers()[i][position.column].checkNote(number);
-                    }
-                    break;
-                case 1:
-                    for (int i = 0; i < 3; i++) {
-                        gameBlock[0].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[2].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[4].getNumbers()[i][position.column].checkNote(number);
-                        gameBlock[7].getNumbers()[i][position.column].checkNote(number);
-                    }
-                    break;
-                case 2:
-                    for (int i = 0; i < 3; i++) {
-                        gameBlock[0].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[1].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[5].getNumbers()[i][position.column].checkNote(number);
-                        gameBlock[8].getNumbers()[i][position.column].checkNote(number);
-                    }
-                    break;
-                case 3:
-                    for (int i = 0; i < 3; i++) {
-                        gameBlock[4].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[5].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[0].getNumbers()[i][position.column].checkNote(number);
-                        gameBlock[6].getNumbers()[i][position.column].checkNote(number);
-                    }
-                    break;
-                case 4:
-                    for (int i = 0; i < 3; i++) {
-                        gameBlock[3].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[5].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[1].getNumbers()[i][position.column].checkNote(number);
-                        gameBlock[7].getNumbers()[i][position.column].checkNote(number);
-                    }
-                    break;
-                case 5:
-                    for (int i = 0; i < 3; i++) {
-                        gameBlock[3].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[4].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[2].getNumbers()[i][position.column].checkNote(number);
-                        gameBlock[8].getNumbers()[i][position.column].checkNote(number);
-                    }
-                    break;
-                case 6:
-                    for (int i = 0; i < 3; i++) {
-                        gameBlock[7].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[8].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[0].getNumbers()[i][position.column].checkNote(number);
-                        gameBlock[3].getNumbers()[i][position.column].checkNote(number);
-                    }
-                    break;
-                case 7:
-                    for (int i = 0; i < 3; i++) {
-                        gameBlock[6].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[8].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[1].getNumbers()[i][position.column].checkNote(number);
-                        gameBlock[4].getNumbers()[i][position.column].checkNote(number);
-                    }
-                    break;
-                case 8:
-                    for (int i = 0; i < 3; i++) {
-                        gameBlock[6].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[7].getNumbers()[position.row][i].checkNote(number);
-                        gameBlock[2].getNumbers()[i][position.column].checkNote(number);
-                        gameBlock[5].getNumbers()[i][position.column].checkNote(number);
-                    }
-                    break;
-                default:
-                    break;
+            // other blocks
+            for (int i = 0; i < 3; i++) {
+                gameBlock[partnerBlockLookup[position.block][0]].getNumbers()[position.row][i].checkNote(number);
+                gameBlock[partnerBlockLookup[position.block][1]].getNumbers()[position.row][i].checkNote(number);
+                gameBlock[partnerBlockLookup[position.block][2]].getNumbers()[i][position.column].checkNote(number);
+                gameBlock[partnerBlockLookup[position.block][3]].getNumbers()[i][position.column].checkNote(number);
             }
         }
     }
@@ -431,7 +306,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
     public void checkSudoku() {
         if (game.currentErrors() == 0 && game.freeFields() == 0)
             finishSudoku();
-        else if (data.loadBoolean(GAME_SHOW_ERRORS)){
+        else if (data.loadBoolean(GAME_SHOW_ERRORS)) {
             this.checkErrors();
             if (game.overallErrors >= MAX_ERROR)
                 abortSudoku();

@@ -42,26 +42,6 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
         numberView.setOnClickListener(this);
     }
 
-    /* public void init(Number number, Position position) {
-        this.position = position;
-
-        isNotes = false;
-        // TODO: kann die nächste Zeile weg?
-        setNumber(0);
-        switchLayout(isNotes);
-        error = false;
-
-        setNumber(number);
-        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.unselected));
-        if (number > 0) {
-            setChangeable(false);
-            setNumberViewText("" + number);
-        } else {
-            setNumberViewText("");
-            setChangeable(true);
-        }
-    } */
-
     public void init(Number number, Position position) {
         this.position = position;
         this.number = number;
@@ -74,16 +54,6 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
 
         this.update(this.number, null);
     }
-
-    /* public void load(Position position) {
-        this.position = position;
-        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.unselected));
-        Data data = Data.instance(mainActivity);
-        data.loadField(this);
-        if (getError())
-            if (Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
-                this.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.error));
-    } */
 
     public void switchLayout(boolean isNotes) {
         if (isNotes) {
