@@ -43,6 +43,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
 
     public Timer timer;
 
+    // TODO: not static!
     public static int MAX_ERROR = 3;
     public static Difficulty DIFFICULTY = Difficulty.BEGINNER;
 
