@@ -26,6 +26,5 @@ public class AssertionHelpers {
                         assertArrayEquals(new boolean[9], n.getNotes());
                     }
                 }
-
     }
 }

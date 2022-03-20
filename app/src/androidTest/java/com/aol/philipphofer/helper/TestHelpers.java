@@ -13,4 +13,8 @@ public class TestHelpers {
     public static void waitForView() {
         wait(1000);
     }
+
+    public static int generateFalseNumber(int solution) {
+        return solution == 9 ? 8 : solution + 1;
+    }
 }
