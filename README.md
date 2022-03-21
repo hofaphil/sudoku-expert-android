@@ -22,3 +22,14 @@ A app to play free and unlimited Sudoku with three difficulties to choose.
     <img src="https://philipphofer.de/img/google-play-badge.png" width="25%">
   </a>
 </p>
+
+### :hammer: Build
+To build this project yourself you need to follow this steps:
+1. Install the Android SDK
+2. Clone the project
+3. Open the project with Android Studio
+4. Run the `cloneGenerator.sh` script to clone the necessary C-files for Sudoku-generation from the [sudoku-expert-generator](https://github.com/hofaphil/sudoku-expert-generator) repo
+5. Build the app :white_check_mark:
+
+### :clipboard: Tests
+The project contains basic unit and integration tests. They are located in the `app/src/test` and the `app/src/androidTest` directory. The tests can be run comfortably with Android Studio.
