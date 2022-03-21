@@ -18,7 +18,7 @@ A app to play free and unlimited Sudoku with three difficulties to choose.
 - [x] **Sharing**: Share your Sudoku with a friend.
  
 <p align="center">
-  <a href=href="https://play.google.com/store/apps/details?id=com.aol.philipphofer">
+  <a href="https://play.google.com/store/apps/details?id=com.aol.philipphofer">
     <img src="https://philipphofer.de/img/google-play-badge.png" width="25%">
   </a>
 </p>
