@@ -78,7 +78,7 @@ Java_com_aol_philipphofer_logic_ShareClass_solveSudokuNative(JNIEnv *env, jobjec
     for (int b = 0; b < 9; b++)
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
-                jobject jPosition = (*env)->NewObject(env, jPositionClass, jNewPosition, i, j, b);
+                jobject jPosition = (*env)->NewObject(env, jPositionClass, jNewPosition, b, i, j);
                 jobject jNumber = (*env)->CallObjectMethod(env, jSudoku, jGetNumber, jPosition);
                 sudoku->blocks[b].numbers[i][j] = (*env)->CallIntMethod(env, jNumber, jGetNumberValue);
             }
@@ -94,7 +94,7 @@ Java_com_aol_philipphofer_logic_ShareClass_solveSudokuNative(JNIEnv *env, jobjec
     for (int b = 0; b < 9; b++)
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
-                jobject jPosition = (*env)->NewObject(env, jPositionClass, jNewPosition, i, j, b);
+                jobject jPosition = (*env)->NewObject(env, jPositionClass, jNewPosition, b, i, j);
                 jobject jNumber = (*env)->CallObjectMethod(env, jSudoku, jGetNumber, jPosition);
                 (*env)->CallVoidMethod(env, jNumber, jSetSolutionValue, sudoku->solution[b].numbers[i][j]);
             }
