@@ -16,7 +16,7 @@ class ShareClass {
     // TODO: change to new url
     private static final String URL = "https://philipphofer.de/";
 
-    static void share(Sudoku sudoku, Activity context) {
+    static String share(Sudoku sudoku, Activity context) {
         StringBuilder id = new StringBuilder();
         id.append(MainActivity.DIFFICULTY.getNumber());
 
@@ -29,10 +29,12 @@ class ShareClass {
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Sudoku");
 
-        String shareMessage = context.getResources().getString(R.string.share_description) + "\n\n";
-        shareMessage = shareMessage + URL + "share?id=" + LinkShortener.getLink(id.toString()) + "\n";
-        shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+        String shareMessage = context.getResources().getString(R.string.share_description);
+        String shareLink = URL + "share?id=" + LinkShortener.getLink(id.toString());
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage + "\n\n" + shareLink + "\n");
         context.startActivity(Intent.createChooser(shareIntent, context.getResources().getString(R.string.share_title)));
+
+        return shareLink;
     }
 
     // TODO: change exceptions
@@ -60,7 +62,7 @@ class ShareClass {
                 for (int j = 0; j < 3; j++) {
                     Position p = new Position(b, i, j);
                     int number = Integer.parseInt(id.charAt(k++) + "");
-                    Number n = new Number(number, number, false);
+                    Number n = new Number(number, number, number == 0);
                     sudoku.setNumber(p, n);
                 }
 

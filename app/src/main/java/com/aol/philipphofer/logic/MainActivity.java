@@ -352,12 +352,13 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
         return pause;
     }
 
-    public void share() {
+    public String share() {
         try {
-            ShareClass.share(game, this);
+            return ShareClass.share(game, this);
         } catch (Exception e) {
             new CustomToast(this, getResources().getString(R.string.error_default)).show();
         }
+        return "";
     }
 
     public static int getPrimaryColor(Context context) {
