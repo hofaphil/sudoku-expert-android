@@ -6,9 +6,9 @@ import android.content.SharedPreferences;
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.logic.Position;
 import com.aol.philipphofer.logic.help.Difficulty;
+import com.aol.philipphofer.logic.help.NumberSerializer;
 import com.aol.philipphofer.logic.sudoku.Number;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
-import com.google.gson.Gson;
 
 public class Data {
 
@@ -78,17 +78,16 @@ public class Data {
 
     // sudoku save and load methods
     public void saveGameNumber(Number number, Position position) {
-        editor.putString(SUDOKU_FIELD_NAME + position, new Gson().toJson(number)).apply();
+        editor.putString(SUDOKU_FIELD_NAME + position, NumberSerializer.numberToString(number)).apply();
     }
 
     public void saveSudoku(Sudoku sudoku) {
-        Gson gson = new Gson();
         for (int h = 0; h < 9; h++)
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++) {
                     try {
                         Position position = new Position(h, i, j);
-                        editor.putString(SUDOKU_FIELD_NAME + position, gson.toJson(sudoku.getNumber(position)));
+                        editor.putString(SUDOKU_FIELD_NAME + position, NumberSerializer.numberToString(sudoku.getNumber(position)));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -97,16 +96,15 @@ public class Data {
     }
 
     public Sudoku loadSudoku() {
-        Gson gson = new Gson();
         Sudoku sudoku = new Sudoku();
 
         for (int h = 0; h < 9; h++)
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++) {
                     Position position = new Position(h, i, j);
-                    String sudokuJson = data.getString(SUDOKU_FIELD_NAME + position, "");
-                    if (sudokuJson != null && !sudokuJson.isEmpty())
-                        sudoku.getSudoku()[h].getNumbers()[i][j] = gson.fromJson(sudokuJson, Number.class);
+                    String numberString = data.getString(SUDOKU_FIELD_NAME + position, "");
+                    if (numberString != null && !numberString.isEmpty())
+                        sudoku.getSudoku()[h].getNumbers()[i][j] = NumberSerializer.numberFromString(numberString);
                     else
                         sudoku.getSudoku()[h].getNumbers()[i][j] = new Number();
                 }

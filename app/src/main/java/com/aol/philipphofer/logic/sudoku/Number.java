@@ -1,7 +1,5 @@
 package com.aol.philipphofer.logic.sudoku;
 
-import com.aol.philipphofer.persistence.Data;
-
 import java.util.Arrays;
 import java.util.Observable;
 
@@ -34,6 +32,14 @@ public class Number extends Observable {
 
         this.isChangeable = isChangeable;
         this.isNotes = false;
+    }
+
+    public Number(int number, int solution, boolean[] notes, boolean isNotes, boolean isChangeable) {
+        this.number = number;
+        this.solution = solution;
+        this.isChangeable = isChangeable;
+        this.isNotes = isNotes;
+        this.notes = notes;
     }
 
     public int getNumber() {
