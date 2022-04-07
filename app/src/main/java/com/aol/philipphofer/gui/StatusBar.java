@@ -78,63 +78,48 @@ public class StatusBar extends RelativeLayout {
             PopupMenu popup = new PopupMenu(context, newButton);
             popup.getMenuInflater().inflate(R.menu.popup_new, popup.getMenu());
             popup.setOnMenuItemClickListener((MenuItem item) -> {
-                if (item.getItemId() == R.id.popup_advanced) {
+                if (item.getItemId() == R.id.popup_advanced)
                     Data.instance(context).saveInt(Data.GAME_DIFFICULTY, Difficulty.ADVANCED.getNumber());
-                } else if (item.getItemId() == R.id.popup_expert) {
+                else if (item.getItemId() == R.id.popup_expert)
                     Data.instance(context).saveInt(Data.GAME_DIFFICULTY, Difficulty.EXPERT.getNumber());
-                } else {
+                else
                     Data.instance(context).saveInt(Data.GAME_DIFFICULTY, Difficulty.BEGINNER.getNumber());
-                }
                 Data.instance(context).setLoadmode(false);
                 mainActivity.onResume();
                 return true;
             });
 
-            @SuppressLint("RestrictedApi") MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popup.getMenu(), newButton);
+            MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popup.getMenu(), newButton);
             menuHelper.setForceShowIcon(true);
             menuHelper.show();
         });
 
         timeView = findViewById(R.id.timeView);
-
         difficultyView = findViewById(R.id.difficultyView);
-        initDifficultyView();
-
         errorView = findViewById(R.id.errorView);
-        errorView.setText(getResources().getString(R.string.statusbar_errors, mainActivity.getErrors(), MainActivity.MAXERROR));
-        initError();
     }
 
-    public void initDifficultyView() {
-        difficultyView.setText(MainActivity.DIFFICULTY.getText(getContext()));
+    public void setDifficulty(Difficulty difficulty) {
+        difficultyView.setText(difficulty.getText(getContext()));
     }
 
-    public void initError() {
-        if (!Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
-            errorView.setVisibility(View.INVISIBLE);
+    public void setError(int error) {
+        if (Data.instance(getContext()).loadBoolean(Data.GAME_SHOW_ERRORS))
+            errorView.setText(getResources().getString(R.string.statusbar_errors, error, MainActivity.MAX_ERROR));
         else
-            errorView.setVisibility(View.VISIBLE);
-    }
-
-    public void setError() {
-        errorView.setText(getResources().getString(R.string.statusbar_errors, mainActivity.getErrors(), MainActivity.MAXERROR));
+            errorView.setText(getResources().getString(R.string.statusbar_errors_not_enabled));
     }
 
     public void setTime(int time) {
-        if (Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_TIME))
+        if (Data.instance(getContext()).loadBoolean(Data.GAME_SHOW_TIME))
             this.timeView.setText(Timer.timeToString(time));
         else
             this.timeView.setText("--:--");
     }
 
-    public void deactivate() {
-        moreButton.setEnabled(false);
-        newButton.setEnabled(false);
-    }
-
-    public void activate() {
-        moreButton.setEnabled(true);
-        newButton.setEnabled(true);
+    public void activate(boolean activate) {
+        moreButton.setEnabled(activate);
+        newButton.setEnabled(activate);
     }
 }
 

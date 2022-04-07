@@ -2,17 +2,17 @@ package com.aol.philipphofer.logic;
 
 public class Position {
 
-    public int row, column, parent;
+    public int row, column, block;
 
-    public Position(int row, int column, int parent) {
+    public Position(int block, int row, int column) {
         this.row = row;
         this.column = column;
-        this.parent = parent;
+        this.block = block;
     }
 
     @Override
     public String toString() {
-        return "Position in block[" + parent + "] and row = " + row + " column = " + column;
+        return "[" + block + "][" + row + "][" + column + "]";
     }
 
     @Override
@@ -20,6 +20,6 @@ public class Position {
         if(!o.getClass().equals(this.getClass()))
             return false;
         Position p = (Position) o;
-        return p.parent == this.parent && p.row == this.row && p.column == this.column;
+        return p.block == this.block && p.row == this.row && p.column == this.column;
     }
 }

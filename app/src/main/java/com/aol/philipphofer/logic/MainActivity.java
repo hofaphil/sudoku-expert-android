@@ -1,5 +1,7 @@
 package com.aol.philipphofer.logic;
 
+import static com.aol.philipphofer.persistence.Data.GAME_SHOW_ERRORS;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,41 +23,50 @@ import com.aol.philipphofer.gui.sudoku.SudokuField;
 import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
-import com.aol.philipphofer.sudoku.Sudoku;
+import com.aol.philipphofer.logic.sudoku.Block;
+import com.aol.philipphofer.logic.sudoku.Number;
+import com.aol.philipphofer.logic.sudoku.Sudoku;
 import com.google.android.gms.ads.AdView;
 
-import java.util.Arrays;
-import java.util.Collections;
+public class MainActivity extends CustomActivity implements Timer.TimerListener {
 
-public class MainActivity extends CustomActivity {
-
-    private int errors;
-    private int freeFields; //loaded indirect by fields
-    private int[] numberCount;
+    public Sudoku game;
 
     public StatusBar statusBar;
     public SudokuGrid sudokuGrid;
-    private Keyboard keyboard;
-    public Sudoku sudoku;
-    private EndCardDialog endCardDialog;
-    private SudokuField selected;
-    private boolean notes;
-    public static boolean pause;
+    public Keyboard keyboard;
+    public EndCardDialog endCardDialog;
 
-    private Timer timer;
+    public Position selected;
+    public boolean isNotes;
+    public boolean pause;
 
-    public static int MAXERROR = 3;
-    public static Difficulty DIFFICULTY = Difficulty.ADVANCED;
-    public static boolean LOADMODE = false;
+    public Timer timer;
+
+    // TODO: not static!
+    public static int MAX_ERROR = 3;
+    public static Difficulty DIFFICULTY = Difficulty.BEGINNER;
+
+    public static boolean LOAD_MODE = false;
     public static boolean SHARED = false;
 
     private Thread t = new Thread();
 
+    private final static int[][] partnerBlockLookup = {
+            {1, 2, 3, 6},
+            {0, 2, 4, 7},
+            {0, 1, 5, 8},
+            {4, 5, 0, 6},
+            {3, 5, 1, 7},
+            {3, 4, 2, 8},
+            {7, 8, 0, 3},
+            {6, 8, 1, 4},
+            {6, 7, 2, 5},
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
 
         setContentView(R.layout.activity_main);
 
@@ -65,7 +76,7 @@ public class MainActivity extends CustomActivity {
         endCardDialog = new EndCardDialog(this);
 
         timer = new Timer(this);
-        timer.start();
+        timer.startTimer(0);
 
         ViewTreeObserver observer = sudokuGrid.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -113,31 +124,16 @@ public class MainActivity extends CustomActivity {
     protected void onStart() {
         super.onStart();
 
-        if (endCardDialog.isShowing())
-            return;
+        game = new Sudoku();
 
-        if (LOADMODE = data.getLoadmode()) {
-            setFreeFields(81);
-            DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
-            numberCount = new int[9];
-            sudoku = new Sudoku(4);
+        // Load a game from data
+        if (LOAD_MODE = data.getLoadmode()) {
+            game = data.loadSudoku();
+            sudokuGrid.init(game.getSudoku());
 
-            data.loadSolution(sudoku);
-            data.loadSudoku(sudoku);
+            statusBar.activate(true);
+            keyboard.activate(true);
 
-            if (SHARED) {
-                sudokuGrid.init(sudoku.getSudoku());
-                SHARED = false;
-            } else
-                for (int i = 0; i < 9; i++)
-                    for (int a = 0; a < 3; a++)
-                        for (int b = 0; b < 3; b++)
-                            sudokuGrid.blocks[i].field[a][b].load(new Position(a, b, i));
-
-            setErrors(data.loadInt(Data.GAME_ERRORS));
-
-            statusBar.initDifficultyView();
-            statusBar.activate();
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
         }
     }
@@ -149,63 +145,53 @@ public class MainActivity extends CustomActivity {
         pause = true;
         pauseGame();
 
-        if (endCardDialog.isShowing())
-            return;
-
-        // TODO selected sometimes still shown, sometimes not (after showing dialog)
-        // TODO when new game menu open and you open app again, not in pause mode but dialog still shown!
-
-        if (!(LOADMODE = data.getLoadmode())) {
+        // create a new game
+        if (!(LOAD_MODE = data.getLoadmode())) {
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING);
 
-            keyboard.deactivate();
-            statusBar.deactivate();
+            keyboard.activate(false);
+            statusBar.activate(false);
 
             if (!t.isAlive()) {
-                setFreeFields(81);
-                DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
-                numberCount = new int[9];
-                sudoku = new Sudoku(8);
-                for (int i = 0; i < 9; i++)
-                    keyboard.activateNumber(i + 1);
-                setErrors(0);
                 t = new Thread(this::heavyLoading);
                 t.start();
             }
         } else {
             getWindow().getDecorView().post(() -> timer.startTimer(data.loadInt(Data.GAME_TIME)));
         }
+
+        DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
+        statusBar.setDifficulty(DIFFICULTY);
+        statusBar.setError(game.overallErrors);
     }
 
     public void heavyLoading() {
         timer.stopTimer();
-        sudoku.create(DIFFICULTY.getNumber());
+        game = createSudokuNative(DIFFICULTY.getFreeFields());
 
-        LOADMODE = !LOADMODE;
-        data.setLoadmode(LOADMODE);
-        data.saveSolution(sudoku.getSolution());
-        data.saveSudoku(sudoku.getSudoku());
-        data.saveBoolean(Data.GAME_SHOW_ERRORS, data.loadBoolean(Data.SETTINGS_MARK_ERRORS));
+        // game created -> save and set load-mode to load sudoku next time
+        data.saveSudoku(game);
+        data.setLoadmode(LOAD_MODE = !LOAD_MODE);
+
+        // save the setting that apply at first next game
+        data.saveBoolean(GAME_SHOW_ERRORS, data.loadBoolean(Data.SETTINGS_MARK_ERRORS));
         data.saveBoolean(Data.GAME_SHOW_TIME, data.loadBoolean(Data.SETTINGS_SHOW_TIME));
 
-        runOnUiThread(() -> {
-            sudokuGrid.init(sudoku.getSudoku());
-            for (int i = 0; i < 9; i++)
-                for (int a = 0; a < 3; a++)
-                    for (int b = 0; b < 3; b++)
-                        sudokuGrid.blocks[i].field[a][b].save();
-            data.saveInt(Data.GAME_ERRORS, 0);
-            data.saveInt(Data.GAME_TIME, 0);
+        // reset game errors and time
+        data.saveInt(Data.GAME_ERRORS, 0);
+        data.saveInt(Data.GAME_TIME, 0);
 
-            statusBar.initDifficultyView();
+        runOnUiThread(() -> {
+            sudokuGrid.init(game.getSudoku());
+
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE);
 
-            statusBar.activate();
-            keyboard.activate();
+            statusBar.activate(true);
+            keyboard.activate(true);
+
+            statusBar.setError(game.overallErrors);
 
             getWindow().getDecorView().post(() -> timer.startTimer(0));
-
-            statusBar.initError();
         });
     }
 
@@ -213,15 +199,11 @@ public class MainActivity extends CustomActivity {
     protected void onPause() {
         super.onPause();
 
-        for (int i = 0; i < 9; i++)
-            for (int a = 0; a < 3; a++)
-                for (int b = 0; b < 3; b++)
-                    sudokuGrid.blocks[i].field[a][b].save();
-        data.saveInt(Data.GAME_ERRORS, errors);
-        data.saveInt(Data.GAME_DIFFICULTY, DIFFICULTY.getNumber());
         timer.stopTimer();
         data.saveInt(Data.GAME_TIME, timer.getTime());
+        data.saveInt(Data.GAME_ERRORS, game.overallErrors);
     }
+
 
     @Override
     protected void onDestroy() {
@@ -229,342 +211,113 @@ public class MainActivity extends CustomActivity {
         timer.killTimer();
     }
 
-    public void select(SudokuField sudokuField) {
+    public void select(Position selectedPosition) {
+        SudokuField sudokuField;
+
+        // unselect old field first
         if (this.selected != null) {
-            this.selected.unselect();
-            unselectPartner(this.selected);
+            sudokuField = sudokuGrid.blocks[this.selected.block].field[this.selected.row][this.selected.column];
+            sudokuField.select(false);
+            selectPartner(sudokuField, false);
         }
-        this.selected = sudokuField;
-        selectPartner(sudokuField);
-        this.selected.select();
+        // select new one now
+        this.selected = selectedPosition;
+
+        sudokuField = sudokuGrid.blocks[selectedPosition.block].field[selectedPosition.row][selectedPosition.column];
+        selectPartner(sudokuField, true);
+        sudokuField.select(true);
     }
 
-    public void unselectPartner(SudokuField sudokuField) {
-        if (data.loadBoolean(Data.SETTINGS_MARK_NUMBERS) && sudokuField.getNumber() != 0)
-            for (int i = 0; i < 9; i++)
+    public void selectPartner(SudokuField sudokuField, boolean select) {
+        if (data.loadBoolean(Data.SETTINGS_MARK_NUMBERS) && sudokuField.number.getNumber() != 0)
+            for (int i = 0; i < 9; i++) {
+                Number[][] numbers = game.getSudoku()[i].getNumbers();
                 for (int a = 0; a < 3; a++)
                     for (int b = 0; b < 3; b++)
-                        if (sudokuGrid.blocks[i].field[a][b].getNumber() == sudokuField.getNumber())
-                            sudokuGrid.blocks[i].field[a][b].unlightSelect();
-
+                        if (numbers[a][b].getNumber() == sudokuField.number.getNumber())
+                            sudokuGrid.blocks[i].field[a][b].lightSelect(select);
+            }
         if (data.loadBoolean(Data.SETTINGS_MARK_LINES)) {
+            // own block
             for (int i = 0; i < 3; i++) {
                 if (i != sudokuField.position.column)
-                    sudokuGrid.blocks[sudokuField.position.parent].field[sudokuField.position.row][i].unlightSelect();
+                    sudokuGrid.blocks[sudokuField.position.block].field[sudokuField.position.row][i].lightSelect(select);
                 if (i != sudokuField.position.row)
-                    sudokuGrid.blocks[sudokuField.position.parent].field[i][sudokuField.position.column].unlightSelect();
+                    sudokuGrid.blocks[sudokuField.position.block].field[i][sudokuField.position.column].lightSelect(select);
             }
-            switch (sudokuField.position.parent) {
-                case 0:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 1:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 2:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 3:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 4:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 5:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 6:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 7:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                case 8:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].unlightSelect();
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].unlightSelect();
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].unlightSelect();
-                    }
-                    break;
-                default:
-                    break;
+            // other blocks
+            for (int i = 0; i < 3; i++) {
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][0]].field[sudokuField.position.row][i].lightSelect(select);
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][1]].field[sudokuField.position.row][i].lightSelect(select);
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][2]].field[i][sudokuField.position.column].lightSelect(select);
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][3]].field[i][sudokuField.position.column].lightSelect(select);
             }
         }
     }
 
-    public void selectPartner(SudokuField sudokuField) {
-        if (data.loadBoolean(Data.SETTINGS_MARK_NUMBERS) && sudokuField.getNumber() != 0)
-            for (int i = 0; i < 9; i++)
-                for (int a = 0; a < 3; a++)
-                    for (int b = 0; b < 3; b++)
-                        if (sudokuGrid.blocks[i].field[a][b].getNumber() == sudokuField.getNumber())
-                            sudokuGrid.blocks[i].field[a][b].lightSelect();
-        if (data.loadBoolean(Data.SETTINGS_MARK_LINES)) {
-            for (int i = 0; i < 3; i++) {
-                if (i != sudokuField.position.column)
-                    sudokuGrid.blocks[sudokuField.position.parent].field[sudokuField.position.row][i].lightSelect();
-                if (i != sudokuField.position.row)
-                    sudokuGrid.blocks[sudokuField.position.parent].field[i][sudokuField.position.column].lightSelect();
-            }
-            switch (sudokuField.position.parent) {
-                case 0:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].lightSelect();
-                    }
-                    break;
-                case 1:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].lightSelect();
-                    }
-                    break;
-                case 2:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].lightSelect();
-                    }
-                    break;
-                case 3:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].lightSelect();
-                    }
-                    break;
-                case 4:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].lightSelect();
-                    }
-                    break;
-                case 5:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].lightSelect();
-                    }
-                    break;
-                case 6:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].lightSelect();
-                    }
-                    break;
-                case 7:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].lightSelect();
-                    }
-                    break;
-                case 8:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].lightSelect();
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].lightSelect();
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].lightSelect();
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-
-    private void checkNotes(SudokuField sudokuField, int number) {
-        if (data.loadBoolean(Data.SETTINGS_CHECK_NOTES) && !isNotes()) {
+    private void checkNotes(Position position, int number) {
+        if (data.loadBoolean(Data.SETTINGS_CHECK_NOTES) && !isNotes) {
+            Block[] gameBlock = game.getSudoku();
+            // own block
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
-                    sudokuGrid.blocks[sudokuField.position.parent].field[i][j].checkNotes(number);
-
-            switch (sudokuField.position.parent) {
-                case 0:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].checkNotes(number);
-                    }
-                    break;
-                case 1:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[2].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].checkNotes(number);
-                    }
-                    break;
-                case 2:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[0].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[1].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].checkNotes(number);
-                    }
-                    break;
-                case 3:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[6].field[i][sudokuField.position.column].checkNotes(number);
-                    }
-                    break;
-                case 4:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[5].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[7].field[i][sudokuField.position.column].checkNotes(number);
-                    }
-                    break;
-                case 5:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[3].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[4].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[8].field[i][sudokuField.position.column].checkNotes(number);
-                    }
-                    break;
-                case 6:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[0].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[3].field[i][sudokuField.position.column].checkNotes(number);
-                    }
-                    break;
-                case 7:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[8].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[1].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[4].field[i][sudokuField.position.column].checkNotes(number);
-                    }
-                    break;
-                case 8:
-                    for (int i = 0; i < 3; i++) {
-                        sudokuGrid.blocks[6].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[7].field[sudokuField.position.row][i].checkNotes(number);
-                        sudokuGrid.blocks[2].field[i][sudokuField.position.column].checkNotes(number);
-                        sudokuGrid.blocks[5].field[i][sudokuField.position.column].checkNotes(number);
-                    }
-                    break;
-                default:
-                    break;
+                    gameBlock[position.block].getNumbers()[i][j].checkNote(number);
+            // other blocks
+            for (int i = 0; i < 3; i++) {
+                gameBlock[partnerBlockLookup[position.block][0]].getNumbers()[position.row][i].checkNote(number);
+                gameBlock[partnerBlockLookup[position.block][1]].getNumbers()[position.row][i].checkNote(number);
+                gameBlock[partnerBlockLookup[position.block][2]].getNumbers()[i][position.column].checkNote(number);
+                gameBlock[partnerBlockLookup[position.block][3]].getNumbers()[i][position.column].checkNote(number);
             }
         }
     }
 
     public void insert(int number) {
         if (selected != null) {
-            if (selected.getNumber() != 0)
-                unselectPartner(selected);
-            selected.insert(number);
-            selectPartner(selected);
+            selectPartner(sudokuGrid.blocks[selected.block].field[selected.row][selected.column], false);
             checkNotes(selected, number);
-            this.selected.select();
+            game.insert(number, selected, isNotes);
+            // TODO two times this.selected, maybe this can be done nicer
+            select(selected);
+
+            // check if sudoku-game is finished
+            checkSudoku();
         }
     }
 
     public void delete() {
         if (selected != null) {
-            unselectPartner(selected);
-            selected.delete();
-            selectPartner(selected);
-            this.selected.select();
+            selectPartner(sudokuGrid.blocks[selected.block].field[selected.row][selected.column], false);
+            game.delete(selected);
+            // TODO two times this.selected, maybe this can be done nicer
+            select(selected);
+
+            // check new current errors
+            checkErrors();
         }
     }
 
     public boolean notesMode() {
-        notes = !notes;
-        return notes;
+        isNotes = !isNotes;
+        return isNotes;
     }
 
-    public boolean isNotes() {
-        return this.notes;
-    }
-
-    public void addError() {
-        this.errors++;
-        if (errors >= MAXERROR && data.loadBoolean(Data.GAME_SHOW_ERRORS))
-            abortSudoku();
-        else {
-            statusBar.setError();
+    public void checkSudoku() {
+        if (game.currentErrors() == 0 && game.freeFields() == 0)
+            finishSudoku();
+        else if (data.loadBoolean(GAME_SHOW_ERRORS)) {
+            this.checkErrors();
+            if (game.overallErrors >= MAX_ERROR)
+                abortSudoku();
         }
     }
 
-    public int getErrors() {
-        return this.errors;
+    public void checkErrors() {
+        this.statusBar.setError(game.overallErrors);
     }
 
-    private void setErrors(int errors) {
-        this.errors = errors;
-        statusBar.setError();
-    }
-
-    public void finishSudoku() {
-        for (int i = 0; i < 9; i++)
-            for (int x = 0; x < 3; x++)
-                for (int y = 0; y < 3; y++)
-                    if (sudokuGrid.blocks[i].field[x][y].getError())
-                        return;
-
+    private void finishSudoku() {
+        // TODO are these the right savings?
 
         timer.stopTimer();
         data.setLoadmode(false);
@@ -576,7 +329,9 @@ public class MainActivity extends CustomActivity {
         data.addTime(timer.getTime(), DIFFICULTY);
     }
 
-    public void abortSudoku() {
+    private void abortSudoku() {
+        // TODO are these the right savings?
+
         data.setLoadmode(false);
         timer.stopTimer();
 
@@ -586,47 +341,24 @@ public class MainActivity extends CustomActivity {
     public boolean pauseGame() {
         if (!pause) {
             sudokuGrid.setVisibility(View.INVISIBLE);
-            keyboard.activatePauseMode();
+            timer.stopTimer();
         } else {
             sudokuGrid.setVisibility(View.VISIBLE);
-            keyboard.deactivatePauseMode();
+            timer.startTimer();
         }
+        keyboard.pauseMode(!pause);
+
         pause = !pause;
         return pause;
     }
 
-    public void subNumberCount(int number) {
-        if (number != 0) {
-            if (--numberCount[number - 1] < 9)
-                keyboard.activateNumber(number);
-        }
-    }
-
-    public void addNumberCount(int number) {
-        if (number != 0) {
-            if (++numberCount[number - 1] == 9)
-                keyboard.deactivateNumber(number);
-            else
-                keyboard.activateNumber(number);
-        }
-    }
-
-    public void setFreeFields(int number) {
-        this.freeFields = number;
-        if (freeFields == 0)
-            finishSudoku();
-    }
-
-    public int getFreeFields() {
-        return this.freeFields;
-    }
-
-    public void share() {
+    public String share() {
         try {
-            ShareClass.share(sudoku, this);
+            return ShareClass.share(game, this);
         } catch (Exception e) {
             new CustomToast(this, getResources().getString(R.string.error_default)).show();
         }
+        return "";
     }
 
     public static int getPrimaryColor(Context context) {
@@ -638,8 +370,19 @@ public class MainActivity extends CustomActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0)
-            if (resultCode == 1)
-                recreate();
+        if (requestCode == 0 && resultCode == 1)
+            recreate();
     }
+
+    @Override
+    public void timeUpdate(int time) {
+        this.statusBar.setTime(time);
+    }
+
+    // JNI
+    static {
+        System.loadLibrary("generator-jni");
+    }
+
+    public native Sudoku createSudokuNative(int freeFields);
 }

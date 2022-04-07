@@ -15,18 +15,17 @@ import com.aol.philipphofer.R;
 import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Position;
 import com.aol.philipphofer.persistence.Data;
+import com.aol.philipphofer.logic.sudoku.Number;
 
-public class SudokuField extends GridLayout implements View.OnClickListener {
+import java.util.Observable;
+import java.util.Observer;
 
-    private int number;
+public class SudokuField extends GridLayout implements View.OnClickListener, Observer {
+
     public Position position;
-
-    private boolean error;
-    private boolean changeable;
-    private boolean isNotes;
+    public Number number;
 
     private final TextView numberView;
-
     private GridLayout notesLayout = null;
     private TextView[] notes;
 
@@ -43,91 +42,21 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
         numberView.setOnClickListener(this);
     }
 
-    public void init(int number, Position position) {
+    public void init(Number number, Position position) {
         this.position = position;
+        this.number = number;
+        this.number.addObserver(this);
 
-        isNotes = false;
-        // TODO: kann die nächste Zeile weg?
-        setNumber(0);
-        switchLayout(isNotes);
-        error = false;
+        if (!number.isChangeable())
+            numberView.setTypeface(numberView.getTypeface(), Typeface.BOLD);
+        else
+            numberView.setTypeface(numberView.getTypeface(), Typeface.ITALIC);
 
-        setNumber(number);
-        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.unselected));
-        if (number > 0) {
-            setChangeable(false);
-            setNumberViewText("" + number);
-        } else {
-            setNumberViewText("");
-            setChangeable(true);
-        }
-    }
-
-    public void load(Position position) {
-        this.position = position;
-        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.unselected));
-        Data data = Data.instance(mainActivity);
-        data.loadField(this);
-        if (getError())
-            if (Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
-                this.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.error));
-    }
-
-    public void save() {
-        Data data = Data.instance(mainActivity);
-        data.saveField(this);
-    }
-
-    public void insert(int number) {
-        if (!isChangeable())
-            return;
-        if (mainActivity.isNotes() != isNotes) {
-            delete();
-            isNotes = !isNotes;
-            switchLayout(isNotes);
-        }
-        if (isNotes) {
-            if (notes[number - 1].getVisibility() == VISIBLE)
-                deleteNote(number);
-            else
-                addNote(number);
-        } else {
-            if (this.number == number)
-                delete();
-            else {
-                if (this.number != 0)
-                    delete();
-                if (!checkNumber(number))
-                    error();
-                setNumber(number);
-                setNumberViewText(number);
-            }
-        }
-    }
-
-    public void delete() {
-        if (getError())
-            unerror();
-        if (isChangeable()) {
-            if (isNotes)
-                for (int i = 1; i < 10; i++)
-                    deleteNote(i);
-            else if (number != 0) {
-                mainActivity.subNumberCount(number);
-                setNumber(0);
-                setNumberViewText("");
-                mainActivity.setFreeFields(mainActivity.getFreeFields() + 1);
-            }
-        }
-    }
-
-    public boolean checkNumber(int number) {
-        return mainActivity.sudoku.getSolution()[position.parent].getNumbers()[position.row][position.column] == number;
+        this.update(this.number, null);
     }
 
     public void switchLayout(boolean isNotes) {
         if (isNotes) {
-            mainActivity.unselectPartner(this);
             this.numberView.setVisibility(INVISIBLE);
             getNotesLayout().setVisibility(VISIBLE);
         } else {
@@ -137,117 +66,70 @@ public class SudokuField extends GridLayout implements View.OnClickListener {
         }
     }
 
-    public void error() {
-        error = true;
-        mainActivity.addError();
-        if (Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
+    public void error(boolean error) {
+        // TODO mainActivity.addError();
+        if (error && Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
             setBackgroundColor(ContextCompat.getColor(getContext(), R.color.error));
+        else
+            this.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.unselected));
     }
 
-    private void unerror() {
-        error = false;
-        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.selected));
-    }
-
-    public void select() {
-        if (!error || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
-            this.setBackgroundColor(MainActivity.getPrimaryColor(getContext()));
-    }
-
-    public void unselect() {
-        if (!error || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
-            setBackgroundColor(ContextCompat.getColor(getContext(), R.color.unselected));
-    }
-
-    public void lightSelect() {
-        if (!error || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
-            setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lineSelected));
-    }
-
-    public void unlightSelect() {
-        if (!error || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
-            setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lineUnselected));
-
-    }
-
-    public void checkNotes(int number) {
-        if (number != 0 && notesLayout != null)
-            notes[number - 1].setVisibility(INVISIBLE);
-    }
-
-    @Override
-    public void onClick(View view) {
-        mainActivity.select(this);
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-        if (number != 0) {
-            mainActivity.addNumberCount(number);
-            mainActivity.setFreeFields(mainActivity.getFreeFields() - 1);
+    public void select(boolean select) {
+        if (!this.number.isError() || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS)) {
+            if (select)
+                this.setBackgroundColor(MainActivity.getPrimaryColor(getContext()));
+            else
+                this.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.unselected));
         }
     }
 
-    public int getNumber() {
-        return this.number;
+    public void lightSelect(boolean select) {
+        if (!this.number.isError() || !Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS)) {
+            if (select)
+                setBackgroundColor(ContextCompat.getColor(getContext(), R.color.lightSelected));
+            else
+                setBackgroundColor(ContextCompat.getColor(getContext(), R.color.unselected));
+        }
     }
 
-    public void addNote(int number) {
-        this.notes[number - 1].setVisibility(VISIBLE);
-    }
-
-    public void deleteNote(int number) {
-        this.notes[number - 1].setVisibility(INVISIBLE);
-    }
-
-    public void setNumberViewText(String text) {
-        this.numberView.setText(text);
-    }
-
-    public void setNumberViewText(int text) {
-        this.numberView.setText(String.valueOf(text));
-    }
-
-    public void setChangeable(boolean changeable) {
-        this.changeable = changeable;
-        if (!changeable)
-            numberView.setTypeface(numberView.getTypeface(), Typeface.BOLD);
+    public void setNumberViewText(int number) {
+        if (number != 0)
+            this.numberView.setText(String.valueOf(number));
         else
-            numberView.setTypeface(numberView.getTypeface(), Typeface.ITALIC);
-    }
-
-    public boolean isChangeable() {
-        return this.changeable;
-    }
-
-    public boolean isNotes() {
-        return this.isNotes;
-    }
-
-    public void setIsNotes(boolean isNotes) {
-        this.isNotes = isNotes;
-    }
-
-    public boolean getError() {
-        return this.error;
-    }
-
-    public void setError(boolean error) {
-        this.error = error;
-    }
-
-    public boolean[] getNotes() {
-        boolean[] returnBool = new boolean[9];
-        for (int i = 0; i < 9; i++)
-            if (notes[i].getVisibility() == VISIBLE)
-                returnBool[i] = true;
-        return returnBool;
+            this.numberView.setText("");
     }
 
     public void setNotes(boolean[] bool) {
         for (int i = 0; i < 9; i++)
             if (bool[i])
                 notes[i].setVisibility(VISIBLE);
+            else
+                notes[i].setVisibility(INVISIBLE);
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        if (!(observable instanceof Number))
+            return;
+
+        Number n = (Number) observable;
+        this.error(n.isError());
+
+        // handle number
+        this.setNumberViewText(n.getNumber());
+
+        // handle notes
+        this.switchLayout(n.isNotes());
+        if (this.notesLayout != null)
+            this.setNotes(n.getNotes());
+
+        // save changes to data
+        Data.instance(getContext()).saveGameNumber(n, position);
+    }
+
+    @Override
+    public void onClick(View view) {
+        mainActivity.select(this.position);
     }
 
     private GridLayout getNotesLayout() {
