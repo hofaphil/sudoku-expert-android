@@ -3,7 +3,7 @@
     <dimen name="marginGridKeyboard">@dimen/_5sdp</dimen>
 
     <dimen name="keyboardNumberText">@dimen/_30sdp</dimen>
-    <dimen name="keyboardFunctionalText">@dimen/_15sdp</dimen>
+    <dimen name="keyboardFunctionalText">@dimen/_14sdp</dimen>
 
     <!-- StatusBar -->
     <dimen name="statusbar_text_time">@dimen/_25sdp</dimen>

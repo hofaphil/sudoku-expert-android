@@ -16,6 +16,11 @@
     <string name="statusbar_share">Share</string>
     <string name="statusbar_rate">Rate</string>
 
+    <!-- Keyboard -->
+    <string name="keyboard_notes" translatable="false">Notes</string>
+    <string name="keyboard_delete" translatable="false">Delete</string>
+    <string name="keyboard_pause" translatable="false">Pause</string>
+
     <!-- RatingDialog -->
     <string name="ratingdialog_title">Rate</string>
     <string name="ratingdialog_info">Do You enjoy playing the Sudoku app?</string>

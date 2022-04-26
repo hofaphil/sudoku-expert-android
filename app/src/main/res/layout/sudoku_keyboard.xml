@@ -66,25 +66,26 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/keyGrid"
         android:columnCount="3"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_10sdp">
 
         <Button
             android:id="@+id/notes"
             style="@style/KeyboardButtonStyle"
-            android:drawableStart="@drawable/ic_write"
-            android:text="Notes" />
+            android:drawableStart="@drawable/ic_notes"
+            android:text="@string/keyboard_notes" />
 
         <Button
             android:id="@+id/delete"
             style="@style/KeyboardButtonStyle"
             android:drawableStart="@drawable/ic_delete"
-            android:text="Delete" />
+            android:text="@string/keyboard_delete" />
 
         <Button
             android:id="@+id/pause"
             style="@style/KeyboardButtonStyle"
             android:drawableStart="@drawable/ic_pause"
-            android:text="Pause" />
+            android:text="@string/keyboard_pause" />
 
     </GridLayout>
 
