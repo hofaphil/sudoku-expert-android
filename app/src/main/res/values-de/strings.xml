@@ -5,7 +5,7 @@
     <string name="app_name">Sudoku</string>
 
     <!-- Start -->
-    <string name="start_error">Beim Laden ist etwas schiefgelaufen! :/</string>
+    <string name="start_error">Beim Laden ist etwas schiefgelaufen! :(</string>
 
     <!-- StatusBar -->
     <string name="statusbar_newSudoku">Neu</string>
@@ -29,7 +29,7 @@
 
     <!-- ColorChooserDiaolg -->
     <string name="cholorchooserdialog_title">Farben</string>
-    <string name="cholorchooserdialog_info">Wähle deine Lieblingsfarbe</string>
+    <string name="cholorchooserdialog_info">Wähle Deine Lieblingsfarbe</string>
 
     <!-- NewGame -->
     <string name="newgame">New Game</string>
@@ -38,12 +38,8 @@
     <string name="expert">Expert</string>
 
     <!-- EndCard -->
-    <string name="ok">OK</string>
     <string name="win">Du gewinnst!</string>
-    <string name="endcard_winannotations">Du hast %1$s gebraucht, um das Sudoku zu lösen!</string>
-    <string name="endcard_winannotationswithouttime">Top, du hast das Sudoku gelöst!</string>
     <string name="lose">Du verlierst</string>
-    <string name="endcard_loseannotaions">Zu viele Fehler, schade!</string>
     <string name="endcard_difficulty">Difficulty:</string>
     <string name="endcard_time">Deine Zeit:</string>
     <string name="endcard_besttime">Bestzeit:</string>
@@ -66,22 +62,20 @@
     <string name="settings_markNumbersAnnotations">Hervorheben von gleichen Zahlen</string>
     <string name="settings_markLines">Linien markieren</string>
     <string name="settings_markLinesAnnotations">Hervorheben der Zeile und Spalte der ausgewählten Zahl</string>
-    <string name="settings_powerMode">Low Power Modus</string>
-    <string name="settings_powerModeAnnotations">Spare dir etwas Batterie</string>
     <string name="settings_showErrors">Fehler anzeigen</string>
-    <string name="settings_showErrorsAnnotations">Markiert und zählt deine Fehler</string>
+    <string name="settings_showErrorsAnnotations">Markiert und zählt Deine Fehler</string>
     <string name="settings_checkNotes">Schlaue Notizen</string>
-    <string name="settings_checkNotesAnnotations">Wenn du eine Zahl einfügst, werden alle jetzt überflüssigen Notizen gelöscht</string>
+    <string name="settings_checkNotesAnnotations">Löschen von überflüssigen Notizen, wenn Du eine Zahl einfügst</string>
     <string name="settings_showTime">Stoppuhr</string>
-    <string name="settings_showTimeAnnotations">Stoppe, wie lange du für ein Sudoku brauchst und schau dir deine Zeiten in den Statistiken an</string>
+    <string name="settings_showTimeAnnotations">Stoppe, wie lange Du für ein Sudoku brauchst und schau Dir Deine Zeiten in den Statistiken an</string>
     <string name="settings_deleteData">Zurücksetzen</string>
-    <string name="settings_deleteDataAnnotations">Lösche deine Statistik und setzte die App zurück</string>
+    <string name="settings_deleteDataAnnotations">Lösche Deine Statistik und setzte die App zurück</string>
     <string name="settings_info">Kontakt</string>
     <string name="settings_color">Farben</string>
     <string name="settings_color_annotations">Ändere die Farben der App</string>
     <string name="settings_color_button">Ändern</string>
     <string name="settings_confirm">Achtung</string>
-    <string name="settings_confirm_annotations">Willst du wirklich die App zurücksetzen?</string>
+    <string name="settings_confirm_annotations">Willst Du wirklich die App zurücksetzen?</string>
     <string name="settings_applies_next_game">Wird im nächsten Spiel übernommen</string>
 
     <!-- Share -->
