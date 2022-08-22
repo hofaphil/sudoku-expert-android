@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <item
-        android:id="@+id/popup_share"
-        android:icon="@drawable/ic_share"
-        android:title="@string/statusbar_share"
+        android:id="@+id/popup_challenge"
+        android:icon="@drawable/ic_challenge"
+        android:title="@string/statusbar_challenge"
         tools:ignore="ExtraText">
         @style/PopupMenuStyle
     </item>

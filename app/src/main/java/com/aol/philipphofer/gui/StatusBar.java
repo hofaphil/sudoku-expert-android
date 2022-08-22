@@ -47,7 +47,7 @@ public class StatusBar extends RelativeLayout {
                 if (item.getItemId() == R.id.popup_statistics) {
                     intent = new Intent(mainActivity, Statistics.class);
                     mainActivity.startActivityForResult(intent, 0);
-                } else if (item.getItemId() == R.id.popup_share) {
+                } else if (item.getItemId() == R.id.popup_challenge) {
                     mainActivity.share();
                     return true;
                 } else if (item.getItemId() == R.id.popup_settings) {
