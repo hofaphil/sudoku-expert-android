@@ -2,13 +2,12 @@
 <resources>
     <!-- General AppStyle with light navigation bar -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:background">@color/gray</item>
         <item name="colorPrimary">@color/yellow</item>
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/gray</item>
         <item name="android:statusBarColor">@color/yellow</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:navigationBarColor">@color/gray</item>
+        <item name="android:navigationBarColor">@color/transparent</item>
     </style>
 </resources>
