@@ -1,6 +1,5 @@
 package com.aol.philipphofer.gui;
 
-import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -13,8 +12,6 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.view.menu.MenuBuilder;
-import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 
 import com.aol.philipphofer.R;
@@ -30,7 +27,6 @@ public class StatusBar extends RelativeLayout {
     private final TextView timeView, errorView, difficultyView;
     private final MainActivity mainActivity;
 
-    @SuppressLint("RestrictedApi")
     public StatusBar(final Context context, AttributeSet attrSet) {
         super(context, attrSet);
 
@@ -38,65 +34,63 @@ public class StatusBar extends RelativeLayout {
 
         mainActivity = (MainActivity) context;
 
-        moreButton = findViewById(R.id.popupButton);
-        moreButton.setOnClickListener((View v) -> {
-            PopupMenu popup = new PopupMenu(context, moreButton);
-            popup.getMenuInflater().inflate(R.menu.popup_more, popup.getMenu());
-            popup.setOnMenuItemClickListener((MenuItem item) -> {
-                Intent intent;
-                if (item.getItemId() == R.id.popup_statistics) {
-                    intent = new Intent(mainActivity, Statistics.class);
-                    mainActivity.startActivityForResult(intent, 0);
-                } else if (item.getItemId() == R.id.popup_challenge) {
-                    mainActivity.share();
-                    return true;
-                } else if (item.getItemId() == R.id.popup_settings) {
-                    intent = new Intent(mainActivity, Settings.class);
-                    mainActivity.startActivityForResult(intent, 0);
-                } else if (item.getItemId() == R.id.popup_rate) {
-                    Uri uri = Uri.parse("market://details?id=" + getContext().getPackageName());
-                    Intent myAppLinkToMarket = new Intent(Intent.ACTION_VIEW, uri);
-                    try {
-                        getContext().startActivity(myAppLinkToMarket);
-                    } catch (ActivityNotFoundException e) {
-                        new CustomToast(getContext(), getResources().getString(R.string.error_default)).show();
-                    }
-                    return true;
-                } else {
-                    return false;
-                }
-                return true;
-            });
-
-            MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popup.getMenu(), moreButton);
-            menuHelper.setForceShowIcon(true);
-            menuHelper.show();
-        });
-
+        // new menu
         newButton = findViewById(R.id.newButton);
-        newButton.setOnClickListener((View v) -> {
-            PopupMenu popup = new PopupMenu(context, newButton);
-            popup.getMenuInflater().inflate(R.menu.popup_new, popup.getMenu());
-            popup.setOnMenuItemClickListener((MenuItem item) -> {
-                if (item.getItemId() == R.id.popup_advanced)
-                    Data.instance(context).saveInt(Data.GAME_DIFFICULTY, Difficulty.ADVANCED.getNumber());
-                else if (item.getItemId() == R.id.popup_expert)
-                    Data.instance(context).saveInt(Data.GAME_DIFFICULTY, Difficulty.EXPERT.getNumber());
-                else
-                    Data.instance(context).saveInt(Data.GAME_DIFFICULTY, Difficulty.BEGINNER.getNumber());
-                Data.instance(context).setLoadmode(false);
-                mainActivity.onResume();
-                return true;
-            });
+        PopupMenu newPopup = new PopupMenu(context, newButton);
+        newPopup.inflate(R.menu.popup_new);
+        newPopup.setForceShowIcon(true);
+        newPopup.setOnMenuItemClickListener(this::newPopupHandler);
+        newButton.setOnClickListener((View v) -> newPopup.show());
 
-            MenuPopupHelper menuHelper = new MenuPopupHelper(getContext(), (MenuBuilder) popup.getMenu(), newButton);
-            menuHelper.setForceShowIcon(true);
-            menuHelper.show();
-        });
+        // more menu
+        moreButton = findViewById(R.id.popupButton);
+        PopupMenu morePopup = new PopupMenu(context, moreButton);
+        morePopup.inflate(R.menu.popup_more);
+        morePopup.setForceShowIcon(true);
+        morePopup.setOnMenuItemClickListener(this::morePopupHandler);
+        moreButton.setOnClickListener((View v) -> morePopup.show());
 
         timeView = findViewById(R.id.timeView);
         difficultyView = findViewById(R.id.difficultyView);
         errorView = findViewById(R.id.errorView);
+    }
+
+    private boolean morePopupHandler(MenuItem item) {
+        Intent intent;
+        if (item.getItemId() == R.id.popup_statistics) {
+            intent = new Intent(mainActivity, Statistics.class);
+            mainActivity.startActivityForResult(intent, 0);
+        } else if (item.getItemId() == R.id.popup_challenge) {
+            mainActivity.share();
+            return true;
+        } else if (item.getItemId() == R.id.popup_settings) {
+            intent = new Intent(mainActivity, Settings.class);
+            mainActivity.startActivityForResult(intent, 0);
+        } else if (item.getItemId() == R.id.popup_rate) {
+            Uri uri = Uri.parse("market://details?id=" + getContext().getPackageName());
+            Intent myAppLinkToMarket = new Intent(Intent.ACTION_VIEW, uri);
+            try {
+                getContext().startActivity(myAppLinkToMarket);
+            } catch (ActivityNotFoundException e) {
+                new CustomToast(getContext(), getResources().getString(R.string.error_default)).show();
+            }
+            return true;
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean newPopupHandler(MenuItem item) {
+        if (item.getItemId() == R.id.popup_advanced)
+            Data.instance(mainActivity).saveInt(Data.GAME_DIFFICULTY, Difficulty.ADVANCED.getNumber());
+        else if (item.getItemId() == R.id.popup_expert)
+            Data.instance(mainActivity).saveInt(Data.GAME_DIFFICULTY, Difficulty.EXPERT.getNumber());
+        else
+            Data.instance(mainActivity).saveInt(Data.GAME_DIFFICULTY, Difficulty.BEGINNER.getNumber());
+        Data.instance(mainActivity).setLoadmode(false);
+        mainActivity.onResume();
+        return true;
     }
 
     public void setDifficulty(Difficulty difficulty) {
