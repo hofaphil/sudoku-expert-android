@@ -12,12 +12,13 @@
         android:layout_height="wrap_content"
         android:background="@color/transparent"
         android:columnCount="5"
-        android:padding="5dp">
+        android:padding="10dp">
 
         <ImageButton
             android:id="@+id/newButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_2sdp"
             android:layout_columnWeight="1"
             android:background="@color/transparent"
             android:src="@drawable/ic_new" />
@@ -38,6 +39,7 @@
             android:id="@+id/popupButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_2sdp"
             android:layout_columnWeight="1"
             android:background="@color/transparent"
             android:src="@drawable/ic_more" />

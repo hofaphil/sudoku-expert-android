@@ -7,8 +7,9 @@
     <color name="black">#000000</color>
     <color name="darkdarkgray">#656565</color>
     <color name="darkgray">#a9a9a9</color>
-    <color name="dimgray">#bdbdbd</color>
+    <color name="dimgray">#c7c5c5</color>
     <color name="gray">#eeeeee</color>
+    <color name="lightgray">#fafafa</color>
     <color name="red">#ff0000</color>
     <color name="orange">#ed7d31</color>
     <color name="yellow">#ffcc00</color>
@@ -18,7 +19,7 @@
 
     <!-- for gamefield -->
     <color name="selected">@color/yellow</color>
-    <color name="unselected">@color/gray</color>
+    <color name="unselected">@color/lightgray</color>
     <color name="lightSelected">@color/dimgray</color>
 
     <color name="lineSelected">@color/lightSelected</color>

@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/popup_beginner"
         android:icon="@drawable/ic_beginner"
-        android:title="@string/beginner"
-        tools:ignore="ExtraText">
-        @style/PopupMenuStyle
-    </item>
+        android:title="@string/beginner" />
     <item
         android:id="@+id/popup_advanced"
         android:icon="@drawable/ic_advanced"
-        android:title="@string/advanced"
-        tools:ignore="ExtraText">
-        @style/PopupMenuStyle
-    </item>
+        android:title="@string/advanced" />
     <item
         android:id="@+id/popup_expert"
         android:icon="@drawable/ic_expert"
-        android:title="@string/expert"
-        tools:ignore="ExtraText">
-        @style/PopupMenuStyle
-    </item>
+        android:title="@string/expert" />
 </menu>

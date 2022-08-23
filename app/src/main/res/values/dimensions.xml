@@ -6,12 +6,12 @@
     <dimen name="keyboardFunctionalText">@dimen/_14sdp</dimen>
 
     <!-- StatusBar -->
-    <dimen name="statusbar_text_time">@dimen/_25sdp</dimen>
+    <dimen name="statusbar_text_time">@dimen/_24sdp</dimen>
     <dimen name="statusbar_text_info">@dimen/_11sdp</dimen>
     <dimen name="statusbar_icon_size">@dimen/_28sdp</dimen>
 
     <dimen name="fieldNotesText">@dimen/_8sdp</dimen>
-    <dimen name="fieldNumberText">@dimen/_22sdp</dimen>
+    <dimen name="fieldNumberText">@dimen/_19sdp</dimen>
 
     <!-- General -->
     <dimen name="general_text_title">@dimen/_30sdp</dimen>
