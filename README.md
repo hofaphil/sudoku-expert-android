@@ -19,7 +19,7 @@ A app to play free and unlimited Sudoku with three difficulties to choose.
  
 <p align="center">
   <a href="https://play.google.com/store/apps/details?id=com.aol.philipphofer">
-    <img src="https://philipphofer.de/img/google-play-badge.png" width="25%">
+    <img src="https://philipphofer.de/img/google-badge.png" width="25%">
   </a>
 </p>
 
