@@ -365,7 +365,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
 
     @Override
     public void timeUpdate(int time) {
-        this.statusBar.setTime(time);
+        runOnUiThread(() -> this.statusBar.setTime(time));
     }
 
     // JNI
