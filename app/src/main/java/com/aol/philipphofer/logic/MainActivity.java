@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewManager;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
 
@@ -16,17 +15,15 @@ import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.Keyboard;
 import com.aol.philipphofer.gui.StatusBar;
 import com.aol.philipphofer.gui.custom.CustomActivity;
-import com.aol.philipphofer.gui.custom.CustomAdLoader;
 import com.aol.philipphofer.gui.custom.CustomToast;
 import com.aol.philipphofer.gui.dialog.EndCardDialog;
 import com.aol.philipphofer.gui.sudoku.SudokuField;
 import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.logic.help.Difficulty;
-import com.aol.philipphofer.persistence.Data;
 import com.aol.philipphofer.logic.sudoku.Block;
 import com.aol.philipphofer.logic.sudoku.Number;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
-import com.google.android.gms.ads.AdView;
+import com.aol.philipphofer.persistence.Data;
 
 public class MainActivity extends CustomActivity implements Timer.TimerListener {
 
@@ -89,8 +86,6 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
     }
 
     protected void init() {
-        AdView mAdView = findViewById(R.id.adView);
-
         ViewGroup.LayoutParams params = sudokuGrid.getLayoutParams();
 
         RelativeLayout mainLayout = findViewById(R.id.mainLayout);
@@ -106,16 +101,10 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
 
         if (height < width) {
             params.width = height;
-            ((ViewManager) mAdView.getParent()).removeView(mAdView);
         } else {
             RelativeLayout.LayoutParams paramsKeyboard = (RelativeLayout.LayoutParams) keyboard.getLayoutParams();
             paramsKeyboard.bottomMargin = (int) (Math.abs(width - height) / 1.5);
             keyboard.setLayoutParams(paramsKeyboard);
-            if (paramsKeyboard.bottomMargin >= TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, getResources().getDisplayMetrics())) {
-                CustomAdLoader.loadAd(this, mAdView);
-            } else {
-                ((ViewManager) mAdView.getParent()).removeView(mAdView);
-            }
         }
         sudokuGrid.setLayoutParams(params);
     }

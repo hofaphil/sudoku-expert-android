@@ -95,12 +95,4 @@
     <!-- Error -->
     <string name="error_default">Something went wrong, please try again later.</string>
 
-    <!-- AdMob -->
-    <!-- Testing
-    <string name="adMob_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="adMob_bannerID" translatable="false">ca-app-pub-3940256099942544/6300978111</string>-->
-    <!-- Real-->
-    <string name="adMob_ID" translatable="false">ca-app-pub-1520566370008029~2349557863</string>
-    <string name="adMob_bannerID" translatable="false">ca-app-pub-1520566370008029/2182036907</string>
-
 </resources>

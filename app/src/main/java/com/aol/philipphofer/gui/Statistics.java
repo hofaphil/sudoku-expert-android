@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomActivity;
-import com.aol.philipphofer.gui.custom.CustomAdLoader;
 import com.aol.philipphofer.logic.Timer;
 import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
@@ -41,8 +40,6 @@ public class Statistics extends CustomActivity {
     protected void onStart() {
         super.onStart();
 
-        CustomAdLoader.loadAd(this, findViewById(R.id.adView));
-
         int timesPlayed;
         if ((timesPlayed = data.loadInt(Data.STATISTICS_TIMESPLAYED + Difficulty.BEGINNER.getNumber())) != 0)
             beginnerTime.setText(Timer.timeToString(data.loadInt(Data.STATISTICS_TIMEOVERALL + Difficulty.BEGINNER.getNumber()) / timesPlayed));
@@ -63,7 +60,7 @@ public class Statistics extends CustomActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-           finish();
+            finish();
         }
         return true;
     }

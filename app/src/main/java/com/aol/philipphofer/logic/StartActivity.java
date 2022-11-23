@@ -10,7 +10,6 @@ import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomToast;
 import com.aol.philipphofer.persistence.Data;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
-import com.google.android.gms.ads.MobileAds;
 
 import java.util.Objects;
 
@@ -28,9 +27,6 @@ public class StartActivity extends Activity {
         super.onStart();
 
         Sudoku sudoku;
-
-        MobileAds.initialize(this, i -> {
-        });
 
         Data data = Data.instance(this);
 
