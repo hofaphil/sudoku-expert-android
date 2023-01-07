@@ -6,7 +6,7 @@ android {
         applicationId "com.aol.philipphofer"
         minSdkVersion 24
         targetSdkVersion 32
-        versionCode 38
+        versionCode 40
         versionName "2.4.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
