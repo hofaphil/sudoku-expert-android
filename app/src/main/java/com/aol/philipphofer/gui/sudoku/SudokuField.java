@@ -14,8 +14,8 @@ import androidx.core.content.ContextCompat;
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.logic.MainActivity;
 import com.aol.philipphofer.logic.Position;
-import com.aol.philipphofer.persistence.Data;
 import com.aol.philipphofer.logic.sudoku.Number;
+import com.aol.philipphofer.persistence.Data;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -67,7 +67,6 @@ public class SudokuField extends GridLayout implements View.OnClickListener, Obs
     }
 
     public void error(boolean error) {
-        // TODO mainActivity.addError();
         if (error && Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS))
             setBackgroundColor(ContextCompat.getColor(getContext(), R.color.error));
         else
