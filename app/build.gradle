@@ -6,8 +6,8 @@ android {
         applicationId "com.aol.philipphofer"
         minSdkVersion 24
         targetSdkVersion 33
-        versionCode 40
-        versionName "2.4.3"
+        versionCode 41
+        versionName "2.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
