@@ -4,7 +4,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/_1sdp">
+    android:padding="@dimen/_5sdp">
 
     <GridLayout
         android:id="@+id/functionButtons"
@@ -39,9 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/functionButtons"
         android:layout_alignParentEnd="true"
-        android:layout_marginLeft="5dp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginRight="5dp"
         android:columnCount="9"
         android:orientation="horizontal">
 

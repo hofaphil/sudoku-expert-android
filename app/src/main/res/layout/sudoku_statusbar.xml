@@ -49,8 +49,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonLayout"
-        android:layout_margin="2dp"
-        android:background="@drawable/box"
+        android:layout_margin="7dp"
+        android:background="@drawable/box_rc"
         android:columnCount="2"
         android:padding="5dp">
 
