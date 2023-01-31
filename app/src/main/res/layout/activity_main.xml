@@ -4,23 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <com.aol.philipphofer.gui.StatusBar
-            android:id="@+id/statusBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+    <com.aol.philipphofer.gui.StatusBar
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <com.aol.philipphofer.gui.sudoku.SudokuGrid
-            android:id="@+id/sudokuGrid"
-            android:layout_below="@id/statusBar"
-            android:layout_width="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
-             />
+    <com.aol.philipphofer.gui.sudoku.SudokuGrid
+        android:id="@+id/sudokuGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/statusBar"
+        android:layout_centerHorizontal="true" />
 
-        <com.aol.philipphofer.gui.Keyboard
-            android:id="@+id/keyboard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"/>
+    <com.aol.philipphofer.gui.Keyboard
+        android:id="@+id/keyboard"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_below="@id/sudokuGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true" />
 
 </RelativeLayout>

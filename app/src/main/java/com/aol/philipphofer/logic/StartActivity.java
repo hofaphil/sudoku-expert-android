@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.aol.philipphofer.R;
 import com.aol.philipphofer.gui.custom.CustomToast;
 import com.aol.philipphofer.persistence.Data;
@@ -13,7 +15,7 @@ import com.aol.philipphofer.logic.sudoku.Sudoku;
 
 import java.util.Objects;
 
-public class StartActivity extends Activity {
+public class StartActivity extends AppCompatActivity {
 
     public static int difficulty;
 

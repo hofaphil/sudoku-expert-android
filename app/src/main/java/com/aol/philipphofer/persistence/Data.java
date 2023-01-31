@@ -150,16 +150,16 @@ public class Data {
     public void saveTheme(int color) {
         switch (color) {
             case 1:
-                editor.putInt(SETTINGS_COLOR, R.style.AppTheme_Green);
+                editor.putInt(SETTINGS_COLOR, R.style.Theme_AppTheme_Green);
                 break;
             case 2:
-                editor.putInt(SETTINGS_COLOR, R.style.AppTheme_Blue);
+                editor.putInt(SETTINGS_COLOR, R.style.Theme_AppTheme_Blue);
                 break;
             case 3:
-                editor.putInt(SETTINGS_COLOR, R.style.AppTheme_Orange);
+                editor.putInt(SETTINGS_COLOR, R.style.Theme_AppTheme_Orange);
                 break;
             default:
-                editor.putInt(SETTINGS_COLOR, R.style.AppTheme);
+                editor.putInt(SETTINGS_COLOR, R.style.Theme_AppTheme);
                 break;
         }
         editor.apply();

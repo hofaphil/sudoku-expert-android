@@ -74,39 +74,6 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
 
         timer = new Timer(this);
         timer.startTimer(0);
-
-        ViewTreeObserver observer = sudokuGrid.getViewTreeObserver();
-        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                init();
-                sudokuGrid.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-            }
-        });
-    }
-
-    protected void init() {
-        ViewGroup.LayoutParams params = sudokuGrid.getLayoutParams();
-
-        RelativeLayout mainLayout = findViewById(R.id.mainLayout);
-
-        int width = mainLayout.getWidth();
-        int height = mainLayout.getHeight() -
-                statusBar.getHeight() -
-                ((RelativeLayout.LayoutParams) statusBar.getLayoutParams()).bottomMargin -
-                ((RelativeLayout.LayoutParams) statusBar.getLayoutParams()).topMargin -
-                keyboard.getHeight() -
-                ((RelativeLayout.LayoutParams) keyboard.getLayoutParams()).bottomMargin -
-                ((RelativeLayout.LayoutParams) keyboard.getLayoutParams()).topMargin;
-
-        if (height < width) {
-            params.width = height;
-        } else {
-            RelativeLayout.LayoutParams paramsKeyboard = (RelativeLayout.LayoutParams) keyboard.getLayoutParams();
-            paramsKeyboard.bottomMargin = (int) (Math.abs(width - height) / 1.5);
-            keyboard.setLayoutParams(paramsKeyboard);
-        }
-        sudokuGrid.setLayoutParams(params);
     }
 
     @Override
