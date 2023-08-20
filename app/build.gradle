@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 33
     defaultConfig {
         applicationId "com.aol.philipphofer"
         minSdkVersion 24
+        compileSdk 33
         targetSdkVersion 33
-        versionCode 40
-        versionName "2.4.3"
+        versionCode 41
+        versionName "2.4.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
