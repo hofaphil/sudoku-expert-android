@@ -68,7 +68,7 @@ public class MainActivityTests {
     @Test
     public void testRestart() {
         Sudoku sudoku = new Sudoku();
-        sudoku.overallErrors = 1;
+        sudoku.setOverallErrors(1);
         final int gameTime = 300;
 
         mainActivity.onActivity(mainActivity -> {
@@ -106,7 +106,7 @@ public class MainActivityTests {
 
             // check for same errors
             assertEquals(1, mainActivity.game.currentErrors());
-            assertEquals(1, mainActivity.game.overallErrors);
+            assertEquals(1, mainActivity.game.getOverallErrors());
 
             assertEquals(Difficulty.BEGINNER, MainActivity.DIFFICULTY);
         });

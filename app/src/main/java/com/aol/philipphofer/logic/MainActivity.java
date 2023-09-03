@@ -151,7 +151,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
 
         DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
         statusBar.setDifficulty(DIFFICULTY);
-        statusBar.setError(game.overallErrors);
+        statusBar.setError(game.getOverallErrors());
     }
 
     public void heavyLoading() {
@@ -178,7 +178,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
             statusBar.activate(true);
             keyboard.activate(true);
 
-            statusBar.setError(game.overallErrors);
+            statusBar.setError(game.getOverallErrors());
 
             getWindow().getDecorView().post(() -> timer.startTimer(0));
         });
@@ -190,7 +190,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
 
         timer.stopTimer();
         data.saveInt(Data.GAME_TIME, timer.getTime());
-        data.saveInt(Data.GAME_ERRORS, game.overallErrors);
+        data.saveInt(Data.GAME_ERRORS, game.getOverallErrors());
     }
 
 
@@ -296,13 +296,13 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
             finishSudoku();
         else if (data.loadBoolean(GAME_SHOW_ERRORS)) {
             this.checkErrors();
-            if (game.overallErrors >= MAX_ERROR)
+            if (game.getOverallErrors() >= MAX_ERROR)
                 abortSudoku();
         }
     }
 
     public void checkErrors() {
-        this.statusBar.setError(game.overallErrors);
+        this.statusBar.setError(game.getOverallErrors());
     }
 
     private void finishSudoku() {
