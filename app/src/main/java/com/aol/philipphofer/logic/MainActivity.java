@@ -205,14 +205,14 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
 
         // unselect old field first
         if (this.selected != null) {
-            sudokuField = sudokuGrid.blocks[this.selected.block].field[this.selected.row][this.selected.column];
+            sudokuField = sudokuGrid.blocks[this.selected.getBlock()].field[this.selected.getRow()][this.selected.getColumn()];
             sudokuField.select(false);
             selectPartner(sudokuField, false);
         }
         // select new one now
         this.selected = selectedPosition;
 
-        sudokuField = sudokuGrid.blocks[selectedPosition.block].field[selectedPosition.row][selectedPosition.column];
+        sudokuField = sudokuGrid.blocks[selectedPosition.getBlock()].field[selectedPosition.getRow()][selectedPosition.getColumn()];
         selectPartner(sudokuField, true);
         sudokuField.select(true);
     }
@@ -229,17 +229,17 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
         if (data.loadBoolean(Data.SETTINGS_MARK_LINES)) {
             // own block
             for (int i = 0; i < 3; i++) {
-                if (i != sudokuField.position.column)
-                    sudokuGrid.blocks[sudokuField.position.block].field[sudokuField.position.row][i].lightSelect(select);
-                if (i != sudokuField.position.row)
-                    sudokuGrid.blocks[sudokuField.position.block].field[i][sudokuField.position.column].lightSelect(select);
+                if (i != sudokuField.position.getColumn())
+                    sudokuGrid.blocks[sudokuField.position.getBlock()].field[sudokuField.position.getRow()][i].lightSelect(select);
+                if (i != sudokuField.position.getRow())
+                    sudokuGrid.blocks[sudokuField.position.getBlock()].field[i][sudokuField.position.getColumn()].lightSelect(select);
             }
             // other blocks
             for (int i = 0; i < 3; i++) {
-                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][0]].field[sudokuField.position.row][i].lightSelect(select);
-                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][1]].field[sudokuField.position.row][i].lightSelect(select);
-                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][2]].field[i][sudokuField.position.column].lightSelect(select);
-                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][3]].field[i][sudokuField.position.column].lightSelect(select);
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.getBlock()][0]].field[sudokuField.position.getRow()][i].lightSelect(select);
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.getBlock()][1]].field[sudokuField.position.getRow()][i].lightSelect(select);
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.getBlock()][2]].field[i][sudokuField.position.getColumn()].lightSelect(select);
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.getBlock()][3]].field[i][sudokuField.position.getColumn()].lightSelect(select);
             }
         }
     }
@@ -250,20 +250,20 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
             // own block
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
-                    gameBlock[position.block].getNumbers()[i][j].checkNote(number);
+                    gameBlock[position.getBlock()].getNumbers()[i][j].checkNote(number);
             // other blocks
             for (int i = 0; i < 3; i++) {
-                gameBlock[partnerBlockLookup[position.block][0]].getNumbers()[position.row][i].checkNote(number);
-                gameBlock[partnerBlockLookup[position.block][1]].getNumbers()[position.row][i].checkNote(number);
-                gameBlock[partnerBlockLookup[position.block][2]].getNumbers()[i][position.column].checkNote(number);
-                gameBlock[partnerBlockLookup[position.block][3]].getNumbers()[i][position.column].checkNote(number);
+                gameBlock[partnerBlockLookup[position.getBlock()][0]].getNumbers()[position.getRow()][i].checkNote(number);
+                gameBlock[partnerBlockLookup[position.getBlock()][1]].getNumbers()[position.getRow()][i].checkNote(number);
+                gameBlock[partnerBlockLookup[position.getBlock()][2]].getNumbers()[i][position.getColumn()].checkNote(number);
+                gameBlock[partnerBlockLookup[position.getBlock()][3]].getNumbers()[i][position.getColumn()].checkNote(number);
             }
         }
     }
 
     public void insert(int number) {
         if (selected != null) {
-            selectPartner(sudokuGrid.blocks[selected.block].field[selected.row][selected.column], false);
+            selectPartner(sudokuGrid.blocks[selected.getBlock()].field[selected.getRow()][selected.getColumn()], false);
             checkNotes(selected, number);
             game.insert(number, selected, isNotes);
             // TODO two times this.selected, maybe this can be done nicer
@@ -276,7 +276,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
 
     public void delete() {
         if (selected != null) {
-            selectPartner(sudokuGrid.blocks[selected.block].field[selected.row][selected.column], false);
+            selectPartner(sudokuGrid.blocks[selected.getBlock()].field[selected.getRow()][selected.getColumn()], false);
             game.delete(selected);
             // TODO two times this.selected, maybe this can be done nicer
             select(selected);

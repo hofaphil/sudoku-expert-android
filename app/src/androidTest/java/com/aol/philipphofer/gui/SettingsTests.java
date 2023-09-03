@@ -51,8 +51,8 @@ public class SettingsTests {
         Position position = new Position(0, 0, 0);
 
         ViewInteraction selectedField = onView(allOf(
-                ViewMatchers.withId(btn[position.row][position.column]),
-                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block]))
+                ViewMatchers.withId(btn[position.getRow()][position.getColumn()]),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()]))
         ));
 
         ViewInteraction[] rowSelected = new ViewInteraction[9];
@@ -61,11 +61,11 @@ public class SettingsTests {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 3; j++) {
                 rowSelected[i] = onView(allOf(
-                        ViewMatchers.withId(btn[position.row][j]),
+                        ViewMatchers.withId(btn[position.getRow()][j]),
                         ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[i < 3 ? 0 : i < 6 ? 1 : 2]))
                 ));
                 colSelected[i] = onView(allOf(
-                        ViewMatchers.withId(btn[j][position.column]),
+                        ViewMatchers.withId(btn[j][position.getColumn()]),
                         ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[i < 3 ? 0 : i < 6 ? 3 : 6]))
                 ));
             }
@@ -200,17 +200,17 @@ public class SettingsTests {
                             int solution = main.game.getNumber(pos).getSolution();
                             main.select(pos);
                             main.insert(solution == 9 ? solution - 1 : solution + 1);
-                            position.row = pos.row;
-                            position.column = pos.column;
-                            position.block = pos.block;
+                            position.setRow(pos.getRow());
+                            position.setColumn(pos.getBlock());
+                            position.setBlock(pos.getBlock());
                             break wrongNumberInserted;
                         }
                     }
         });
 
         ViewInteraction fieldWithWrongNumber = onView(allOf(
-                ViewMatchers.withId(btn[position.row][position.column]),
-                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block]))
+                ViewMatchers.withId(btn[position.getRow()][position.getColumn()]),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()]))
         ));
 
         fieldWithWrongNumber.check(matches(backgroundColor(R.color.error)));
@@ -239,17 +239,17 @@ public class SettingsTests {
                             int solution = main.game.getNumber(pos).getSolution();
                             main.select(pos);
                             main.insert(solution == 9 ? solution - 1 : solution + 1);
-                            position.row = pos.row;
-                            position.column = pos.column;
-                            position.block = pos.block;
+                            position.setRow(pos.getRow());
+                            position.setColumn(pos.getColumn());
+                            position.setBlock(pos.getBlock());
                             break wrongNumberInserted;
                         }
                     }
         });
 
         fieldWithWrongNumber = onView(allOf(
-                ViewMatchers.withId(btn[position.row][position.column]),
-                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block]))
+                ViewMatchers.withId(btn[position.getRow()][position.getColumn()]),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()]))
         ));
 
         fieldWithWrongNumber.check(matches(backgroundColor(R.color.selected)));
