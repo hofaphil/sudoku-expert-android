@@ -16,12 +16,15 @@ enum class Difficulty(
     fun getText(context: Context): String {
         return context.getString(text)
     }
-}
 
-fun getDifficulty(number: Int): Difficulty {
-    return when (number) {
-        0 -> Difficulty.BEGINNER
-        2 -> Difficulty.EXPERT
-        else -> Difficulty.ADVANCED
+    companion object {
+        @JvmStatic
+        fun getDifficulty(number: Int): Difficulty {
+            return when (number) {
+                0 -> Difficulty.BEGINNER
+                2 -> Difficulty.EXPERT
+                else -> Difficulty.ADVANCED
+            }
+        }
     }
 }

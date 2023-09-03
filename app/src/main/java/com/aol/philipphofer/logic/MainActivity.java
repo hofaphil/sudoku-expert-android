@@ -20,7 +20,6 @@ import com.aol.philipphofer.gui.dialog.EndCardDialog;
 import com.aol.philipphofer.gui.sudoku.SudokuField;
 import com.aol.philipphofer.gui.sudoku.SudokuGrid;
 import com.aol.philipphofer.logic.help.Difficulty;
-import com.aol.philipphofer.logic.help.DifficultyKt;
 import com.aol.philipphofer.logic.sudoku.Block;
 import com.aol.philipphofer.logic.sudoku.Number;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
@@ -150,7 +149,7 @@ public class MainActivity extends CustomActivity implements Timer.TimerListener 
             getWindow().getDecorView().post(() -> timer.startTimer(data.loadInt(Data.GAME_TIME)));
         }
 
-        DIFFICULTY = DifficultyKt.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
+        DIFFICULTY = Difficulty.getDifficulty(data.loadInt(Data.GAME_DIFFICULTY));
         statusBar.setDifficulty(DIFFICULTY);
         statusBar.setError(game.overallErrors);
     }
