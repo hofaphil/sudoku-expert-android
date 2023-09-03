@@ -36,7 +36,7 @@ public class SudokuTests {
         Block[] blocks = new Block[9];
         for (int i = 0; i < 9; i++)
             blocks[i] = new Block();
-        blocks[position.block] = blockMock;
+        blocks[position.getBlock()] = blockMock;
 
         FieldSetter.setField(testSudoku, testSudoku.getClass().getDeclaredField("blocks"), blocks);
 

@@ -60,17 +60,17 @@ public class KeyboardTests {
                         if (main.game.getNumber(position).isChangeable()) {
                             main.select(position);
                             selectedField = onView(allOf(
-                                    ViewMatchers.withId(btn[position.row][position.column]),
-                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block]))
+                                    ViewMatchers.withId(btn[position.getRow()][position.getColumn()]),
+                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()]))
                             ));
                             selectedFieldNumber = onView(allOf(
-                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.row][position.column])),
-                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block])),
+                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.getRow()][position.getColumn()])),
+                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()])),
                                     ViewMatchers.withId(R.id.numberView)
                             ));
                             selectedFieldNotes = onView(allOf(
-                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.row][position.column])),
-                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block])),
+                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.getRow()][position.getColumn()])),
+                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()])),
                                     ViewMatchers.withId(R.id.notesGrid)
                             ));
                             return;

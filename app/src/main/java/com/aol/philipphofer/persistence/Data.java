@@ -92,7 +92,7 @@ public class Data {
                         e.printStackTrace();
                     }
                 }
-        editor.putInt(GAME_ERRORS, sudoku.overallErrors).apply();
+        editor.putInt(GAME_ERRORS, sudoku.getOverallErrors()).apply();
     }
 
     public Sudoku loadSudoku() {
@@ -108,7 +108,7 @@ public class Data {
                     else
                         sudoku.getSudoku()[h].getNumbers()[i][j] = new Number();
                 }
-        sudoku.overallErrors = data.getInt(GAME_ERRORS, 0);
+        sudoku.setOverallErrors(data.getInt(GAME_ERRORS, 0));
         return sudoku;
     }
 

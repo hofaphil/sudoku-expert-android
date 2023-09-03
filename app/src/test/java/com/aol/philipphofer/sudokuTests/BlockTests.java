@@ -91,7 +91,7 @@ public class BlockTests {
      */
     @Test
     public void testGetNumbers() {
-        Number number = testBlock.getNumber(position.row, position.column);
+        Number number = testBlock.getNumber(position.getRow(), position.getColumn());
 
         assertEquals(numberMock, number);
     }
@@ -102,8 +102,8 @@ public class BlockTests {
     @Test
     public void testSetNumber() {
         Number n = new Number();
-        testBlock.setNumber(position.row, position.column, n);
+        testBlock.setNumber(position.getRow(), position.getColumn(), n);
 
-        assertEquals(n, testBlock.getNumber(position.row, position.column));
+        assertEquals(n, testBlock.getNumber(position.getRow(), position.getColumn()));
     }
 }

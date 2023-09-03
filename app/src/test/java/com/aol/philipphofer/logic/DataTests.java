@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.aol.philipphofer.R;
-import com.aol.philipphofer.logic.Position;
 import com.aol.philipphofer.logic.sudoku.Number;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
 import com.aol.philipphofer.persistence.Data;
