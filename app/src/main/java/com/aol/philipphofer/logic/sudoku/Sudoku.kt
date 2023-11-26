@@ -1,27 +1,27 @@
 package com.aol.philipphofer.logic.sudoku
 
 import com.aol.philipphofer.logic.Position
-import java.util.Arrays
 
 class Sudoku {
-    val sudoku: Array<Block> = Array(9) { Block() }
+    val blocks: Array<Block> = Array(9) { Block() }
     var overallErrors = 0
 
     fun insert(number: Int, position: Position, note: Boolean) {
-        if (!sudoku[position.block].insert(number, position, note)) overallErrors++
+        if (!blocks[position.block].insert(number, position, note)) overallErrors++
     }
 
     fun delete(position: Position) {
-        sudoku[position.block].delete(position)
+        blocks[position.block].delete(position)
     }
 
     fun freeFields(): Int {
         var freeFields = 0
-        for (k in 0..8)
-            for (i in 0..2)
-                for (j in 0..2)
-                    if (getNumber(Position(k, i, j)).number == 0)
+        for (block in 0..8)
+            for (row in 0..2)
+                for (col in 0..2)
+                    if (getNumber(Position(block, row, col)).number == 0)
                         freeFields++
+
         return freeFields
     }
 
@@ -36,11 +36,11 @@ class Sudoku {
     }
 
     fun getNumber(position: Position): Number {
-        return sudoku[position.block].getNumber(position.row, position.column)
+        return blocks[position.block].getNumber(position.row, position.column)
     }
 
     fun setNumber(position: Position, number: Number?) {
-        sudoku[position.block].setNumber(position.row, position.column, number!!)
+        blocks[position.block].setNumber(position.row, position.column, number!!)
     }
 
     override fun toString(): String {
@@ -50,7 +50,7 @@ class Sudoku {
             for (k in 0..2) {
                 for (j in i until i + 3) {
                     for (a in 0..2)
-                        sb.append(sudoku[j].numbers[k][a].number)
+                        sb.append(blocks[j].numbers[k][a].number)
                     sb.append(" ")
                 }
                 sb.append("\n")
@@ -67,7 +67,7 @@ class Sudoku {
 
         other as Sudoku
 
-        if (!sudoku.contentEquals(other.sudoku)) return false
+        if (!blocks.contentDeepEquals(other.blocks)) return false
         if (overallErrors != other.overallErrors) return false
 
         return true

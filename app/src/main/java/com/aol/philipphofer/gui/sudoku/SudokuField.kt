@@ -47,7 +47,7 @@ class SudokuField(context: Context, attributeSet: AttributeSet) :
         this.number.addListener(this)
         observableChanged(this.number)
 
-        val typeFace = if (number.isChangeable) Typeface.BOLD else Typeface.ITALIC
+        val typeFace = if (number.isChangeable) Typeface.ITALIC else Typeface.BOLD
         numberView.setTypeface(numberView.typeface, typeFace)
     }
 
@@ -118,9 +118,9 @@ class SudokuField(context: Context, attributeSet: AttributeSet) :
             notesLayout = (findViewById<ViewStub>(R.id.notesGridStub)).inflate() as GridLayout
             notesLayout!!.setOnClickListener(this)
 
-            for (i in 0..8) {
-                val id = context.resources.getIdentifier("tv$i", "id", context.packageName)
-                notes[i] = findViewById(id)
+            notes = Array(9) {
+                val id = context.resources.getIdentifier("tv$it", "id", context.packageName)
+                findViewById(id)
             }
         }
         return notesLayout!!

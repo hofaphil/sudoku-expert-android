@@ -13,9 +13,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.internal.util.reflection.FieldSetter;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -30,7 +30,7 @@ public class SudokuTests {
     private final int correctNumber = 3, falseNumber = 4;
 
     @Before
-    public void setup() throws NoSuchFieldException {
+    public void setup() throws NoSuchFieldException, IllegalAccessException {
         testSudoku = new Sudoku();
 
         Block[] blocks = new Block[9];
@@ -38,7 +38,9 @@ public class SudokuTests {
             blocks[i] = new Block();
         blocks[position.getBlock()] = blockMock;
 
-        FieldSetter.setField(testSudoku, testSudoku.getClass().getDeclaredField("blocks"), blocks);
+        Field blocksField = testSudoku.getClass().getDeclaredField("blocks");
+        blocksField.setAccessible(true);
+        blocksField.set(testSudoku, blocks);
 
         when(blockMock.insert(eq(correctNumber), any(Position.class), anyBoolean())).thenReturn(true);
         when(blockMock.insert(eq(falseNumber), any(Position.class), eq(false))).thenReturn(false);
@@ -51,8 +53,8 @@ public class SudokuTests {
     @Test
     public void testSudoku() {
         Sudoku sudoku = new Sudoku();
-        Arrays.stream(sudoku.getSudoku()).forEach(Assert::assertNotNull);
-        assertEquals(0, sudoku.overallErrors);
+        Arrays.stream(sudoku.getBlocks()).forEach(Assert::assertNotNull);
+        assertEquals(0, sudoku.getOverallErrors());
     }
 
     /**
@@ -62,7 +64,7 @@ public class SudokuTests {
     public void testInsert() {
         testSudoku.insert(correctNumber, position, false);
 
-        assertEquals(0, testSudoku.overallErrors);
+        assertEquals(0, testSudoku.getOverallErrors());
         verify(blockMock, times(1)).insert(correctNumber, position, false);
         verifyNoMoreInteractions(blockMock);
     }
@@ -71,7 +73,7 @@ public class SudokuTests {
     public void testInsertNote() {
         testSudoku.insert(falseNumber, position, true);
 
-        assertEquals(0, testSudoku.overallErrors);
+        assertEquals(0, testSudoku.getOverallErrors());
         verify(blockMock, times(1)).insert(falseNumber, position, true);
         verifyNoMoreInteractions(blockMock);
     }
@@ -80,11 +82,11 @@ public class SudokuTests {
     public void testInsertError() {
         testSudoku.insert(falseNumber, position, false);
 
-        assertEquals(1, testSudoku.overallErrors);
+        assertEquals(1, testSudoku.getOverallErrors());
 
         testSudoku.insert(falseNumber, position, false);
 
-        assertEquals(2, testSudoku.overallErrors);
+        assertEquals(2, testSudoku.getOverallErrors());
         verify(blockMock, times(2)).insert(falseNumber, position, false);
         verifyNoMoreInteractions(blockMock);
     }
@@ -96,7 +98,7 @@ public class SudokuTests {
     public void testDelete() {
         testSudoku.delete(position);
 
-        assertEquals(0, testSudoku.overallErrors);
+        assertEquals(0, testSudoku.getOverallErrors());
         verify(blockMock, times(1)).delete(position);
         verifyNoMoreInteractions(blockMock);
     }

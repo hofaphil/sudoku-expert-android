@@ -14,7 +14,7 @@ object NumberSerializer {
         parts[3] = number.isNotes.toString()
 
         for (i in 0..8)
-            parts[i + 4] = number.notes[i].toString()
+            parts[4 + i] = number.notes[i].toString()
 
         val builder = StringBuilder()
         for (s in parts)
@@ -35,7 +35,7 @@ object NumberSerializer {
         val isNotes = parts[3].toBoolean()
         val notes = BooleanArray(9)
         for (i in 0..8)
-            notes[i] = parts[i + 4].toBoolean()
+            notes[i] = parts[4 + i].toBoolean()
 
         return Number(number, solution, notes, isNotes, isChangeable)
     }

@@ -20,6 +20,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,10 +66,10 @@ public class DataTests {
         });
 
         // reset singleton
-        Field instance = Data.class.getDeclaredField("unique");
+        Field instance = Data.class.getDeclaredField("instance");
         instance.setAccessible(true);
         instance.set(null, null);
-        testData = Data.instance(contextMock);
+        testData = Data.Constants.instance(contextMock);
     }
 
     /**
@@ -121,7 +122,6 @@ public class DataTests {
     @Test
     public void testLoadInt() {
         assertEquals(0, testData.loadInt(TEST_KEY));
-        System.out.println(storageMock.size());
 
         testData.saveInt(TEST_KEY, 34);
         assertEquals(34, testData.loadInt(TEST_KEY));
@@ -201,7 +201,7 @@ public class DataTests {
         int theme = testData.getTheme();
         Assert.assertEquals(R.style.AppTheme, theme);
 
-        testData.saveTheme(2);
+        testData.setTheme(2);
         assertEquals(R.style.AppTheme_Blue, testData.getTheme());
     }
 

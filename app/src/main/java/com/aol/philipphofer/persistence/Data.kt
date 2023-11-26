@@ -9,7 +9,7 @@ import com.aol.philipphofer.logic.help.NumberSerializer
 import com.aol.philipphofer.logic.sudoku.Number
 import com.aol.philipphofer.logic.sudoku.Sudoku
 
-class Data private constructor(context: Context) {
+open class Data private constructor(context: Context) {
 
     private val data: SharedPreferences
     private val editor: SharedPreferences.Editor
@@ -70,6 +70,7 @@ class Data private constructor(context: Context) {
 
 
         @Volatile
+        @JvmStatic
         private var instance: Data? = null
 
         fun instance(context: Context) =
@@ -122,9 +123,9 @@ class Data private constructor(context: Context) {
             for (row in 0..2)
                 for (col in 0..2) {
                     val position = Position(block, row, col)
-                    val numberString = data.getString(SUDOKU_FIELD_NAME + position, null)
+                    val numberString = data.getString(SUDOKU_FIELD_NAME + position, "")
 
-                    sudoku.sudoku[block].numbers[row][col] =
+                    sudoku.blocks[block].numbers[row][col] =
                         NumberSerializer.numberFromString(numberString)
                 }
 

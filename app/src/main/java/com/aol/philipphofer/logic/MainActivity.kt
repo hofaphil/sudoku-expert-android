@@ -92,7 +92,7 @@ class MainActivity : CustomActivity(), TimerListener {
         // Load a game from data
         if (data.loadmode.also { LOAD_MODE = it }) {
             game = data.loadSudoku()
-            sudokuGrid.init(game.sudoku)
+            sudokuGrid.init(game.blocks)
             statusBar.activate(true)
             keyboard.activate(true)
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE)
@@ -128,7 +128,7 @@ class MainActivity : CustomActivity(), TimerListener {
 
         // game created -> save and set load-mode to load sudoku next time
         data.saveSudoku(game)
-        data.loadmode = !LOAD_MODE.also { LOAD_MODE = it }
+        data.loadmode = !LOAD_MODE.also { LOAD_MODE = !it }
 
         // save the setting that apply at first next game
         data.saveBoolean(Data.GAME_SHOW_ERRORS, data.loadBoolean(Data.SETTINGS_MARK_ERRORS))
@@ -138,7 +138,7 @@ class MainActivity : CustomActivity(), TimerListener {
         data.saveInt(Data.GAME_ERRORS, 0)
         data.saveInt(Data.GAME_TIME, 0)
         runOnUiThread {
-            sudokuGrid.init(game.sudoku)
+            sudokuGrid.init(game.blocks)
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE)
             statusBar.activate(true)
             keyboard.activate(true)
@@ -183,7 +183,7 @@ class MainActivity : CustomActivity(), TimerListener {
     private fun selectPartner(sudokuField: SudokuField, select: Boolean) {
         if (data.loadBoolean(Data.SETTINGS_MARK_NUMBERS) && sudokuField.number.number != 0)
             for (i in 0..8) {
-                val numbers = game.sudoku[i].numbers
+                val numbers = game.blocks[i].numbers
                 for (a in 0..2)
                     for (b in 0..2)
                         if (numbers[a][b].number == sudokuField.number.number)
@@ -216,7 +216,7 @@ class MainActivity : CustomActivity(), TimerListener {
 
     private fun checkNotes(position: Position, number: Int) {
         if (data.loadBoolean(Data.SETTINGS_CHECK_NOTES) && !isNotes) {
-            val gameBlock = game.sudoku
+            val gameBlock = game.blocks
 
             // own block
             for (i in 0..2)

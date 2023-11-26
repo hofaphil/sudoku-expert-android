@@ -45,8 +45,8 @@ class StatusBar(context: Context, attributeSet: AttributeSet) :
         moreButton = findViewById(R.id.moreButton)
         val morePopup = PopupMenu(context, moreButton)
         morePopup.inflate(R.menu.popup_more)
-        newPopup.setForceShowIcon(true)
-        newPopup.setOnMenuItemClickListener { item -> morePopupHandler(item) }
+        morePopup.setForceShowIcon(true)
+        morePopup.setOnMenuItemClickListener { item -> morePopupHandler(item) }
         moreButton.setOnClickListener { morePopup.show() }
 
         timeView = findViewById(R.id.timeView)

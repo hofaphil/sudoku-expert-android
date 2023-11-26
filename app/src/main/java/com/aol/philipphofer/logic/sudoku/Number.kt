@@ -15,13 +15,13 @@ class Number : Observable<Number> {
     var isNotes: Boolean
         private set
 
-    constructor() : this(0, 0, BooleanArray(9), false, false)
+    constructor() : this(0, 0, BooleanArray(9), false, true)
 
     constructor(number: Int, solution: Int, isChangeable: Boolean) : this(
         number,
         solution,
         BooleanArray(9),
-        true,
+        false,
         isChangeable
     )
 
@@ -47,7 +47,8 @@ class Number : Observable<Number> {
     }
 
     private fun insertNumber(number: Int) {
-        if (number == this.number) delete() else {
+        if (number == this.number) delete()
+        else {
             if (isNotes) delete()
             isNotes = false
             this.number = number

@@ -301,7 +301,7 @@ public class SettingsTests {
         mainActivity.onActivity(main -> {
             // clear sudoku
             main.game = new Sudoku();
-            main.sudokuGrid.init(main.game.getSudoku());
+            main.sudokuGrid.init(main.game.getBlocks());
 
             main.notesMode();
 
@@ -326,7 +326,7 @@ public class SettingsTests {
         mainActivity.onActivity(main -> {
             // clear sudoku
             main.game = new Sudoku();
-            main.sudokuGrid.init(main.game.getSudoku());
+            main.sudokuGrid.init(main.game.getBlocks());
 
             main.notesMode();
 

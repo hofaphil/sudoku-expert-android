@@ -78,7 +78,7 @@ class Statistics : CustomActivity() {
     }
 
     private fun loadOverall(difficulty: Difficulty): String {
-        val timesPlayed: Int = loadTimesPlayed(Difficulty.BEGINNER)
+        val timesPlayed: Int = loadTimesPlayed(difficulty)
         if (timesPlayed == 0) return "00:00"
         return Timer.timeToString(data.loadInt(STATISTICS_TIMEOVERALL + difficulty.number) / timesPlayed)
     }

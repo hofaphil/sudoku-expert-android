@@ -4,8 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Button
 import android.widget.CheckBox
+import android.widget.RelativeLayout
 import com.aol.philipphofer.R
 import com.aol.philipphofer.gui.custom.CustomActivity
 import com.aol.philipphofer.gui.dialog.ColorChooserDialog
@@ -39,20 +39,20 @@ class Settings : CustomActivity() {
         showErrors = findViewById(R.id.showErrorsSwitch)
         showTime = findViewById(R.id.showTimeSwitch)
 
-        findViewById<Button>(R.id.deleteData).setOnClickListener {
+        findViewById<RelativeLayout>(R.id.deleteData).setOnClickListener {
             ConfirmDialog(
                 this,
                 resources.getString(R.string.settings_confirm),
                 resources.getString(R.string.settings_confirm_annotations)
             ) { data.drop() }.show()
         }
-        findViewById<Button>(R.id.color).setOnClickListener {
+        findViewById<RelativeLayout>(R.id.color).setOnClickListener {
             ColorChooserDialog(
                 this,
                 this
             ).show()
         }
-        findViewById<Button>(R.id.info).setOnClickListener {
+        findViewById<RelativeLayout>(R.id.info).setOnClickListener {
             startActivity(
                 Intent(
                     Intent.ACTION_VIEW,
