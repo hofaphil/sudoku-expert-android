@@ -1,9 +1,9 @@
 package com.aol.philipphofer.logic.sudoku
 
-import java.util.Observable
+import com.aol.philipphofer.logic.observer.Observable
 
-// TODO: deprecated java observable interface
-class Number : Observable {
+
+class Number : Observable<Number> {
 
     var number: Int
         private set
@@ -51,8 +51,7 @@ class Number : Observable {
             if (isNotes) delete()
             isNotes = false
             this.number = number
-            setChanged()
-            notifyObservers()
+            notifyListeners()
         }
     }
 
@@ -60,26 +59,23 @@ class Number : Observable {
         this.number = 0
         isNotes = true
         notes[number - 1] = !notes[number - 1]
-        setChanged()
-        notifyObservers()
+        notifyListeners()
     }
 
     fun delete() {
         if (isChangeable) {
             number = 0
-            for (i in 0..8) {
+            for (i in 0..8)
                 notes[i] = false
-            }
-            setChanged()
-            notifyObservers()
+
+            notifyListeners()
         }
     }
 
     fun checkNote(number: Int) {
         if (notes[number - 1]) {
             notes[number - 1] = false
-            setChanged()
-            notifyObservers()
+            notifyListeners()
         }
     }
 

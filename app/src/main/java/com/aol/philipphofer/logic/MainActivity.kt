@@ -167,7 +167,7 @@ class MainActivity : CustomActivity(), TimerListener {
         // unselect old field first
         if (selected != null) {
             sudokuField =
-                sudokuGrid.blocks[selected!!.block].field[selected!!.row][selected!!.column]
+                sudokuGrid.blocks[selected!!.block].fields[selected!!.row][selected!!.column]
             sudokuField.select(false)
             selectPartner(sudokuField, false)
         }
@@ -175,7 +175,7 @@ class MainActivity : CustomActivity(), TimerListener {
         // select new one now
         selected = selectedPosition
         sudokuField =
-            sudokuGrid.blocks[selectedPosition.block].field[selectedPosition.row][selectedPosition.column]
+            sudokuGrid.blocks[selectedPosition.block].fields[selectedPosition.row][selectedPosition.column]
         selectPartner(sudokuField, true)
         sudokuField.select(true)
     }
@@ -187,28 +187,28 @@ class MainActivity : CustomActivity(), TimerListener {
                 for (a in 0..2)
                     for (b in 0..2)
                         if (numbers[a][b].number == sudokuField.number.number)
-                            sudokuGrid.blocks[i].field[a][b].lightSelect(select)
+                            sudokuGrid.blocks[i].fields[a][b].lightSelect(select)
             }
 
         if (data.loadBoolean(Data.SETTINGS_MARK_LINES)) {
             // own block
             for (i in 0..2) {
                 if (i != sudokuField.position.column)
-                    sudokuGrid.blocks[sudokuField.position.block].field[sudokuField.position.row][i]
+                    sudokuGrid.blocks[sudokuField.position.block].fields[sudokuField.position.row][i]
                         .lightSelect(select)
-                if (i != sudokuField.position.row) sudokuGrid.blocks[sudokuField.position.block].field[i][sudokuField.position.column]
+                if (i != sudokuField.position.row) sudokuGrid.blocks[sudokuField.position.block].fields[i][sudokuField.position.column]
                     .lightSelect(select)
             }
 
             // other blocks
             for (i in 0..2) {
-                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][0]].field[sudokuField.position.row][i]
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][0]].fields[sudokuField.position.row][i]
                     .lightSelect(select)
-                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][1]].field[sudokuField.position.row][i]
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][1]].fields[sudokuField.position.row][i]
                     .lightSelect(select)
-                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][2]].field[i][sudokuField.position.column]
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][2]].fields[i][sudokuField.position.column]
                     .lightSelect(select)
-                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][3]].field[i][sudokuField.position.column]
+                sudokuGrid.blocks[partnerBlockLookup[sudokuField.position.block][3]].fields[i][sudokuField.position.column]
                     .lightSelect(select)
             }
         }
@@ -239,7 +239,7 @@ class MainActivity : CustomActivity(), TimerListener {
 
     fun insert(number: Int) {
         selected?.let {
-            selectPartner(sudokuGrid.blocks[it.block].field[it.row][it.column], false)
+            selectPartner(sudokuGrid.blocks[it.block].fields[it.row][it.column], false)
             checkNotes(it, number)
             game.insert(number, it, isNotes)
 
@@ -253,7 +253,7 @@ class MainActivity : CustomActivity(), TimerListener {
 
     fun delete() {
         selected?.let {
-            selectPartner(sudokuGrid.blocks[it.block].field[it.row][it.column], false)
+            selectPartner(sudokuGrid.blocks[it.block].fields[it.row][it.column], false)
             game.delete(it)
 
             // TODO two times this.selected, maybe this can be done nicer
