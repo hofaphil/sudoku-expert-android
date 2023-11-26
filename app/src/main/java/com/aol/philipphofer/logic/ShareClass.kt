@@ -10,7 +10,7 @@ import com.aol.philipphofer.logic.sudoku.Number
 import com.aol.philipphofer.logic.sudoku.Sudoku
 import java.util.zip.DataFormatException
 
-internal object ShareClass {
+object ShareClass {
 
     private const val URL = "https://philipphofer.de/"
 

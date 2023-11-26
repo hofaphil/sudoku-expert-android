@@ -17,7 +17,7 @@ import com.aol.philipphofer.logic.observer.Listener
 import com.aol.philipphofer.logic.observer.Observable
 import com.aol.philipphofer.logic.sudoku.Number
 import com.aol.philipphofer.persistence.Data
-import com.aol.philipphofer.persistence.Data.GAME_SHOW_ERRORS
+import com.aol.philipphofer.persistence.Data.Constants.GAME_SHOW_ERRORS
 
 class SudokuField(context: Context, attributeSet: AttributeSet) :
     GridLayout(context, attributeSet), OnClickListener, Listener<Number> {

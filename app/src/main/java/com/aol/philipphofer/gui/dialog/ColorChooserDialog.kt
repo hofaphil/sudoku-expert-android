@@ -8,7 +8,7 @@ import com.aol.philipphofer.R
 import com.aol.philipphofer.gui.Settings
 import com.aol.philipphofer.persistence.Data
 
-class ColorChooserDialog(context: Context?, settings: Settings) : Dialog(context!!),
+class ColorChooserDialog(context: Context, settings: Settings) : Dialog(context),
     View.OnClickListener {
 
     private val settings: Settings
@@ -26,7 +26,8 @@ class ColorChooserDialog(context: Context?, settings: Settings) : Dialog(context
     }
 
     override fun onClick(v: View) {
-        Data.instance(context).saveTheme((v.tag as String).toInt())
+        Data.instance(context).theme = (v.tag as String).toInt()
+
         dismiss()
         settings.recreate(1);
     }

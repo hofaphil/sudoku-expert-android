@@ -7,8 +7,8 @@ import android.widget.TextView
 import android.widget.Toolbar
 import com.aol.philipphofer.R
 
-class ConfirmDialog(context: Context?, title: String, message: String, okButton: Runnable) :
-    Dialog(context!!) {
+class ConfirmDialog(context: Context, title: String, message: String, okButton: Runnable) :
+    Dialog(context) {
 
     init {
         setContentView(R.layout.dialog_confirm);

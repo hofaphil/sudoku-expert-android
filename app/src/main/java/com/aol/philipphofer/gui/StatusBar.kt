@@ -40,7 +40,6 @@ class StatusBar(context: Context, attributeSet: AttributeSet) :
         newPopup.inflate(R.menu.popup_new)
         newPopup.setForceShowIcon(true)
         newPopup.setOnMenuItemClickListener { item -> newPopupHandler(item) }
-
         newButton.setOnClickListener { newPopup.show() }
 
         moreButton = findViewById(R.id.moreButton)

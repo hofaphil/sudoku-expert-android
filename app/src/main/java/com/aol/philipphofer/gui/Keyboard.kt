@@ -1,5 +1,6 @@
 package com.aol.philipphofer.gui
 
+import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,7 @@ import android.widget.GridLayout
 import com.aol.philipphofer.R
 import com.aol.philipphofer.logic.MainActivity
 
-class Keyboard(context: MainActivity, attributeSet: AttributeSet) :
+class Keyboard(context: Context, attributeSet: AttributeSet) :
     GridLayout(context, attributeSet),
     View.OnClickListener {
 
@@ -23,7 +24,7 @@ class Keyboard(context: MainActivity, attributeSet: AttributeSet) :
     init {
         LayoutInflater.from(context).inflate(R.layout.sudoku_keyboard, this)
 
-        mainActivity = context
+        mainActivity = context as MainActivity
 
         delButton = findViewById(R.id.delete)
         delButton.setOnClickListener { mainActivity.delete() }
@@ -67,10 +68,10 @@ class Keyboard(context: MainActivity, attributeSet: AttributeSet) :
         activate(!isPauseMode)
         pauseButton.isEnabled = true
 
-        if (isPauseMode)
-            pauseButton.setBackgroundColor(MainActivity.getPrimaryColor(context))
-        else
-            pauseButton.setBackgroundColor(resources.getColor(R.color.transparent))
+        val backgroundColor =
+            if (isPauseMode) MainActivity.getPrimaryColor(context)
+            else resources.getColor(R.color.transparent)
+        pauseButton.setBackgroundColor(backgroundColor)
 
     }
 

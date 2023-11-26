@@ -52,7 +52,7 @@ public class KeyboardTests {
     @Before
     public void setup() {
         mainActivity.getScenario().onActivity(main -> {
-            Data.instance(main).drop();
+            Data.Constants.instance(main).drop();
             for (int b = 0; b < 9; b++)
                 for (int i = 0; i < 3; i++)
                     for (int j = 0; j < 3; j++) {

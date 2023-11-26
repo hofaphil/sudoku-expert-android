@@ -37,7 +37,7 @@ public class SettingsTests {
 
     @Before
     public void setup() {
-        Data.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
+        Data.Constants.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
         mainActivity = ActivityScenario.launch(MainActivity.class);
     }
 
@@ -97,7 +97,7 @@ public class SettingsTests {
         }
 
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(SETTINGS_MARK_LINES, false);
+            Data.Constants.instance(main).saveBoolean(SETTINGS_MARK_LINES, false);
             main.select(position);
         });
 
@@ -116,7 +116,7 @@ public class SettingsTests {
 
         // With mark-numbers on
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(SETTINGS_MARK_LINES, false);
+            Data.Constants.instance(main).saveBoolean(SETTINGS_MARK_LINES, false);
             main.select(position);
 
             if (main.game.getNumber(position).isChangeable())
@@ -153,8 +153,8 @@ public class SettingsTests {
 
         // With mark-numbers off
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(SETTINGS_MARK_LINES, false);
-            Data.instance(main).saveBoolean(SETTINGS_MARK_NUMBERS, false);
+            Data.Constants.instance(main).saveBoolean(SETTINGS_MARK_LINES, false);
+            Data.Constants.instance(main).saveBoolean(SETTINGS_MARK_NUMBERS, false);
             main.select(position);
 
             if (main.game.getNumber(position).isChangeable())
@@ -222,8 +222,8 @@ public class SettingsTests {
 
         // Restart app and create a new game
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(SETTINGS_MARK_ERRORS, false);
-            Data.instance(main).setLoadmode(false);
+            Data.Constants.instance(main).saveBoolean(SETTINGS_MARK_ERRORS, false);
+            Data.Constants.instance(main).setLoadmode(false);
         });
         mainActivity.recreate();
 
@@ -262,8 +262,8 @@ public class SettingsTests {
     public void testShowTime() {
         // With show-time off
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(Data.SETTINGS_SHOW_TIME, false);
-            Data.instance(main).setLoadmode(false);
+            Data.Constants.instance(main).saveBoolean(Data.SETTINGS_SHOW_TIME, false);
+            Data.Constants.instance(main).setLoadmode(false);
         });
 
         mainActivity.recreate();
@@ -273,8 +273,8 @@ public class SettingsTests {
 
         // With show-time on
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(Data.SETTINGS_SHOW_TIME, true);
-            Data.instance(main).setLoadmode(false);
+            Data.Constants.instance(main).saveBoolean(Data.SETTINGS_SHOW_TIME, true);
+            Data.Constants.instance(main).setLoadmode(false);
         });
 
         mainActivity.recreate();
@@ -320,7 +320,7 @@ public class SettingsTests {
 
         // With check-notes off
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(Data.SETTINGS_CHECK_NOTES, false);
+            Data.Constants.instance(main).saveBoolean(Data.SETTINGS_CHECK_NOTES, false);
         });
 
         mainActivity.onActivity(main -> {

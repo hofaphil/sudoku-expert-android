@@ -21,7 +21,7 @@ class MainActivityTests {
 
     @Before
     fun setup() {
-        Data.instance(InstrumentationRegistry.getInstrumentation().context).drop()
+        Data.Constants.instance(InstrumentationRegistry.getInstrumentation().context).drop()
         mainActivity = ActivityScenario.launch(MainActivity::class.java)
     }
 

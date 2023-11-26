@@ -24,10 +24,13 @@ class EndCardDialog(mainActivity: MainActivity) : Dialog(mainActivity) {
         findViewById<Toolbar>(R.id.title).title =
             if (won) mainActivity.resources.getString(R.string.win)
             else mainActivity.resources.getString(R.string.lose)
+
         findViewById<TextView>(R.id.difficultyInfo).text = difficulty.getText(mainActivity)
+
         findViewById<TextView>(R.id.bestTimeInfo).text = Timer.timeToString(
             Data.instance(mainActivity).loadInt(Data.STATISTICS_BESTTIME + difficulty.number)
         )
+
         findViewById<TextView>(R.id.difficultyInfo).text =
             if (won && Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_TIME))
                 Timer.timeToString(time)

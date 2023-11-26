@@ -29,11 +29,11 @@ class MainActivity : CustomActivity(), TimerListener {
 
     lateinit var statusBar: StatusBar
     lateinit var sudokuGrid: SudokuGrid
-    lateinit var keyboard: Keyboard
-    lateinit var endCardDialog: EndCardDialog
+    private lateinit var keyboard: Keyboard
+    private lateinit var endCardDialog: EndCardDialog
 
     var selected: Position? = null
-    var isNotes = false
+    private var isNotes = false
 
     var pause = false
     lateinit var timer: Timer

@@ -9,6 +9,9 @@ import com.aol.philipphofer.gui.custom.CustomActivity
 import com.aol.philipphofer.logic.Timer
 import com.aol.philipphofer.logic.help.Difficulty
 import com.aol.philipphofer.persistence.Data.*
+import com.aol.philipphofer.persistence.Data.Constants.STATISTICS_BESTTIME
+import com.aol.philipphofer.persistence.Data.Constants.STATISTICS_TIMEOVERALL
+import com.aol.philipphofer.persistence.Data.Constants.STATISTICS_TIMESPLAYED
 
 class Statistics : CustomActivity() {
 

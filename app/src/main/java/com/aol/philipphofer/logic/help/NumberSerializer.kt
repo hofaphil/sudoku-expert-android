@@ -24,7 +24,9 @@ object NumberSerializer {
     }
 
     @JvmStatic
-    fun numberFromString(numberString: String): Number {
+    fun numberFromString(numberString: String?): Number {
+        if (numberString.isNullOrBlank()) return Number()
+
         val parts = numberString.split(";")
 
         val number = parts[0].toInt()

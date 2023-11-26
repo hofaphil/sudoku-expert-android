@@ -14,6 +14,7 @@ class CustomToast(context: Context, text: String) {
         val inflater: LayoutInflater =
             context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val layout = inflater.inflate(R.layout.custom_toast, null)
+
         layout.findViewById<TextView>(R.id.text).text = text
         toast = Toast(context)
         toast.duration = Toast.LENGTH_SHORT
