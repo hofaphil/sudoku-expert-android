@@ -27,7 +27,7 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class StatusBarTests {
 
-    ViewInteraction moreButton = onView(ViewMatchers.withId(R.id.popupButton));
+    ViewInteraction moreButton = onView(ViewMatchers.withId(R.id.moreButton));
     ViewInteraction newButton = onView(ViewMatchers.withId(R.id.newButton));
     ViewInteraction timeView = onView(ViewMatchers.withId(R.id.timeView));
     ViewInteraction difficultyView = onView(ViewMatchers.withId(R.id.difficultyView));

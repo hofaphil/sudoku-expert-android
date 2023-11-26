@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <com.aol.philipphofer.gui.StatusBar
+        <com.aol.philipphofer.gui.StatusBarr
             android:id="@+id/statusBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
