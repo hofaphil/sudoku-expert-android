@@ -34,7 +34,7 @@ public class FieldTests {
 
     @Before
     public void setup() {
-        Data.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
+        Data.Constants.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
         mainActivity = ActivityScenario.launch(MainActivity.class);
         mainActivity.onActivity(main -> {
             for (int b = 0; b < 9; b++)

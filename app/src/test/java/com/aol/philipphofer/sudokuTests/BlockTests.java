@@ -1,17 +1,26 @@
 package com.aol.philipphofer.sudokuTests;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.anyBoolean;
+import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+
 import com.aol.philipphofer.logic.Position;
 import com.aol.philipphofer.logic.sudoku.Block;
 import com.aol.philipphofer.logic.sudoku.Number;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BlockTests {
@@ -91,7 +100,7 @@ public class BlockTests {
      */
     @Test
     public void testGetNumbers() {
-        Number number = testBlock.getNumber(position.row, position.column);
+        Number number = testBlock.getNumber(position.getRow(), position.getColumn());
 
         assertEquals(numberMock, number);
     }
@@ -102,8 +111,8 @@ public class BlockTests {
     @Test
     public void testSetNumber() {
         Number n = new Number();
-        testBlock.setNumber(position.row, position.column, n);
+        testBlock.setNumber(position.getRow(), position.getColumn(), n);
 
-        assertEquals(n, testBlock.getNumber(position.row, position.column));
+        assertEquals(n, testBlock.getNumber(position.getRow(), position.getColumn()));
     }
 }

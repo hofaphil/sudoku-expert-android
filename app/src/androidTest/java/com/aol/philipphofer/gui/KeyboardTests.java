@@ -52,7 +52,7 @@ public class KeyboardTests {
     @Before
     public void setup() {
         mainActivity.getScenario().onActivity(main -> {
-            Data.instance(main).drop();
+            Data.Constants.instance(main).drop();
             for (int b = 0; b < 9; b++)
                 for (int i = 0; i < 3; i++)
                     for (int j = 0; j < 3; j++) {
@@ -60,17 +60,17 @@ public class KeyboardTests {
                         if (main.game.getNumber(position).isChangeable()) {
                             main.select(position);
                             selectedField = onView(allOf(
-                                    ViewMatchers.withId(btn[position.row][position.column]),
-                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block]))
+                                    ViewMatchers.withId(btn[position.getRow()][position.getColumn()]),
+                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()]))
                             ));
                             selectedFieldNumber = onView(allOf(
-                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.row][position.column])),
-                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block])),
+                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.getRow()][position.getColumn()])),
+                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()])),
                                     ViewMatchers.withId(R.id.numberView)
                             ));
                             selectedFieldNotes = onView(allOf(
-                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.row][position.column])),
-                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block])),
+                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.getRow()][position.getColumn()])),
+                                    ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()])),
                                     ViewMatchers.withId(R.id.notesGrid)
                             ));
                             return;

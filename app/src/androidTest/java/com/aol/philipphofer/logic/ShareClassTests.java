@@ -66,7 +66,7 @@ public class ShareClassTests {
 
     @Before
     public void setup() {
-        Data.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
+        Data.Constants.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
         mainActivity = ActivityScenario.launch(MainActivity.class);
     }
 
@@ -79,7 +79,7 @@ public class ShareClassTests {
     public void testLoad() throws Exception {
         Sudoku sudoku = ShareClass.load(Uri.parse(link));
 
-        assertEquals(0, sudoku.overallErrors);
+        assertEquals(0, sudoku.getOverallErrors());
         assertEquals(0, sudoku.currentErrors());
 
         for (int block = 0; block < 9; block++)

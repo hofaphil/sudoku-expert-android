@@ -36,7 +36,7 @@ public class EndCardTests {
 
     @Before
     public void setup() {
-        Data.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
+        Data.Constants.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
         mainActivity = ActivityScenario.launch(MainActivity.class);
     }
 
@@ -49,15 +49,15 @@ public class EndCardTests {
     public void testSuccessSudoku() {
         // At the beginning everything should be zero
         mainActivity.onActivity(main -> {
-            assertEquals(0, Data.instance(main).loadInt(STATISTICS_TIMESPLAYED + Difficulty.BEGINNER.getNumber()));
-            assertEquals(0, Data.instance(main).loadInt(STATISTICS_BESTTIME + Difficulty.BEGINNER.getNumber()));
-            assertEquals(0, Data.instance(main).loadInt(STATISTICS_TIMEOVERALL + Difficulty.BEGINNER.getNumber()));
+            assertEquals(0, Data.Constants.instance(main).loadInt(STATISTICS_TIMESPLAYED + Difficulty.BEGINNER.getNumber()));
+            assertEquals(0, Data.Constants.instance(main).loadInt(STATISTICS_BESTTIME + Difficulty.BEGINNER.getNumber()));
+            assertEquals(0, Data.Constants.instance(main).loadInt(STATISTICS_TIMEOVERALL + Difficulty.BEGINNER.getNumber()));
         });
 
         // Restart app and create a new beginner game
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveInt(GAME_DIFFICULTY, Difficulty.BEGINNER.getNumber());
-            Data.instance(main).setLoadmode(false);
+            Data.Constants.instance(main).saveInt(GAME_DIFFICULTY, Difficulty.BEGINNER.getNumber());
+            Data.Constants.instance(main).setLoadmode(false);
         });
         mainActivity.recreate();
 
@@ -82,9 +82,9 @@ public class EndCardTests {
 
         // Statistics should be updated
         mainActivity.onActivity(main -> {
-            assertEquals(1, Data.instance(main).loadInt(STATISTICS_TIMESPLAYED + Difficulty.BEGINNER.getNumber()));
-            assertTrue(Data.instance(main).loadInt(STATISTICS_BESTTIME + Difficulty.BEGINNER.getNumber()) > 1);
-            assertTrue(Data.instance(main).loadInt(STATISTICS_TIMEOVERALL + Difficulty.BEGINNER.getNumber()) > 1);
+            assertEquals(1, Data.Constants.instance(main).loadInt(STATISTICS_TIMESPLAYED + Difficulty.BEGINNER.getNumber()));
+            assertTrue(Data.Constants.instance(main).loadInt(STATISTICS_BESTTIME + Difficulty.BEGINNER.getNumber()) > 1);
+            assertTrue(Data.Constants.instance(main).loadInt(STATISTICS_TIMEOVERALL + Difficulty.BEGINNER.getNumber()) > 1);
         });
 
         TestHelpers.waitForView();
@@ -98,15 +98,15 @@ public class EndCardTests {
     public void testFailureSudoku() {
         // At the beginning everything should be zero
         mainActivity.onActivity(main -> {
-            assertEquals(0, Data.instance(main).loadInt(STATISTICS_TIMESPLAYED + Difficulty.BEGINNER.getNumber()));
-            assertEquals(0, Data.instance(main).loadInt(STATISTICS_BESTTIME + Difficulty.BEGINNER.getNumber()));
-            assertEquals(0, Data.instance(main).loadInt(STATISTICS_TIMEOVERALL + Difficulty.BEGINNER.getNumber()));
+            assertEquals(0, Data.Constants.instance(main).loadInt(STATISTICS_TIMESPLAYED + Difficulty.BEGINNER.getNumber()));
+            assertEquals(0, Data.Constants.instance(main).loadInt(STATISTICS_BESTTIME + Difficulty.BEGINNER.getNumber()));
+            assertEquals(0, Data.Constants.instance(main).loadInt(STATISTICS_TIMEOVERALL + Difficulty.BEGINNER.getNumber()));
         });
 
         // Restart app and create a new beginner game
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveInt(GAME_DIFFICULTY, Difficulty.BEGINNER.getNumber());
-            Data.instance(main).setLoadmode(false);
+            Data.Constants.instance(main).saveInt(GAME_DIFFICULTY, Difficulty.BEGINNER.getNumber());
+            Data.Constants.instance(main).setLoadmode(false);
         });
         mainActivity.recreate();
 
@@ -134,9 +134,9 @@ public class EndCardTests {
 
         // Statistics should not have been updated
         mainActivity.onActivity(main -> {
-            assertEquals(0, Data.instance(main).loadInt(STATISTICS_TIMESPLAYED + Difficulty.BEGINNER.getNumber()));
-            assertEquals(0, Data.instance(main).loadInt(STATISTICS_BESTTIME + Difficulty.BEGINNER.getNumber()));
-            assertEquals(0, Data.instance(main).loadInt(STATISTICS_TIMEOVERALL + Difficulty.BEGINNER.getNumber()));
+            assertEquals(0, Data.Constants.instance(main).loadInt(STATISTICS_TIMESPLAYED + Difficulty.BEGINNER.getNumber()));
+            assertEquals(0, Data.Constants.instance(main).loadInt(STATISTICS_BESTTIME + Difficulty.BEGINNER.getNumber()));
+            assertEquals(0, Data.Constants.instance(main).loadInt(STATISTICS_TIMEOVERALL + Difficulty.BEGINNER.getNumber()));
         });
 
         TestHelpers.waitForView();

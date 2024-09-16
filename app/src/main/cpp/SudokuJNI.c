@@ -9,7 +9,7 @@ Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, job
     jclass jSudokuClass = (*env)->FindClass(env, "com/aol/philipphofer/logic/sudoku/Sudoku");
     jmethodID jNewSudoku = (*env)->GetMethodID(env, jSudokuClass, "<init>", "()V");
     jobject jSudoku = (*env)->NewObject(env, jSudokuClass, jNewSudoku);
-    jmethodID jGetSudoku = (*env)->GetMethodID(env, jSudokuClass, "getSudoku", "()[Lcom/aol/philipphofer/logic/sudoku/Block;");
+    jmethodID jGetSudoku = (*env)->GetMethodID(env, jSudokuClass, "getBlocks", "()[Lcom/aol/philipphofer/logic/sudoku/Block;");
 
     /**
      * Block
