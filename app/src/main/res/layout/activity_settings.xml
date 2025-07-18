@@ -215,7 +215,7 @@
                 <TextView
                     android:id="@+id/infoTitle"
                     style="@style/General.Title"
-                    android:text="@string/settings_info" />
+                    android:text="@string/settings_about" />
 
             </RelativeLayout>
 

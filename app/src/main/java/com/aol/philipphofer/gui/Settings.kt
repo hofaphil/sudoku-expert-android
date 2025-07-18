@@ -11,9 +11,10 @@ import com.aol.philipphofer.gui.custom.CustomActivity
 import com.aol.philipphofer.gui.dialog.ColorChooserDialog
 import com.aol.philipphofer.gui.dialog.ConfirmDialog
 import com.aol.philipphofer.persistence.Data
+import androidx.core.net.toUri
 
 private const val COLOR_CHANGED = "color_changed"
-private const val CONTACT_URL = "https://www.philipphofer.de/contact"
+private const val CONTACT_URL = "https://www.sudoku-expert.com"
 
 class Settings : CustomActivity() {
 
@@ -56,7 +57,7 @@ class Settings : CustomActivity() {
             startActivity(
                 Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse(CONTACT_URL)
+                    CONTACT_URL.toUri()
                 )
             )
         }

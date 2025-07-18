@@ -37,7 +37,7 @@
 
                 <data android:scheme="https" />
                 <data
-                    android:host="philipphofer.de"
+                    android:host="sudoku-expert.com"
                     android:path="/share" />
             </intent-filter>
         </activity>

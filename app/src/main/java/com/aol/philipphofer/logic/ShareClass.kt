@@ -12,7 +12,7 @@ import java.util.zip.DataFormatException
 
 object ShareClass {
 
-    private const val URL = "https://philipphofer.de/"
+    private const val HOST = "https://sudoku-expert.com"
 
     @JvmStatic
     fun share(sudoku: Sudoku, context: Activity): String {
@@ -29,7 +29,7 @@ object ShareClass {
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Sudoku")
 
         val shareMessage = context.resources.getString(R.string.share_description)
-        val shareLink = URL + "share?id=" + getLink(id.toString())
+        val shareLink = HOST + "/share?id=" + getLink(id.toString())
         shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage + "\n\n" + shareLink + "\n");
 
         context.startActivity(
