@@ -2,6 +2,7 @@
     android:width="@dimen/statusbar_icon_size"
     android:height="@dimen/statusbar_icon_size"
     android:viewportWidth="256"
+    android:tint="@color/lila"
     android:viewportHeight="256">
   <path
       android:pathData="M27.711,128.001L228.289,128.001"

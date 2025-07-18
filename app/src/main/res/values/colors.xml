@@ -12,10 +12,13 @@
     <color name="lightgray">#fafafa</color>
     <color name="red">#ff0000</color>
     <color name="orange">#ed7d31</color>
-    <color name="yellow">#ffcc00</color>
     <color name="blue">#5b9bd5</color>
     <color name="green">#70ad47</color>
     <color name="transparent">#00000000</color>
+
+    <color name="yellow">#FFE26D</color>
+    <color name="lila">#6366AD</color>
+    <color name="dark">#434137</color>
 
     <!-- for gamefield -->
     <color name="selected">@color/yellow</color>
