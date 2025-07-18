@@ -11,8 +11,8 @@ import com.aol.philipphofer.logic.sudoku.Sudoku
 
 open class Data private constructor(context: Context) {
 
-    private val data: SharedPreferences
-    private val editor: SharedPreferences.Editor
+    private val data: SharedPreferences = context.getSharedPreferences(NAME, Context.MODE_PRIVATE)
+    private val editor: SharedPreferences.Editor = data.edit()
 
     var loadmode: Boolean
         get() = loadBoolean(LOAD_MODE, false)
@@ -32,11 +32,6 @@ open class Data private constructor(context: Context) {
                 3 -> saveInt(SETTINGS_COLOR, R.style.AppTheme_Orange)
                 else -> saveInt(SETTINGS_COLOR, R.style.AppTheme)
             }
-
-    init {
-        data = context.getSharedPreferences(NAME, Context.MODE_PRIVATE)
-        editor = data.edit()
-    }
 
     companion object Constants {
         const val NAME = "data"

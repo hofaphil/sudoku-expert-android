@@ -29,11 +29,9 @@ class SudokuField(context: Context, attributeSet: AttributeSet) :
     private var notesLayout: GridLayout? = null
     private var notes: Array<TextView> = emptyArray()
 
-    private val mainActivity: MainActivity
+    private val mainActivity: MainActivity = context as MainActivity
 
     init {
-        mainActivity = context as MainActivity
-
         LayoutInflater.from(context).inflate(R.layout.sudoku_field, this)
 
         numberView = findViewById(R.id.numberView)

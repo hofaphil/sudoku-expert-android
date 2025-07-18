@@ -17,6 +17,7 @@ import com.aol.philipphofer.logic.MainActivity
 import com.aol.philipphofer.logic.Timer
 import com.aol.philipphofer.logic.help.Difficulty
 import com.aol.philipphofer.persistence.Data
+import androidx.core.net.toUri
 
 class StatusBar(context: Context, attributeSet: AttributeSet) :
     RelativeLayout(context, attributeSet) {
@@ -70,7 +71,7 @@ class StatusBar(context: Context, attributeSet: AttributeSet) :
             }
 
             R.id.popup_rate -> {
-                val uri = Uri.parse("market://details?id=" + context.packageName)
+                val uri = ("market://details?id=" + context.packageName).toUri()
                 intent = Intent(Intent.ACTION_VIEW, uri)
                 try {
                     context.startActivity(intent)
