@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="https://philipphofer.de/img/logo.png" width="7%" alt="SudokuExpert Logo">
+  <img src="https://sudoku-expert.com/logo-text.svg" width="100%" alt="SudokuExpert Logo">
 </p>
-<h1 align="center" style="margin-top: 0px;">SudokuExpert</h1>
 
-### A Sudoku app for Android.
+# A Sudoku app for Android.
 A app to play free and unlimited Sudoku with three difficulties to choose.
 
-#### Features:
+## :sparkles: Features:
+
 - [x] **Unlimited games**: An algorithm creates unique sudokus, so you get a new one each try!
 - [x] **Three difficulties**: Beginner, intermediate and expert.
 - [x] **Minimalistic**: Simple and clean look!
@@ -19,11 +19,12 @@ A app to play free and unlimited Sudoku with three difficulties to choose.
  
 <p align="center">
   <a href="https://play.google.com/store/apps/details?id=com.aol.philipphofer">
-    <img src="https://philipphofer.de/img/google-badge.png" width="25%">
+    <img src="https://sudoku-expert.com/download-android.png" width="25%">
   </a>
 </p>
 
-### :hammer: Build
+## :hammer: Build
+
 To build this project yourself you need to follow this steps:
 1. Install the Android SDK
 2. Clone the project
@@ -31,5 +32,6 @@ To build this project yourself you need to follow this steps:
 4. Run the `cloneGenerator.sh` script to clone the necessary C-files for Sudoku-generation from the [sudoku-expert-generator](https://github.com/hofaphil/sudoku-expert-generator) repo
 5. Build the app :white_check_mark:
 
-### :clipboard: Tests
+## :clipboard: Tests
+
 The project contains basic unit and integration tests. They are located in the `app/src/test` and the `app/src/androidTest` directory. The tests can be run comfortably with Android Studio.
