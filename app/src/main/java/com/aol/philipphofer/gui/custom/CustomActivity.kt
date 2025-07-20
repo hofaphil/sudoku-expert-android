@@ -11,6 +11,5 @@ abstract class CustomActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         data = Data.instance(this);
-        setTheme(data.theme)
     }
 }

@@ -170,28 +170,9 @@
                 android:text="@string/settings_title_more" />
 
             <RelativeLayout
-                android:id="@+id/color"
-                style="@style/Settings.Layout"
-                android:layout_below="@id/more">
-
-                <TextView
-                    android:id="@+id/colorTitle"
-                    style="@style/General.Title"
-                    android:text="@string/settings_color" />
-
-                <TextView
-                    android:id="@+id/colorAnnotations"
-                    style="@style/General.Info"
-                    android:layout_below="@id/colorTitle"
-                    android:text="@string/settings_color_annotations" />
-
-            </RelativeLayout>
-
-
-            <RelativeLayout
                 android:id="@+id/deleteData"
                 style="@style/Settings.Layout"
-                android:layout_below="@id/color">
+                android:layout_below="@id/more">
 
                 <TextView
                     android:id="@+id/deleteDataTitle"

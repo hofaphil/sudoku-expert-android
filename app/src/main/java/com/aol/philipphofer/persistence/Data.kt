@@ -18,21 +18,6 @@ open class Data private constructor(context: Context) {
         get() = loadBoolean(LOAD_MODE, false)
         set(value) = saveBoolean(LOAD_MODE, value)
 
-    var theme: Int
-        get() =
-            try {
-                data.getInt(SETTINGS_COLOR, R.style.AppTheme);
-            } catch (e: Exception) {
-                R.style.AppTheme;
-            }
-        set(value) =
-            when (value) {
-                1 -> saveInt(SETTINGS_COLOR, R.style.AppTheme_Green)
-                2 -> saveInt(SETTINGS_COLOR, R.style.AppTheme_Blue)
-                3 -> saveInt(SETTINGS_COLOR, R.style.AppTheme_Orange)
-                else -> saveInt(SETTINGS_COLOR, R.style.AppTheme)
-            }
-
     companion object Constants {
         const val NAME = "data"
 
@@ -46,7 +31,6 @@ open class Data private constructor(context: Context) {
         const val SETTINGS_MARK_ERRORS = "markerrors"
         const val SETTINGS_CHECK_NOTES = "checknotes"
         const val SETTINGS_SHOW_TIME = "showtime"
-        const val SETTINGS_COLOR = "color"
 
         // this functionality does not exist anymore, but some people might have bought this
         const val SETTINGS_SUPPORTER = "supporter"

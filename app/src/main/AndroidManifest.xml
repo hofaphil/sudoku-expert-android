@@ -45,18 +45,21 @@
             android:name=".logic.MainActivity"
             android:exported="false"
             android:launchMode="singleTask"
+            android:theme="@style/AppTheme"
             android:parentActivityName=".logic.StartActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".gui.Settings"
             android:exported="false"
             android:launchMode="singleInstance"
+            android:theme="@style/AppTheme"
             android:parentActivityName=".logic.MainActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".gui.Statistics"
             android:exported="false"
             android:launchMode="singleInstance"
+            android:theme="@style/AppTheme"
             android:parentActivityName=".logic.MainActivity"
             android:screenOrientation="portrait"/>
     </application>

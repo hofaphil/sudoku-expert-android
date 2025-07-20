@@ -37,7 +37,7 @@ class MainActivity : CustomActivity(), TimerListener {
 
     var pause = false
     lateinit var timer: Timer
-    private var t = Thread()
+    private var thread = Thread()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,9 +109,9 @@ class MainActivity : CustomActivity(), TimerListener {
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING)
             keyboard.activate(false)
             statusBar.activate(false)
-            if (!t.isAlive) {
-                t = Thread { heavyLoading() }
-                t.start()
+            if (!thread.isAlive) {
+                thread = Thread { heavyLoading() }
+                thread.start()
             }
         } else {
             window.decorView.post { timer.startTimer(data.loadInt(Data.GAME_TIME)) }

@@ -192,18 +192,5 @@ public class DataTests {
         assertTrue(testData.getLoadmode());
     }
 
-    /**
-     * int getTheme()
-     * void saveTheme(int color)
-     */
-    @Test
-    public void testSetGetTheme() {
-        int theme = testData.getTheme();
-        Assert.assertEquals(R.style.AppTheme, theme);
-
-        testData.setTheme(2);
-        assertEquals(R.style.AppTheme_Blue, testData.getTheme());
-    }
-
     // TODO: test addTime but with new data structure
 }

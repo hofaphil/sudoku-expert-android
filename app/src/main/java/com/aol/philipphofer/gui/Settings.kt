@@ -8,12 +8,10 @@ import android.widget.CheckBox
 import android.widget.RelativeLayout
 import com.aol.philipphofer.R
 import com.aol.philipphofer.gui.custom.CustomActivity
-import com.aol.philipphofer.gui.dialog.ColorChooserDialog
 import com.aol.philipphofer.gui.dialog.ConfirmDialog
 import com.aol.philipphofer.persistence.Data
 import androidx.core.net.toUri
 
-private const val COLOR_CHANGED = "color_changed"
 private const val CONTACT_URL = "https://www.sudoku-expert.com"
 
 class Settings : CustomActivity() {
@@ -24,15 +22,11 @@ class Settings : CustomActivity() {
     private lateinit var checkNotes: CheckBox
     private lateinit var showTime: CheckBox
 
-    private var colorChanged = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
         setActionBar(findViewById(R.id.title))
-
-        colorChanged = intent.getIntExtra(COLOR_CHANGED, 0)
 
         markLines = findViewById(R.id.markLinesSwitch)
         markNumbers = findViewById(R.id.markNumbersSwitch)
@@ -46,12 +40,6 @@ class Settings : CustomActivity() {
                 resources.getString(R.string.settings_confirm),
                 resources.getString(R.string.settings_confirm_annotations)
             ) { data.drop() }.show()
-        }
-        findViewById<RelativeLayout>(R.id.color).setOnClickListener {
-            ColorChooserDialog(
-                this,
-                this
-            ).show()
         }
         findViewById<RelativeLayout>(R.id.info).setOnClickListener {
             startActivity(
@@ -83,22 +71,13 @@ class Settings : CustomActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val returnIntent = Intent()
-        setResult(colorChanged, returnIntent)
         finish()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.home) {
-            val returnIntent = Intent()
-            setResult(colorChanged, returnIntent)
             finish()
         }
         return true
-    }
-
-    fun recreate(colorChanged: Int) {
-        intent.putExtra(COLOR_CHANGED, colorChanged)
-        super.recreate()
     }
 }
