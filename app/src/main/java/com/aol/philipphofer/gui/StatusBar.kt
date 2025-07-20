@@ -60,14 +60,14 @@ class StatusBar(context: Context, attributeSet: AttributeSet) :
         when (item.itemId) {
             R.id.popup_statistics -> {
                 intent = Intent(mainActivity, Statistics::class.java)
-                mainActivity.startActivityForResult(intent, 0)
+                mainActivity.startActivity(intent)
             }
 
             R.id.popup_challenge -> mainActivity.share()
 
             R.id.popup_settings -> {
                 intent = Intent(mainActivity, Settings::class.java)
-                mainActivity.startActivityForResult(intent, 0)
+                mainActivity.startActivity(intent)
             }
 
             R.id.popup_rate -> {

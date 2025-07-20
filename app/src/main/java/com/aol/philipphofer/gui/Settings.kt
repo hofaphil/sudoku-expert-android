@@ -68,16 +68,4 @@ class Settings : CustomActivity() {
         data.saveBoolean(Data.SETTINGS_MARK_ERRORS, showErrors.isChecked)
         data.saveBoolean(Data.SETTINGS_SHOW_TIME, showTime.isChecked)
     }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.home) {
-            finish()
-        }
-        return true
-    }
 }

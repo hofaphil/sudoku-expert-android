@@ -63,12 +63,6 @@ class Statistics : CustomActivity() {
         expertBest.text = loadBestTime(Difficulty.EXPERT)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.home)
-            finish()
-        return super.onOptionsItemSelected(item)
-    }
-
     private fun loadTimesPlayed(difficulty: Difficulty): Int {
         return data.loadInt(STATISTICS_TIMESPLAYED + difficulty.number)
     }
