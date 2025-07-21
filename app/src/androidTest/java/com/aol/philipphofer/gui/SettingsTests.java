@@ -191,7 +191,6 @@ public class SettingsTests {
         // With mark-errors on
         mainActivity.onActivity(main -> {
             // insert a wrong number
-            wrongNumberInserted:
             for (int block = 0; block < 9; block++)
                 for (int row = 0; row < 3; row++)
                     for (int col = 0; col < 3; col++) {
@@ -201,9 +200,9 @@ public class SettingsTests {
                             main.select(pos);
                             main.insert(solution == 9 ? solution - 1 : solution + 1);
                             position.setRow(pos.getRow());
-                            position.setColumn(pos.getBlock());
+                            position.setColumn(pos.getColumn());
                             position.setBlock(pos.getBlock());
-                            break wrongNumberInserted;
+                            return;
                         }
                     }
         });
@@ -230,7 +229,6 @@ public class SettingsTests {
         // With mark-errors off
         mainActivity.onActivity(main -> {
             // insert a wrong number
-            wrongNumberInserted:
             for (int block = 0; block < 9; block++)
                 for (int row = 0; row < 3; row++)
                     for (int col = 0; col < 3; col++) {
@@ -242,7 +240,7 @@ public class SettingsTests {
                             position.setRow(pos.getRow());
                             position.setColumn(pos.getColumn());
                             position.setBlock(pos.getBlock());
-                            break wrongNumberInserted;
+                            return;
                         }
                     }
         });

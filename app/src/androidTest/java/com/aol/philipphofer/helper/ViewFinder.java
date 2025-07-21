@@ -25,26 +25,17 @@ public class ViewFinder {
     };
 
     private static int getNoteGridId(int number) {
-        switch (number) {
-            case 1:
-                return R.id.tv0;
-            case 2:
-                return R.id.tv1;
-            case 3:
-                return R.id.tv2;
-            case 4:
-                return R.id.tv3;
-            case 5:
-                return R.id.tv4;
-            case 6:
-                return R.id.tv5;
-            case 7:
-                return R.id.tv6;
-            case 8:
-                return R.id.tv7;
-            default:
-                return R.id.tv8;
-        }
+        return switch (number) {
+            case 1 -> R.id.tv0;
+            case 2 -> R.id.tv1;
+            case 3 -> R.id.tv2;
+            case 4 -> R.id.tv3;
+            case 5 -> R.id.tv4;
+            case 6 -> R.id.tv5;
+            case 7 -> R.id.tv6;
+            case 8 -> R.id.tv7;
+            default -> R.id.tv8;
+        };
     }
 
     // Fields

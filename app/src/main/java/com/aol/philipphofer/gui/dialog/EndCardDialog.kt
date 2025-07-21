@@ -31,7 +31,7 @@ class EndCardDialog(mainActivity: MainActivity) : Dialog(mainActivity) {
             Data.instance(mainActivity).loadInt(Data.STATISTICS_BESTTIME + difficulty.number)
         )
 
-        findViewById<TextView>(R.id.difficultyInfo).text =
+        findViewById<TextView>(R.id.timeInfo).text =
             if (won && Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_TIME))
                 Timer.timeToString(time)
             else noTimeText
