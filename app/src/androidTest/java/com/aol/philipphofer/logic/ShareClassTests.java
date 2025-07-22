@@ -34,7 +34,7 @@ public class ShareClassTests {
     // 0 0 0   0 0 0   0 0 2         9 3 1   8 7 6   5 4 2
     // 6 0 0   4 0 0   0 0 0         6 2 7   4 5 1   3 8 9
     // 0 4 0   9 0 0   6 0 0         8 4 5   9 3 2   6 7 1
-    private static final String link = "https://philipphofer.de/share?id=m6i9o8jk7la5qa58k63d4595293p6on491a23b6b4c4a9c2b6a";
+    private static final String link = "https://sudoku-expert.com/share?id=m6i9o8jk7la5qa58k63d4595293p6on491a23b6b4c4a9c2b6a";
     private final int[][][] game = {
             {{5, 6, 0}, {1, 9, 0}, {7, 8, 0}},
             {{2, 0, 3}, {7, 0, 4}, {0, 0, 5}},
@@ -66,7 +66,7 @@ public class ShareClassTests {
 
     @Before
     public void setup() {
-        Data.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
+        Data.Constants.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
         mainActivity = ActivityScenario.launch(MainActivity.class);
     }
 
@@ -79,7 +79,7 @@ public class ShareClassTests {
     public void testLoad() throws Exception {
         Sudoku sudoku = ShareClass.load(Uri.parse(link));
 
-        assertEquals(0, sudoku.overallErrors);
+        assertEquals(0, sudoku.getOverallErrors());
         assertEquals(0, sudoku.currentErrors());
 
         for (int block = 0; block < 9; block++)

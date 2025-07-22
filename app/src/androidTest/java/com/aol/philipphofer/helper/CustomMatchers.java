@@ -28,7 +28,7 @@ public class CustomMatchers {
     };
 
     public static Matcher<View> backgroundColor(final int backgroundColorId) {
-        return new BoundedMatcher<View, View>(View.class) {
+        return new BoundedMatcher<>(View.class) {
             @Override
             public boolean matchesSafely(final View view) {
                 Drawable background = view.getBackground();

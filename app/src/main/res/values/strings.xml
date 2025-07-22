@@ -76,7 +76,7 @@
     <string name="settings_showTimeAnnotations">Stop the time you need for a Sudoku and save it in your statistics</string>
     <string name="settings_deleteData">Reset</string>
     <string name="settings_deleteDataAnnotations">Delete all your statistics and reset the app</string>
-    <string name="settings_info">Contact</string>
+    <string name="settings_about">About</string>
     <string name="settings_color">Color</string>
     <string name="settings_color_annotations">Change the color of the app</string>
     <string name="settings_color_button">Choose</string>

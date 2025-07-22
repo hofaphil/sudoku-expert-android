@@ -70,7 +70,7 @@
     <string name="settings_showTimeAnnotations">Stoppe, wie lange Du für ein Sudoku brauchst und schau Dir Deine Zeiten in den Statistiken an</string>
     <string name="settings_deleteData">Zurücksetzen</string>
     <string name="settings_deleteDataAnnotations">Lösche Deine Statistik und setzte die App zurück</string>
-    <string name="settings_info">Kontakt</string>
+    <string name="settings_about">Mehr erfahren</string>
     <string name="settings_color">Farben</string>
     <string name="settings_color_annotations">Ändere die Farben der App</string>
     <string name="settings_color_button">Ändern</string>

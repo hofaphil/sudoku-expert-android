@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:allowBackup="true">
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name=".logic.StartActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask"
             android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,38 +24,42 @@
             <intent-filter>
                 <data android:scheme="hofer.sudoku.expert" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"/>
-                <data android:host="philipphofer.de" android:path="/share" />
+
+                <data android:scheme="https" />
+                <data android:host="sudoku-expert.com" />
+                <data android:path="/share" />
             </intent-filter>
         </activity>
         <activity
             android:name=".logic.MainActivity"
-            android:parentActivityName=".logic.StartActivity"
-            android:launchMode="singleTask"
             android:exported="false"
-            android:screenOrientation="portrait">
-        </activity>
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".logic.StartActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".gui.Settings"
-            android:parentActivityName=".logic.MainActivity"
-            android:launchMode="singleInstance"
             android:exported="false"
-            android:screenOrientation="portrait">
-        </activity>
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".logic.MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".gui.Statistics"
-            android:parentActivityName=".logic.MainActivity"
-            android:launchMode="singleInstance"
             android:exported="false"
-            android:screenOrientation="portrait">
-        </activity>
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".logic.MainActivity"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

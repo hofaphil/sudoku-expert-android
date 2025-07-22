@@ -1,23 +1,27 @@
 package com.aol.philipphofer.logic;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.anyBoolean;
+import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.aol.philipphofer.R;
-import com.aol.philipphofer.logic.Position;
 import com.aol.philipphofer.logic.sudoku.Number;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
 import com.aol.philipphofer.persistence.Data;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
 import java.lang.reflect.Field;
@@ -66,10 +70,10 @@ public class DataTests {
         });
 
         // reset singleton
-        Field instance = Data.class.getDeclaredField("unique");
+        Field instance = Data.class.getDeclaredField("instance");
         instance.setAccessible(true);
         instance.set(null, null);
-        testData = Data.instance(contextMock);
+        testData = Data.Constants.instance(contextMock);
     }
 
     /**
@@ -122,7 +126,6 @@ public class DataTests {
     @Test
     public void testLoadInt() {
         assertEquals(0, testData.loadInt(TEST_KEY));
-        System.out.println(storageMock.size());
 
         testData.saveInt(TEST_KEY, 34);
         assertEquals(34, testData.loadInt(TEST_KEY));
@@ -191,19 +194,6 @@ public class DataTests {
 
         testData.setLoadmode(true);
         assertTrue(testData.getLoadmode());
-    }
-
-    /**
-     * int getTheme()
-     * void saveTheme(int color)
-     */
-    @Test
-    public void testSetGetTheme() {
-        int theme = testData.getTheme();
-        Assert.assertEquals(R.style.AppTheme, theme);
-
-        testData.saveTheme(2);
-        assertEquals(R.style.AppTheme_Blue, testData.getTheme());
     }
 
     // TODO: test addTime but with new data structure

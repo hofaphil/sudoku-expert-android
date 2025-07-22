@@ -12,7 +12,7 @@ public class AssertionHelpers {
 
     public static void isNewGame(MainActivity main) {
         assertTrue(main.timer.getTime() < 2);
-        assertEquals(0, main.game.overallErrors);
+        assertEquals(0, main.game.getOverallErrors());
         assertEquals(0, main.game.currentErrors());
 
         for (int block = 0; block < 9; block++)

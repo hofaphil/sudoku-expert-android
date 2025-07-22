@@ -26,7 +26,7 @@ public class StatisticsTests {
 
     @Before
     public void setup() {
-        Data d = Data.instance(InstrumentationRegistry.getInstrumentation().getContext());
+        Data d = Data.Constants.instance(InstrumentationRegistry.getInstrumentation().getContext());
         d.drop();
 
         // Add some games

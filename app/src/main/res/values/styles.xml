@@ -1,5 +1,5 @@
 <resources>
-    <!-- Base application theme. -->
+    <!-- Application theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/yellow</item>
         <item name="colorPrimaryDark">@color/black</item>
@@ -8,24 +8,9 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="AppTheme.Green" parent="AppTheme">
-        <item name="colorPrimary">@color/green</item>
-        <item name="android:statusBarColor">@color/green</item>
-    </style>
-
-    <style name="AppTheme.Blue" parent="AppTheme">
-        <item name="colorPrimary">@color/blue</item>
-        <item name="android:statusBarColor">@color/blue</item>
-    </style>
-
-    <style name="AppTheme.Orange" parent="AppTheme">
-        <item name="colorPrimary">@color/orange</item>
-        <item name="android:statusBarColor">@color/orange</item>
-    </style>
-
     <!-- Splash Screen -->
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowBackground">@color/yellow</item>
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:statusBarColor">@color/yellow</item>
         <item name="android:windowLightStatusBar">true</item>

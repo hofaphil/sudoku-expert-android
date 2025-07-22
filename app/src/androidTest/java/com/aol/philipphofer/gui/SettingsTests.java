@@ -37,7 +37,7 @@ public class SettingsTests {
 
     @Before
     public void setup() {
-        Data.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
+        Data.Constants.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
         mainActivity = ActivityScenario.launch(MainActivity.class);
     }
 
@@ -51,8 +51,8 @@ public class SettingsTests {
         Position position = new Position(0, 0, 0);
 
         ViewInteraction selectedField = onView(allOf(
-                ViewMatchers.withId(btn[position.row][position.column]),
-                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block]))
+                ViewMatchers.withId(btn[position.getRow()][position.getColumn()]),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()]))
         ));
 
         ViewInteraction[] rowSelected = new ViewInteraction[9];
@@ -61,11 +61,11 @@ public class SettingsTests {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 3; j++) {
                 rowSelected[i] = onView(allOf(
-                        ViewMatchers.withId(btn[position.row][j]),
+                        ViewMatchers.withId(btn[position.getRow()][j]),
                         ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[i < 3 ? 0 : i < 6 ? 1 : 2]))
                 ));
                 colSelected[i] = onView(allOf(
-                        ViewMatchers.withId(btn[j][position.column]),
+                        ViewMatchers.withId(btn[j][position.getColumn()]),
                         ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[i < 3 ? 0 : i < 6 ? 3 : 6]))
                 ));
             }
@@ -97,7 +97,7 @@ public class SettingsTests {
         }
 
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(SETTINGS_MARK_LINES, false);
+            Data.Constants.instance(main).saveBoolean(SETTINGS_MARK_LINES, false);
             main.select(position);
         });
 
@@ -116,7 +116,7 @@ public class SettingsTests {
 
         // With mark-numbers on
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(SETTINGS_MARK_LINES, false);
+            Data.Constants.instance(main).saveBoolean(SETTINGS_MARK_LINES, false);
             main.select(position);
 
             if (main.game.getNumber(position).isChangeable())
@@ -153,8 +153,8 @@ public class SettingsTests {
 
         // With mark-numbers off
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(SETTINGS_MARK_LINES, false);
-            Data.instance(main).saveBoolean(SETTINGS_MARK_NUMBERS, false);
+            Data.Constants.instance(main).saveBoolean(SETTINGS_MARK_LINES, false);
+            Data.Constants.instance(main).saveBoolean(SETTINGS_MARK_NUMBERS, false);
             main.select(position);
 
             if (main.game.getNumber(position).isChangeable())
@@ -191,7 +191,6 @@ public class SettingsTests {
         // With mark-errors on
         mainActivity.onActivity(main -> {
             // insert a wrong number
-            wrongNumberInserted:
             for (int block = 0; block < 9; block++)
                 for (int row = 0; row < 3; row++)
                     for (int col = 0; col < 3; col++) {
@@ -200,17 +199,17 @@ public class SettingsTests {
                             int solution = main.game.getNumber(pos).getSolution();
                             main.select(pos);
                             main.insert(solution == 9 ? solution - 1 : solution + 1);
-                            position.row = pos.row;
-                            position.column = pos.column;
-                            position.block = pos.block;
-                            break wrongNumberInserted;
+                            position.setRow(pos.getRow());
+                            position.setColumn(pos.getColumn());
+                            position.setBlock(pos.getBlock());
+                            return;
                         }
                     }
         });
 
         ViewInteraction fieldWithWrongNumber = onView(allOf(
-                ViewMatchers.withId(btn[position.row][position.column]),
-                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block]))
+                ViewMatchers.withId(btn[position.getRow()][position.getColumn()]),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()]))
         ));
 
         fieldWithWrongNumber.check(matches(backgroundColor(R.color.error)));
@@ -222,15 +221,14 @@ public class SettingsTests {
 
         // Restart app and create a new game
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(SETTINGS_MARK_ERRORS, false);
-            Data.instance(main).setLoadmode(false);
+            Data.Constants.instance(main).saveBoolean(SETTINGS_MARK_ERRORS, false);
+            Data.Constants.instance(main).setLoadmode(false);
         });
         mainActivity.recreate();
 
         // With mark-errors off
         mainActivity.onActivity(main -> {
             // insert a wrong number
-            wrongNumberInserted:
             for (int block = 0; block < 9; block++)
                 for (int row = 0; row < 3; row++)
                     for (int col = 0; col < 3; col++) {
@@ -239,17 +237,17 @@ public class SettingsTests {
                             int solution = main.game.getNumber(pos).getSolution();
                             main.select(pos);
                             main.insert(solution == 9 ? solution - 1 : solution + 1);
-                            position.row = pos.row;
-                            position.column = pos.column;
-                            position.block = pos.block;
-                            break wrongNumberInserted;
+                            position.setRow(pos.getRow());
+                            position.setColumn(pos.getColumn());
+                            position.setBlock(pos.getBlock());
+                            return;
                         }
                     }
         });
 
         fieldWithWrongNumber = onView(allOf(
-                ViewMatchers.withId(btn[position.row][position.column]),
-                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block]))
+                ViewMatchers.withId(btn[position.getRow()][position.getColumn()]),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()]))
         ));
 
         fieldWithWrongNumber.check(matches(backgroundColor(R.color.selected)));
@@ -262,8 +260,8 @@ public class SettingsTests {
     public void testShowTime() {
         // With show-time off
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(Data.SETTINGS_SHOW_TIME, false);
-            Data.instance(main).setLoadmode(false);
+            Data.Constants.instance(main).saveBoolean(Data.SETTINGS_SHOW_TIME, false);
+            Data.Constants.instance(main).setLoadmode(false);
         });
 
         mainActivity.recreate();
@@ -273,8 +271,8 @@ public class SettingsTests {
 
         // With show-time on
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(Data.SETTINGS_SHOW_TIME, true);
-            Data.instance(main).setLoadmode(false);
+            Data.Constants.instance(main).saveBoolean(Data.SETTINGS_SHOW_TIME, true);
+            Data.Constants.instance(main).setLoadmode(false);
         });
 
         mainActivity.recreate();
@@ -301,7 +299,7 @@ public class SettingsTests {
         mainActivity.onActivity(main -> {
             // clear sudoku
             main.game = new Sudoku();
-            main.sudokuGrid.init(main.game.getSudoku());
+            main.sudokuGrid.init(main.game.getBlocks());
 
             main.notesMode();
 
@@ -320,13 +318,13 @@ public class SettingsTests {
 
         // With check-notes off
         mainActivity.onActivity(main -> {
-            Data.instance(main).saveBoolean(Data.SETTINGS_CHECK_NOTES, false);
+            Data.Constants.instance(main).saveBoolean(Data.SETTINGS_CHECK_NOTES, false);
         });
 
         mainActivity.onActivity(main -> {
             // clear sudoku
             main.game = new Sudoku();
-            main.sudokuGrid.init(main.game.getSudoku());
+            main.sudokuGrid.init(main.game.getBlocks());
 
             main.notesMode();
 

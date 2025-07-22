@@ -25,56 +25,47 @@ public class ViewFinder {
     };
 
     private static int getNoteGridId(int number) {
-        switch (number) {
-            case 1:
-                return R.id.tv0;
-            case 2:
-                return R.id.tv1;
-            case 3:
-                return R.id.tv2;
-            case 4:
-                return R.id.tv3;
-            case 5:
-                return R.id.tv4;
-            case 6:
-                return R.id.tv5;
-            case 7:
-                return R.id.tv6;
-            case 8:
-                return R.id.tv7;
-            default:
-                return R.id.tv8;
-        }
+        return switch (number) {
+            case 1 -> R.id.tv0;
+            case 2 -> R.id.tv1;
+            case 3 -> R.id.tv2;
+            case 4 -> R.id.tv3;
+            case 5 -> R.id.tv4;
+            case 6 -> R.id.tv5;
+            case 7 -> R.id.tv6;
+            case 8 -> R.id.tv7;
+            default -> R.id.tv8;
+        };
     }
 
     // Fields
     public static ViewInteraction getField(Position position) {
         return onView(allOf(
-                ViewMatchers.withId(btn[position.row][position.column]),
-                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block]))
+                ViewMatchers.withId(btn[position.getRow()][position.getColumn()]),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()]))
         ));
     }
 
     public static ViewInteraction getFieldNumber(Position position) {
         return onView(allOf(
-                ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.row][position.column])),
-                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block])),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.getRow()][position.getColumn()])),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()])),
                 ViewMatchers.withId(R.id.numberView)
         ));
     }
 
     public static ViewInteraction getFieldGrid(Position position) {
         return onView(allOf(
-                ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.row][position.column])),
-                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block])),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.getRow()][position.getColumn()])),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()])),
                 ViewMatchers.withId(R.id.notesGrid)
         ));
     }
 
     public static ViewInteraction getFieldGridNote(Position position, int solution) {
         return onView(allOf(
-                ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.row][position.column])),
-                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.block])),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(btn[position.getRow()][position.getColumn()])),
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()])),
                 ViewMatchers.isDescendantOfA(ViewMatchers.withId(R.id.notesGrid)),
                 ViewMatchers.withId(getNoteGridId(solution))
         ));
