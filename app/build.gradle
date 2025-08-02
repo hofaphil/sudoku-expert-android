@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
+    compileSdk 36
+
     defaultConfig {
         applicationId "com.aol.philipphofer"
         minSdkVersion 24
