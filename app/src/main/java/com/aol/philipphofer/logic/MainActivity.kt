@@ -7,6 +7,8 @@ import android.util.TypedValue
 import android.view.View
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.RelativeLayout
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.aol.philipphofer.R
 import com.aol.philipphofer.gui.Keyboard
 import com.aol.philipphofer.gui.StatusBar
@@ -59,6 +61,12 @@ class MainActivity : CustomActivity(), TimerListener {
                 sudokuGrid.viewTreeObserver.removeGlobalOnLayoutListener(this)
             }
         })
+
+       ViewCompat.setOnApplyWindowInsetsListener(statusBar) { v, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.statusBars())
+            v.setPadding(v.paddingLeft, insets.top, v.paddingRight, v.paddingBottom)
+            WindowInsetsCompat.CONSUMED
+        }
     }
 
     private fun init() {
@@ -336,7 +344,8 @@ class MainActivity : CustomActivity(), TimerListener {
 
     companion object {
         // TODO: make this non static?
-        @JvmField var MAX_ERROR = 3
+        @JvmField
+        var MAX_ERROR = 3
         var DIFFICULTY = Difficulty.BEGINNER
         var LOAD_MODE = false
         var SHARED = false
