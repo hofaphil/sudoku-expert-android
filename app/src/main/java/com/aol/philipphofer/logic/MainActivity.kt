@@ -365,7 +365,7 @@ class MainActivity : CustomActivity(), TimerListener {
         @JvmStatic
         fun getPrimaryColor(context: Context): Int {
             val typedValue = TypedValue()
-            context.theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
+            context.theme.resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true)
 
             return typedValue.data
         }
