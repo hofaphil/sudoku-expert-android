@@ -1,4 +1,5 @@
 #include <jni.h>
+#include <stdlib.h>
 #include "generator/Sudoku.h"
 
 JNIEXPORT jobject JNICALL
@@ -43,9 +44,13 @@ Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, job
                 jobject jNumber = (*env)->NewObject(env, jNumberClass, jNewNumber, number, solution, changeable);
 
                 (*env)->CallVoidMethod(env, jBlock, jSetNumber, i, j, jNumber);
+                (*env)->DeleteLocalRef(env, jNumber);
             }
+        (*env)->DeleteLocalRef(env, jBlock);
     }
+    (*env)->DeleteLocalRef(env, jBlocks);
 
+    free(sudoku);
     return jSudoku;
 }
 
@@ -81,13 +86,17 @@ Java_com_aol_philipphofer_logic_ShareClass_solveSudokuNative(JNIEnv *env, jobjec
                 jobject jPosition = (*env)->NewObject(env, jPositionClass, jNewPosition, b, i, j);
                 jobject jNumber = (*env)->CallObjectMethod(env, jSudoku, jGetNumber, jPosition);
                 sudoku->blocks[b].numbers[i][j] = (*env)->CallIntMethod(env, jNumber, jGetNumberValue);
+                (*env)->DeleteLocalRef(env, jNumber);
+                (*env)->DeleteLocalRef(env, jPosition);
             }
 
     /**
      * Solve sudoku with c code
      */
-    if (solve(sudoku) != 0)
+    if (solve(sudoku) != 0) {
+        free(sudoku);
         return JNI_FALSE;
+    }
 
     /**
      * Set Solution
@@ -98,7 +107,10 @@ Java_com_aol_philipphofer_logic_ShareClass_solveSudokuNative(JNIEnv *env, jobjec
                 jobject jPosition = (*env)->NewObject(env, jPositionClass, jNewPosition, b, i, j);
                 jobject jNumber = (*env)->CallObjectMethod(env, jSudoku, jGetNumber, jPosition);
                 (*env)->CallVoidMethod(env, jNumber, jSetSolutionValue, sudoku->solution[b].numbers[i][j]);
+                (*env)->DeleteLocalRef(env, jNumber);
+                (*env)->DeleteLocalRef(env, jPosition);
             }
 
+    free(sudoku);
     return JNI_TRUE;
 }
