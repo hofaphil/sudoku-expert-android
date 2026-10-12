@@ -112,27 +112,29 @@ class MainActivity : CustomActivity(), TimerListener {
         pause = true
         pauseGame()
 
+        DIFFICULTY = getDifficulty(data.loadInt(Data.GAME_DIFFICULTY))
+
         // create a new game
         if (!data.loadmode.also { LOAD_MODE = it }) {
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING)
             keyboard.activate(false)
             statusBar.activate(false)
             if (!thread.isAlive) {
-                thread = Thread { heavyLoading() }
+                val difficulty = DIFFICULTY
+                thread = Thread { heavyLoading(difficulty) }
                 thread.start()
             }
         } else {
             window.decorView.post { timer.startTimer(data.loadInt(Data.GAME_TIME)) }
         }
 
-        DIFFICULTY = getDifficulty(data.loadInt(Data.GAME_DIFFICULTY))
         statusBar.setDifficulty(DIFFICULTY)
         statusBar.setError(game.overallErrors)
     }
 
-    private fun heavyLoading() {
+    private fun heavyLoading(difficulty: Difficulty) {
         timer.stopTimer()
-        game = createSudokuNative(DIFFICULTY.freeFields)
+        game = createSudokuNative(difficulty.freeFields)
 
         // game created -> save and set load-mode to load sudoku next time
         data.saveSudoku(game)

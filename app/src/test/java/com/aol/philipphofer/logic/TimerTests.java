@@ -68,7 +68,7 @@ public class TimerTests {
         assertTrue(t.isRunning());
 
         try {
-            sleep(3000);
+            sleep(2500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -87,7 +87,7 @@ public class TimerTests {
         t.startTimer(23);
 
         try {
-            sleep(3000);
+            sleep(2500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -122,7 +122,7 @@ public class TimerTests {
         t.startTimer(23);
 
         try {
-            sleep(3000);
+            sleep(2500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

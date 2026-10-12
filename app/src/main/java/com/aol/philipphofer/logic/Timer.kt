@@ -1,56 +1,52 @@
 package com.aol.philipphofer.logic
 
 import java.util.Locale
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledFuture
+import java.util.concurrent.TimeUnit
 
 class Timer(private val timerListener: TimerListener) {
 
-    var isRunning = false
-        private set
+    private val executor = Executors.newSingleThreadScheduledExecutor { runnable ->
+        Thread(runnable, "sudoku-timer").apply { isDaemon = true }
+    }
+    private var tick: ScheduledFuture<*>? = null
+
+    val isRunning: Boolean
+        @Synchronized get() = tick != null
+
+    @Volatile
     var time = 0 // in seconds
         set(time) {
             field = time
             timerListener.timeUpdate(time)
         }
-    private var stopped = false
 
     init {
-        init()
         time = 0
-    }
-
-    private fun init() {
-        object : Thread() {
-            override fun run() {
-                while (!stopped) {
-                    while (isRunning) {
-                        try {
-                            sleep(1000)
-                            if (isRunning) time = ++time
-                        } catch (e: InterruptedException) {
-                            e.printStackTrace()
-                        }
-                    }
-                }
-            }
-        }.start()
     }
 
     fun startTimer(time: Int) {
         this.time = time
-        isRunning = true
+        startTimer()
     }
 
+    @Synchronized
     fun startTimer() {
-        isRunning = true
+        if (tick != null || executor.isShutdown) return
+        tick = executor.scheduleWithFixedDelay({ time++ }, 1, 1, TimeUnit.SECONDS)
     }
 
+    @Synchronized
     fun stopTimer() {
-        isRunning = false
+        tick?.cancel(false)
+        tick = null
     }
 
+    @Synchronized
     fun killTimer() {
         stopTimer()
-        stopped = true
+        executor.shutdownNow()
     }
 
     interface TimerListener {
