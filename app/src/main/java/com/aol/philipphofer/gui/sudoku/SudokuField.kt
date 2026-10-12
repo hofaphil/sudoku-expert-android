@@ -1,7 +1,6 @@
 package com.aol.philipphofer.gui.sudoku
 
 import android.content.Context
-import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -45,8 +44,8 @@ class SudokuField(context: Context, attributeSet: AttributeSet) :
         this.number.addListener(this)
         observableChanged(this.number)
 
-        val typeFace = if (number.isChangeable) Typeface.ITALIC else Typeface.BOLD
-        numberView.setTypeface(numberView.typeface, typeFace)
+        val textColor = if (number.isChangeable) R.color.userNumber else R.color.black
+        numberView.setTextColor(ContextCompat.getColor(context, textColor))
     }
 
     private fun switchLayout(isNotes: Boolean) {
@@ -83,6 +82,14 @@ class SudokuField(context: Context, attributeSet: AttributeSet) :
         if (showErrors && number.isError) return
 
         val color = if (select) R.color.lightSelected else R.color.unselected
+        setBackgroundColor(ContextCompat.getColor(context, color))
+    }
+
+    fun numberSelect(select: Boolean) {
+        val showErrors = Data.instance(mainActivity).loadBoolean(GAME_SHOW_ERRORS)
+        if (showErrors && number.isError) return
+
+        val color = if (select) R.color.numSelected else R.color.unselected
         setBackgroundColor(ContextCompat.getColor(context, color))
     }
 

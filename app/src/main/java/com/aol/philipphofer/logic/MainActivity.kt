@@ -201,15 +201,6 @@ class MainActivity : CustomActivity(), TimerListener {
     }
 
     private fun selectPartner(sudokuField: SudokuField, select: Boolean) {
-        if (data.loadBoolean(Data.SETTINGS_MARK_NUMBERS) && sudokuField.number.number != 0)
-            for (i in 0..8) {
-                val numbers = game.blocks[i].numbers
-                for (a in 0..2)
-                    for (b in 0..2)
-                        if (numbers[a][b].number == sudokuField.number.number)
-                            sudokuGrid.blocks[i].fields[a][b].lightSelect(select)
-            }
-
         if (data.loadBoolean(Data.SETTINGS_MARK_LINES)) {
             // own block
             for (i in 0..2) {
@@ -232,6 +223,16 @@ class MainActivity : CustomActivity(), TimerListener {
                     .lightSelect(select)
             }
         }
+
+        // same numbers last, so their color wins over the line color
+        if (data.loadBoolean(Data.SETTINGS_MARK_NUMBERS) && sudokuField.number.number != 0)
+            for (i in 0..8) {
+                val numbers = game.blocks[i].numbers
+                for (a in 0..2)
+                    for (b in 0..2)
+                        if (numbers[a][b].number == sudokuField.number.number)
+                            sudokuGrid.blocks[i].fields[a][b].numberSelect(select)
+            }
     }
 
     private fun checkNotes(position: Position, number: Int) {

@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="3"
+        android:layout_below="@+id/keyGrid"
+        android:layout_marginTop="@dimen/_30sdp"
         android:orientation="horizontal">
 
         <Button
@@ -39,8 +41,6 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:columnCount="9"
-        android:layout_below="@id/functionButtons"
-        android:layout_marginTop="@dimen/_30sdp"
         android:orientation="horizontal">
 
         <Button

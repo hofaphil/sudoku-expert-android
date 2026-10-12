@@ -143,7 +143,7 @@ public class SettingsTests {
                             ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[block]))
                     ));
                     if (sudoku.getNumber(pos).getNumber() == number[0])
-                        field.check(matches(backgroundColor(R.color.lightSelected)));
+                        field.check(matches(backgroundColor(R.color.numSelected)));
                     else
                         field.check(matches(backgroundColor(R.color.unselected)));
                 }
