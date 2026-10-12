@@ -6,8 +6,6 @@ import android.util.TypedValue
 import android.view.View
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.RelativeLayout
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.aol.philipphofer.R
 import com.aol.philipphofer.gui.Keyboard
 import com.aol.philipphofer.gui.StatusBar
@@ -22,6 +20,7 @@ import com.aol.philipphofer.logic.help.Difficulty
 import com.aol.philipphofer.logic.help.Difficulty.Companion.getDifficulty
 import com.aol.philipphofer.logic.sudoku.Sudoku
 import com.aol.philipphofer.persistence.Data
+import java.lang.ref.WeakReference
 import kotlin.math.abs
 
 class MainActivity : CustomActivity(), TimerListener {
@@ -38,10 +37,10 @@ class MainActivity : CustomActivity(), TimerListener {
 
     var pause = false
     lateinit var timer: Timer
-    private var thread = Thread()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        activeActivity = WeakReference(this)
 
         setContentView(R.layout.activity_main)
 
@@ -60,20 +59,14 @@ class MainActivity : CustomActivity(), TimerListener {
                 sudokuGrid.viewTreeObserver.removeGlobalOnLayoutListener(this)
             }
         })
-
-       ViewCompat.setOnApplyWindowInsetsListener(statusBar) { v, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.statusBars())
-            v.setPadding(v.paddingLeft, insets.top, v.paddingRight, v.paddingBottom)
-            WindowInsetsCompat.CONSUMED
-        }
     }
 
     private fun init() {
         val params = sudokuGrid.layoutParams
         val mainLayout = findViewById<RelativeLayout>(R.id.mainLayout)
 
-        val width = mainLayout.width
-        val height = mainLayout.height -
+        val width = mainLayout.width - mainLayout.paddingLeft - mainLayout.paddingRight
+        val height = mainLayout.height - mainLayout.paddingTop - mainLayout.paddingBottom -
                 statusBar.height -
                 (statusBar.layoutParams as RelativeLayout.LayoutParams).bottomMargin -
                 (statusBar.layoutParams as RelativeLayout.LayoutParams).topMargin -
@@ -127,10 +120,13 @@ class MainActivity : CustomActivity(), TimerListener {
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING)
             keyboard.activate(false)
             statusBar.activate(false)
-            if (!thread.isAlive) {
+            timer.stopTimer()
+
+            // a generation might still run for a previous instance of this activity (e.g. after rotation),
+            // its result is delivered to the active activity instead of starting a second one
+            if (generation == null) {
                 val difficulty = DIFFICULTY
-                thread = Thread { heavyLoading(difficulty) }
-                thread.start()
+                generation = Thread { heavyLoading(difficulty) }.also { it.start() }
             }
         } else {
             window.decorView.post { timer.startTimer(data.loadInt(Data.GAME_TIME)) }
@@ -141,11 +137,10 @@ class MainActivity : CustomActivity(), TimerListener {
     }
 
     private fun heavyLoading(difficulty: Difficulty) {
-        timer.stopTimer()
-        game = createSudokuNative(difficulty.freeFields)
+        val newGame = createSudokuNative(difficulty.freeFields)
 
         // game created -> save and set load-mode to load sudoku next time
-        data.saveSudoku(game)
+        data.saveSudoku(newGame)
         data.loadmode = !LOAD_MODE.also { LOAD_MODE = !it }
 
         // save the setting that apply at first next game
@@ -156,13 +151,19 @@ class MainActivity : CustomActivity(), TimerListener {
         data.saveInt(Data.GAME_ERRORS, 0)
         data.saveInt(Data.GAME_TIME, 0)
         runOnUiThread {
-            sudokuGrid.init(game.blocks)
-            sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE)
-            statusBar.activate(true)
-            keyboard.activate(true)
-            statusBar.setError(game.overallErrors)
-            window.decorView.post { timer.startTimer(0) }
+            generation = null
+            activeActivity.get()?.showGeneratedGame(newGame)
         }
+    }
+
+    private fun showGeneratedGame(newGame: Sudoku) {
+        game = newGame
+        sudokuGrid.init(game.blocks)
+        sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE)
+        statusBar.activate(true)
+        keyboard.activate(true)
+        statusBar.setError(game.overallErrors)
+        window.decorView.post { timer.startTimer(0) }
     }
 
     override fun onPause() {
@@ -177,6 +178,7 @@ class MainActivity : CustomActivity(), TimerListener {
         super.onDestroy()
 
         timer.killTimer()
+        if (activeActivity.get() === this) activeActivity.clear()
     }
 
     fun select(selectedPosition: Position) {
@@ -352,6 +354,10 @@ class MainActivity : CustomActivity(), TimerListener {
     private external fun createSudokuNative(freeFields: Int): Sudoku
 
     companion object {
+        // only accessed on the main thread
+        private var generation: Thread? = null
+        private var activeActivity = WeakReference<MainActivity>(null)
+
         // TODO: make this non static?
         @JvmField
         var MAX_ERROR = 3

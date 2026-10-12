@@ -3,6 +3,7 @@ package com.aol.philipphofer.gui
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.aol.philipphofer.helper.TestHelpers
 import com.aol.philipphofer.logic.MainActivity
 import com.aol.philipphofer.logic.Position
 import com.aol.philipphofer.logic.help.Difficulty
@@ -107,6 +108,23 @@ class MainActivityTests {
             Assert.assertEquals(1, mainActivity.game.currentErrors().toLong())
             Assert.assertEquals(1, mainActivity.game.overallErrors.toLong())
             Assert.assertEquals(Difficulty.BEGINNER, MainActivity.DIFFICULTY)
+        }
+    }
+
+    /**
+     * recreating the activity (e.g. rotation on large screens) while a game is generated
+     */
+    @Test
+    fun testRecreateDuringGeneration() {
+        mainActivity.onActivity { mainActivity: MainActivity -> mainActivity.startNewGame() }
+        mainActivity.recreate()
+        TestHelpers.wait(2000)
+
+        mainActivity.onActivity { mainActivity: MainActivity ->
+            // the shown game is the saved one
+            Assert.assertEquals(Data.instance(mainActivity).loadSudoku(), mainActivity.game)
+            Assert.assertEquals(MainActivity.DIFFICULTY.freeFields, mainActivity.game.freeFields())
+            Assert.assertTrue(mainActivity.timer.isRunning)
         }
     }
 }

@@ -7,7 +7,8 @@
         <com.aol.philipphofer.gui.StatusBar
             android:id="@+id/statusBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="?colorPrimary"/>
 
         <com.aol.philipphofer.gui.sudoku.SudokuGrid
             android:id="@+id/sudokuGrid"
