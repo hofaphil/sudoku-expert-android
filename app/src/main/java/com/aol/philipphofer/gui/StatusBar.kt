@@ -4,6 +4,8 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.util.AttributeSet
+import android.view.ContextThemeWrapper
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.ImageButton
@@ -36,14 +38,16 @@ class StatusBar(context: Context, attributeSet: AttributeSet) :
         mainActivity = context as MainActivity;
 
         newButton = findViewById(R.id.newButton)
-        val newPopup = PopupMenu(context, newButton)
+        val popupContext = ContextThemeWrapper(context, R.style.ThemeOverlay_Sudoku_PopupMenu)
+
+        val newPopup = PopupMenu(popupContext, newButton)
         newPopup.inflate(R.menu.popup_new)
         newPopup.setForceShowIcon(true)
         newPopup.setOnMenuItemClickListener { item -> newPopupHandler(item) }
         newButton.setOnClickListener { newPopup.show() }
 
         moreButton = findViewById(R.id.moreButton)
-        val morePopup = PopupMenu(context, moreButton)
+        val morePopup = PopupMenu(popupContext, moreButton, Gravity.END)
         morePopup.inflate(R.menu.popup_more)
         morePopup.setForceShowIcon(true)
         morePopup.setOnMenuItemClickListener { item -> morePopupHandler(item) }
