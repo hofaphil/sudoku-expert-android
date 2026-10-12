@@ -1,7 +1,6 @@
 package com.aol.philipphofer.logic
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
@@ -346,11 +345,6 @@ class MainActivity : CustomActivity(), TimerListener {
         return ""
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 0 && resultCode == 1) recreate()
-    }
-
     override fun timeUpdate(time: Int) {
         runOnUiThread { statusBar.setTime(time) }
     }
@@ -363,7 +357,6 @@ class MainActivity : CustomActivity(), TimerListener {
         var MAX_ERROR = 3
         var DIFFICULTY = Difficulty.BEGINNER
         var LOAD_MODE = false
-        var SHARED = false
 
         private val partnerBlockLookup = arrayOf(
             intArrayOf(1, 2, 3, 6),

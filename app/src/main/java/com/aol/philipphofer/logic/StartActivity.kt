@@ -2,7 +2,6 @@ package com.aol.philipphofer.logic
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import com.aol.philipphofer.R
 import com.aol.philipphofer.gui.custom.CustomToast
 import com.aol.philipphofer.logic.ShareClass.load
@@ -22,7 +21,6 @@ class StartActivity : Activity() {
             val uri = getIntent().data
             try {
                 sudoku = load(uri)
-                MainActivity.SHARED = true
                 data.saveSudoku(sudoku)
                 data.saveInt(Data.GAME_DIFFICULTY, difficulty)
                 data.saveInt(Data.GAME_ERRORS, 0)

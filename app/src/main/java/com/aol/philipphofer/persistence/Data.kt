@@ -2,7 +2,6 @@ package com.aol.philipphofer.persistence
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.aol.philipphofer.R
 import com.aol.philipphofer.logic.Position
 import com.aol.philipphofer.logic.help.Difficulty
 import com.aol.philipphofer.logic.help.NumberSerializer

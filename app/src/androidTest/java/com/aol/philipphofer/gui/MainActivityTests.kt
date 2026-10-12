@@ -38,7 +38,6 @@ class MainActivityTests {
         mainActivity.onActivity { mainActivity: MainActivity ->
             // check modes
             Assert.assertTrue(MainActivity.LOAD_MODE)
-            Assert.assertFalse(MainActivity.SHARED)
 
             // difficulty
             Assert.assertEquals(Difficulty.BEGINNER, MainActivity.DIFFICULTY)
