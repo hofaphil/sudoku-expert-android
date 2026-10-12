@@ -3,8 +3,6 @@ package com.aol.philipphofer.logic
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.StrictMode
-import android.os.StrictMode.ThreadPolicy
 import com.aol.philipphofer.R
 import com.aol.philipphofer.gui.custom.CustomToast
 import com.aol.philipphofer.logic.ShareClass.load
@@ -18,9 +16,6 @@ class StartActivity : Activity() {
 
         val sudoku: Sudoku
         val data = Data.instance(this)
-        val policy = ThreadPolicy.Builder().permitAll().build()
-
-        StrictMode.setThreadPolicy(policy)
 
         var intent = intent
         if (intent.action != Intent.ACTION_MAIN) {

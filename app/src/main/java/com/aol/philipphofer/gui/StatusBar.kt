@@ -93,9 +93,7 @@ class StatusBar(context: Context, attributeSet: AttributeSet) :
         }
 
         Data.instance(mainActivity).saveInt(Data.GAME_DIFFICULTY, difficultyNumber)
-        Data.instance(mainActivity).loadmode = false
-
-        mainActivity.onResume()
+        mainActivity.startNewGame()
         return true
     }
 

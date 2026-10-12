@@ -21,8 +21,11 @@ object ShareClass {
 
         for (b in 0..8)
             for (i in 0..2)
-                for (j in 0..2)
-                    id.append(sudoku.getNumber(Position(b, i, j)).number)
+                for (j in 0..2) {
+                    // only share the given numbers, not the player's entries
+                    val number = sudoku.getNumber(Position(b, i, j))
+                    id.append(if (number.isChangeable) 0 else number.number)
+                }
 
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.type = "text/plain"
@@ -67,7 +70,7 @@ object ShareClass {
                     sudoku.setNumber(position, number)
                 }
 
-        solveSudokuNative(sudoku)
+        if (!solveSudokuNative(sudoku)) throw DataFormatException("Sudoku has no solution")
         return sudoku
     }
 
@@ -76,5 +79,5 @@ object ShareClass {
         System.loadLibrary("generator-jni")
     }
 
-    external fun solveSudokuNative(sudoku: Sudoku?)
+    external fun solveSudokuNative(sudoku: Sudoku?): Boolean
 }

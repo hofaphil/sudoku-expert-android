@@ -107,8 +107,17 @@ class MainActivity : CustomActivity(), TimerListener {
         }
     }
 
-    public override fun onResume() {
+    override fun onResume() {
         super.onResume()
+        resumeGame()
+    }
+
+    fun startNewGame() {
+        data.loadmode = false
+        resumeGame()
+    }
+
+    private fun resumeGame() {
         pause = true
         pauseGame()
 
@@ -250,8 +259,12 @@ class MainActivity : CustomActivity(), TimerListener {
     fun insert(number: Int) {
         selected?.let {
             selectPartner(sudokuGrid.blocks[it.block].fields[it.row][it.column], false)
-            checkNotes(it, number)
             game.insert(number, it, isNotes)
+
+            // only clear notes if the number was really placed (not a fixed field, not toggled off)
+            val placed = game.getNumber(it)
+            if (placed.isChangeable && placed.number == number)
+                checkNotes(it, number)
 
             // TODO two times this.selected, maybe this can be done nicer
             select(it)

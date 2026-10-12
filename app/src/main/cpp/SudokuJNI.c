@@ -49,7 +49,7 @@ Java_com_aol_philipphofer_logic_MainActivity_createSudokuNative(JNIEnv *env, job
     return jSudoku;
 }
 
-JNIEXPORT void JNICALL
+JNIEXPORT jboolean JNICALL
 Java_com_aol_philipphofer_logic_ShareClass_solveSudokuNative(JNIEnv *env, jobject mainActivity, jobject jSudoku) {
     /**
      * Sudoku
@@ -86,7 +86,8 @@ Java_com_aol_philipphofer_logic_ShareClass_solveSudokuNative(JNIEnv *env, jobjec
     /**
      * Solve sudoku with c code
      */
-    solve(sudoku);
+    if (solve(sudoku) != 0)
+        return JNI_FALSE;
 
     /**
      * Set Solution
@@ -98,4 +99,6 @@ Java_com_aol_philipphofer_logic_ShareClass_solveSudokuNative(JNIEnv *env, jobjec
                 jobject jNumber = (*env)->CallObjectMethod(env, jSudoku, jGetNumber, jPosition);
                 (*env)->CallVoidMethod(env, jNumber, jSetSolutionValue, sudoku->solution[b].numbers[i][j]);
             }
+
+    return JNI_TRUE;
 }

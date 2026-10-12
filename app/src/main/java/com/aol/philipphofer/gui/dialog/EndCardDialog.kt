@@ -43,6 +43,6 @@ class EndCardDialog(mainActivity: MainActivity) : Dialog(mainActivity) {
 
     override fun onStop() {
         super.onStop()
-        mainActivity.onResume()
+        mainActivity.startNewGame()
     }
 }

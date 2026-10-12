@@ -108,4 +108,17 @@ public class ShareClassTests {
             assertEquals(link, main.share());
         });
     }
+
+    @Test
+    public void testShareIgnoresPlayerEntries() throws Exception {
+        Sudoku sudoku = ShareClass.load(Uri.parse(link));
+        sudoku.insert(4, new Position(0, 0, 2), false); // correct entry
+        sudoku.insert(1, new Position(0, 1, 2), false); // wrong entry
+        sudoku.insert(7, new Position(0, 2, 2), true);  // note
+
+        mainActivity.onActivity(main -> {
+            main.game = sudoku;
+            assertEquals(link, main.share());
+        });
+    }
 }
