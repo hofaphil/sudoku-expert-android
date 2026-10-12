@@ -3,6 +3,7 @@ package com.aol.philipphofer.logic;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 import android.net.Uri;
@@ -14,6 +15,8 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import com.aol.philipphofer.logic.sudoku.Number;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
 import com.aol.philipphofer.persistence.Data;
+
+import java.util.zip.DataFormatException;
 
 import org.junit.After;
 import org.junit.Before;
@@ -120,5 +123,25 @@ public class ShareClassTests {
             main.game = sudoku;
             assertEquals(link, main.share());
         });
+    }
+
+    @Test
+    public void testLoadInvalidLinks() {
+        String zeros = new String(new char[81]).replace('\0', '0');
+        String[] invalidLinks = {
+                // missing id
+                "https://sudoku-expert.com/share",
+                // unknown difficulty
+                "https://sudoku-expert.com/share?id=3" + zeros,
+                // too short
+                "https://sudoku-expert.com/share?id=0" + zeros.substring(1),
+                // too long
+                "https://sudoku-expert.com/share?id=0" + zeros + "0",
+                // not a number
+                "https://sudoku-expert.com/share?id=0" + zeros.substring(1) + "x",
+        };
+
+        for (String invalidLink : invalidLinks)
+            assertThrows(invalidLink, DataFormatException.class, () -> ShareClass.load(Uri.parse(invalidLink)));
     }
 }

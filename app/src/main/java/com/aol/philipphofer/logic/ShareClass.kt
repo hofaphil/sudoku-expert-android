@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import com.aol.philipphofer.R
+import com.aol.philipphofer.logic.help.Difficulty
 import com.aol.philipphofer.logic.help.LinkShortener.getId
 import com.aol.philipphofer.logic.help.LinkShortener.getLink
 import com.aol.philipphofer.logic.sudoku.Number
@@ -13,6 +14,9 @@ import java.util.zip.DataFormatException
 object ShareClass {
 
     private const val HOST = "https://sudoku-expert.com"
+
+    // difficulty + 81 numbers
+    private const val ID_LENGTH = 82
 
     @JvmStatic
     fun share(sudoku: Sudoku, context: Activity): String {
@@ -50,10 +54,14 @@ object ShareClass {
     fun load(uri: Uri?): Sudoku {
         if (uri == null) throw DataFormatException()
 
-        val link = uri.getQueryParameter("id")!!
+        val link = uri.getQueryParameter("id") ?: throw DataFormatException("Missing id")
         val id = getId(link)
-        val difficulty = (id[0].toString() + "").toInt()
-        if (difficulty < 0 || difficulty > 3) throw Exception("Difficulty is wrong!")
+        if (id.length != ID_LENGTH || !id.all { it in '0'..'9' })
+            throw DataFormatException("Invalid id")
+
+        val difficulty = id[0].digitToInt()
+        if (Difficulty.entries.none { it.number == difficulty })
+            throw DataFormatException("Invalid difficulty")
 
         // TODO: not nice!
         StartActivity.difficulty = difficulty
@@ -64,7 +72,7 @@ object ShareClass {
             for (i in 0..2)
                 for (j in 0..2) {
                     val position = Position(b, i, j)
-                    val numberValue = (id[k++].toString() + "").toInt()
+                    val numberValue = id[k++].digitToInt()
                     val number = Number(numberValue, numberValue, numberValue == 0)
 
                     sudoku.setNumber(position, number)
