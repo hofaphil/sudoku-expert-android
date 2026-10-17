@@ -61,12 +61,12 @@ public class FieldTests {
     public void insertNumber() {
         mainActivity.onActivity(main -> main.insert(solution));
 
-        selectedField.check(matches(backgroundColor(R.color.yellow)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
         selectedFieldNumber.check(matches(withText("" + solution)));
 
         mainActivity.onActivity(main -> main.insert(solution));
 
-        selectedField.check(matches(backgroundColor(R.color.yellow)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
         selectedFieldNumber.check(matches(withText("")));
     }
 
@@ -75,12 +75,12 @@ public class FieldTests {
         int falseNumber = TestHelpers.generateFalseNumber(solution);
         mainActivity.onActivity(main -> main.insert(falseNumber));
 
-        selectedField.check(matches(backgroundColor(R.color.error)));
+        selectedField.check(matches(backgroundColor(R.color.cell_error)));
         selectedFieldNumber.check(matches(withText("" + falseNumber)));
 
         mainActivity.onActivity(main -> main.insert(falseNumber));
 
-        selectedField.check(matches(backgroundColor(R.color.yellow)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
         selectedFieldNumber.check(matches(withText("")));
     }
 
@@ -97,7 +97,7 @@ public class FieldTests {
         selectedFieldGrid.check(matches(isDisplayed()));
         selectedFieldGridNote.check(matches(isDisplayed()));
         selectedFieldNumber.check(matches(withText("")));
-        selectedField.check(matches(backgroundColor(R.color.yellow)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
         for (int i = 1; i < 10; i++) {
             if (i == number)
                 continue;
@@ -108,7 +108,7 @@ public class FieldTests {
 
         selectedFieldGrid.check(matches(isDisplayed()));
         selectedFieldGridNote.check(matches(not(isDisplayed())));
-        selectedField.check(matches(backgroundColor(R.color.yellow)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
         selectedFieldNumber.check(matches(withText("")));
         for (int i = 1; i < 10; i++)
             ViewFinder.getFieldGridNote(position, i).check(matches(not(isDisplayed())));
@@ -132,7 +132,7 @@ public class FieldTests {
         selectedFieldGridNote2.check(matches(isDisplayed()));
 
         selectedFieldNumber.check(matches(withText("")));
-        selectedField.check(matches(backgroundColor(R.color.yellow)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
         for (int i = 1; i < 10; i++) {
             if (i == number || i == solution)
                 continue;
@@ -144,7 +144,7 @@ public class FieldTests {
         selectedFieldGrid.check(matches(isDisplayed()));
         selectedFieldGridNote1.check(matches(not(isDisplayed())));
         selectedFieldGridNote2.check(matches(isDisplayed()));
-        selectedField.check(matches(backgroundColor(R.color.yellow)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
         selectedFieldNumber.check(matches(withText("")));
         for (int i = 1; i < 10; i++) {
             if (i == solution)
@@ -167,7 +167,7 @@ public class FieldTests {
         selectedFieldGrid.check(matches(isDisplayed()));
         selectedFieldGridNote.check(matches(isDisplayed()));
         selectedFieldNumber.check(matches(withText("")));
-        selectedField.check(matches(backgroundColor(R.color.yellow)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
         for (int i = 1; i < 10; i++) {
             if (i == number)
                 continue;
@@ -190,7 +190,7 @@ public class FieldTests {
         selectedFieldGrid.check(matches(not(isDisplayed())));
         selectedFieldGridNote.check(matches(not(isDisplayed())));
         selectedFieldNumber.check(matches(withText("" + number)));
-        selectedField.check(matches(backgroundColor(R.color.error)));
+        selectedField.check(matches(backgroundColor(R.color.cell_error)));
         for (int i = 1; i < 10; i++)
             ViewFinder.getFieldGridNote(position, i).check(matches(not(isDisplayed())));
     }

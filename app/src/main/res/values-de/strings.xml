@@ -16,20 +16,9 @@
     <string name="statusbar_challenge">Challenge</string>
     <string name="statusbar_rate">Bewerten</string>
 
-    <!-- RatingDialog -->
-    <string name="ratingdialog_title">Rate</string>
-    <string name="ratingdialog_info">Gefällt Dir die Sudoku App?</string>
-    <string name="ratingdialog_rate">Bewerten</string>
-    <string name="ratingdialog_no">Nein Danke</string>
-    <string name="ratingdialog_later">Später</string>
-
     <!-- ConfirmDialog -->
     <string name="confirmdialog_ok">OK</string>
     <string name="confirmdialog_cancel">Cancel</string>
-
-    <!-- ColorChooserDiaolg -->
-    <string name="cholorchooserdialog_title">Farben</string>
-    <string name="cholorchooserdialog_info">Wähle Deine Lieblingsfarbe</string>
 
     <!-- NewGame -->
     <string name="newgame">New Game</string>
@@ -81,10 +70,6 @@
     <!-- Share -->
     <string name="share_title">Teile Dein Sudoku</string>
     <string name="share_description">Hier ist eine Herausforderung für Dich!</string>
-
-    <!-- Rate -->
-    <string name="rate_success">Danke für deine Bewertung!</string>
-    <string name="rate_error">Etwas ist schiefgelaufen, versuche es später noch einmal.</string>
 
     <!-- Error -->
     <string name="error_default">Etwas ist schiefgelaufen, versuche es später noch einmal.</string>

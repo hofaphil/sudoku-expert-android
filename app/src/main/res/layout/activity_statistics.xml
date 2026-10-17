@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/title"
-        android:background="@color/gray">
+        android:background="@color/surface_dim">
 
         <RelativeLayout
             android:layout_width="match_parent"

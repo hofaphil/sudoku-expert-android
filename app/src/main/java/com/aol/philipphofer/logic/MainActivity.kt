@@ -1,8 +1,6 @@
 package com.aol.philipphofer.logic
 
-import android.content.Context
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.View
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.RelativeLayout
@@ -376,14 +374,6 @@ class MainActivity : CustomActivity(), TimerListener {
             intArrayOf(6, 8, 1, 4),
             intArrayOf(6, 7, 2, 5)
         )
-
-        @JvmStatic
-        fun getPrimaryColor(context: Context): Int {
-            val typedValue = TypedValue()
-            context.theme.resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true)
-
-            return typedValue.data
-        }
 
         // JNI
         init {

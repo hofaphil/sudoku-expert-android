@@ -21,20 +21,9 @@
     <string name="keyboard_delete" translatable="false">Delete</string>
     <string name="keyboard_pause" translatable="false">Pause</string>
 
-    <!-- RatingDialog -->
-    <string name="ratingdialog_title">Rate</string>
-    <string name="ratingdialog_info">Do You enjoy playing the Sudoku app?</string>
-    <string name="ratingdialog_rate">Rate</string>
-    <string name="ratingdialog_no">No thanks</string>
-    <string name="ratingdialog_later">Remind me later</string>
-
     <!-- ConfirmDialog -->
     <string name="confirmdialog_ok">OK</string>
     <string name="confirmdialog_cancel">Cancel</string>
-
-    <!-- ColorChooserDiaolg -->
-    <string name="cholorchooserdialog_title">Colors</string>
-    <string name="cholorchooserdialog_info">Choose your favorite color</string>
 
     <!-- NewGame -->
     <string name="newgame">New Game</string>
@@ -87,10 +76,6 @@
     <!-- Share -->
     <string name="share_title">Share your Sudoku</string>
     <string name="share_description">Your friend wants to challenge you!</string>
-
-    <!-- Rate -->
-    <string name="rate_success">Thanks for rating!</string>
-    <string name="rate_error">Something went wrong, please try again later.</string>
 
     <!-- Error -->
     <string name="error_default">Something went wrong, please try again later.</string>
