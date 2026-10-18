@@ -19,6 +19,7 @@ class Settings : CustomActivity() {
     private lateinit var showErrors: CheckBox
     private lateinit var checkNotes: CheckBox
     private lateinit var showTime: CheckBox
+    private lateinit var hideCompleted: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,7 @@ class Settings : CustomActivity() {
         checkNotes = findViewById(R.id.checkNotesSwitch)
         showErrors = findViewById(R.id.showErrorsSwitch)
         showTime = findViewById(R.id.showTimeSwitch)
+        hideCompleted = findViewById(R.id.hideCompletedSwitch)
 
         findViewById<RelativeLayout>(R.id.deleteData).setOnClickListener {
             ConfirmDialog(
@@ -56,6 +58,7 @@ class Settings : CustomActivity() {
         checkNotes.isChecked = data.loadBoolean(Data.SETTINGS_CHECK_NOTES)
         showErrors.isChecked = data.loadBoolean(Data.SETTINGS_MARK_ERRORS)
         showTime.isChecked = data.loadBoolean(Data.SETTINGS_SHOW_TIME)
+        hideCompleted.isChecked = data.loadBoolean(Data.SETTINGS_HIDE_COMPLETED, false)
     }
 
     override fun onPause() {
@@ -65,5 +68,6 @@ class Settings : CustomActivity() {
         data.saveBoolean(Data.SETTINGS_CHECK_NOTES, checkNotes.isChecked)
         data.saveBoolean(Data.SETTINGS_MARK_ERRORS, showErrors.isChecked)
         data.saveBoolean(Data.SETTINGS_SHOW_TIME, showTime.isChecked)
+        data.saveBoolean(Data.SETTINGS_HIDE_COMPLETED, hideCompleted.isChecked)
     }
 }

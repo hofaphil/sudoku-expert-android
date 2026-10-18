@@ -25,6 +25,17 @@ class Sudoku {
         return freeFields
     }
 
+    fun count(number: Int): Int {
+        var count = 0
+        for (block in 0..8)
+            for (row in 0..2)
+                for (col in 0..2)
+                    if (getNumber(Position(block, row, col)).number == number)
+                        count++
+
+        return count
+    }
+
     fun currentErrors(): Int {
         var currentErrors = 0
         for (k in 0..8)

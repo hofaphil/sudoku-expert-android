@@ -64,6 +64,11 @@ class Keyboard(context: Context, attributeSet: AttributeSet) :
         notesButton.isEnabled = activate
     }
 
+    fun hideKeys(hide: (Int) -> Boolean) {
+        for (i in 0..8)
+            keys[i].visibility = if (hide(i + 1)) View.INVISIBLE else View.VISIBLE
+    }
+
     fun pauseMode(isPauseMode: Boolean) {
         activate(!isPauseMode)
         pauseButton.isEnabled = true

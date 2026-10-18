@@ -100,9 +100,33 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/showErrors"
+                android:id="@+id/hideCompleted"
                 style="@style/Settings.Layout"
                 android:layout_below="@id/checkNotes">
+
+                <TextView
+                    android:id="@+id/hideCompletedTitle"
+                    style="@style/General.Title"
+                    android:text="@string/settings_hideCompleted" />
+
+                <TextView
+                    android:id="@+id/hideCompletedAnnotations"
+                    style="@style/General.Info"
+                    android:layout_below="@id/hideCompletedTitle"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/hideCompletedSwitch"
+                    android:text="@string/settings_hideCompletedAnnotations" />
+
+                <CheckBox
+                    android:id="@+id/hideCompletedSwitch"
+                    style="@style/General.CheckBox" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/showErrors"
+                style="@style/Settings.Layout"
+                android:layout_below="@id/hideCompleted">
 
                 <TextView
                     android:id="@+id/showErrorsTitle"

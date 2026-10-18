@@ -55,6 +55,8 @@
     <string name="settings_showErrorsAnnotations">Markiert und zählt Deine Fehler</string>
     <string name="settings_checkNotes">Schlaue Notizen</string>
     <string name="settings_checkNotesAnnotations">Löschen von überflüssigen Notizen, wenn Du eine Zahl einfügst</string>
+    <string name="settings_hideCompleted">Fertige Zahlen ausblenden</string>
+    <string name="settings_hideCompletedAnnotations">Blendet eine Zahl auf der Tastatur aus, sobald sie neunmal eingetragen wurde</string>
     <string name="settings_showTime">Stoppuhr</string>
     <string name="settings_showTimeAnnotations">Stoppe, wie lange Du für ein Sudoku brauchst und schau Dir Deine Zeiten in den Statistiken an</string>
     <string name="settings_deleteData">Zurücksetzen</string>

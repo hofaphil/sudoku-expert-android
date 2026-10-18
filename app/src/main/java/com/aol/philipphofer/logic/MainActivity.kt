@@ -95,6 +95,7 @@ class MainActivity : CustomActivity(), TimerListener {
             keyboard.activate(true)
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE)
         }
+        updateKeyboard()
     }
 
     override fun onResume() {
@@ -132,6 +133,7 @@ class MainActivity : CustomActivity(), TimerListener {
 
         statusBar.setDifficulty(DIFFICULTY)
         statusBar.setError(game.overallErrors)
+        updateKeyboard()
     }
 
     private fun heavyLoading(difficulty: Difficulty) {
@@ -161,6 +163,7 @@ class MainActivity : CustomActivity(), TimerListener {
         statusBar.activate(true)
         keyboard.activate(true)
         statusBar.setError(game.overallErrors)
+        updateKeyboard()
         window.decorView.post { timer.startTimer(0) }
     }
 
@@ -268,6 +271,7 @@ class MainActivity : CustomActivity(), TimerListener {
 
             // TODO two times this.selected, maybe this can be done nicer
             select(it)
+            updateKeyboard()
 
             // check if sudoku-game is finished
             checkSudoku()
@@ -281,10 +285,16 @@ class MainActivity : CustomActivity(), TimerListener {
 
             // TODO two times this.selected, maybe this can be done nicer
             select(it)
+            updateKeyboard()
 
             // check new current errors
             checkErrors()
         }
+    }
+
+    private fun updateKeyboard() {
+        val hideCompleted = data.loadBoolean(Data.SETTINGS_HIDE_COMPLETED, false)
+        keyboard.hideKeys { hideCompleted && game.count(it) >= 9 }
     }
 
     fun notesMode(): Boolean {

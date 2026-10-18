@@ -61,6 +61,8 @@
     <string name="settings_showErrorsAnnotations">Mark wrong numbers and count them</string>
     <string name="settings_checkNotes">Check Notes</string>
     <string name="settings_checkNotesAnnotations">Delete conflicting notes when you insert a new number</string>
+    <string name="settings_hideCompleted">Hide Completed Numbers</string>
+    <string name="settings_hideCompletedAnnotations">Hide a number on the keyboard once it was placed nine times</string>
     <string name="settings_showTime">Play with Timer</string>
     <string name="settings_showTimeAnnotations">Stop the time you need for a Sudoku and save it in your statistics</string>
     <string name="settings_deleteData">Reset</string>
