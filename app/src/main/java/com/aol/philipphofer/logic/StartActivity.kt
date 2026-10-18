@@ -17,7 +17,8 @@ class StartActivity : Activity() {
         val data = Data.instance(this)
 
         var intent = intent
-        if (intent.action != Intent.ACTION_MAIN) {
+        // opened through a shared sudoku link
+        if (intent.action == Intent.ACTION_VIEW) {
             val uri = getIntent().data
             try {
                 sudoku = load(uri)
