@@ -1,237 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent">
+    android:background="@color/surface_dim">
 
-    <Toolbar
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/General.ToolBar.Back"
-        android:title="@string/settings_title" />
+        android:background="@color/surface_dim"
+        app:liftOnScroll="false">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:background="@color/surface_dim">
-
-        <RelativeLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
+            style="?attr/collapsingToolbarLayoutLargeStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
+            android:background="@color/surface_dim"
+            app:contentScrim="@color/surface_dim"
+            app:expandedTitleMarginStart="24dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:title="@string/settings_title">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="0dp"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_back"
+                app:navigationIconTint="@color/on_surface" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="24dp">
 
             <TextView
                 android:id="@+id/gameSettings"
-                style="@style/Settings.Title"
+                style="@style/Settings.Header"
                 android:text="@string/settings_title_game_settings" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/markNumbers"
-                style="@style/Settings.Layout"
-                android:layout_below="@id/gameSettings"
-                android:background="@color/surface">
+                style="@style/Settings.Row.Static"
+                android:background="@drawable/settings_row_top">
 
-                <TextView
-                    android:id="@+id/markNumbersTitle"
-                    style="@style/General.Title"
-                    android:text="@string/settings_markNumbers" />
+                <LinearLayout style="@style/Settings.Row.Text">
 
-                <TextView
-                    android:id="@+id/markNumbersAnnotations"
-                    style="@style/General.Info"
-                    android:layout_below="@id/markNumbersTitle"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@id/markNumbersSwitch"
-                    android:text="@string/settings_markNumbersAnnotations" />
+                    <TextView
+                        style="@style/Settings.Row.Title"
+                        android:text="@string/settings_markNumbers" />
 
-                <androidx.appcompat.widget.SwitchCompat
+                    <TextView
+                        style="@style/Settings.Row.Summary"
+                        android:text="@string/settings_markNumbersAnnotations" />
+                </LinearLayout>
+
+                <com.google.android.material.materialswitch.MaterialSwitch
                     android:id="@+id/markNumbersSwitch"
-                    style="@style/General.Switch" />
+                    style="@style/Settings.Row.Switch" />
+            </LinearLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/markLines"
-                style="@style/Settings.Layout"
-                android:layout_below="@id/markNumbers">
+                style="@style/Settings.Row.Static"
+                android:background="@drawable/settings_row_middle">
 
-                <TextView
-                    android:id="@+id/markLinesTitle"
-                    style="@style/General.Title"
-                    android:text="@string/settings_markLines" />
+                <LinearLayout style="@style/Settings.Row.Text">
 
-                <TextView
-                    android:id="@+id/markLinesAnnotations"
-                    style="@style/General.Info"
-                    android:layout_below="@id/markLinesTitle"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@id/markLinesSwitch"
-                    android:text="@string/settings_markLinesAnnotations" />
+                    <TextView
+                        style="@style/Settings.Row.Title"
+                        android:text="@string/settings_markLines" />
 
-                <androidx.appcompat.widget.SwitchCompat
+                    <TextView
+                        style="@style/Settings.Row.Summary"
+                        android:text="@string/settings_markLinesAnnotations" />
+                </LinearLayout>
+
+                <com.google.android.material.materialswitch.MaterialSwitch
                     android:id="@+id/markLinesSwitch"
-                    style="@style/General.Switch" />
+                    style="@style/Settings.Row.Switch" />
+            </LinearLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/checkNotes"
-                style="@style/Settings.Layout"
-                android:layout_below="@id/markLines">
+                style="@style/Settings.Row.Static"
+                android:background="@drawable/settings_row_middle">
 
-                <TextView
-                    android:id="@+id/checkNotesTitle"
-                    style="@style/General.Title"
-                    android:text="@string/settings_checkNotes" />
+                <LinearLayout style="@style/Settings.Row.Text">
 
-                <TextView
-                    android:id="@+id/checkNotesAnnotation"
-                    style="@style/General.Info"
-                    android:layout_below="@id/checkNotesTitle"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@id/checkNotesSwitch"
-                    android:text="@string/settings_checkNotesAnnotations" />
+                    <TextView
+                        style="@style/Settings.Row.Title"
+                        android:text="@string/settings_checkNotes" />
 
-                <androidx.appcompat.widget.SwitchCompat
+                    <TextView
+                        style="@style/Settings.Row.Summary"
+                        android:text="@string/settings_checkNotesAnnotations" />
+                </LinearLayout>
+
+                <com.google.android.material.materialswitch.MaterialSwitch
                     android:id="@+id/checkNotesSwitch"
-                    style="@style/General.Switch" />
+                    style="@style/Settings.Row.Switch" />
+            </LinearLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/hideCompleted"
-                style="@style/Settings.Layout"
-                android:layout_below="@id/checkNotes">
+                style="@style/Settings.Row.Static"
+                android:background="@drawable/settings_row_middle">
 
-                <TextView
-                    android:id="@+id/hideCompletedTitle"
-                    style="@style/General.Title"
-                    android:text="@string/settings_hideCompleted" />
+                <LinearLayout style="@style/Settings.Row.Text">
 
-                <TextView
-                    android:id="@+id/hideCompletedAnnotations"
-                    style="@style/General.Info"
-                    android:layout_below="@id/hideCompletedTitle"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@id/hideCompletedSwitch"
-                    android:text="@string/settings_hideCompletedAnnotations" />
+                    <TextView
+                        style="@style/Settings.Row.Title"
+                        android:text="@string/settings_hideCompleted" />
 
-                <androidx.appcompat.widget.SwitchCompat
+                    <TextView
+                        style="@style/Settings.Row.Summary"
+                        android:text="@string/settings_hideCompletedAnnotations" />
+                </LinearLayout>
+
+                <com.google.android.material.materialswitch.MaterialSwitch
                     android:id="@+id/hideCompletedSwitch"
-                    style="@style/General.Switch" />
+                    style="@style/Settings.Row.Switch" />
+            </LinearLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/showErrors"
-                style="@style/Settings.Layout"
-                android:layout_below="@id/hideCompleted">
+                style="@style/Settings.Row.Static"
+                android:background="@drawable/settings_row_middle">
 
-                <TextView
-                    android:id="@+id/showErrorsTitle"
-                    style="@style/General.Title"
-                    android:text="@string/settings_showErrors" />
+                <LinearLayout style="@style/Settings.Row.Text">
 
-                <TextView
-                    android:id="@+id/showErrorsAnnotations"
-                    style="@style/General.Info"
-                    android:layout_below="@id/showErrorsTitle"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@id/showErrorsSwitch"
-                    android:text="@string/settings_showErrorsAnnotations" />
+                    <TextView
+                        style="@style/Settings.Row.Title"
+                        android:text="@string/settings_showErrors" />
 
-                <TextView
-                    android:id="@+id/showErrorsNextGame"
-                    style="@style/General.SmallInfo"
-                    android:layout_below="@id/showErrorsAnnotations"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@id/showErrorsSwitch"
-                    android:text="@string/settings_applies_next_game" />
+                    <TextView
+                        style="@style/Settings.Row.Summary"
+                        android:text="@string/settings_showErrorsAnnotations" />
 
-                <androidx.appcompat.widget.SwitchCompat
+                    <TextView
+                        style="@style/Settings.Row.Note"
+                        android:text="@string/settings_applies_next_game" />
+                </LinearLayout>
+
+                <com.google.android.material.materialswitch.MaterialSwitch
                     android:id="@+id/showErrorsSwitch"
-                    style="@style/General.Switch" />
+                    style="@style/Settings.Row.Switch" />
+            </LinearLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/showTime"
-                style="@style/Settings.Layout"
-                android:layout_below="@id/showErrors"
-                android:paddingBottom="@dimen/_15sdp">
+                style="@style/Settings.Row.Static"
+                android:background="@drawable/settings_row_bottom">
 
-                <TextView
-                    android:id="@+id/showTimeTitle"
-                    style="@style/General.Title"
-                    android:text="@string/settings_showTime" />
+                <LinearLayout style="@style/Settings.Row.Text">
 
-                <TextView
-                    android:id="@+id/showTimeAnnotations"
-                    style="@style/General.Info"
-                    android:layout_below="@id/showTimeTitle"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@id/showTimeSwitch"
-                    android:text="@string/settings_showTimeAnnotations" />
+                    <TextView
+                        style="@style/Settings.Row.Title"
+                        android:text="@string/settings_showTime" />
 
-                <TextView
-                    android:id="@+id/showTimeNextGame"
-                    style="@style/General.SmallInfo"
-                    android:layout_below="@id/showTimeAnnotations"
-                    android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@id/showTimeSwitch"
-                    android:text="@string/settings_applies_next_game" />
+                    <TextView
+                        style="@style/Settings.Row.Summary"
+                        android:text="@string/settings_showTimeAnnotations" />
 
-                <androidx.appcompat.widget.SwitchCompat
+                    <TextView
+                        style="@style/Settings.Row.Note"
+                        android:text="@string/settings_applies_next_game" />
+                </LinearLayout>
+
+                <com.google.android.material.materialswitch.MaterialSwitch
                     android:id="@+id/showTimeSwitch"
-                    style="@style/General.Switch" />
-
-            </RelativeLayout>
+                    style="@style/Settings.Row.Switch" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/more"
-                style="@style/Settings.Title"
-                android:layout_below="@id/showTime"
+                style="@style/Settings.Header"
                 android:text="@string/settings_title_more" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/deleteData"
-                style="@style/Settings.Layout"
-                android:layout_below="@id/more"
-                android:background="@color/surface">
+                style="@style/Settings.Row"
+                android:background="@drawable/settings_row_top">
 
-                <TextView
-                    android:id="@+id/deleteDataTitle"
-                    style="@style/General.Title"
-                    android:text="@string/settings_deleteData" />
+                <LinearLayout style="@style/Settings.Row.Text">
 
-                <TextView
-                    android:id="@+id/deleteDataAnnotations"
-                    style="@style/General.Info"
-                    android:layout_below="@id/deleteDataTitle"
-                    android:text="@string/settings_deleteDataAnnotations" />
+                    <TextView
+                        style="@style/Settings.Row.Title"
+                        android:text="@string/settings_deleteData" />
 
-            </RelativeLayout>
+                    <TextView
+                        style="@style/Settings.Row.Summary"
+                        android:text="@string/settings_deleteDataAnnotations" />
+                </LinearLayout>
+            </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/info"
-                style="@style/Settings.Layout"
-                android:layout_below="@id/deleteData"
-                android:paddingBottom="@dimen/_15sdp">
+                style="@style/Settings.Row"
+                android:background="@drawable/settings_row_bottom">
 
-                <TextView
-                    android:id="@+id/infoTitle"
-                    style="@style/General.Title"
-                    android:text="@string/settings_about" />
+                <LinearLayout style="@style/Settings.Row.Text">
 
-            </RelativeLayout>
+                    <TextView
+                        style="@style/Settings.Row.Title"
+                        android:text="@string/settings_about" />
+                </LinearLayout>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/end"
-                style="@style/Settings.Title"
-                android:layout_below="@id/info"
-                android:text="" />
-        </RelativeLayout>
-    </ScrollView>
-</RelativeLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

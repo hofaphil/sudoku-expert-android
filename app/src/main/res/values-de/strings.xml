@@ -35,9 +35,9 @@
 
     <!-- Statistics -->
     <string name="statistics_title">Statistik</string>
-    <string name="statistics_times_played">Anzahl der Spiele:</string>
-    <string name="statistics_average">Durchschnittszeit:</string>
-    <string name="statistics_best">Bestzeit:</string>
+    <string name="statistics_times_played">Anzahl der Spiele</string>
+    <string name="statistics_average">Durchschnittszeit</string>
+    <string name="statistics_best">Bestzeit</string>
     <string name="statistics_beginner">@string/beginner</string>
     <string name="statistics_advanced">@string/advanced</string>
     <string name="statistics_expert">@string/expert</string>

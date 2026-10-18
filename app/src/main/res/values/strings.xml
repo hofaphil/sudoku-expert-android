@@ -41,9 +41,9 @@
 
     <!-- Statistics -->
     <string name="statistics_title">Statistics</string>
-    <string name="statistics_times_played">Times Played:</string>
-    <string name="statistics_average">Average Time:</string>
-    <string name="statistics_best">Best Time:</string>
+    <string name="statistics_times_played">Times Played</string>
+    <string name="statistics_average">Average Time</string>
+    <string name="statistics_best">Best Time</string>
     <string name="statistics_beginner">@string/beginner</string>
     <string name="statistics_advanced">@string/advanced</string>
     <string name="statistics_expert">@string/expert</string>
