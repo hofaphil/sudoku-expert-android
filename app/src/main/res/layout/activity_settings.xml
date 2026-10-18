@@ -46,9 +46,9 @@
                     android:layout_toStartOf="@id/markNumbersSwitch"
                     android:text="@string/settings_markNumbersAnnotations" />
 
-                <CheckBox
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/markNumbersSwitch"
-                    style="@style/General.CheckBox" />
+                    style="@style/General.Switch" />
 
             </RelativeLayout>
 
@@ -70,9 +70,9 @@
                     android:layout_toStartOf="@id/markLinesSwitch"
                     android:text="@string/settings_markLinesAnnotations" />
 
-                <CheckBox
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/markLinesSwitch"
-                    style="@style/General.CheckBox" />
+                    style="@style/General.Switch" />
 
             </RelativeLayout>
 
@@ -94,9 +94,9 @@
                     android:layout_toStartOf="@id/checkNotesSwitch"
                     android:text="@string/settings_checkNotesAnnotations" />
 
-                <CheckBox
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/checkNotesSwitch"
-                    style="@style/General.CheckBox" />
+                    style="@style/General.Switch" />
 
             </RelativeLayout>
 
@@ -118,9 +118,9 @@
                     android:layout_toStartOf="@id/hideCompletedSwitch"
                     android:text="@string/settings_hideCompletedAnnotations" />
 
-                <CheckBox
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/hideCompletedSwitch"
-                    style="@style/General.CheckBox" />
+                    style="@style/General.Switch" />
 
             </RelativeLayout>
 
@@ -150,9 +150,9 @@
                     android:layout_toStartOf="@id/showErrorsSwitch"
                     android:text="@string/settings_applies_next_game" />
 
-                <CheckBox
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/showErrorsSwitch"
-                    style="@style/General.CheckBox" />
+                    style="@style/General.Switch" />
 
             </RelativeLayout>
 
@@ -183,9 +183,9 @@
                     android:layout_toStartOf="@id/showTimeSwitch"
                     android:text="@string/settings_applies_next_game" />
 
-                <CheckBox
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/showTimeSwitch"
-                    style="@style/General.CheckBox" />
+                    style="@style/General.Switch" />
 
             </RelativeLayout>
 

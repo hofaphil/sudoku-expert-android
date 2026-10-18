@@ -2,24 +2,24 @@ package com.aol.philipphofer.gui
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.CheckBox
 import android.widget.RelativeLayout
 import com.aol.philipphofer.R
 import com.aol.philipphofer.gui.custom.CustomActivity
 import com.aol.philipphofer.gui.dialog.ConfirmDialog
 import com.aol.philipphofer.persistence.Data
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.net.toUri
 
 private const val CONTACT_URL = "https://www.sudoku-expert.com"
 
 class Settings : CustomActivity() {
 
-    private lateinit var markNumbers: CheckBox
-    private lateinit var markLines: CheckBox
-    private lateinit var showErrors: CheckBox
-    private lateinit var checkNotes: CheckBox
-    private lateinit var showTime: CheckBox
-    private lateinit var hideCompleted: CheckBox
+    private lateinit var markNumbers: SwitchCompat
+    private lateinit var markLines: SwitchCompat
+    private lateinit var showErrors: SwitchCompat
+    private lateinit var checkNotes: SwitchCompat
+    private lateinit var showTime: SwitchCompat
+    private lateinit var hideCompleted: SwitchCompat
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
