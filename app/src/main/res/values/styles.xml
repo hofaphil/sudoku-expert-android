@@ -25,6 +25,13 @@
         <item name="android:windowLightStatusBar">@bool/light_system_bars</item>
         <item name="android:windowLightNavigationBar">@bool/light_system_bars</item>
         <item name="android:navigationBarColor">@color/transparent</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Sudoku.Dialog</item>
+    </style>
+
+    <!-- yellow button text is unreadable on the light dialog, the buttons use the purple instead -->
+    <style name="ThemeOverlay.Sudoku.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/secondary</item>
+        <item name="colorSurfaceContainerHigh">@color/surface</item>
     </style>
 
     <style name="Settings.Header" parent="">

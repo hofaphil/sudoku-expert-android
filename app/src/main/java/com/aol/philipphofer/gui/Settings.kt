@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.view.View
 import com.aol.philipphofer.R
 import com.aol.philipphofer.gui.custom.CustomActivity
-import com.aol.philipphofer.gui.dialog.ConfirmDialog
 import com.aol.philipphofer.persistence.Data
 import androidx.core.net.toUri
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.materialswitch.MaterialSwitch
 
 private const val CONTACT_URL = "https://www.sudoku-expert.com"
@@ -38,11 +38,12 @@ class Settings : CustomActivity() {
         hideCompleted = findViewById(R.id.hideCompletedSwitch)
 
         findViewById<View>(R.id.deleteData).setOnClickListener {
-            ConfirmDialog(
-                this,
-                resources.getString(R.string.settings_confirm),
-                resources.getString(R.string.settings_confirm_annotations)
-            ) { data.drop() }.show()
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.settings_confirm)
+                .setMessage(R.string.settings_confirm_annotations)
+                .setNegativeButton(R.string.confirmdialog_cancel, null)
+                .setPositiveButton(R.string.confirmdialog_ok) { _, _ -> data.drop() }
+                .show()
         }
         findViewById<View>(R.id.info).setOnClickListener {
             startActivity(
