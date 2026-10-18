@@ -30,7 +30,8 @@
             <RelativeLayout
                 android:id="@+id/markNumbers"
                 style="@style/Settings.Layout"
-                android:layout_below="@id/gameSettings">
+                android:layout_below="@id/gameSettings"
+                android:background="@color/surface">
 
                 <TextView
                     android:id="@+id/markNumbersTitle"
@@ -197,7 +198,8 @@
             <RelativeLayout
                 android:id="@+id/deleteData"
                 style="@style/Settings.Layout"
-                android:layout_below="@id/more">
+                android:layout_below="@id/more"
+                android:background="@color/surface">
 
                 <TextView
                     android:id="@+id/deleteDataTitle"

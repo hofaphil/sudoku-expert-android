@@ -106,10 +106,11 @@
     <style name="Settings.Layout" parent="">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:paddingTop">@dimen/_15sdp</item>
+        <item name="android:paddingTop">@dimen/_10sdp</item>
+        <item name="android:paddingBottom">@dimen/_10sdp</item>
         <item name="android:paddingRight">@dimen/_15sdp</item>
-        <item name="android:paddingLeft">@dimen/_25sdp</item>
-        <item name="android:background">@color/surface</item>
+        <item name="android:paddingLeft">@dimen/_15sdp</item>
+        <item name="android:background">@drawable/settings_item</item>
     </style>
 
     <style name="Settings.Title" parent="">
