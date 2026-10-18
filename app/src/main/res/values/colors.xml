@@ -1,39 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="ic_launcher_background">@color/yellow</color>
+    <!--
+        Colors are split into three layers. Only layer 1 holds hex values.
 
-    <color name="white">#ffffff</color>
-    <color name="black">#000000</color>
-    <color name="darkdarkgray">#656565</color>
-    <color name="darkgray">#a9a9a9</color>
-    <color name="dimgray">#c7c5c5</color>
-    <color name="gray">#eeeeee</color>
-    <color name="lightgray">#fafafa</color>
-    <color name="red">#ff0000</color>
-    <color name="lightRed">#F09A96</color>
-    <color name="orange">#ed7d31</color>
-    <color name="blue">#5b9bd5</color>
-    <color name="green">#70ad47</color>
+        1. Palette   raw tonal scales, named by hue + lightness (higher number = darker).
+                     Never reference these outside of this file and values-night/colors.xml.
+        2. Roles     what a color is used for (background, surface, on_surface, ...).
+        3. Game      sudoku specific colors, built from the roles.
+
+        Light values live here, dark overrides of layer 2 and 3 in values-night/colors.xml.
+    -->
+
+    <!-- 1. Palette ========================================================= -->
+
+    <!-- gray (both themes) -->
+    <color name="gray_50">#FAFAFA</color>
+    <color name="gray_100">#EEEEEE</color>
+    <color name="gray_300">#C7C5C5</color>
+    <color name="gray_400">#A9A9A9</color>
+    <color name="gray_500">#8E8E93</color>
+    <color name="gray_600">#656565</color>
+    <color name="gray_700">#48484A</color>
+    <color name="gray_800">#3A3A3C</color>
+    <color name="gray_900">#1C1C1E</color>
+    <color name="gray_1000">#000000</color>
+
+    <!-- umber, warm dark olive gray (dark theme top bar) -->
+    <color name="umber_900">#434137</color>
+
+    <!-- yellow (brand) -->
+    <color name="yellow_300">#FFE26D</color>
+
+    <!-- indigo -->
+    <color name="indigo_100">#D9DAF2</color>
+    <color name="indigo_200">#A8A6F3</color>
+    <color name="indigo_500">#6366AD</color>
+    <color name="indigo_800">#393A6B</color>
+
+    <!-- red -->
+    <color name="red_200">#F09A96</color>
+    <color name="red_900">#5E2A28</color>
+
     <color name="transparent">#00000000</color>
 
-    <color name="yellow">#FFE26D</color>
-    <color name="lila">#6366AD</color>
-    <color name="lightLila">#D9DAF2</color>
-    <color name="dark">#434137</color>
+    <!-- 2. Roles =========================================================== -->
 
-    <!-- for gamefield -->
-    <color name="selected">@color/yellow</color>
-    <color name="unselected">@color/lightgray</color>
-    <color name="lightSelected">@color/dimgray</color>
+    <!-- no night override: also the launcher icon and splash color, which must not change with the theme -->
+    <color name="primary">@color/yellow_300</color>
+    <color name="on_primary">@color/gray_1000</color>
 
-    <color name="lineSelected">@color/lightSelected</color>
-    <color name="lineUnselected">@color/unselected</color>
-    <color name="numSelected">@color/lightLila</color>
-    <color name="userNumber">@color/lila</color>
-    <color name="numUnselected">@color/unselected</color>
-    <color name="error">@color/lightRed</color>
-    <color name="unerror">@color/unselected</color>
+    <color name="secondary">@color/indigo_500</color>
+    <color name="secondary_container">@color/indigo_100</color>
+
+    <color name="error_container">@color/red_200</color>
+
+    <color name="background">@color/gray_50</color>
+    <color name="surface">@color/gray_50</color>
+    <color name="surface_dim">@color/gray_100</color>
+    <color name="surface_variant">@color/gray_300</color>
+
+    <color name="on_surface">@color/gray_1000</color>
+    <color name="on_surface_variant">@color/gray_600</color>
+    <color name="on_surface_subtle">@color/gray_400</color>
+
+    <color name="outline">@color/gray_1000</color>
+    <color name="outline_variant">@color/gray_600</color>
+
+    <color name="top_bar">@color/primary</color>
+    <color name="on_top_bar">@color/on_primary</color>
+
+    <!-- 3. Game ============================================================ -->
+
+    <color name="cell_background">@color/background</color>
+    <color name="cell_selected">@color/primary</color>
+    <color name="cell_highlight">@color/surface_variant</color>
+    <color name="cell_same_number">@color/secondary_container</color>
+    <color name="cell_error">@color/error_container</color>
+
+    <color name="number_given">@color/on_surface</color>
+    <color name="number_user">@color/secondary</color>
+    <color name="number_given_selected">@color/on_primary</color>
+    <color name="number_user_selected">@color/number_user</color>
+
+    <!-- frame around a 3x3 block / lines between its cells -->
+    <color name="grid_border">@color/outline</color>
+    <color name="grid_line">@color/outline</color>
+
+    <color name="key_background">@color/transparent</color>
+    <color name="key_active">@color/primary</color>
+
+    <color name="ic_launcher_background">@color/primary</color>
 
 </resources>
-

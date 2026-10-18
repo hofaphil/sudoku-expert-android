@@ -32,9 +32,9 @@ class Keyboard(context: Context, attributeSet: AttributeSet) :
         notesButton = findViewById(R.id.notes)
         notesButton.setOnClickListener {
             if (mainActivity.notesMode())
-                notesButton.setBackgroundColor(MainActivity.getPrimaryColor(context))
+                notesButton.setBackgroundColor(resources.getColor(R.color.key_active))
             else
-                notesButton.setBackgroundColor(resources.getColor(R.color.transparent))
+                notesButton.setBackgroundColor(resources.getColor(R.color.key_background))
         }
 
         pauseButton = findViewById(R.id.pause)
@@ -64,13 +64,18 @@ class Keyboard(context: Context, attributeSet: AttributeSet) :
         notesButton.isEnabled = activate
     }
 
+    fun hideKeys(hide: (Int) -> Boolean) {
+        for (i in 0..8)
+            keys[i].visibility = if (hide(i + 1)) View.INVISIBLE else View.VISIBLE
+    }
+
     fun pauseMode(isPauseMode: Boolean) {
         activate(!isPauseMode)
         pauseButton.isEnabled = true
 
         val backgroundColor =
-            if (isPauseMode) MainActivity.getPrimaryColor(context)
-            else resources.getColor(R.color.transparent)
+            if (isPauseMode) resources.getColor(R.color.key_active)
+            else resources.getColor(R.color.key_background)
         pauseButton.setBackgroundColor(backgroundColor)
 
     }

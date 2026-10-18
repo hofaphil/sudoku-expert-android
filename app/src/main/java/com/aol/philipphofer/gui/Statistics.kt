@@ -10,6 +10,8 @@ import com.aol.philipphofer.logic.help.Difficulty
 import com.aol.philipphofer.persistence.Data.Constants.STATISTICS_BESTTIME
 import com.aol.philipphofer.persistence.Data.Constants.STATISTICS_TIMEOVERALL
 import com.aol.philipphofer.persistence.Data.Constants.STATISTICS_TIMESPLAYED
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.MaterialToolbar
 
 class Statistics : CustomActivity() {
 
@@ -30,7 +32,8 @@ class Statistics : CustomActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistics)
 
-        setActionBar(findViewById(R.id.title))
+        findViewById<MaterialToolbar>(R.id.toolbar).setNavigationOnClickListener { finish() }
+        findViewById<AppBarLayout>(R.id.title).setExpanded(false, false)
 
         beginnerTime = findViewById(R.id.Beginner_Average_Time)
         advancedTime = findViewById(R.id.Advanced_Average_Time)

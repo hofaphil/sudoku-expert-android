@@ -1,22 +1,27 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="@dimen/statusbar_icon_size"
     android:height="@dimen/statusbar_icon_size"
-    android:tint="@color/lila"
-    android:viewportWidth="256"
-    android:viewportHeight="256">
-    <path
-        android:fillColor="#000000"
-        android:pathData="M45.25,130.5m-20.159,0a20.159,20.159 0,1 1,40.319 0a20.159,20.159 0,1 1,-40.319 0"
-        android:strokeWidth="4.68133"
-        android:strokeColor="#000000" />
-    <path
-        android:fillColor="#000000"
-        android:pathData="M130.5,130.5m-20.159,0a20.159,20.159 0,1 1,40.319 0a20.159,20.159 0,1 1,-40.319 0"
-        android:strokeWidth="4.68133"
-        android:strokeColor="#000000" />
-    <path
-        android:fillColor="#000000"
-        android:pathData="M215.75,130.5m-20.159,0a20.159,20.159 0,1 1,40.319 0a20.159,20.159 0,1 1,-40.319 0"
-        android:strokeWidth="4.68133"
-        android:strokeColor="#000000" />
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:pathData="M12,12m-1,0a1,1 0,1 1,2 0a1,1 0,1 1,-2 0"
+      android:strokeLineJoin="round"
+      android:strokeWidth="2"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/secondary"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M19,12m-1,0a1,1 0,1 1,2 0a1,1 0,1 1,-2 0"
+      android:strokeLineJoin="round"
+      android:strokeWidth="2"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/secondary"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M5,12m-1,0a1,1 0,1 1,2 0a1,1 0,1 1,-2 0"
+      android:strokeLineJoin="round"
+      android:strokeWidth="2"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/secondary"
+      android:strokeLineCap="round"/>
 </vector>

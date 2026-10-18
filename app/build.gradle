@@ -12,13 +12,13 @@ android {
     defaultConfig {
         applicationId = "com.aol.philipphofer"
         minSdk {
-            version = release(24)
+            version = release(27)
         }
         targetSdk {
             version = release(37)
         }
-        versionCode = 44
-        versionName = "2.6.0"
+        versionCode = 45
+        versionName = "2.7.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -37,6 +37,7 @@ android {
 
 dependencies {
     implementation libs.androidx.appcompat
+    implementation libs.material
     implementation libs.sdp.android
     testImplementation libs.junit
     testImplementation libs.mockito.core

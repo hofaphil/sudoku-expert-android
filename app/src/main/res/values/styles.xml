@@ -1,20 +1,120 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Application theme -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/yellow</item>
-        <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/gray</item>
-        <item name="android:statusBarColor">@color/yellow</item>
-        <item name="android:windowLightStatusBar">true</item>
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary</item>
+        <item name="colorAccent">@color/secondary</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/top_bar</item>
+        <item name="android:windowLightStatusBar">@bool/light_system_bars</item>
+        <item name="android:windowLightNavigationBar">@bool/light_system_bars</item>
+        <item name="android:navigationBarColor">@color/transparent</item>
+    </style>
+
+    <!-- Settings and statistics: Material 3, styled like the system settings but with the app colors -->
+    <style name="MaterialTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSurface">@color/surface_dim</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
+        <item name="colorSurfaceContainerHighest">@color/surface_variant</item>
+        <item name="colorOutline">@color/on_surface_subtle</item>
+        <item name="android:windowBackground">@color/surface_dim</item>
+        <item name="android:windowLightStatusBar">@bool/light_system_bars</item>
+        <item name="android:windowLightNavigationBar">@bool/light_system_bars</item>
+        <item name="android:navigationBarColor">@color/transparent</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Sudoku.Dialog</item>
+    </style>
+
+    <!-- yellow button text is unreadable on the light dialog, the buttons use the purple instead -->
+    <style name="ThemeOverlay.Sudoku.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/secondary</item>
+        <item name="colorSurfaceContainerHigh">@color/surface</item>
+    </style>
+
+    <style name="Settings.Header" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceTitleSmall</item>
+        <item name="android:textColor">@color/secondary</item>
+    </style>
+
+    <style name="Settings.Row" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:minHeight">72dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">16dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="Settings.Row.Text" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Settings.Row.Title" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?attr/textAppearanceTitleMedium</item>
+        <item name="android:textColor">@color/on_surface</item>
+    </style>
+
+    <style name="Settings.Row.Summary" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyMedium</item>
+        <item name="android:textColor">@color/on_surface_variant</item>
+    </style>
+
+    <style name="Settings.Row.Note" parent="Settings.Row.Summary">
+        <item name="android:textAppearance">?attr/textAppearanceBodySmall</item>
+        <item name="android:textColor">@color/on_surface_subtle</item>
+    </style>
+
+    <!-- a row that only shows information -->
+    <style name="Settings.Row.Static" parent="Settings.Row">
+        <item name="android:clickable">false</item>
+        <item name="android:focusable">false</item>
+    </style>
+
+    <style name="Settings.Row.Value" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyLarge</item>
+        <item name="android:textColor">@color/on_surface_variant</item>
+    </style>
+
+    <style name="Settings.Row.Switch" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="thumbIcon">@drawable/switch_thumb_icon</item>
+        <item name="thumbIconTint">@color/switch_thumb_icon_tint</item>
     </style>
 
     <!-- Splash Screen -->
+    <!-- same color as the top bar: yellow in light mode, dark in dark mode -->
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@color/yellow</item>
+        <item name="android:windowBackground">@color/top_bar</item>
         <item name="android:windowAnimationStyle">@null</item>
-        <item name="android:statusBarColor">@color/yellow</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:navigationBarColor">@color/yellow</item>
+        <item name="android:statusBarColor">@color/top_bar</item>
+        <item name="android:windowLightStatusBar">@bool/light_system_bars</item>
+        <item name="android:navigationBarColor">@color/top_bar</item>
+        <!-- keep the icon on its yellow background, the dark icon lines would vanish on the dark splash -->
+        <item name="android:windowSplashScreenIconBackgroundColor" tools:targetApi="31">@color/ic_launcher_background</item>
     </style>
 
     <!-- Popup Menus (Material 3 like) -->
@@ -36,7 +136,7 @@
 
     <style name="TextAppearance.Sudoku.PopupMenu" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/on_surface</item>
     </style>
 
     <!-- Keyboard Style -->
@@ -46,7 +146,7 @@
         <item name="android:padding">0dp</item>
         <item name="android:textSize">@dimen/keyboardNumberText</item>
         <item name="android:layout_columnWeight">1</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/on_surface</item>
         <item name="android:background">@null</item>
     </style>
 
@@ -58,9 +158,9 @@
         <item name="android:paddingEnd">@dimen/_14sdp</item>
         <item name="android:textSize">@dimen/keyboardFunctionalText</item>
         <item name="android:layout_columnWeight">1</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/on_surface</item>
         <item name="android:foreground">@drawable/box</item>
-        <item name="android:background">@color/transparent</item>
+        <item name="android:background">@color/key_background</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
@@ -70,7 +170,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/fieldNotesText</item>
         <item name="android:visibility">invisible</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/on_surface</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_rowWeight">1</item>
         <item name="android:layout_columnWeight">1</item>
@@ -82,7 +182,7 @@
         <item name="android:gravity">center</item>
         <item name="android:padding">0dp</item>
         <item name="android:textSize">@dimen/fieldNumberText</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/number_given</item>
         <item name="android:textStyle">bold</item>
         <item name="android:background">@color/transparent</item>
         <item name="android:layout_height">match_parent</item>
@@ -99,30 +199,12 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <!-- Settings Styles -->
-    <style name="Settings.Layout" parent="">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:paddingTop">@dimen/_15sdp</item>
-        <item name="android:paddingRight">@dimen/_15sdp</item>
-        <item name="android:paddingLeft">@dimen/_25sdp</item>
-        <item name="android:background">@color/white</item>
-    </style>
-
-    <style name="Settings.Title" parent="">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">@dimen/_15sdp</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textAllCaps">true</item>
-    </style>
-
     <!-- General Styles -->
     <style name="General.Title" parent="TextAppearance.AppCompat.Title">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/_13sdp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/on_surface</item>
         <item name="android:background">@color/transparent</item>
         <item name="android:layout_marginLeft">5dp</item>
     </style>
@@ -131,52 +213,32 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/_12sdp</item>
-        <item name="android:textColor">@color/darkdarkgray</item>
+        <item name="android:textColor">@color/on_surface_variant</item>
         <item name="android:background">@color/transparent</item>
         <item name="android:layout_marginLeft">5dp</item>
     </style>
 
-    <style name="General.SmallInfo" parent="TextAppearance.AppCompat.Title">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/_10sdp</item>
-        <item name="android:textColor">@color/darkgray</item>
-        <item name="android:background">@color/transparent</item>
-        <item name="android:layout_marginLeft">5dp</item>
-    </style>
 
     <style name="General.ToolBar" parent="">
-        <item name="android:titleTextColor">@color/black</item>
-        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:titleTextColor">@color/on_top_bar</item>
+        <item name="android:background">@color/top_bar</item>
     </style>
 
-    <style name="General.ToolBar.Back" parent="General.ToolBar">
-        <item name="android:navigationIcon">@drawable/ic_back</item>
-    </style>
 
     <style name="General.Button" parent="TextAppearance.AppCompat.Button">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:stateListAnimator">@null</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/on_primary</item>
         <item name="android:textAlignment">center</item>
         <item name="android:background">?colorPrimary</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <style name="General.CheckBox" parent="">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_alignParentRight">true</item>
-        <item name="android:buttonTint">@color/black</item>
-        <item name="android:layout_marginLeft">@dimen/_6sdp</item>
-        <item name="android:layout_centerVertical">true</item>
-    </style>
-
     <style name="General.VerticalLine" parent="">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:background">@color/darkdarkgray</item>
+        <item name="android:background">@color/outline_variant</item>
         <item name="android:layout_marginTop">@dimen/_15sdp</item>
     </style>
 

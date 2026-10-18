@@ -73,18 +73,18 @@ public class SettingsTests {
 
         // With mark-lines on
         for (int i = 0; i < 9; i++) {
-            rowSelected[i].check(matches(backgroundColor(R.color.unselected)));
-            colSelected[i].check(matches(backgroundColor(R.color.unselected)));
+            rowSelected[i].check(matches(backgroundColor(R.color.cell_background)));
+            colSelected[i].check(matches(backgroundColor(R.color.cell_background)));
         }
 
         mainActivity.onActivity(main -> {
             main.select(position);
         });
 
-        selectedField.check(matches(backgroundColor(R.color.selected)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
         for (int i = 1; i < 9; i++) {
-            rowSelected[i].check(matches(backgroundColor(R.color.lightSelected)));
-            colSelected[i].check(matches(backgroundColor(R.color.lightSelected)));
+            rowSelected[i].check(matches(backgroundColor(R.color.cell_highlight)));
+            colSelected[i].check(matches(backgroundColor(R.color.cell_highlight)));
         }
 
         // Restart activity
@@ -92,8 +92,8 @@ public class SettingsTests {
 
         // With mark-lines off
         for (int i = 0; i < 9; i++) {
-            rowSelected[i].check(matches(backgroundColor(R.color.unselected)));
-            colSelected[i].check(matches(backgroundColor(R.color.unselected)));
+            rowSelected[i].check(matches(backgroundColor(R.color.cell_background)));
+            colSelected[i].check(matches(backgroundColor(R.color.cell_background)));
         }
 
         mainActivity.onActivity(main -> {
@@ -101,10 +101,10 @@ public class SettingsTests {
             main.select(position);
         });
 
-        selectedField.check(matches(backgroundColor(R.color.selected)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
         for (int i = 1; i < 9; i++) {
-            rowSelected[i].check(matches(backgroundColor(R.color.unselected)));
-            colSelected[i].check(matches(backgroundColor(R.color.unselected)));
+            rowSelected[i].check(matches(backgroundColor(R.color.cell_background)));
+            colSelected[i].check(matches(backgroundColor(R.color.cell_background)));
         }
     }
 
@@ -143,9 +143,9 @@ public class SettingsTests {
                             ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[block]))
                     ));
                     if (sudoku.getNumber(pos).getNumber() == number[0])
-                        field.check(matches(backgroundColor(R.color.numSelected)));
+                        field.check(matches(backgroundColor(R.color.cell_same_number)));
                     else
-                        field.check(matches(backgroundColor(R.color.unselected)));
+                        field.check(matches(backgroundColor(R.color.cell_background)));
                 }
 
         // Restart activity
@@ -180,7 +180,7 @@ public class SettingsTests {
                             ViewMatchers.withId(btn[row][col]),
                             ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[block]))
                     ));
-                    field.check(matches(backgroundColor(R.color.unselected)));
+                    field.check(matches(backgroundColor(R.color.cell_background)));
                 }
     }
 
@@ -212,7 +212,7 @@ public class SettingsTests {
                 ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()]))
         ));
 
-        fieldWithWrongNumber.check(matches(backgroundColor(R.color.error)));
+        fieldWithWrongNumber.check(matches(backgroundColor(R.color.cell_error)));
 
         ViewInteraction errorView = onView(ViewMatchers.withId(R.id.errorView));
         errorView.check(matches(withText(InstrumentationRegistry
@@ -250,7 +250,7 @@ public class SettingsTests {
                 ViewMatchers.isDescendantOfA(ViewMatchers.withId(blocks[position.getBlock()]))
         ));
 
-        fieldWithWrongNumber.check(matches(backgroundColor(R.color.selected)));
+        fieldWithWrongNumber.check(matches(backgroundColor(R.color.cell_selected)));
 
         errorView = onView(ViewMatchers.withId(R.id.errorView));
         errorView.check(matches(withText(R.string.statusbar_errors_not_enabled)));

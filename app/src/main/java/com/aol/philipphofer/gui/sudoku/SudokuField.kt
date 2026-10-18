@@ -1,6 +1,7 @@
 package com.aol.philipphofer.gui.sudoku
 
 import android.content.Context
+import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,7 @@ class SudokuField(context: Context, attributeSet: AttributeSet) :
     private val numberView: TextView
     private var notesLayout: GridLayout? = null
     private var notes: Array<TextView> = emptyArray()
+    private var onSelectedCell = false
 
     private val mainActivity: MainActivity = context as MainActivity
 
@@ -44,8 +46,9 @@ class SudokuField(context: Context, attributeSet: AttributeSet) :
         this.number.addListener(this)
         observableChanged(this.number)
 
-        val textColor = if (number.isChangeable) R.color.userNumber else R.color.black
-        numberView.setTextColor(ContextCompat.getColor(context, textColor))
+        val style = if (number.isChangeable) Typeface.BOLD_ITALIC else Typeface.BOLD
+        numberView.setTypeface(Typeface.create(numberView.typeface, style))
+        updateTextColor()
     }
 
     private fun switchLayout(isNotes: Boolean) {
@@ -62,35 +65,55 @@ class SudokuField(context: Context, attributeSet: AttributeSet) :
 
     private fun error(error: Boolean) {
         val showErrors = Data.instance(mainActivity).loadBoolean(GAME_SHOW_ERRORS)
-        val color = if (error && showErrors) R.color.error else R.color.unselected
-
-        setBackgroundColor(ContextCompat.getColor(context, color))
+        val color = if (error && showErrors) R.color.cell_error else R.color.cell_background
+        setCellColor(color)
     }
 
     fun select(select: Boolean) {
         val showErrors = Data.instance(mainActivity).loadBoolean(GAME_SHOW_ERRORS)
         if (showErrors && number.isError) return
 
-        if (select)
-            this.setBackgroundColor(MainActivity.getPrimaryColor(context));
-        else
-            this.setBackgroundColor(ContextCompat.getColor(context, R.color.unselected));
+        val color = if (select) R.color.cell_selected else R.color.cell_background
+        setCellColor(color, select)
     }
 
     fun lightSelect(select: Boolean) {
         val showErrors = Data.instance(mainActivity).loadBoolean(GAME_SHOW_ERRORS)
         if (showErrors && number.isError) return
 
-        val color = if (select) R.color.lightSelected else R.color.unselected
-        setBackgroundColor(ContextCompat.getColor(context, color))
+        val color = if (select) R.color.cell_highlight else R.color.cell_background
+        setCellColor(color)
     }
 
     fun numberSelect(select: Boolean) {
         val showErrors = Data.instance(mainActivity).loadBoolean(GAME_SHOW_ERRORS)
         if (showErrors && number.isError) return
 
-        val color = if (select) R.color.numSelected else R.color.unselected
+        val color = if (select) R.color.cell_same_number else R.color.cell_background
+        setCellColor(color)
+    }
+
+    private fun setCellColor(color: Int, selected: Boolean = false) {
         setBackgroundColor(ContextCompat.getColor(context, color))
+        if (onSelectedCell != selected) {
+            onSelectedCell = selected
+            updateTextColor()
+        }
+    }
+
+    // text on the selected cell needs its own colors to stay readable on cell_selected
+    private fun updateTextColor() {
+        val numberColor = when {
+            number.isChangeable && onSelectedCell -> R.color.number_user_selected
+            number.isChangeable -> R.color.number_user
+            onSelectedCell -> R.color.number_given_selected
+            else -> R.color.number_given
+        }
+        numberView.setTextColor(ContextCompat.getColor(context, numberColor))
+
+        val notesColor = if (onSelectedCell) R.color.number_given_selected else R.color.number_given
+        for (note in notes)
+            note.setTextColor(ContextCompat.getColor(context, notesColor))
     }
 
     private fun setNumberViewText(number: Int) {
@@ -127,6 +150,7 @@ class SudokuField(context: Context, attributeSet: AttributeSet) :
                 val id = context.resources.getIdentifier("tv$it", "id", context.packageName)
                 findViewById(id)
             }
+            updateTextColor()
         }
         return notesLayout!!
     }

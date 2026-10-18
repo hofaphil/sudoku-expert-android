@@ -21,20 +21,9 @@
     <string name="keyboard_delete" translatable="false">Delete</string>
     <string name="keyboard_pause" translatable="false">Pause</string>
 
-    <!-- RatingDialog -->
-    <string name="ratingdialog_title">Rate</string>
-    <string name="ratingdialog_info">Do You enjoy playing the Sudoku app?</string>
-    <string name="ratingdialog_rate">Rate</string>
-    <string name="ratingdialog_no">No thanks</string>
-    <string name="ratingdialog_later">Remind me later</string>
-
     <!-- ConfirmDialog -->
     <string name="confirmdialog_ok">OK</string>
     <string name="confirmdialog_cancel">Cancel</string>
-
-    <!-- ColorChooserDiaolg -->
-    <string name="cholorchooserdialog_title">Colors</string>
-    <string name="cholorchooserdialog_info">Choose your favorite color</string>
 
     <!-- NewGame -->
     <string name="newgame">New Game</string>
@@ -52,9 +41,9 @@
 
     <!-- Statistics -->
     <string name="statistics_title">Statistics</string>
-    <string name="statistics_times_played">Times Played:</string>
-    <string name="statistics_average">Average Time:</string>
-    <string name="statistics_best">Best Time:</string>
+    <string name="statistics_times_played">Times Played</string>
+    <string name="statistics_average">Average Time</string>
+    <string name="statistics_best">Best Time</string>
     <string name="statistics_beginner">@string/beginner</string>
     <string name="statistics_advanced">@string/advanced</string>
     <string name="statistics_expert">@string/expert</string>
@@ -72,6 +61,8 @@
     <string name="settings_showErrorsAnnotations">Mark wrong numbers and count them</string>
     <string name="settings_checkNotes">Check Notes</string>
     <string name="settings_checkNotesAnnotations">Delete conflicting notes when you insert a new number</string>
+    <string name="settings_hideCompleted">Hide Completed Numbers</string>
+    <string name="settings_hideCompletedAnnotations">Hide a number on the keyboard once it was placed nine times</string>
     <string name="settings_showTime">Play with Timer</string>
     <string name="settings_showTimeAnnotations">Stop the time you need for a Sudoku and save it in your statistics</string>
     <string name="settings_deleteData">Reset</string>
@@ -87,10 +78,6 @@
     <!-- Share -->
     <string name="share_title">Share your Sudoku</string>
     <string name="share_description">Your friend wants to challenge you!</string>
-
-    <!-- Rate -->
-    <string name="rate_success">Thanks for rating!</string>
-    <string name="rate_error">Something went wrong, please try again later.</string>
 
     <!-- Error -->
     <string name="error_default">Something went wrong, please try again later.</string>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Dark theme overrides, see values/colors.xml for the palette -->
+
+    <!-- 2. Roles =========================================================== -->
+
+    <color name="secondary">@color/indigo_200</color>
+    <color name="secondary_container">@color/indigo_800</color>
+
+    <color name="error_container">@color/red_900</color>
+
+    <color name="background">@color/gray_1000</color>
+    <color name="surface">@color/gray_900</color>
+    <color name="surface_dim">@color/gray_1000</color>
+    <color name="surface_variant">@color/gray_800</color>
+
+    <color name="on_surface">@color/gray_100</color>
+    <color name="on_surface_variant">@color/gray_400</color>
+    <color name="on_surface_subtle">@color/gray_500</color>
+
+    <color name="outline">@color/gray_500</color>
+    <color name="outline_variant">@color/gray_700</color>
+
+    <color name="top_bar">@color/umber_900</color>
+    <color name="on_top_bar">@color/primary</color>
+
+    <!-- 3. Game ============================================================ -->
+
+    <!-- darker purple, indigo_200 is unreadable on yellow -->
+    <color name="number_user_selected">@color/indigo_500</color>
+
+    <color name="grid_line">@color/outline_variant</color>
+
+    <color name="key_background">@color/background</color>
+    <color name="key_active">@color/top_bar</color>
+
+</resources>

@@ -49,15 +49,13 @@
         <activity
             android:name=".gui.Settings"
             android:exported="false"
-            android:launchMode="singleInstance"
-            android:theme="@style/AppTheme"
+            android:theme="@style/MaterialTheme"
             android:parentActivityName=".logic.MainActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".gui.Statistics"
             android:exported="false"
-            android:launchMode="singleInstance"
-            android:theme="@style/AppTheme"
+            android:theme="@style/MaterialTheme"
             android:parentActivityName=".logic.MainActivity"
             android:screenOrientation="portrait"/>
     </application>

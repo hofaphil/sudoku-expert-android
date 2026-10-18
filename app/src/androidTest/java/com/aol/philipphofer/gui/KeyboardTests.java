@@ -95,8 +95,8 @@ public class KeyboardTests {
             onView(ViewMatchers.withId(key)).check(matches(isNotEnabled()));
         noteButton.check(matches(isNotEnabled()));
         deleteButton.check(matches(isNotEnabled()));
-        pauseButton.check(matches(backgroundColor(R.color.yellow)));
-        noteButton.check(matches(backgroundColor(R.color.yellow)));
+        pauseButton.check(matches(backgroundColor(R.color.key_active)));
+        noteButton.check(matches(backgroundColor(R.color.key_active)));
         selectedField.check(matches(not(isDisplayed())));
         onView(ViewMatchers.withId(R.id.grid)).check(matches(not(isDisplayed())));
 
@@ -111,9 +111,9 @@ public class KeyboardTests {
             onView(ViewMatchers.withId(key)).check(matches(isEnabled()));
         noteButton.check(matches(isEnabled()));
         deleteButton.check(matches(isEnabled()));
-        pauseButton.check(matches(backgroundColor(R.color.transparent)));
-        noteButton.check(matches(backgroundColor(R.color.yellow)));
-        selectedField.check(matches(backgroundColor(R.color.selected)));
+        pauseButton.check(matches(backgroundColor(R.color.key_background)));
+        noteButton.check(matches(backgroundColor(R.color.key_active)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
         onView(ViewMatchers.withId(R.id.grid)).check(matches(isDisplayed()));
     }
 
@@ -126,9 +126,9 @@ public class KeyboardTests {
             onView(ViewMatchers.withId(key)).check(matches(isEnabled()));
         noteButton.check(matches(isEnabled()));
         deleteButton.check(matches(isEnabled()));
-        pauseButton.check(matches(backgroundColor(R.color.transparent)));
-        noteButton.check(matches(backgroundColor(R.color.yellow)));
-        selectedField.check(matches(backgroundColor(R.color.selected)));
+        pauseButton.check(matches(backgroundColor(R.color.key_background)));
+        noteButton.check(matches(backgroundColor(R.color.key_active)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
 
         noteButton.perform(click());
 
@@ -137,9 +137,9 @@ public class KeyboardTests {
             onView(ViewMatchers.withId(key)).check(matches(isEnabled()));
         noteButton.check(matches(isEnabled()));
         deleteButton.check(matches(isEnabled()));
-        pauseButton.check(matches(backgroundColor(R.color.transparent)));
-        noteButton.check(matches(backgroundColor(R.color.transparent)));
-        selectedField.check(matches(backgroundColor(R.color.selected)));
+        pauseButton.check(matches(backgroundColor(R.color.key_background)));
+        noteButton.check(matches(backgroundColor(R.color.key_background)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
     }
 
     @Test
@@ -154,9 +154,9 @@ public class KeyboardTests {
             onView(ViewMatchers.withId(key)).check(matches(isEnabled()));
         noteButton.check(matches(isEnabled()));
         deleteButton.check(matches(isEnabled()));
-        pauseButton.check(matches(backgroundColor(R.color.transparent)));
-        noteButton.check(matches(backgroundColor(R.color.transparent)));
-        selectedField.check(matches(backgroundColor(R.color.selected)));
+        pauseButton.check(matches(backgroundColor(R.color.key_background)));
+        noteButton.check(matches(backgroundColor(R.color.key_background)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
 
         // try second time without any number
         deleteButton.perform(click());
@@ -166,9 +166,9 @@ public class KeyboardTests {
             onView(ViewMatchers.withId(key)).check(matches(isEnabled()));
         noteButton.check(matches(isEnabled()));
         deleteButton.check(matches(isEnabled()));
-        pauseButton.check(matches(backgroundColor(R.color.transparent)));
-        noteButton.check(matches(backgroundColor(R.color.transparent)));
-        selectedField.check(matches(backgroundColor(R.color.selected)));
+        pauseButton.check(matches(backgroundColor(R.color.key_background)));
+        noteButton.check(matches(backgroundColor(R.color.key_background)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
     }
 
     @Test
@@ -182,9 +182,9 @@ public class KeyboardTests {
             onView(ViewMatchers.withId(key)).check(matches(isEnabled()));
         noteButton.check(matches(isEnabled()));
         deleteButton.check(matches(isEnabled()));
-        pauseButton.check(matches(backgroundColor(R.color.transparent)));
-        noteButton.check(matches(backgroundColor(R.color.transparent)));
-        selectedField.check(matches(anyOf(backgroundColor(R.color.selected), backgroundColor(R.color.error))));
+        pauseButton.check(matches(backgroundColor(R.color.key_background)));
+        noteButton.check(matches(backgroundColor(R.color.key_background)));
+        selectedField.check(matches(anyOf(backgroundColor(R.color.cell_selected), backgroundColor(R.color.cell_error))));
 
         // number should have been inserted
         selectedFieldNumber.check(matches(withText("" + (random + 1))));
@@ -203,9 +203,9 @@ public class KeyboardTests {
             onView(ViewMatchers.withId(key)).check(matches(isEnabled()));
         noteButton.check(matches(isEnabled()));
         deleteButton.check(matches(isEnabled()));
-        pauseButton.check(matches(backgroundColor(R.color.transparent)));
-        noteButton.check(matches(backgroundColor(R.color.yellow)));
-        selectedField.check(matches(backgroundColor(R.color.selected)));
+        pauseButton.check(matches(backgroundColor(R.color.key_background)));
+        noteButton.check(matches(backgroundColor(R.color.key_active)));
+        selectedField.check(matches(backgroundColor(R.color.cell_selected)));
 
         // notes grid layout should have been inflated
         selectedFieldNotes.check(matches(isDisplayed()));

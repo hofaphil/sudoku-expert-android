@@ -30,6 +30,7 @@ open class Data private constructor(context: Context) {
         const val SETTINGS_MARK_ERRORS = "markerrors"
         const val SETTINGS_CHECK_NOTES = "checknotes"
         const val SETTINGS_SHOW_TIME = "showtime"
+        const val SETTINGS_HIDE_COMPLETED = "hidecompleted"
 
         // this functionality does not exist anymore, but some people might have bought this
         const val SETTINGS_SUPPORTER = "supporter"
