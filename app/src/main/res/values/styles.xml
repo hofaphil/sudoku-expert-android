@@ -9,6 +9,8 @@
         <item name="android:windowLightStatusBar">@bool/light_system_bars</item>
         <item name="android:windowLightNavigationBar">@bool/light_system_bars</item>
         <item name="android:navigationBarColor">@color/transparent</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="fontFamily">@font/poppins</item>
     </style>
 
     <!-- Settings and statistics: Material 3, styled like the system settings but with the app colors -->
@@ -26,6 +28,98 @@
         <item name="android:windowLightNavigationBar">@bool/light_system_bars</item>
         <item name="android:navigationBarColor">@color/transparent</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Sudoku.Dialog</item>
+        <!-- the Material 3 text appearances set their own font, so Poppins is set on each of them -->
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.Sudoku.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TextAppearance.Sudoku.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TextAppearance.Sudoku.DisplaySmall</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.Sudoku.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.Sudoku.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.Sudoku.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.Sudoku.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.Sudoku.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.Sudoku.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.Sudoku.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.Sudoku.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.Sudoku.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.Sudoku.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.Sudoku.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.Sudoku.LabelSmall</item>
+    </style>
+
+    <!-- Material 3 type scale in Poppins, medium weight where Material 3 uses medium -->
+    <style name="TextAppearance.Sudoku.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.DisplayMedium" parent="TextAppearance.Material3.DisplayMedium">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.DisplaySmall" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/poppins_medium_family</item>
+        <item name="android:fontFamily">@font/poppins_medium_family</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
+        <item name="fontFamily">@font/poppins_medium_family</item>
+        <item name="android:fontFamily">@font/poppins_medium_family</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">@font/poppins_medium_family</item>
+        <item name="android:fontFamily">@font/poppins_medium_family</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="fontFamily">@font/poppins_medium_family</item>
+        <item name="android:fontFamily">@font/poppins_medium_family</item>
+    </style>
+
+    <style name="TextAppearance.Sudoku.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="fontFamily">@font/poppins_medium_family</item>
+        <item name="android:fontFamily">@font/poppins_medium_family</item>
     </style>
 
     <!-- yellow button text is unreadable on the light dialog, the buttons use the purple instead -->
@@ -137,6 +231,7 @@
     <style name="TextAppearance.Sudoku.PopupMenu" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/on_surface</item>
+        <item name="android:fontFamily">@font/poppins</item>
     </style>
 
     <!-- Keyboard Style -->
@@ -148,6 +243,7 @@
         <item name="android:layout_columnWeight">1</item>
         <item name="android:textColor">@color/on_surface</item>
         <item name="android:background">@null</item>
+        <item name="android:fontFamily">@font/poppins_medium_family</item>
     </style>
 
     <style name="KeyboardButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
@@ -162,6 +258,7 @@
         <item name="android:foreground">@drawable/box</item>
         <item name="android:background">@color/key_background</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/poppins_medium_family</item>
     </style>
 
     <!-- Sudoku Style -->
@@ -207,6 +304,7 @@
         <item name="android:textColor">@color/on_surface</item>
         <item name="android:background">@color/transparent</item>
         <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:fontFamily">@font/poppins_medium_family</item>
     </style>
 
     <style name="General.Info" parent="TextAppearance.AppCompat.Title">
@@ -222,6 +320,12 @@
     <style name="General.ToolBar" parent="">
         <item name="android:titleTextColor">@color/on_top_bar</item>
         <item name="android:background">@color/top_bar</item>
+        <item name="android:titleTextAppearance">@style/TextAppearance.Sudoku.ToolBar.Title</item>
+    </style>
+
+    <!-- the toolbar applies its title appearance after inflating, so the theme font would be overwritten -->
+    <style name="TextAppearance.Sudoku.ToolBar.Title" parent="android:TextAppearance.Material.Widget.Toolbar.Title">
+        <item name="android:fontFamily">@font/poppins_medium_family</item>
     </style>
 
 
@@ -233,6 +337,7 @@
         <item name="android:textAlignment">center</item>
         <item name="android:background">?colorPrimary</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/poppins_medium_family</item>
     </style>
 
     <style name="General.VerticalLine" parent="">
