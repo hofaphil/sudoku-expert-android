@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- thin line between tabs side by side, like the lines between the setting rows -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <size android:width="@dimen/line" />
+    <solid android:color="@color/outline" />
+
+</shape>

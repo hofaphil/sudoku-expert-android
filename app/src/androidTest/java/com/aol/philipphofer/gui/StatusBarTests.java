@@ -4,7 +4,7 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
-import static androidx.test.espresso.matcher.ViewMatchers.isNotEnabled;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import androidx.test.core.app.ActivityScenario;
@@ -27,8 +27,7 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class StatusBarTests {
 
-    ViewInteraction moreButton = onView(ViewMatchers.withId(R.id.moreButton));
-    ViewInteraction newButton = onView(ViewMatchers.withId(R.id.newButton));
+    ViewInteraction backButton = onView(ViewMatchers.withId(R.id.backButton));
     ViewInteraction timeView = onView(ViewMatchers.withId(R.id.timeView));
     ViewInteraction difficultyView = onView(ViewMatchers.withId(R.id.difficultyView));
     ViewInteraction errorView = onView(ViewMatchers.withId(R.id.errorView));
@@ -37,7 +36,7 @@ public class StatusBarTests {
 
     @Before
     public void setup() {
-        Data.Constants.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
+        Data.Constants.instance(InstrumentationRegistry.getInstrumentation().getTargetContext()).drop();
         mainActivity = ActivityScenario.launch(MainActivity.class);
 
         testVisibility();
@@ -48,17 +47,14 @@ public class StatusBarTests {
         testVisibility();
     }
 
-    // TODO: add tests for more button and new button
+    // TODO: add a test for the back button
 
     @Test
     public void testInitialState() {
         difficultyView.check(matches(withText(Difficulty.BEGINNER.getText(InstrumentationRegistry.getInstrumentation().getTargetContext()))));
-        errorView.check(matches(withText(InstrumentationRegistry
-                .getInstrumentation().getTargetContext().getResources()
-                .getString(R.string.statusbar_errors, 0, MainActivity.MAX_ERROR))));
+        errorView.check(matches(withContentDescription(lives(MainActivity.MAX_ERROR - 0))));
         timeView.check(matches(withText(Timer.timeToString(0))));
-        moreButton.check(matches(isEnabled()));
-        newButton.check(matches(isEnabled()));
+        backButton.check(matches(isEnabled()));
     }
 
     @Test
@@ -73,14 +69,10 @@ public class StatusBarTests {
     @Test
     public void testSetError() {
         mainActivity.onActivity(mainActivity -> mainActivity.statusBar.setError(2));
-        errorView.check(matches(withText(InstrumentationRegistry
-                .getInstrumentation().getTargetContext().getResources()
-                .getString(R.string.statusbar_errors, 2, MainActivity.MAX_ERROR))));
+        errorView.check(matches(withContentDescription(lives(MainActivity.MAX_ERROR - 2))));
 
         mainActivity.onActivity(mainActivity -> mainActivity.statusBar.setError(1));
-        errorView.check(matches(withText(InstrumentationRegistry
-                .getInstrumentation().getTargetContext().getResources()
-                .getString(R.string.statusbar_errors, 1, MainActivity.MAX_ERROR))));
+        errorView.check(matches(withContentDescription(lives(MainActivity.MAX_ERROR - 1))));
     }
 
     @Test
@@ -95,24 +87,17 @@ public class StatusBarTests {
         timeView.check(matches(withText(Timer.timeToString(4322))));
     }
 
-    @Test
-    public void testActivate() {
-        mainActivity.onActivity(mainActivity -> mainActivity.statusBar.activate(false));
-        moreButton.check(matches(isNotEnabled()));
-        newButton.check(matches(isNotEnabled()));
-
-        mainActivity.onActivity(mainActivity -> mainActivity.statusBar.activate(true));
-        moreButton.check(matches(isEnabled()));
-        newButton.check(matches(isEnabled()));
-    }
-
     /**
      * helper
      */
+    private String lives(int lives) {
+        return InstrumentationRegistry.getInstrumentation().getTargetContext().getResources()
+                .getQuantityString(R.plurals.lives, lives, lives);
+    }
+
     private void testVisibility() {
         timeView.check(matches(isDisplayed()));
-        newButton.check(matches(isDisplayed()));
-        moreButton.check(matches(isDisplayed()));
+        backButton.check(matches(isDisplayed()));
         difficultyView.check(matches(isDisplayed()));
         errorView.check(matches(isDisplayed()));
     }

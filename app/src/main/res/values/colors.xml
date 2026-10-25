@@ -45,6 +45,9 @@
     <color name="red_400">#E8566C</color>
     <color name="red_900">#5E2A28</color>
 
+    <!-- orange -->
+    <color name="orange_400">#FF9A3C</color>
+
     <color name="transparent">#00000000</color>
 
     <!-- 2. Roles =========================================================== -->
@@ -55,6 +58,8 @@
 
     <color name="secondary">@color/indigo_500</color>
     <color name="on_secondary">@color/white</color>
+    <!-- lighter filled areas: progress bar, chart bars, toolbar icons -->
+    <color name="secondary_fill">@color/indigo_200</color>
     <color name="secondary_container">@color/indigo_100</color>
 
     <color name="error">@color/red_400</color>
@@ -94,6 +99,19 @@
 
     <!-- lives left in the status bar -->
     <color name="heart">@color/error</color>
+
+    <!-- bars of the solved games per day in the statistics, today in yellow -->
+    <color name="chart_bar">@color/secondary_fill</color>
+    <color name="chart_bar_today">@color/primary</color>
+
+    <!-- filled icons of the bottom toolbar -->
+    <color name="tab_icon_fill">@color/secondary_fill</color>
+
+    <!-- reached stars of a difficulty on the home screen -->
+    <color name="difficulty_star">@color/primary</color>
+
+    <!-- streak flame on the home screen -->
+    <color name="flame">@color/orange_400</color>
 
     <color name="key_background">@color/transparent</color>
     <color name="key_active">@color/primary</color>

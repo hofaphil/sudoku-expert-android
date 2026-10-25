@@ -2,6 +2,8 @@ package com.aol.philipphofer.gui;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static com.aol.philipphofer.helper.CustomMatchers.backgroundColor;
 import static com.aol.philipphofer.helper.CustomMatchers.blocks;
@@ -37,7 +39,7 @@ public class SettingsTests {
 
     @Before
     public void setup() {
-        Data.Constants.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
+        Data.Constants.instance(InstrumentationRegistry.getInstrumentation().getTargetContext()).drop();
         mainActivity = ActivityScenario.launch(MainActivity.class);
     }
 
@@ -215,9 +217,8 @@ public class SettingsTests {
         fieldWithWrongNumber.check(matches(backgroundColor(R.color.cell_error)));
 
         ViewInteraction errorView = onView(ViewMatchers.withId(R.id.errorView));
-        errorView.check(matches(withText(InstrumentationRegistry
-                .getInstrumentation().getTargetContext().getResources()
-                .getString(R.string.statusbar_errors, 1, MainActivity.MAX_ERROR))));
+        errorView.check(matches(withContentDescription(InstrumentationRegistry.getInstrumentation().getTargetContext().getResources()
+                .getQuantityString(R.plurals.lives, MainActivity.MAX_ERROR - 1, MainActivity.MAX_ERROR - 1))));
 
         // Restart app and create a new game
         mainActivity.onActivity(main -> {
@@ -253,7 +254,8 @@ public class SettingsTests {
         fieldWithWrongNumber.check(matches(backgroundColor(R.color.cell_selected)));
 
         errorView = onView(ViewMatchers.withId(R.id.errorView));
-        errorView.check(matches(withText(R.string.statusbar_errors_not_enabled)));
+        // without mark-errors the hearts are hidden
+        errorView.check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)));
     }
 
     @Test

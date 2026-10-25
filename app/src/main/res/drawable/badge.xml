@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- purple label with a black border, the group titles in settings and statistics -->
+<!-- purple label with a black border, the group titles in settings, statistics and the play tab -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 

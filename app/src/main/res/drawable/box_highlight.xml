@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- light purple box with a black border, the personal best on the result screen -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="@color/secondary_container" />
+
+    <stroke
+        android:width="@dimen/border"
+        android:color="@color/outline" />
+
+</shape>

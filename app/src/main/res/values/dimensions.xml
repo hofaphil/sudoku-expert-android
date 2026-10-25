@@ -30,6 +30,35 @@
 
     <dimen name="text_label">12sp</dimen>
 
+    <!-- Home -->
+    <dimen name="home_logo_size">44dp</dimen>
+    <dimen name="home_title_text">24sp</dimen>
+    <dimen name="home_streak_icon_size">20dp</dimen>
+    <dimen name="home_card_spacing">12dp</dimen>
+    <dimen name="home_card_title_text">20sp</dimen>
+    <dimen name="home_play_width">64dp</dimen>
+    <!-- three stars of 24 units with a gap of 2 -->
+    <dimen name="home_difficulty_icon_width">57dp</dimen>
+    <dimen name="home_difficulty_icon_height">18dp</dimen>
+    <dimen name="home_tab_icon_size">24dp</dimen>
+    <dimen name="home_tab_text">13sp</dimen>
+
+    <!-- Result -->
+    <dimen name="result_title_text">34sp</dimen>
+    <dimen name="result_value_text">28sp</dimen>
+    <dimen name="result_spacing">16dp</dimen>
+    <!-- half of the gap between two tiles or buttons next to each other -->
+    <dimen name="result_tile_gap">6dp</dimen>
+    <dimen name="result_tile_gap_vertical">12dp</dimen>
+    <dimen name="result_button_height">56dp</dimen>
+    <dimen name="result_button_text">18sp</dimen>
+
+    <!-- bar chart of the solved games per day -->
+    <dimen name="barchart_height">110dp</dimen>
+    <dimen name="barchart_bar_max">28dp</dimen>
+    <dimen name="barchart_gap">4dp</dimen>
+    <dimen name="barchart_text">12sp</dimen>
+
     <!-- Settings and Statistics -->
     <dimen name="header_text_title">26sp</dimen>
     <dimen name="settings_text_title">16sp</dimen>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- play tab of the home screen: the saved game and new games -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/playPage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/edgeSpacing"
+        android:paddingBottom="20dp">
+
+        <!-- the saved game, only shown while one is running -->
+        <TextView
+            android:id="@+id/continueTitle"
+            style="@style/Home.Header"
+            android:text="@string/home_continue" />
+
+        <!-- a game shared by a friend, waits here until it is played or dismissed -->
+        <LinearLayout
+            android:id="@+id/sharedGame"
+            style="@style/Box"
+            android:layout_marginTop="@dimen/home_card_spacing">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="13dp"
+                android:paddingTop="13dp">
+
+                <ImageView
+                    style="@style/Box.Icon"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_challenge" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Home.Card.Title"
+                        android:text="@string/home_shared_title" />
+
+                    <TextView
+                        android:id="@+id/sharedDifficulty"
+                        style="@style/Settings.Row.Summary"
+                        android:layout_marginTop="2dp"
+                        tools:text="@string/expert" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- with the 5dp button margins, 13dp to the card edges and below the text like the icon -->
+            <LinearLayout
+                style="@style/Dialog.Buttons"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="13dp">
+
+                <Button
+                    android:id="@+id/sharedDismiss"
+                    style="@style/Button.Box.Dialog"
+                    android:text="@string/home_shared_dismiss" />
+
+                <Button
+                    android:id="@+id/sharedPlay"
+                    style="@style/Button.Box.Dialog.Primary"
+                    android:text="@string/home_play" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/continueGame"
+            style="@style/Home.Card"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/home_continue">
+
+            <!-- difficulty and time, below the same progress box as in the game -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="13dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/continueDifficulty"
+                        style="@style/Home.Card.Title"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        tools:text="@string/beginner" />
+
+                    <TextView
+                        android:id="@+id/continueTime"
+                        style="@style/Home.Card.Title"
+                        android:layout_marginStart="13dp"
+                        tools:text="04:12" />
+                </LinearLayout>
+
+                <com.aol.philipphofer.gui.GameProgress
+                    android:id="@+id/continueProgress"
+                    style="@style/GameProgress"
+                    android:layout_marginTop="10dp" />
+            </LinearLayout>
+
+            <View style="@style/Line.Vertical" />
+
+            <ImageView
+                android:layout_width="@dimen/home_play_width"
+                android:layout_height="match_parent"
+                android:background="@color/primary"
+                android:importantForAccessibility="no"
+                android:scaleType="center"
+                android:src="@drawable/ic_play" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/Home.Header"
+            android:text="@string/newgame" />
+
+        <include
+            android:id="@+id/newBeginner"
+            layout="@layout/home_difficulty" />
+
+        <include
+            android:id="@+id/newAdvanced"
+            layout="@layout/home_difficulty" />
+
+        <include
+            android:id="@+id/newExpert"
+            layout="@layout/home_difficulty" />
+
+    </LinearLayout>
+</ScrollView>

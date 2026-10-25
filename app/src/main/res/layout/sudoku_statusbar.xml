@@ -16,12 +16,12 @@
         android:paddingVertical="10dp">
 
         <ImageButton
-            android:id="@+id/newButton"
+            android:id="@+id/backButton"
             style="@style/Box.Icon"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:contentDescription="@string/statusbar_newSudoku"
-            android:src="@drawable/ic_new" />
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_back" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -42,56 +42,11 @@
                 android:text="00:00"
                 android:textSize="@dimen/statusbar_text_time" />
         </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/moreButton"
-            style="@style/Box.Icon"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/statusbar_more"
-            android:src="@drawable/ic_more" />
     </RelativeLayout>
 
     <!-- progress of the filled fields and the lives left -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonLayout"
-        android:background="@drawable/box_top_bar"
-        android:gravity="center_vertical"
-        android:minHeight="@dimen/statusbar_info_height"
-        android:orientation="horizontal">
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/statusbar_progress_height"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:max="81"
-            android:progressDrawable="@drawable/progress_bar" />
-
-        <TextView
-            android:id="@+id/progressView"
-            style="@style/Text.Bold"
-            android:layout_marginHorizontal="10dp"
-            android:text="@string/statusbar_progress"
-            android:textSize="@dimen/statusbar_text_info" />
-
-        <View
-            android:id="@+id/errorDivider"
-            style="@style/Line"
-            android:layout_width="@dimen/border"
-            android:layout_height="match_parent" />
-
-        <!-- one heart per life, filled in StatusBar.setError -->
-        <LinearLayout
-            android:id="@+id/errorView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingHorizontal="10dp" />
-
-    </LinearLayout>
+    <com.aol.philipphofer.gui.GameProgress
+        android:id="@+id/gameProgress"
+        style="@style/GameProgress"
+        android:layout_below="@id/buttonLayout" />
 </RelativeLayout>

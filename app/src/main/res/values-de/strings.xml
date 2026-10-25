@@ -7,14 +7,29 @@
     <!-- Start -->
     <string name="start_error">Beim Laden ist etwas schiefgelaufen! :(</string>
 
+    <!-- Home -->
+    <plurals name="home_streak">
+        <item quantity="one">Serie: %d Tag</item>
+        <item quantity="other">Serie: %d Tage</item>
+    </plurals>
+    <plurals name="home_streak_days">
+        <item quantity="one">%d Tag</item>
+        <item quantity="other">%d Tage</item>
+    </plurals>
+    <string name="home_streak_title">Serie</string>
+    <string name="home_streak_info">Die Anzahl der Tage in Folge, an denen Du mindestens ein Sudoku gelöst hast.\n\nLöse jeden Tag mindestens ein Sudoku, um Deine Serie zu halten. Nach einem ganzen Tag ohne gelöstes Sudoku beginnt sie von vorne.</string>
+    <string name="home_continue">Weiterspielen</string>
+    <string name="home_shared_title">Du wurdest herausgefordert</string>
+    <string name="home_shared_dismiss">Verwerfen</string>
+    <string name="home_play">Spielen</string>
+    <plurals name="lives">
+        <item quantity="one">%d Leben</item>
+        <item quantity="other">%d Leben</item>
+    </plurals>
+    <string name="home_best">Bestzeit %s</string>
+
     <!-- StatusBar -->
-    <string name="statusbar_newSudoku">Neu</string>
-    <string name="statusbar_settings">Einstellungen</string>
-    <string name="statusbar_statistics">Statistik</string>
-    <string name="statusbar_more">Mehr</string>
     <string name="back">Zurück</string>
-    <string name="statusbar_challenge">Challenge</string>
-    <string name="statusbar_rate">Bewerten</string>
 
     <!-- ConfirmDialog -->
     <string name="confirmdialog_ok">OK</string>
@@ -26,20 +41,35 @@
     <string name="advanced">Advanced</string>
     <string name="expert">Expert</string>
 
-    <!-- EndCard -->
-    <string name="win">Du gewinnst!</string>
-    <string name="lose">Du verlierst</string>
-    <string name="endcard_time">Deine Zeit</string>
-    <string name="endcard_besttime">Bestzeit</string>
+    <!-- Result -->
+    <string name="result_solved">Gelöst!</string>
+    <string name="result_lost">Verloren</string>
+    <string name="result_time">Zeit</string>
+    <string name="result_best">Bestzeit</string>
+    <string name="result_new_best">Neue Bestzeit!</string>
+    <string name="result_errors">Fehler</string>
+    <string name="result_solved_games">Gelöste Spiele</string>
+    <string name="result_play_again">Nochmal spielen</string>
+    <string name="result_try">%s versuchen</string>
+    <string name="result_challenge">Freunde herausfordern</string>
+    <string name="result_done">Fertig für heute</string>
+
 
     <!-- Statistics -->
     <string name="statistics_title">Statistik</string>
     <string name="statistics_times_played">Anzahl der Spiele</string>
     <string name="statistics_average">Durchschnittszeit</string>
     <string name="statistics_best">Bestzeit</string>
-    <string name="statistics_beginner">@string/beginner</string>
-    <string name="statistics_advanced">@string/advanced</string>
-    <string name="statistics_expert">@string/expert</string>
+    <string name="statistics_total">Gesamtzeit</string>
+    <string name="statistics_overall">Gesamt</string>
+    <string name="statistics_empty_title">Noch nicht gespielt</string>
+    <string name="statistics_empty_text">Löse ein Sudoku auf %s, um hier Deine Statistik zu sehen.</string>
+    <string name="statistics_empty_text_overall">Löse Dein erstes Sudoku, um hier Deine Statistik zu sehen.</string>
+    <string name="statistics_chart">Letzte 7 Tage</string>
+    <plurals name="statistics_chart_description">
+        <item quantity="one">%d gelöstes Spiel in den letzten 7 Tagen</item>
+        <item quantity="other">%d gelöste Spiele in den letzten 7 Tagen</item>
+    </plurals>
 
     <!-- Settings -->
     <string name="settings_title">Einstellungen</string>
@@ -57,10 +87,12 @@
     <string name="settings_hideCompleted">Fertige Zahlen ausblenden</string>
     <string name="settings_hideCompletedAnnotations">Blendet eine Zahl auf der Tastatur aus, sobald sie neunmal eingetragen wurde</string>
     <string name="settings_showTime">Stoppuhr</string>
-    <string name="settings_showTimeAnnotations">Stoppe, wie lange Du für ein Sudoku brauchst und schau Dir Deine Zeiten in den Statistiken an</string>
+    <string name="settings_showTimeAnnotations">Zeigt die Zeit während des Spiels an, in die Statistik fließt sie immer ein</string>
     <string name="settings_deleteData">Zurücksetzen</string>
     <string name="settings_deleteDataAnnotations">Lösche Deine Statistik und setzte die App zurück</string>
     <string name="settings_about">Mehr erfahren</string>
+    <string name="settings_rate">Bewerten</string>
+    <string name="settings_rate_annotations">Gefällt Dir die App? Bewerte sie im Play Store</string>
     <string name="settings_color">Farben</string>
     <string name="settings_color_annotations">Ändere die Farben der App</string>
     <string name="settings_color_button">Ändern</string>

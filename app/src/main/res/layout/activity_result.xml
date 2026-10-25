@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- shown after a game is won or lost, see GameResult -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <!-- yellow header: icon and title -->
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/top_bar"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/edgeSpacing"
+            android:paddingVertical="28dp">
+
+            <ImageView
+                android:id="@+id/resultIcon"
+                style="@style/Box.Icon"
+                android:importantForAccessibility="no"
+                tools:src="@drawable/ic_check" />
+
+            <TextView
+                android:id="@+id/resultTitle"
+                style="@style/Text.TopBar"
+                android:layout_marginTop="16dp"
+                android:textSize="@dimen/result_title_text"
+                tools:text="@string/result_solved" />
+        </LinearLayout>
+
+        <View style="@style/Line" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- tiles: time, best time, errors, solved games, below the challenge for friends -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/edgeSpacing"
+            android:paddingVertical="@dimen/result_spacing">
+
+            <!-- tiles of the enabled values, GameResult arranges them in rows of two -->
+            <LinearLayout
+                android:id="@+id/resultTiles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/resultTimeTile"
+                    style="@style/Result.Tile">
+
+                    <TextView
+                        style="@style/Result.Tile.Label"
+                        android:text="@string/result_time" />
+
+                    <TextView
+                        android:id="@+id/resultTime"
+                        style="@style/Result.Tile.Value"
+                        tools:text="06:42" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/resultBestTile"
+                    style="@style/Result.Tile"
+                    android:background="@drawable/box_highlight">
+
+                    <TextView
+                        android:id="@+id/resultBestLabel"
+                        style="@style/Result.Tile.Label"
+                        android:text="@string/result_best"
+                        android:textColor="@color/secondary" />
+
+                    <TextView
+                        android:id="@+id/resultBest"
+                        style="@style/Result.Tile.Value"
+                        android:textColor="@color/secondary"
+                        tools:text="05:10" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/resultErrorsTile"
+                    style="@style/Result.Tile">
+
+                    <TextView
+                        style="@style/Result.Tile.Label"
+                        android:text="@string/result_errors" />
+
+                    <TextView
+                        android:id="@+id/resultErrors"
+                        style="@style/Result.Tile.Value"
+                        tools:text="0 / 3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/resultSolvedTile"
+                    style="@style/Result.Tile">
+
+                    <TextView
+                        style="@style/Result.Tile.Label"
+                        android:text="@string/result_solved_games" />
+
+                    <TextView
+                        android:id="@+id/resultSolvedGames"
+                        style="@style/Result.Tile.Value"
+                        tools:text="12" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- the box keeps the icon next to the centered text -->
+            <FrameLayout
+                android:id="@+id/resultChallenge"
+                style="@style/Result.Button"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:layout_marginTop="@dimen/result_tile_gap_vertical"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    style="@style/Text.Bold"
+                    android:layout_gravity="center"
+                    android:drawableStart="@drawable/ic_challenge"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/result_challenge"
+                    android:textSize="@dimen/settings_text_title" />
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- play again, below going home and the next difficulty -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/edgeSpacing"
+        android:paddingBottom="@dimen/result_spacing">
+
+        <Button
+            android:id="@+id/resultPlayAgain"
+            style="@style/Result.Button.Primary"
+            android:text="@string/result_play_again" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/result_tile_gap_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/resultDone"
+                style="@style/Result.Button"
+                android:layout_marginEnd="@dimen/result_tile_gap"
+                android:text="@string/result_done" />
+
+            <Button
+                android:id="@+id/resultNextDifficulty"
+                style="@style/Result.Button"
+                android:layout_marginStart="@dimen/result_tile_gap"
+                tools:text="Try Advanced" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
