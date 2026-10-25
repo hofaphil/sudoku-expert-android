@@ -37,8 +37,6 @@ android {
 
 dependencies {
     implementation libs.androidx.appcompat
-    implementation libs.material
-    implementation libs.sdp.android
     testImplementation libs.junit
     testImplementation libs.mockito.core
     androidTestImplementation libs.androidx.test.ext.junit

@@ -1,0 +1,21 @@
+<!-- lucide x, lost game -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="@dimen/statusbar_icon_size"
+    android:height="@dimen/statusbar_icon_size"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:pathData="M18,6 L6,18"
+      android:strokeLineJoin="round"
+      android:strokeWidth="2"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/on_surface"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="m6,6 l12,12"
+      android:strokeLineJoin="round"
+      android:strokeWidth="2"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/on_surface"
+      android:strokeLineCap="round"/>
+</vector>

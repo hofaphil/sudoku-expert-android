@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- check / cross inside the switch thumb like in the system settings, tinted by the MaterialSwitch -->
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/ic_switch_check" android:state_checked="true" />
-    <item android:drawable="@drawable/ic_switch_close" />
-</selector>

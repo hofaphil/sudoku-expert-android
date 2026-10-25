@@ -1,106 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface_dim">
+    android:background="@color/background"
+    android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/title"
+    <include layout="@layout/screen_header" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/surface_dim"
-        app:liftOnScroll="false">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbar"
-            style="?attr/collapsingToolbarLayoutLargeStyle"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
-            android:background="@color/surface_dim"
-            app:contentScrim="@color/surface_dim"
-            app:expandedTitleMarginStart="24dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-            app:title="@string/statistics_title">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:elevation="0dp"
-                app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_back"
-                app:navigationIconTint="@color/on_surface" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="16dp"
-            android:paddingBottom="24dp">
+            android:paddingHorizontal="@dimen/edgeSpacing"
+            android:paddingBottom="20dp">
 
             <TextView
                 android:id="@+id/beginnerTitle"
                 style="@style/Settings.Header"
                 android:text="@string/beginner" />
 
-            <LinearLayout
-                style="@style/Settings.Row.Static"
-                android:background="@drawable/settings_row_top">
+            <LinearLayout style="@style/Settings.Group">
 
-                <TextView
-                    android:id="@+id/Beginner.Average"
-                    style="@style/Settings.Row.Title"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="@string/statistics_average" />
+                <LinearLayout style="@style/Settings.Row">
 
-                <TextView
-                    android:id="@+id/Beginner.Average.Time"
-                    style="@style/Settings.Row.Value"
-                    android:text="00:00" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/Beginner.Average"
+                        style="@style/Settings.Row.Name"
+                        android:text="@string/statistics_average" />
 
-            <LinearLayout
-                style="@style/Settings.Row.Static"
-                android:background="@drawable/settings_row_middle">
+                    <TextView
+                        android:id="@+id/Beginner.Average.Time"
+                        style="@style/Settings.Row.Value"
+                        android:text="00:00" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/Beginner.Best"
-                    style="@style/Settings.Row.Title"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="@string/statistics_best" />
+                <LinearLayout style="@style/Settings.Row">
 
-                <TextView
-                    android:id="@+id/Beginner.Best.Time"
-                    style="@style/Settings.Row.Value"
-                    android:text="00:00" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/Beginner.Best"
+                        style="@style/Settings.Row.Name"
+                        android:text="@string/statistics_best" />
 
-            <LinearLayout
-                style="@style/Settings.Row.Static"
-                android:background="@drawable/settings_row_bottom">
+                    <TextView
+                        android:id="@+id/Beginner.Best.Time"
+                        style="@style/Settings.Row.Value"
+                        android:text="00:00" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/Beginner.TimesPlayed"
-                    style="@style/Settings.Row.Title"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="@string/statistics_times_played" />
+                <LinearLayout style="@style/Settings.Row">
 
-                <TextView
-                    android:id="@+id/Beginner.TimesPlayed.Count"
-                    style="@style/Settings.Row.Value"
-                    android:text="0" />
+                    <TextView
+                        android:id="@+id/Beginner.TimesPlayed"
+                        style="@style/Settings.Row.Name"
+                        android:text="@string/statistics_times_played" />
+
+                    <TextView
+                        android:id="@+id/Beginner.TimesPlayed.Count"
+                        style="@style/Settings.Row.Value"
+                        android:text="0" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
@@ -108,55 +70,46 @@
                 style="@style/Settings.Header"
                 android:text="@string/advanced" />
 
-            <LinearLayout
-                style="@style/Settings.Row.Static"
-                android:background="@drawable/settings_row_top">
+            <LinearLayout style="@style/Settings.Group">
 
-                <TextView
-                    android:id="@+id/Advanced.Average"
-                    style="@style/Settings.Row.Title"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="@string/statistics_average" />
+                <LinearLayout style="@style/Settings.Row">
 
-                <TextView
-                    android:id="@+id/Advanced.Average.Time"
-                    style="@style/Settings.Row.Value"
-                    android:text="00:00" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/Advanced.Average"
+                        style="@style/Settings.Row.Name"
+                        android:text="@string/statistics_average" />
 
-            <LinearLayout
-                style="@style/Settings.Row.Static"
-                android:background="@drawable/settings_row_middle">
+                    <TextView
+                        android:id="@+id/Advanced.Average.Time"
+                        style="@style/Settings.Row.Value"
+                        android:text="00:00" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/Advanced.Best"
-                    style="@style/Settings.Row.Title"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="@string/statistics_best" />
+                <LinearLayout style="@style/Settings.Row">
 
-                <TextView
-                    android:id="@+id/Advanced.Best.Time"
-                    style="@style/Settings.Row.Value"
-                    android:text="00:00" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/Advanced.Best"
+                        style="@style/Settings.Row.Name"
+                        android:text="@string/statistics_best" />
 
-            <LinearLayout
-                style="@style/Settings.Row.Static"
-                android:background="@drawable/settings_row_bottom">
+                    <TextView
+                        android:id="@+id/Advanced.Best.Time"
+                        style="@style/Settings.Row.Value"
+                        android:text="00:00" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/Advanced.TimesPlayed"
-                    style="@style/Settings.Row.Title"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="@string/statistics_times_played" />
+                <LinearLayout style="@style/Settings.Row">
 
-                <TextView
-                    android:id="@+id/Advanced.TimesPlayed.Count"
-                    style="@style/Settings.Row.Value"
-                    android:text="0" />
+                    <TextView
+                        android:id="@+id/Advanced.TimesPlayed"
+                        style="@style/Settings.Row.Name"
+                        android:text="@string/statistics_times_played" />
+
+                    <TextView
+                        android:id="@+id/Advanced.TimesPlayed.Count"
+                        style="@style/Settings.Row.Value"
+                        android:text="0" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
@@ -164,57 +117,48 @@
                 style="@style/Settings.Header"
                 android:text="@string/expert" />
 
-            <LinearLayout
-                style="@style/Settings.Row.Static"
-                android:background="@drawable/settings_row_top">
+            <LinearLayout style="@style/Settings.Group">
 
-                <TextView
-                    android:id="@+id/Expert.Average"
-                    style="@style/Settings.Row.Title"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="@string/statistics_average" />
+                <LinearLayout style="@style/Settings.Row">
 
-                <TextView
-                    android:id="@+id/Expert.Average.Time"
-                    style="@style/Settings.Row.Value"
-                    android:text="00:00" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/Expert.Average"
+                        style="@style/Settings.Row.Name"
+                        android:text="@string/statistics_average" />
 
-            <LinearLayout
-                style="@style/Settings.Row.Static"
-                android:background="@drawable/settings_row_middle">
+                    <TextView
+                        android:id="@+id/Expert.Average.Time"
+                        style="@style/Settings.Row.Value"
+                        android:text="00:00" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/Expert.Best"
-                    style="@style/Settings.Row.Title"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="@string/statistics_best" />
+                <LinearLayout style="@style/Settings.Row">
 
-                <TextView
-                    android:id="@+id/Expert.Best.Time"
-                    style="@style/Settings.Row.Value"
-                    android:text="00:00" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/Expert.Best"
+                        style="@style/Settings.Row.Name"
+                        android:text="@string/statistics_best" />
 
-            <LinearLayout
-                style="@style/Settings.Row.Static"
-                android:background="@drawable/settings_row_bottom">
+                    <TextView
+                        android:id="@+id/Expert.Best.Time"
+                        style="@style/Settings.Row.Value"
+                        android:text="00:00" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/Expert.TimesPlayed"
-                    style="@style/Settings.Row.Title"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="@string/statistics_times_played" />
+                <LinearLayout style="@style/Settings.Row">
 
-                <TextView
-                    android:id="@+id/Expert.TimesPlayed.Count"
-                    style="@style/Settings.Row.Value"
-                    android:text="0" />
+                    <TextView
+                        android:id="@+id/Expert.TimesPlayed"
+                        style="@style/Settings.Row.Name"
+                        android:text="@string/statistics_times_played" />
+
+                    <TextView
+                        android:id="@+id/Expert.TimesPlayed.Count"
+                        style="@style/Settings.Row.Value"
+                        android:text="0" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </ScrollView>
+</LinearLayout>

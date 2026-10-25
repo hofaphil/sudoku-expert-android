@@ -1,31 +1,25 @@
 package com.aol.philipphofer.gui.dialog
 
-import android.app.Dialog
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toolbar
 import com.aol.philipphofer.R
+import com.aol.philipphofer.gui.custom.CustomDialog
 import com.aol.philipphofer.logic.MainActivity
 import com.aol.philipphofer.logic.Timer
 import com.aol.philipphofer.logic.help.Difficulty
 import com.aol.philipphofer.persistence.Data
 
-class EndCardDialog(mainActivity: MainActivity) : Dialog(mainActivity) {
+class EndCardDialog(private val mainActivity: MainActivity) :
+    CustomDialog(mainActivity, R.layout.dialog_endcard) {
 
-    private val mainActivity: MainActivity
     private val noTimeText = "--:--"
 
-    init {
-        setContentView(R.layout.dialog_endcard)
-        this.mainActivity = mainActivity
-    }
-
     fun show(won: Boolean, time: Int, difficulty: Difficulty) {
-        findViewById<Toolbar>(R.id.title).title =
-            if (won) mainActivity.resources.getString(R.string.win)
-            else mainActivity.resources.getString(R.string.lose)
-
-        findViewById<TextView>(R.id.difficultyInfo).text = difficulty.getText(mainActivity)
+        setHeader(
+            if (won) R.drawable.ic_check else R.drawable.ic_close,
+            mainActivity.getString(if (won) R.string.win else R.string.lose),
+            difficulty.getText(mainActivity)
+        )
 
         findViewById<TextView>(R.id.bestTimeInfo).text = Timer.timeToString(
             Data.instance(mainActivity).loadInt(Data.STATISTICS_BESTTIME + difficulty.number)
@@ -36,7 +30,7 @@ class EndCardDialog(mainActivity: MainActivity) : Dialog(mainActivity) {
                 Timer.timeToString(time)
             else noTimeText
 
-        findViewById<Button>(R.id.ok).setOnClickListener { dismiss() }
+        findViewById<Button>(R.id.dialogOk).setOnClickListener { dismiss() }
 
         show()
     }

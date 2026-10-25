@@ -1,73 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- the padding keeps the box off the screen edge -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/surface"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="20dp">
 
-    <Toolbar
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/General.ToolBar" />
+    <LinearLayout style="@style/Box">
 
-    <RelativeLayout
-        android:id="@+id/infoLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:paddingLeft="@dimen/_15sdp"
-        android:paddingTop="@dimen/_15sdp"
-        android:paddingRight="@dimen/_15sdp">
+        <include layout="@layout/dialog_header" />
 
-        <TextView
-            android:id="@+id/difficulty"
-            style="@style/General.Title"
-            android:text="@string/endcard_difficulty"
-            android:textSize="@dimen/_15sdp" />
+        <!-- rows like in the statistics, with a line below the last one -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/divider"
+            android:orientation="vertical"
+            android:showDividers="middle|end">
 
-        <TextView
-            android:id="@+id/difficultyInfo"
-            style="@style/General.Info"
-            android:layout_toEndOf="@id/difficulty"
-            android:textSize="@dimen/_15sdp" />
+            <LinearLayout style="@style/Settings.Row">
 
-        <TextView
-            android:id="@+id/time"
-            style="@style/General.Title"
-            android:layout_below="@id/difficulty"
-            android:text="@string/endcard_time"
-            android:textSize="@dimen/_15sdp" />
+                <TextView
+                    style="@style/Settings.Row.Name"
+                    android:text="@string/endcard_time" />
 
-        <TextView
-            android:id="@+id/timeInfo"
-            style="@style/General.Info"
-            android:layout_below="@id/difficulty"
-            android:layout_toEndOf="@id/time"
-            android:text="--:--"
-            android:textSize="@dimen/_15sdp" />
+                <TextView
+                    android:id="@+id/timeInfo"
+                    style="@style/Settings.Row.Value" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/bestTime"
-            style="@style/General.Title"
-            android:layout_below="@id/time"
-            android:text="@string/endcard_besttime"
-            android:textSize="@dimen/_15sdp" />
+            <LinearLayout style="@style/Settings.Row">
 
-        <TextView
-            android:id="@+id/bestTimeInfo"
-            style="@style/General.Info"
-            android:layout_below="@id/time"
-            android:layout_toEndOf="@id/bestTime"
-            android:textSize="@dimen/_15sdp" />
+                <TextView
+                    style="@style/Settings.Row.Name"
+                    android:text="@string/endcard_besttime" />
 
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/bestTimeInfo"
+                    style="@style/Settings.Row.Value" />
+            </LinearLayout>
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/ok"
-        style="@style/General.Button"
-        android:layout_below="@id/infoLayout"
-        android:layout_margin="@dimen/_15sdp"
-        android:text="@string/confirmdialog_ok" />
+        <LinearLayout style="@style/Dialog.Buttons">
 
-</RelativeLayout>
+            <Button
+                android:id="@+id/dialogOk"
+                style="@style/Button.Box.Dialog.Primary"
+                android:text="@string/confirmdialog_ok" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

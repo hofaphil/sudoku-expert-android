@@ -10,13 +10,24 @@
             android:layout_height="wrap_content"
             android:background="@color/top_bar"/>
 
+        <!-- lines above and below the grid, the grid padding gives both the same gap -->
+        <View
+            android:id="@+id/statusBarDivider"
+            style="@style/Line"
+            android:layout_below="@id/statusBar" />
+
         <com.aol.philipphofer.gui.sudoku.SudokuGrid
             android:id="@+id/sudokuGrid"
-            android:layout_below="@id/statusBar"
+            android:layout_below="@id/statusBarDivider"
             android:layout_width="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
              />
+
+        <View
+            android:id="@+id/gridDivider"
+            style="@style/Line"
+            android:layout_below="@id/sudokuGrid" />
 
         <com.aol.philipphofer.gui.Keyboard
             android:id="@+id/keyboard"

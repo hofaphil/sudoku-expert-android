@@ -11,8 +11,8 @@
     <string name="statusbar_newSudoku">Neu</string>
     <string name="statusbar_settings">Einstellungen</string>
     <string name="statusbar_statistics">Statistik</string>
-    <string name="statusbar_errors">%1$d/%2$d Fehler</string>
-    <string name="statusbar_errors_not_enabled">-/- Fehler</string>
+    <string name="statusbar_more">Mehr</string>
+    <string name="back">Zurück</string>
     <string name="statusbar_challenge">Challenge</string>
     <string name="statusbar_rate">Bewerten</string>
 
@@ -29,9 +29,8 @@
     <!-- EndCard -->
     <string name="win">Du gewinnst!</string>
     <string name="lose">Du verlierst</string>
-    <string name="endcard_difficulty">Difficulty:</string>
-    <string name="endcard_time">Deine Zeit:</string>
-    <string name="endcard_besttime">Bestzeit:</string>
+    <string name="endcard_time">Deine Zeit</string>
+    <string name="endcard_besttime">Bestzeit</string>
 
     <!-- Statistics -->
     <string name="statistics_title">Statistik</string>
@@ -67,7 +66,7 @@
     <string name="settings_color_button">Ändern</string>
     <string name="settings_confirm">Achtung</string>
     <string name="settings_confirm_annotations">Willst Du wirklich die App zurücksetzen?</string>
-    <string name="settings_applies_next_game">Wird im nächsten Spiel übernommen</string>
+    <string name="settings_title_next_game">Ab dem nächsten Spiel</string>
 
     <!-- Share -->
     <string name="share_title">Teile Dein Sudoku</string>

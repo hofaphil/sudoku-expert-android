@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.aol.philipphofer.R
@@ -15,7 +16,12 @@ abstract class CustomActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        data = Data.instance(this);
+        data = Data.instance(this)
+    }
+
+    protected fun setupHeader(title: Int) {
+        findViewById<TextView>(R.id.headerTitle).setText(title)
+        findViewById<View>(R.id.backButton).setOnClickListener { finish() }
     }
 
     override fun onContentChanged() {

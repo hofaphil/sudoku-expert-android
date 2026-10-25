@@ -3,6 +3,7 @@ package com.aol.philipphofer.gui.sudoku
 import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
@@ -49,6 +50,18 @@ class SudokuField(context: Context, attributeSet: AttributeSet) :
         val style = if (number.isChangeable) Typeface.BOLD_ITALIC else Typeface.BOLD
         numberView.setTypeface(Typeface.create(numberView.typeface, style))
         updateTextColor()
+    }
+
+    // the grid takes the screen width, so the digits scale with the field
+    override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
+        super.onSizeChanged(width, height, oldWidth, oldHeight)
+        updateTextSize()
+    }
+
+    private fun updateTextSize() {
+        numberView.setTextSize(TypedValue.COMPLEX_UNIT_PX, height * NUMBER_SCALE)
+        for (note in notes)
+            note.setTextSize(TypedValue.COMPLEX_UNIT_PX, height * NOTE_SCALE)
     }
 
     private fun switchLayout(isNotes: Boolean) {
@@ -151,7 +164,14 @@ class SudokuField(context: Context, attributeSet: AttributeSet) :
                 findViewById(id)
             }
             updateTextColor()
+            updateTextSize()
         }
         return notesLayout!!
+    }
+
+    companion object {
+        // text size relative to the field height
+        private const val NUMBER_SCALE = 0.6f
+        private const val NOTE_SCALE = 0.25f
     }
 }

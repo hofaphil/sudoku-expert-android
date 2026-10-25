@@ -4,77 +4,94 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/top_bar">
+    android:background="@color/top_bar"
+    android:paddingHorizontal="@dimen/edgeSpacing"
+    android:paddingBottom="13dp">
 
-    <GridLayout
+    <!-- square buttons left and right, difficulty above the timer in the middle -->
+    <RelativeLayout
         android:id="@+id/buttonLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:columnCount="5"
-        android:padding="10dp">
+        android:paddingVertical="10dp">
 
         <ImageButton
             android:id="@+id/newButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_2sdp"
-            android:layout_columnWeight="1"
-            android:background="@color/transparent"
+            style="@style/Box.Icon"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/statusbar_newSudoku"
             android:src="@drawable/ic_new" />
 
-        <TextView
-            android:id="@+id/timeView"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="3"
-            android:background="@color/transparent"
-            android:gravity="center"
-            android:text="00:00"
-            android:textColor="@color/on_top_bar"
-            android:textSize="@dimen/statusbar_text_time"
-            android:textStyle="bold" />
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/difficultyView"
+                style="@style/Text.Label"
+                android:text="@string/advanced"
+                android:textColor="@color/on_top_bar" />
+
+            <TextView
+                android:id="@+id/timeView"
+                style="@style/Text.TopBar"
+                android:text="00:00"
+                android:textSize="@dimen/statusbar_text_time" />
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/moreButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_2sdp"
-            android:layout_columnWeight="1"
-            android:background="@color/transparent"
+            style="@style/Box.Icon"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/statusbar_more"
             android:src="@drawable/ic_more" />
-    </GridLayout>
+    </RelativeLayout>
 
-    <GridLayout
+    <!-- progress of the filled fields and the lives left -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonLayout"
-        android:layout_margin="2dp"
         android:background="@drawable/box_top_bar"
-        android:columnCount="2"
-        android:padding="5dp">
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/statusbar_info_height"
+        android:orientation="horizontal">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/statusbar_progress_height"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:max="81"
+            android:progressDrawable="@drawable/progress_bar" />
 
         <TextView
-            android:id="@+id/difficultyView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center"
-            android:background="@color/transparent"
-            android:text="@string/advanced"
-            android:textColor="@color/on_surface"
+            android:id="@+id/progressView"
+            style="@style/Text.Bold"
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/statusbar_progress"
             android:textSize="@dimen/statusbar_text_info" />
 
-        <TextView
+        <View
+            android:id="@+id/errorDivider"
+            style="@style/Line"
+            android:layout_width="@dimen/border"
+            android:layout_height="match_parent" />
+
+        <!-- one heart per life, filled in StatusBar.setError -->
+        <LinearLayout
             android:id="@+id/errorView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center"
-            android:background="@color/transparent"
-            android:text="@string/statusbar_errors"
-            android:textColor="@color/on_surface"
-            android:textSize="@dimen/statusbar_text_info" />
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp" />
 
-    </GridLayout>
+    </LinearLayout>
 </RelativeLayout>

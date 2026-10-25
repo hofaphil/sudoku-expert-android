@@ -3,12 +3,19 @@ package com.aol.philipphofer.gui
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.LayerDrawable
+import android.graphics.drawable.ScaleDrawable
 import android.util.AttributeSet
 import android.view.ContextThemeWrapper
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
@@ -27,7 +34,10 @@ class StatusBar(context: Context, attributeSet: AttributeSet) :
     private val newButton: ImageButton
 
     private val timeView: TextView
-    private val errorView: TextView
+    private val errorView: LinearLayout
+    private val errorDivider: View
+    private val progressBar: ProgressBar
+    private val progressView: TextView
     private val difficultyView: TextView
 
     private val mainActivity: MainActivity
@@ -56,6 +66,18 @@ class StatusBar(context: Context, attributeSet: AttributeSet) :
         timeView = findViewById(R.id.timeView)
         difficultyView = findViewById(R.id.difficultyView)
         errorView = findViewById(R.id.errorView)
+        errorDivider = findViewById(R.id.errorDivider)
+        progressBar = findViewById(R.id.progressBar)
+        // the hearts outline is 2 of 24 units wide, the progress bar borders get the same width
+        val outline = resources.getDimensionPixelSize(R.dimen.statusbar_heart_size) / 12
+        val outlineColor = context.getColor(R.color.outline)
+        (progressBar.progressDrawable.mutate() as LayerDrawable).apply {
+            (findDrawableByLayerId(android.R.id.background) as GradientDrawable)
+                .setStroke(outline, outlineColor)
+            ((findDrawableByLayerId(android.R.id.progress) as ScaleDrawable).drawable as GradientDrawable)
+                .setStroke(outline, outlineColor)
+        }
+        progressView = findViewById(R.id.progressView)
     }
 
     private fun morePopupHandler(item: MenuItem): Boolean {
@@ -104,12 +126,29 @@ class StatusBar(context: Context, attributeSet: AttributeSet) :
         difficultyView.text = difficulty.getText(context)
     }
 
+    // one heart per life, lost lives turn black
     fun setError(error: Int) {
         val showErrors = Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS)
 
-        if (showErrors) errorView.text =
-            resources.getString(R.string.statusbar_errors, error, MainActivity.MAX_ERROR)
-        else errorView.text = resources.getString(R.string.statusbar_errors_not_enabled)
+        errorView.visibility = if (showErrors) VISIBLE else GONE
+        errorDivider.visibility = errorView.visibility
+        if (!showErrors) return
+
+        val lives = (MainActivity.MAX_ERROR - error).coerceAtLeast(0)
+        errorView.removeAllViews()
+        for (i in 0 until MainActivity.MAX_ERROR) {
+            val heart = ImageView(context)
+            heart.setImageResource(if (i < lives) R.drawable.ic_heart else R.drawable.ic_heart_lost)
+            val params = LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+            if (i > 0) params.marginStart = resources.getDimensionPixelSize(R.dimen.statusbar_heart_spacing)
+            errorView.addView(heart, params)
+        }
+    }
+
+    fun setProgress(freeFields: Int) {
+        val filled = FIELDS - freeFields
+        progressBar.progress = filled
+        progressView.text = resources.getString(R.string.statusbar_progress, filled, FIELDS)
     }
 
     fun setTime(time: Int) {
@@ -122,5 +161,9 @@ class StatusBar(context: Context, attributeSet: AttributeSet) :
     fun activate(activate: Boolean) {
         moreButton.isEnabled = activate
         newButton.isEnabled = activate;
+    }
+
+    companion object {
+        private const val FIELDS = 81
     }
 }

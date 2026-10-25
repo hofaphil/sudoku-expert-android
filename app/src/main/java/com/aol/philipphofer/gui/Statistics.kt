@@ -10,8 +10,6 @@ import com.aol.philipphofer.logic.help.Difficulty
 import com.aol.philipphofer.persistence.Data.Constants.STATISTICS_BESTTIME
 import com.aol.philipphofer.persistence.Data.Constants.STATISTICS_TIMEOVERALL
 import com.aol.philipphofer.persistence.Data.Constants.STATISTICS_TIMESPLAYED
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.MaterialToolbar
 
 class Statistics : CustomActivity() {
 
@@ -27,13 +25,11 @@ class Statistics : CustomActivity() {
     private lateinit var advancedBest: TextView
     private lateinit var expertBest: TextView
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistics)
 
-        findViewById<MaterialToolbar>(R.id.toolbar).setNavigationOnClickListener { finish() }
-        findViewById<AppBarLayout>(R.id.title).setExpanded(false, false)
+        setupHeader(R.string.statistics_title)
 
         beginnerTime = findViewById(R.id.Beginner_Average_Time)
         advancedTime = findViewById(R.id.Advanced_Average_Time)

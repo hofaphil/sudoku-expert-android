@@ -6,7 +6,7 @@
     <solid android:color="@color/grid_line" />
 
     <stroke
-        android:width="@dimen/_2sdp"
+        android:width="@dimen/border"
         android:color="@color/grid_border" />
 
 </shape>

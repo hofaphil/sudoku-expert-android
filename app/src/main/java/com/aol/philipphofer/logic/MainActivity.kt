@@ -66,6 +66,7 @@ class MainActivity : CustomActivity(), TimerListener {
         val width = mainLayout.width - mainLayout.paddingLeft - mainLayout.paddingRight
         val height = mainLayout.height - mainLayout.paddingTop - mainLayout.paddingBottom -
                 statusBar.height -
+                2 * resources.getDimensionPixelSize(R.dimen.border) -
                 (statusBar.layoutParams as RelativeLayout.LayoutParams).bottomMargin -
                 (statusBar.layoutParams as RelativeLayout.LayoutParams).topMargin -
                 keyboard.height -
@@ -96,6 +97,7 @@ class MainActivity : CustomActivity(), TimerListener {
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE)
         }
         updateKeyboard()
+        updateProgress()
     }
 
     override fun onResume() {
@@ -134,6 +136,7 @@ class MainActivity : CustomActivity(), TimerListener {
         statusBar.setDifficulty(DIFFICULTY)
         statusBar.setError(game.overallErrors)
         updateKeyboard()
+        updateProgress()
     }
 
     private fun heavyLoading(difficulty: Difficulty) {
@@ -164,6 +167,7 @@ class MainActivity : CustomActivity(), TimerListener {
         keyboard.activate(true)
         statusBar.setError(game.overallErrors)
         updateKeyboard()
+        updateProgress()
         window.decorView.post { timer.startTimer(0) }
     }
 
@@ -272,6 +276,7 @@ class MainActivity : CustomActivity(), TimerListener {
             // TODO two times this.selected, maybe this can be done nicer
             select(it)
             updateKeyboard()
+            updateProgress()
 
             // check if sudoku-game is finished
             checkSudoku()
@@ -286,6 +291,7 @@ class MainActivity : CustomActivity(), TimerListener {
             // TODO two times this.selected, maybe this can be done nicer
             select(it)
             updateKeyboard()
+            updateProgress()
 
             // check new current errors
             checkErrors()
@@ -295,6 +301,10 @@ class MainActivity : CustomActivity(), TimerListener {
     private fun updateKeyboard() {
         val hideCompleted = data.loadBoolean(Data.SETTINGS_HIDE_COMPLETED, false)
         keyboard.hideKeys { hideCompleted && game.count(it) >= 9 }
+    }
+
+    private fun updateProgress() {
+        statusBar.setProgress(game.freeFields())
     }
 
     fun notesMode(): Boolean {
