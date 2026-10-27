@@ -1,21 +1,22 @@
 package com.aol.philipphofer.gui.custom
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.ComponentActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.aol.philipphofer.R
 import com.aol.philipphofer.persistence.Data
 
-abstract class CustomActivity : Activity() {
+// ComponentActivity for the back handling of AndroidX, the views stay the platform ones
+abstract class CustomActivity : ComponentActivity() {
 
     protected lateinit var data: Data
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        data = Data.instance(this);
+        data = Data.instance(this)
     }
 
     override fun onContentChanged() {

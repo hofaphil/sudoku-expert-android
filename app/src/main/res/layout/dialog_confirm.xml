@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the padding keeps the box off the screen edge -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="20dp">
+
+    <LinearLayout style="@style/Box">
+
+        <include layout="@layout/dialog_header" />
+
+        <TextView
+            android:id="@+id/dialogMessage"
+            style="@style/Dialog.Message" />
+
+        <LinearLayout style="@style/Dialog.Buttons">
+
+            <Button
+                android:id="@+id/dialogCancel"
+                style="@style/Button.Box.Dialog"
+                android:text="@string/confirmdialog_cancel" />
+
+            <Button
+                android:id="@+id/dialogOk"
+                style="@style/Button.Box.Dialog.Primary"
+                android:text="@string/confirmdialog_ok" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

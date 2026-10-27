@@ -1,23 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="marginGridKeyboard">@dimen/_5sdp</dimen>
 
-    <dimen name="keyboardNumberText">@dimen/_30sdp</dimen>
-    <dimen name="keyboardFunctionalText">@dimen/_14sdp</dimen>
+    <!-- the digits in the fields and on the keys scale with the screen width, see SudokuField and Keyboard -->
+
+    <!-- black borders of boxes, buttons and blocks -->
+    <dimen name="border">2.5dp</dimen>
+    <!-- thin lines between the cells and between setting rows -->
+    <dimen name="line">1dp</dimen>
+
+    <!-- gap between the 3x3 blocks and to the screen edge is twice this -->
+    <dimen name="blockSpacing">4dp</dimen>
+    <!-- space to the screen edge, same as the gap between the 3x3 blocks -->
+    <dimen name="edgeSpacing">8dp</dimen>
+
+    <!-- Keyboard -->
+    <dimen name="keyboardFunctionalText">14sp</dimen>
+    <dimen name="keyboardButtonSpacing">4dp</dimen>
 
     <!-- StatusBar -->
-    <dimen name="statusbar_text_time">@dimen/_24sdp</dimen>
-    <dimen name="statusbar_text_info">@dimen/_11sdp</dimen>
-    <dimen name="statusbar_icon_size">@dimen/_28sdp</dimen>
+    <dimen name="statusbar_text_time">30sp</dimen>
+    <dimen name="statusbar_text_info">14sp</dimen>
+    <dimen name="statusbar_icon_size">26dp</dimen>
+    <dimen name="statusbar_button_padding">12dp</dimen>
+    <dimen name="statusbar_progress_height">16dp</dimen>
+    <dimen name="statusbar_heart_size">20dp</dimen>
+    <dimen name="statusbar_heart_spacing">4dp</dimen>
+    <!-- box with the progress and the hearts, keeps its height when the hearts are hidden -->
+    <dimen name="statusbar_info_height">40dp</dimen>
 
-    <dimen name="fieldNotesText">@dimen/_8sdp</dimen>
-    <dimen name="fieldNumberText">@dimen/_19sdp</dimen>
+    <dimen name="text_label">12sp</dimen>
 
-    <!-- General -->
-    <dimen name="general_text_title">@dimen/_30sdp</dimen>
-    <dimen name="general_text_title_small">@dimen/_21sdp</dimen>
-    <dimen name="general_text_info">@dimen/_15sdp</dimen>
-    <dimen name="general_text_button">@dimen/_15sdp</dimen>
+    <!-- Home -->
+    <dimen name="home_logo_size">44dp</dimen>
+    <dimen name="home_title_text">24sp</dimen>
+    <dimen name="home_streak_icon_size">20dp</dimen>
+    <dimen name="home_card_spacing">12dp</dimen>
+    <dimen name="home_card_title_text">20sp</dimen>
+    <dimen name="home_play_width">64dp</dimen>
+    <!-- three stars of 24 units with a gap of 2 -->
+    <dimen name="home_difficulty_icon_width">57dp</dimen>
+    <dimen name="home_difficulty_icon_height">18dp</dimen>
+    <dimen name="home_tab_icon_size">24dp</dimen>
+    <dimen name="home_tab_text">13sp</dimen>
 
-    <dimen name="newGameButtonText">@dimen/_24sdp</dimen>
+    <!-- Result -->
+    <dimen name="result_title_text">34sp</dimen>
+    <dimen name="result_value_text">28sp</dimen>
+    <dimen name="result_spacing">16dp</dimen>
+    <!-- half of the gap between two tiles or buttons next to each other -->
+    <dimen name="result_tile_gap">6dp</dimen>
+    <dimen name="result_tile_gap_vertical">12dp</dimen>
+    <dimen name="result_button_height">56dp</dimen>
+    <dimen name="result_button_text">18sp</dimen>
+
+    <!-- bar chart of the solved games per day -->
+    <dimen name="barchart_height">110dp</dimen>
+    <dimen name="barchart_bar_max">28dp</dimen>
+    <dimen name="barchart_gap">4dp</dimen>
+    <dimen name="barchart_text">12sp</dimen>
+
+    <!-- Settings and Statistics -->
+    <dimen name="header_text_title">26sp</dimen>
+    <dimen name="settings_text_title">16sp</dimen>
+    <dimen name="settings_text_summary">13sp</dimen>
+    <!-- the thumb is a square of the switch height, its black part is inset by switch_thumb_inset -->
+    <dimen name="switch_width">48dp</dimen>
+    <dimen name="switch_height">24dp</dimen>
+    <dimen name="switch_thumb_inset">5dp</dimen>
+
 </resources>

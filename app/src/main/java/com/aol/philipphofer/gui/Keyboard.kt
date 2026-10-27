@@ -2,6 +2,7 @@ package com.aol.philipphofer.gui
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -51,6 +52,14 @@ class Keyboard(context: Context, attributeSet: AttributeSet) :
         }
     }
 
+    // the keys share the screen width, so the digits scale with it
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        val keyWidth = findViewById<View>(R.id.keyGrid).measuredWidth / keys.size
+        for (key in keys)
+            key.setTextSize(TypedValue.COMPLEX_UNIT_PX, keyWidth * KEY_SCALE)
+    }
+
     override fun onClick(view: View) {
         mainActivity.insert(view.tag as Int)
     }
@@ -80,4 +89,8 @@ class Keyboard(context: Context, attributeSet: AttributeSet) :
 
     }
 
+    companion object {
+        // text size relative to the key width
+        private const val KEY_SCALE = 0.88f
+    }
 }

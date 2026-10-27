@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- thin line between the rows of a settings group, like the lines between the sudoku cells -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <size android:height="@dimen/line" />
+    <solid android:color="@color/outline" />
+
+</shape>

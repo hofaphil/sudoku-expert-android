@@ -19,9 +19,9 @@ object ShareClass {
     private const val ID_LENGTH = 82
 
     @JvmStatic
-    fun share(sudoku: Sudoku, context: Activity): String {
+    fun share(sudoku: Sudoku, difficulty: Difficulty, context: Activity): String {
         val id = StringBuilder()
-        id.append(MainActivity.DIFFICULTY.number)
+        id.append(difficulty.number)
 
         for (b in 0..8)
             for (i in 0..2)

@@ -54,6 +54,14 @@ class Timer(private val timerListener: TimerListener) {
     }
 
     companion object {
+        // shown instead of a time: the timer is hidden or there is no time yet
+        const val NO_TIME = "--:--"
+
+        // 0 stands for no time yet, e.g. no best time before the first solved game
+        @JvmStatic
+        fun timeOrNone(timeInSeconds: Int): String =
+            if (timeInSeconds == 0) NO_TIME else timeToString(timeInSeconds)
+
         @JvmStatic
         fun timeToString(timeInSeconds: Int): String {
             val hours = timeInSeconds / 3600

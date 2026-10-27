@@ -2,34 +2,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relativeLayout"
     android:layout_width="wrap_content"
-    android:padding="@dimen/_1sdp"
     android:layout_height="wrap_content">
 
     <GridLayout
         android:id="@+id/functionButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="3dp"
+        android:layout_marginTop="10dp"
         android:columnCount="3"
-        android:layout_below="@+id/keyGrid"
-        android:layout_marginTop="@dimen/_30sdp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/notes"
-            style="@style/KeyboardButtonStyle"
-            android:drawableStart="@drawable/ic_notes"
+            style="@style/Button.Box.Function"
+            android:drawableTop="@drawable/ic_notes"
             android:text="@string/keyboard_notes" />
 
         <Button
             android:id="@+id/delete"
-            style="@style/KeyboardButtonStyle"
-            android:drawableStart="@drawable/ic_delete"
+            style="@style/Button.Box.Function"
+            android:drawableTop="@drawable/ic_delete"
             android:text="@string/keyboard_delete" />
 
         <Button
             android:id="@+id/pause"
-            style="@style/KeyboardButtonStyle"
-            android:drawableStart="@drawable/ic_pause"
+            style="@style/Button.Box.Function"
+            android:drawableTop="@drawable/ic_pause"
             android:text="@string/keyboard_pause" />
 
     </GridLayout>
@@ -38,54 +37,56 @@
         android:id="@+id/keyGrid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/functionButtons"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:columnCount="9"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/num1"
-            style="@style/KeyboardNumberButtonStyle"
+            style="@style/Button.Key"
             android:text="1" />
 
         <Button
             android:id="@+id/num2"
-            style="@style/KeyboardNumberButtonStyle"
+            style="@style/Button.Key"
             android:text="2" />
 
         <Button
             android:id="@+id/num3"
-            style="@style/KeyboardNumberButtonStyle"
+            style="@style/Button.Key"
             android:text="3" />
 
         <Button
             android:id="@+id/num4"
-            style="@style/KeyboardNumberButtonStyle"
+            style="@style/Button.Key"
             android:text="4" />
 
         <Button
             android:id="@+id/num5"
-            style="@style/KeyboardNumberButtonStyle"
+            style="@style/Button.Key"
             android:text="5" />
 
         <Button
             android:id="@+id/num6"
-            style="@style/KeyboardNumberButtonStyle"
+            style="@style/Button.Key"
             android:text="6" />
 
         <Button
             android:id="@+id/num7"
-            style="@style/KeyboardNumberButtonStyle"
+            style="@style/Button.Key"
             android:text="7" />
 
         <Button
             android:id="@+id/num8"
-            style="@style/KeyboardNumberButtonStyle"
+            style="@style/Button.Key"
             android:text="8" />
 
         <Button
             android:id="@+id/num9"
-            style="@style/KeyboardNumberButtonStyle"
+            style="@style/Button.Key"
             android:text="9" />
 
     </GridLayout>

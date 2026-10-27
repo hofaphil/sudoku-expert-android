@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.anyBoolean;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -15,10 +16,15 @@ import android.content.SharedPreferences;
 
 import com.aol.philipphofer.logic.sudoku.Number;
 import com.aol.philipphofer.logic.sudoku.Sudoku;
+import com.aol.philipphofer.logic.help.Difficulty;
 import com.aol.philipphofer.persistence.Data;
+import com.aol.philipphofer.persistence.DifficultyStatistics;
+import com.aol.philipphofer.persistence.GameRecord;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -45,6 +51,9 @@ public class DataTests {
 
     private final String TEST_KEY = "test-key";
 
+    @Rule
+    public TemporaryFolder folder = new TemporaryFolder();
+
     @Before
     public void setup() throws NoSuchFieldException, IllegalAccessException {
         storageMock = new HashMap<>();
@@ -66,6 +75,13 @@ public class DataTests {
         });
         when(editorMock.putString(anyString(), anyString())).then((Answer<SharedPreferences.Editor>) invocation -> {
             storageMock.put(invocation.getArgument(0), invocation.getArgument(1));
+            return editorMock;
+        });
+
+        // only the statistics tests use these
+        lenient().when(contextMock.getFilesDir()).thenReturn(folder.getRoot());
+        lenient().when(editorMock.remove(anyString())).then((Answer<SharedPreferences.Editor>) invocation -> {
+            storageMock.remove((String) invocation.getArgument(0));
             return editorMock;
         });
 
@@ -187,6 +203,19 @@ public class DataTests {
      * void setLoadmode(boolean loadmode)
      */
     @Test
+    public void testSharedGame() {
+        assertEquals(null, testData.sharedGameDifficulty());
+
+        Sudoku sudoku = new Sudoku();
+        testData.saveSharedGame(sudoku, Difficulty.EXPERT);
+        assertEquals(Difficulty.EXPERT, testData.sharedGameDifficulty());
+        assertEquals(sudoku, testData.loadSharedGame());
+
+        testData.dismissSharedGame();
+        assertEquals(null, testData.sharedGameDifficulty());
+    }
+
+    @Test
     public void testSetGetLoadmode() {
         boolean loadmode = testData.getLoadmode();
 
@@ -196,5 +225,48 @@ public class DataTests {
         assertTrue(testData.getLoadmode());
     }
 
-    // TODO: test addTime but with new data structure
+    /**
+     * the old totals become legacy totals, the recorded games are added to them
+     */
+    @Test
+    public void testMigrateStatistics() {
+        int beginner = Difficulty.BEGINNER.getNumber();
+        storageMock.put(Data.OLD_TIMES_PLAYED + beginner, 3);
+        storageMock.put(Data.OLD_UNTIMED + beginner, 1);
+        storageMock.put(Data.OLD_TIME_OVERALL + beginner, 300);
+        storageMock.put(Data.OLD_BEST_TIME + beginner, 120);
+
+        DifficultyStatistics statistics = testData.statistics(Difficulty.BEGINNER);
+        assertEquals(3, statistics.getSolved());
+        assertEquals(0, statistics.getLost());
+        assertEquals(120, statistics.getBestTime());
+        // two timed games
+        assertEquals(150, statistics.getAverageTime());
+
+        // the old keys are gone, the migration runs once
+        assertFalse(storageMock.containsKey(Data.OLD_TIMES_PLAYED + beginner));
+        assertFalse(storageMock.containsKey(Data.OLD_BEST_TIME + beginner));
+        assertEquals(1, testData.loadInt(Data.STATISTICS_VERSION));
+
+        testData.addGame(new GameRecord(1L, Difficulty.BEGINNER, true, 90));
+        testData.addGame(new GameRecord(2L, Difficulty.BEGINNER, false, null));
+        statistics = testData.statistics(Difficulty.BEGINNER);
+        assertEquals(4, statistics.getSolved());
+        assertEquals(1, statistics.getLost());
+        assertEquals(90, statistics.getBestTime());
+        assertEquals(130, statistics.getAverageTime());
+
+        // other difficulties start empty
+        assertEquals(new DifficultyStatistics(0, 0, 0, 0, 0), testData.statistics(Difficulty.EXPERT));
+    }
+
+    @Test
+    public void testDropClearsStatistics() {
+        testData.addGame(new GameRecord(1L, Difficulty.ADVANCED, true, 90));
+        assertEquals(1, testData.statistics(Difficulty.ADVANCED).getSolved());
+
+        testData.drop();
+        assertEquals(0, testData.statistics(Difficulty.ADVANCED).getSolved());
+        assertTrue(testData.gameHistory().isEmpty());
+    }
 }

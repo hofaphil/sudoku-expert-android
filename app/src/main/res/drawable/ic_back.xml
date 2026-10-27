@@ -1,6 +1,7 @@
+<!-- lucide chevron-left, the purple back button of the game -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="24dp"
-    android:height="24dp"
+    android:width="@dimen/statusbar_icon_size"
+    android:height="@dimen/statusbar_icon_size"
     android:viewportWidth="24"
     android:viewportHeight="24">
   <path
@@ -8,6 +9,6 @@
       android:strokeLineJoin="round"
       android:strokeWidth="2"
       android:fillColor="#00000000"
-      android:strokeColor="@color/on_top_bar"
+      android:strokeColor="@color/secondary"
       android:strokeLineCap="round"/>
 </vector>

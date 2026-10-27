@@ -40,23 +40,21 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".gui.Home"
+            android:exported="false"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".gui.GameResult"
+            android:exported="false"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".logic.MainActivity"
             android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme"
-            android:parentActivityName=".logic.StartActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".gui.Settings"
-            android:exported="false"
-            android:theme="@style/MaterialTheme"
-            android:parentActivityName=".logic.MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".gui.Statistics"
-            android:exported="false"
-            android:theme="@style/MaterialTheme"
-            android:parentActivityName=".logic.MainActivity"
+            android:parentActivityName=".gui.Home"
             android:screenOrientation="portrait"/>
     </application>
 </manifest>

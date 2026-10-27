@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- the Material default for the unchecked icon is too close to the thumb color in light mode -->
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="?attr/colorPrimary" android:state_checked="true" />
-    <item android:color="@color/surface" />
-</selector>

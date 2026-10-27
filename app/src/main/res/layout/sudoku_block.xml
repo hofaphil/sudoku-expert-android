@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/_2sdp"
+    android:padding="@dimen/border"
     android:background="@drawable/block_background"
     android:rowCount="3"
     android:columnCount="3">
@@ -16,8 +16,8 @@
         android:layout_columnWeight="1"
         android:layout_row="0"
         android:layout_column="0"
-        android:layout_marginRight="@dimen/_1sdp"
-        android:layout_marginBottom="@dimen/_1sdp"
+        android:layout_marginRight="@dimen/line"
+        android:layout_marginBottom="@dimen/line"
         />
 
     <com.aol.philipphofer.gui.sudoku.SudokuField
@@ -28,7 +28,7 @@
         android:layout_columnWeight="1"
         android:layout_row="0"
         android:layout_column="1"
-        android:layout_marginBottom="@dimen/_1sdp"
+        android:layout_marginBottom="@dimen/line"
         />
 
     <com.aol.philipphofer.gui.sudoku.SudokuField
@@ -39,8 +39,8 @@
         android:layout_columnWeight="1"
         android:layout_row="0"
         android:layout_column="2"
-        android:layout_marginLeft="@dimen/_1sdp"
-        android:layout_marginBottom="@dimen/_1sdp"
+        android:layout_marginLeft="@dimen/line"
+        android:layout_marginBottom="@dimen/line"
         />
 
     <com.aol.philipphofer.gui.sudoku.SudokuField
@@ -51,8 +51,8 @@
         android:layout_columnWeight="1"
         android:layout_row="1"
         android:layout_column="0"
-        android:layout_marginRight="@dimen/_1sdp"
-        android:layout_marginBottom="@dimen/_1sdp"
+        android:layout_marginRight="@dimen/line"
+        android:layout_marginBottom="@dimen/line"
         />
 
     <com.aol.philipphofer.gui.sudoku.SudokuField
@@ -63,7 +63,7 @@
         android:layout_columnWeight="1"
         android:layout_row="1"
         android:layout_column="1"
-        android:layout_marginBottom="@dimen/_1sdp"
+        android:layout_marginBottom="@dimen/line"
         />
 
     <com.aol.philipphofer.gui.sudoku.SudokuField
@@ -74,8 +74,8 @@
         android:layout_columnWeight="1"
         android:layout_row="1"
         android:layout_column="2"
-        android:layout_marginBottom="@dimen/_1sdp"
-        android:layout_marginLeft="@dimen/_1sdp"
+        android:layout_marginBottom="@dimen/line"
+        android:layout_marginLeft="@dimen/line"
         />
 
     <com.aol.philipphofer.gui.sudoku.SudokuField
@@ -86,7 +86,7 @@
         android:layout_columnWeight="1"
         android:layout_row="2"
         android:layout_column="0"
-        android:layout_marginRight="@dimen/_1sdp"
+        android:layout_marginRight="@dimen/line"
         />
 
     <com.aol.philipphofer.gui.sudoku.SudokuField
@@ -107,7 +107,7 @@
         android:layout_columnWeight="1"
         android:layout_row="2"
         android:layout_column="2"
-        android:layout_marginLeft="@dimen/_1sdp"
+        android:layout_marginLeft="@dimen/line"
         />
 
 </GridLayout>

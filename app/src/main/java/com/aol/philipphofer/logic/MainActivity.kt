@@ -1,5 +1,7 @@
 package com.aol.philipphofer.logic
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
@@ -9,7 +11,7 @@ import com.aol.philipphofer.gui.Keyboard
 import com.aol.philipphofer.gui.StatusBar
 import com.aol.philipphofer.gui.custom.CustomActivity
 import com.aol.philipphofer.gui.custom.CustomToast
-import com.aol.philipphofer.gui.dialog.EndCardDialog
+import com.aol.philipphofer.gui.GameResult
 import com.aol.philipphofer.gui.sudoku.SudokuField
 import com.aol.philipphofer.gui.sudoku.SudokuGrid
 import com.aol.philipphofer.logic.ShareClass.share
@@ -18,6 +20,7 @@ import com.aol.philipphofer.logic.help.Difficulty
 import com.aol.philipphofer.logic.help.Difficulty.Companion.getDifficulty
 import com.aol.philipphofer.logic.sudoku.Sudoku
 import com.aol.philipphofer.persistence.Data
+import com.aol.philipphofer.persistence.GameRecord
 import java.lang.ref.WeakReference
 import kotlin.math.abs
 
@@ -28,7 +31,6 @@ class MainActivity : CustomActivity(), TimerListener {
     lateinit var statusBar: StatusBar
     lateinit var sudokuGrid: SudokuGrid
     private lateinit var keyboard: Keyboard
-    private lateinit var endCardDialog: EndCardDialog
 
     var selected: Position? = null
     private var isNotes = false
@@ -45,7 +47,6 @@ class MainActivity : CustomActivity(), TimerListener {
         sudokuGrid = findViewById(R.id.sudokuGrid)
         statusBar = findViewById(R.id.statusBar)
         keyboard = findViewById(R.id.keyboard)
-        endCardDialog = EndCardDialog(this)
 
         timer = Timer(this)
         timer.startTimer(0)
@@ -66,6 +67,7 @@ class MainActivity : CustomActivity(), TimerListener {
         val width = mainLayout.width - mainLayout.paddingLeft - mainLayout.paddingRight
         val height = mainLayout.height - mainLayout.paddingTop - mainLayout.paddingBottom -
                 statusBar.height -
+                2 * resources.getDimensionPixelSize(R.dimen.border) -
                 (statusBar.layoutParams as RelativeLayout.LayoutParams).bottomMargin -
                 (statusBar.layoutParams as RelativeLayout.LayoutParams).topMargin -
                 keyboard.height -
@@ -91,11 +93,11 @@ class MainActivity : CustomActivity(), TimerListener {
         if (data.loadmode.also { LOAD_MODE = it }) {
             game = data.loadSudoku()
             sudokuGrid.init(game.blocks)
-            statusBar.activate(true)
             keyboard.activate(true)
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE)
         }
         updateKeyboard()
+        updateProgress()
     }
 
     override fun onResume() {
@@ -118,7 +120,6 @@ class MainActivity : CustomActivity(), TimerListener {
         if (!data.loadmode.also { LOAD_MODE = it }) {
             sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.LOADING)
             keyboard.activate(false)
-            statusBar.activate(false)
             timer.stopTimer()
 
             // a generation might still run for a previous instance of this activity (e.g. after rotation),
@@ -134,6 +135,7 @@ class MainActivity : CustomActivity(), TimerListener {
         statusBar.setDifficulty(DIFFICULTY)
         statusBar.setError(game.overallErrors)
         updateKeyboard()
+        updateProgress()
     }
 
     private fun heavyLoading(difficulty: Difficulty) {
@@ -141,29 +143,31 @@ class MainActivity : CustomActivity(), TimerListener {
 
         // game created -> save and set load-mode to load sudoku next time
         data.saveSudoku(newGame)
+        data.saveInt(Data.GAME_DIFFICULTY, difficulty.number)
         data.loadmode = !LOAD_MODE.also { LOAD_MODE = !it }
 
-        // save the setting that apply at first next game
-        data.saveBoolean(Data.GAME_SHOW_ERRORS, data.loadBoolean(Data.SETTINGS_MARK_ERRORS))
-        data.saveBoolean(Data.GAME_SHOW_TIME, data.loadBoolean(Data.SETTINGS_SHOW_TIME))
+        data.applyNextGameSettings()
 
         // reset game errors and time
         data.saveInt(Data.GAME_ERRORS, 0)
         data.saveInt(Data.GAME_TIME, 0)
         runOnUiThread {
             generation = null
-            activeActivity.get()?.showGeneratedGame(newGame)
+            activeActivity.get()?.showGeneratedGame(newGame, difficulty)
         }
     }
 
-    private fun showGeneratedGame(newGame: Sudoku) {
+    // the difficulty of the generated game, another one might have been chosen in the meantime
+    private fun showGeneratedGame(newGame: Sudoku, difficulty: Difficulty) {
+        DIFFICULTY = difficulty
+        statusBar.setDifficulty(difficulty)
         game = newGame
         sudokuGrid.init(game.blocks)
         sudokuGrid.changeBackground(SudokuGrid.BackgroundMode.VISIBLE)
-        statusBar.activate(true)
         keyboard.activate(true)
         statusBar.setError(game.overallErrors)
         updateKeyboard()
+        updateProgress()
         window.decorView.post { timer.startTimer(0) }
     }
 
@@ -272,6 +276,7 @@ class MainActivity : CustomActivity(), TimerListener {
             // TODO two times this.selected, maybe this can be done nicer
             select(it)
             updateKeyboard()
+            updateProgress()
 
             // check if sudoku-game is finished
             checkSudoku()
@@ -286,6 +291,7 @@ class MainActivity : CustomActivity(), TimerListener {
             // TODO two times this.selected, maybe this can be done nicer
             select(it)
             updateKeyboard()
+            updateProgress()
 
             // check new current errors
             checkErrors()
@@ -297,12 +303,19 @@ class MainActivity : CustomActivity(), TimerListener {
         keyboard.hideKeys { hideCompleted && game.count(it) >= 9 }
     }
 
+    private fun updateProgress() {
+        statusBar.setProgress(game.freeFields())
+    }
+
     fun notesMode(): Boolean {
         isNotes = !isNotes
         return isNotes
     }
 
     private fun checkSudoku() {
+        // the game already ended, a tap before the result screen shows must not end it again
+        if (isFinishing) return
+
         if (game.currentErrors() == 0 && game.freeFields() == 0)
             finishSudoku()
         else if (data.loadBoolean(Data.GAME_SHOW_ERRORS)) {
@@ -320,16 +333,23 @@ class MainActivity : CustomActivity(), TimerListener {
         timer.stopTimer()
         data.loadmode = false
 
-        val time = if (data.loadBoolean(Data.GAME_SHOW_TIME)) timer.time else 0
-        endCardDialog.show(true, time, DIFFICULTY)
-
-        data.addTime(timer.time, DIFFICULTY)
+        // the timer also runs when it is hidden, so every solved game has a time
+        val best = data.statistics(DIFFICULTY).bestTime
+        data.addGame(GameRecord(System.currentTimeMillis(), DIFFICULTY, true, timer.time))
+        showResult(true, best == 0 || timer.time < best)
     }
 
     private fun abortSudoku() {
         data.loadmode = false
         timer.stopTimer()
-        endCardDialog.show(false, 0, DIFFICULTY)
+        data.addGame(GameRecord(System.currentTimeMillis(), DIFFICULTY, false, null))
+        showResult(false, false)
+    }
+
+    // the result screen replaces the game, back from there leads home
+    private fun showResult(won: Boolean, newBest: Boolean) {
+        startActivity(GameResult.intent(this, won, timer.time, game.overallErrors, DIFFICULTY, newBest))
+        finish()
     }
 
     fun pauseGame(): Boolean {
@@ -349,7 +369,7 @@ class MainActivity : CustomActivity(), TimerListener {
 
     fun share(): String {
         try {
-            return share(game, this)
+            return share(game, DIFFICULTY, this)
         } catch (e: Exception) {
             CustomToast(this, resources.getString(R.string.error_default)).show()
         }
@@ -363,6 +383,28 @@ class MainActivity : CustomActivity(), TimerListener {
     private external fun createSudokuNative(freeFields: Int): Sudoku
 
     companion object {
+        // a new game of the difficulty is generated when the game screen opens
+        fun startNewGame(context: Context, difficulty: Difficulty) {
+            val data = Data.instance(context)
+            data.saveInt(Data.GAME_DIFFICULTY, difficulty.number)
+            data.loadmode = false
+            context.startActivity(Intent(context, MainActivity::class.java))
+        }
+
+        // the waiting shared game replaces the current one, its time and errors start at 0
+        fun startSharedGame(context: Context) {
+            val data = Data.instance(context)
+            val difficulty = data.sharedGameDifficulty() ?: return
+            data.saveSudoku(data.loadSharedGame())
+            data.saveInt(Data.GAME_DIFFICULTY, difficulty.number)
+            data.saveInt(Data.GAME_ERRORS, 0)
+            data.saveInt(Data.GAME_TIME, 0)
+            data.applyNextGameSettings()
+            data.loadmode = true
+            data.dismissSharedGame()
+            context.startActivity(Intent(context, MainActivity::class.java))
+        }
+
         // only accessed on the main thread
         private var generation: Thread? = null
         private var activeActivity = WeakReference<MainActivity>(null)

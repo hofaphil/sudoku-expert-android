@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- statistics tab of the home screen: a tab per difficulty above one group, see StatisticsPage -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/statisticsPage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/edgeSpacing"
+        android:paddingBottom="20dp">
+
+        <!-- the selected difficulty is yellow like the selected tab of the toolbar -->
+        <LinearLayout
+            style="@style/Box"
+            android:layout_marginTop="18dp"
+            android:divider="@drawable/divider_vertical"
+            android:orientation="horizontal"
+            android:showDividers="middle">
+
+            <TextView
+                android:id="@+id/statisticsOverall"
+                style="@style/Statistics.Tab"
+                android:text="@string/statistics_overall" />
+
+            <TextView
+                android:id="@+id/statisticsBeginner"
+                style="@style/Statistics.Tab"
+                android:text="@string/beginner" />
+
+            <TextView
+                android:id="@+id/statisticsAdvanced"
+                style="@style/Statistics.Tab"
+                android:text="@string/advanced" />
+
+            <TextView
+                android:id="@+id/statisticsExpert"
+                style="@style/Statistics.Tab"
+                android:text="@string/expert" />
+        </LinearLayout>
+
+        <!-- instead of the statistics while the difficulty was not played yet -->
+        <LinearLayout
+            android:id="@+id/statisticsEmpty"
+            style="@style/Box"
+            android:layout_marginTop="12dp"
+            android:gravity="center_horizontal"
+            android:padding="24dp"
+            android:visibility="gone">
+
+            <ImageView
+                style="@style/Box.Icon"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_statistic" />
+
+            <TextView
+                style="@style/Home.Card.Title"
+                android:layout_marginTop="14dp"
+                android:text="@string/statistics_empty_title" />
+
+            <TextView
+                android:id="@+id/statisticsEmptyText"
+                style="@style/Settings.Row.Summary"
+                android:layout_marginTop="6dp"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <!-- trophy and time, divided like the continue card on the play tab -->
+        <LinearLayout
+            android:id="@+id/statisticsBest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Home.Header"
+                android:text="@string/statistics_best" />
+
+            <LinearLayout
+                style="@style/Box"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/home_play_width"
+                    android:layout_height="match_parent"
+                    android:importantForAccessibility="no"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_trophy" />
+
+                <View style="@style/Line.Vertical" />
+
+                <TextView
+                    android:id="@+id/statisticsBestTime"
+                    style="@style/Result.Tile.Value"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    android:padding="16dp"
+                    android:text="00:00" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/statisticsDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Home.Header"
+                android:text="@string/statistics_title" />
+
+            <LinearLayout
+                style="@style/Settings.Group"
+                android:layout_marginTop="12dp">
+
+                <LinearLayout style="@style/Settings.Row">
+
+                    <TextView
+                        style="@style/Settings.Row.Name"
+                        android:text="@string/statistics_average" />
+
+                    <TextView
+                        android:id="@+id/statisticsAverageTime"
+                        style="@style/Settings.Row.Value"
+                        android:text="00:00" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/Settings.Row">
+
+                    <TextView
+                        style="@style/Settings.Row.Name"
+                        android:text="@string/statistics_total" />
+
+                    <TextView
+                        android:id="@+id/statisticsTotalTime"
+                        style="@style/Settings.Row.Value"
+                        android:text="00:00" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/Settings.Row">
+
+                    <TextView
+                        style="@style/Settings.Row.Name"
+                        android:text="@string/statistics_times_played" />
+
+                    <TextView
+                        android:id="@+id/statisticsTimesPlayed"
+                        style="@style/Settings.Row.Value"
+                        android:text="0" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/Settings.Row.Vertical">
+
+                    <TextView
+                        style="@style/Settings.Row.Title"
+                        android:text="@string/statistics_chart" />
+
+                    <com.aol.philipphofer.gui.BarChartView
+                        android:id="@+id/statisticsChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

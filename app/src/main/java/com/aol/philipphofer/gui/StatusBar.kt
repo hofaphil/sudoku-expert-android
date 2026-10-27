@@ -1,34 +1,23 @@
 package com.aol.philipphofer.gui
 
-import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.Intent
 import android.util.AttributeSet
-import android.view.ContextThemeWrapper
-import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.appcompat.widget.PopupMenu
 import com.aol.philipphofer.R
-import com.aol.philipphofer.gui.custom.CustomToast
 import com.aol.philipphofer.logic.MainActivity
 import com.aol.philipphofer.logic.Timer
 import com.aol.philipphofer.logic.help.Difficulty
 import com.aol.philipphofer.persistence.Data
-import androidx.core.net.toUri
 
 class StatusBar(context: Context, attributeSet: AttributeSet) :
     RelativeLayout(context, attributeSet) {
 
-    private val moreButton: ImageButton
-    private val newButton: ImageButton
-
     private val timeView: TextView
-    private val errorView: TextView
     private val difficultyView: TextView
+    private val gameProgress: GameProgress
 
     private val mainActivity: MainActivity
 
@@ -37,67 +26,12 @@ class StatusBar(context: Context, attributeSet: AttributeSet) :
 
         mainActivity = context as MainActivity;
 
-        newButton = findViewById(R.id.newButton)
-        val popupContext = ContextThemeWrapper(context, R.style.ThemeOverlay_Sudoku_PopupMenu)
-
-        val newPopup = PopupMenu(popupContext, newButton)
-        newPopup.inflate(R.menu.popup_new)
-        newPopup.setForceShowIcon(true)
-        newPopup.setOnMenuItemClickListener { item -> newPopupHandler(item) }
-        newButton.setOnClickListener { newPopup.show() }
-
-        moreButton = findViewById(R.id.moreButton)
-        val morePopup = PopupMenu(popupContext, moreButton, Gravity.END)
-        morePopup.inflate(R.menu.popup_more)
-        morePopup.setForceShowIcon(true)
-        morePopup.setOnMenuItemClickListener { item -> morePopupHandler(item) }
-        moreButton.setOnClickListener { morePopup.show() }
+        // back to the home screen, the game is saved when the activity pauses
+        findViewById<ImageButton>(R.id.backButton).setOnClickListener { mainActivity.finish() }
 
         timeView = findViewById(R.id.timeView)
         difficultyView = findViewById(R.id.difficultyView)
-        errorView = findViewById(R.id.errorView)
-    }
-
-    private fun morePopupHandler(item: MenuItem): Boolean {
-        val intent: Intent
-        when (item.itemId) {
-            R.id.popup_statistics -> {
-                intent = Intent(mainActivity, Statistics::class.java)
-                mainActivity.startActivity(intent)
-            }
-
-            R.id.popup_challenge -> mainActivity.share()
-
-            R.id.popup_settings -> {
-                intent = Intent(mainActivity, Settings::class.java)
-                mainActivity.startActivity(intent)
-            }
-
-            R.id.popup_rate -> {
-                val uri = ("market://details?id=" + context.packageName).toUri()
-                intent = Intent(Intent.ACTION_VIEW, uri)
-                try {
-                    context.startActivity(intent)
-                } catch (e: ActivityNotFoundException) {
-                    CustomToast(context, resources.getString(R.string.error_default)).show();
-                }
-            }
-
-            else -> return false
-        }
-        return true
-    }
-
-    private fun newPopupHandler(item: MenuItem): Boolean {
-        val difficultyNumber = when (item.itemId) {
-            R.id.popup_advanced -> Difficulty.ADVANCED.number
-            R.id.popup_expert -> Difficulty.EXPERT.number
-            else -> Difficulty.BEGINNER.number
-        }
-
-        Data.instance(mainActivity).saveInt(Data.GAME_DIFFICULTY, difficultyNumber)
-        mainActivity.startNewGame()
-        return true
+        gameProgress = findViewById(R.id.gameProgress)
     }
 
     fun setDifficulty(difficulty: Difficulty) {
@@ -105,22 +39,17 @@ class StatusBar(context: Context, attributeSet: AttributeSet) :
     }
 
     fun setError(error: Int) {
-        val showErrors = Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_ERRORS)
+        gameProgress.setError(error)
+    }
 
-        if (showErrors) errorView.text =
-            resources.getString(R.string.statusbar_errors, error, MainActivity.MAX_ERROR)
-        else errorView.text = resources.getString(R.string.statusbar_errors_not_enabled)
+    fun setProgress(freeFields: Int) {
+        gameProgress.setProgress(freeFields)
     }
 
     fun setTime(time: Int) {
         val showTime = Data.instance(mainActivity).loadBoolean(Data.GAME_SHOW_TIME)
 
         if (showTime) timeView.text = Timer.timeToString(time)
-        else timeView.text = "--:--"
-    }
-
-    fun activate(activate: Boolean) {
-        moreButton.isEnabled = activate
-        newButton.isEnabled = activate;
+        else timeView.text = Timer.NO_TIME
     }
 }

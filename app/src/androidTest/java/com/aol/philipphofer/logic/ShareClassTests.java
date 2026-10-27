@@ -69,7 +69,7 @@ public class ShareClassTests {
 
     @Before
     public void setup() {
-        Data.Constants.instance(InstrumentationRegistry.getInstrumentation().getContext()).drop();
+        Data.Constants.instance(InstrumentationRegistry.getInstrumentation().getTargetContext()).drop();
         mainActivity = ActivityScenario.launch(MainActivity.class);
     }
 

@@ -1,5 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Application theme -->
+
+    <!-- Themes ============================================================ -->
+
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary</item>
@@ -9,103 +11,10 @@
         <item name="android:windowLightStatusBar">@bool/light_system_bars</item>
         <item name="android:windowLightNavigationBar">@bool/light_system_bars</item>
         <item name="android:navigationBarColor">@color/transparent</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="fontFamily">@font/poppins</item>
     </style>
 
-    <!-- Settings and statistics: Material 3, styled like the system settings but with the app colors -->
-    <style name="MaterialTheme" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorOnPrimary">@color/on_primary</item>
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorSurface">@color/surface_dim</item>
-        <item name="colorOnSurface">@color/on_surface</item>
-        <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
-        <item name="colorSurfaceContainerHighest">@color/surface_variant</item>
-        <item name="colorOutline">@color/on_surface_subtle</item>
-        <item name="android:windowBackground">@color/surface_dim</item>
-        <item name="android:windowLightStatusBar">@bool/light_system_bars</item>
-        <item name="android:windowLightNavigationBar">@bool/light_system_bars</item>
-        <item name="android:navigationBarColor">@color/transparent</item>
-        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Sudoku.Dialog</item>
-    </style>
-
-    <!-- yellow button text is unreadable on the light dialog, the buttons use the purple instead -->
-    <style name="ThemeOverlay.Sudoku.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
-        <item name="colorPrimary">@color/secondary</item>
-        <item name="colorSurfaceContainerHigh">@color/surface</item>
-    </style>
-
-    <style name="Settings.Header" parent="">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingStart">8dp</item>
-        <item name="android:paddingTop">24dp</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:textAppearance">?attr/textAppearanceTitleSmall</item>
-        <item name="android:textColor">@color/secondary</item>
-    </style>
-
-    <style name="Settings.Row" parent="">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">2dp</item>
-        <item name="android:minHeight">72dp</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:orientation">horizontal</item>
-        <item name="android:paddingHorizontal">16dp</item>
-        <item name="android:paddingVertical">16dp</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-    </style>
-
-    <style name="Settings.Row.Text" parent="">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:orientation">vertical</item>
-    </style>
-
-    <style name="Settings.Row.Title" parent="">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAppearance">?attr/textAppearanceTitleMedium</item>
-        <item name="android:textColor">@color/on_surface</item>
-    </style>
-
-    <style name="Settings.Row.Summary" parent="">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAppearance">?attr/textAppearanceBodyMedium</item>
-        <item name="android:textColor">@color/on_surface_variant</item>
-    </style>
-
-    <style name="Settings.Row.Note" parent="Settings.Row.Summary">
-        <item name="android:textAppearance">?attr/textAppearanceBodySmall</item>
-        <item name="android:textColor">@color/on_surface_subtle</item>
-    </style>
-
-    <!-- a row that only shows information -->
-    <style name="Settings.Row.Static" parent="Settings.Row">
-        <item name="android:clickable">false</item>
-        <item name="android:focusable">false</item>
-    </style>
-
-    <style name="Settings.Row.Value" parent="">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:textAppearance">?attr/textAppearanceBodyLarge</item>
-        <item name="android:textColor">@color/on_surface_variant</item>
-    </style>
-
-    <style name="Settings.Row.Switch" parent="">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="thumbIcon">@drawable/switch_thumb_icon</item>
-        <item name="thumbIconTint">@color/switch_thumb_icon_tint</item>
-    </style>
-
-    <!-- Splash Screen -->
     <!-- same color as the top bar: yellow in light mode, dark in dark mode -->
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@color/top_bar</item>
@@ -117,129 +26,351 @@
         <item name="android:windowSplashScreenIconBackgroundColor" tools:targetApi="31">@color/ic_launcher_background</item>
     </style>
 
-    <!-- Popup Menus (Material 3 like) -->
-    <style name="ThemeOverlay.Sudoku.PopupMenu" parent="">
-        <item name="popupMenuStyle">@style/Widget.Sudoku.PopupMenu</item>
-        <item name="textAppearanceLargePopupMenu">@style/TextAppearance.Sudoku.PopupMenu</item>
-        <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.Sudoku.PopupMenu</item>
-        <item name="listPreferredItemHeightSmall">48dp</item>
-        <item name="listPreferredItemPaddingLeft">16dp</item>
-        <item name="listPreferredItemPaddingRight">24dp</item>
-    </style>
+    <!-- Text ============================================================== -->
 
-    <style name="Widget.Sudoku.PopupMenu" parent="Widget.AppCompat.Light.PopupMenu">
-        <item name="android:popupBackground">@drawable/popup_menu_background</item>
-        <item name="android:popupElevation">6dp</item>
-        <item name="android:dropDownVerticalOffset">4dp</item>
-        <item name="overlapAnchor">false</item>
-    </style>
-
-    <style name="TextAppearance.Sudoku.PopupMenu" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/on_surface</item>
-    </style>
-
-    <!-- Keyboard Style -->
-    <style name="KeyboardNumberButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
+    <!-- base of all texts, the font comes from the theme -->
+    <style name="Text" parent="">
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:padding">0dp</item>
-        <item name="android:textSize">@dimen/keyboardNumberText</item>
-        <item name="android:layout_columnWeight">1</item>
         <item name="android:textColor">@color/on_surface</item>
+    </style>
+
+    <style name="Text.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- small uppercase label: difficulty in the status bar, group titles -->
+    <style name="Text.Label" parent="Text.Bold">
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/text_label</item>
+    </style>
+
+    <!-- timer, screen and dialog titles on the top bar -->
+    <style name="Text.TopBar" parent="Text.Bold">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/on_top_bar</item>
+        <item name="android:textSize">@dimen/header_text_title</item>
+    </style>
+
+    <!-- Boxes and lines =================================================== -->
+
+    <!-- white box with a black border, the padding keeps the content inside the border -->
+    <style name="Box" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/box_top_bar</item>
+        <item name="android:padding">@dimen/border</item>
+    </style>
+
+    <!-- square icon in a box: new, more and back buttons, dialog icon -->
+    <style name="Box.Icon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:padding">@dimen/statusbar_button_padding</item>
+    </style>
+
+    <!-- black line below the top bar and above the keyboard -->
+    <style name="Line" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/border</item>
+        <item name="android:background">@color/outline</item>
+    </style>
+
+    <!-- divides the parts of a card, e.g. the play section of the continue card -->
+    <style name="Line.Vertical">
+        <item name="android:layout_width">@dimen/border</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- thin like the lines between the setting rows, between the toolbar tabs -->
+    <style name="Line.Vertical.Thin">
+        <item name="android:layout_width">@dimen/line</item>
+    </style>
+
+    <!-- Buttons =========================================================== -->
+
+    <style name="Button" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- number keys of the keyboard -->
+    <style name="Button.Key">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:padding">0dp</item>
         <item name="android:background">@null</item>
     </style>
 
-    <style name="KeyboardButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">@dimen/_1sdp</item>
-        <item name="android:paddingStart">@dimen/_14sdp</item>
-        <item name="android:paddingEnd">@dimen/_14sdp</item>
-        <item name="android:textSize">@dimen/keyboardFunctionalText</item>
-        <item name="android:layout_columnWeight">1</item>
-        <item name="android:textColor">@color/on_surface</item>
+    <!-- button in a black bordered box -->
+    <style name="Button.Box">
         <item name="android:foreground">@drawable/box</item>
         <item name="android:background">@color/key_background</item>
-        <item name="android:textAllCaps">false</item>
     </style>
 
-    <!-- Sudoku Style -->
-    <style name="NotesStyle" parent="@style/Base.TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
-        <item name="android:padding">0dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">@dimen/fieldNotesText</item>
-        <item name="android:visibility">invisible</item>
-        <item name="android:textColor">@color/on_surface</item>
+    <!-- notes, delete and pause: icon above the text -->
+    <style name="Button.Box.Function">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_columnWeight">1</item>
-        <item name="android:background">@color/transparent</item>
-        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_margin">@dimen/keyboardButtonSpacing</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:drawablePadding">@dimen/border</item>
+        <item name="android:drawableTint">@color/on_surface</item>
+        <item name="android:textSize">@dimen/keyboardFunctionalText</item>
     </style>
 
-    <style name="SudokuNumberStyle" parent="@style/Base.TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+    <!-- the dialog buttons share the width, their margins add up to the gap between them -->
+    <style name="Button.Box.Dialog">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginHorizontal">5dp</item>
+        <item name="android:textSize">@dimen/settings_text_title</item>
+    </style>
+
+    <!-- confirming button, yellow like the top bar -->
+    <style name="Button.Box.Dialog.Primary">
+        <item name="android:background">@color/primary</item>
+        <item name="android:textColor">@color/on_primary</item>
+    </style>
+
+    <!-- Settings and statistics: groups of rows in a box ================== -->
+
+    <!-- purple badge above a group -->
+    <style name="Settings.Header" parent="Text.Label">
+        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:background">@drawable/badge</item>
+        <item name="android:paddingHorizontal">8dp</item>
+        <item name="android:paddingVertical">4dp</item>
+        <item name="android:textColor">@color/on_secondary</item>
+    </style>
+
+    <style name="Settings.Group" parent="Box">
+        <item name="android:divider">@drawable/divider</item>
+        <item name="android:showDividers">middle</item>
+    </style>
+
+    <style name="Settings.Row" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">13dp</item>
+    </style>
+
+    <!-- title above wide content, e.g. the heat map -->
+    <style name="Settings.Row.Vertical">
+        <item name="android:gravity">start</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Settings.Row.Clickable">
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <!-- title and summary of a setting, fills the row up to the switch -->
+    <style name="Settings.Row.Text" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Settings.Row.Title" parent="Text.Bold">
+        <item name="android:textSize">@dimen/settings_text_title</item>
+    </style>
+
+    <style name="Settings.Row.Summary" parent="Text">
+        <item name="android:textColor">@color/on_surface_variant</item>
+        <item name="android:textSize">@dimen/settings_text_summary</item>
+    </style>
+
+    <!-- name and value of a statistic -->
+    <style name="Settings.Row.Name" parent="Settings.Row.Title">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="Settings.Row.Value" parent="Settings.Row.Title">
+        <item name="android:layout_marginStart">13dp</item>
+    </style>
+
+    <style name="Settings.Row.Switch" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">13dp</item>
+        <item name="android:thumb">@drawable/switch_thumb</item>
+        <item name="track">@drawable/switch_track</item>
+        <item name="switchMinWidth">@dimen/switch_width</item>
+        <item name="thumbTint">@null</item>
+        <item name="trackTint">@null</item>
+    </style>
+
+    <!-- Dialogs =========================================================== -->
+
+    <style name="Dialog.Message" parent="Text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:padding">18dp</item>
+        <item name="android:textSize">@dimen/settings_text_title</item>
+    </style>
+
+    <!-- the button margins fill up the padding to the box edge -->
+    <style name="Dialog.Buttons" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingHorizontal">13dp</item>
+        <item name="android:paddingVertical">18dp</item>
+    </style>
+
+    <!-- bordered box with the progress bar and the hearts, see GameProgress -->
+    <style name="GameProgress" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/box_top_bar</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">@dimen/statusbar_info_height</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- Home ============================================================== -->
+
+    <!-- bordered card on the home screen, the whole card is the button -->
+    <style name="Home.Card" parent="Box">
+        <item name="android:layout_marginTop">@dimen/home_card_spacing</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="Home.Card.Title" parent="Text.Bold">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">@dimen/home_card_title_text</item>
+    </style>
+
+    <!-- tab of the bottom toolbar: icon above the label, yellow while selected -->
+    <style name="Home.Tab" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingVertical">10dp</item>
+        <item name="android:background">@drawable/tab_background</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="Home.Tab.Icon" parent="">
+        <item name="android:layout_width">@dimen/home_tab_icon_size</item>
+        <item name="android:layout_height">@dimen/home_tab_icon_size</item>
+        <item name="android:importantForAccessibility">no</item>
+    </style>
+
+    <!-- takes the selected state of the tab for its color -->
+    <style name="Home.Tab.Text" parent="Text.Bold">
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:textColor">@color/tab_text</item>
+        <item name="android:textSize">@dimen/home_tab_text</item>
+    </style>
+
+    <!-- purple badge above the cards like the settings groups, the cards bring their own top margin -->
+    <style name="Home.Header" parent="Settings.Header">
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+
+    <!-- Statistics ======================================================== -->
+
+    <!-- difficulty tab above the statistics, yellow while selected like the toolbar tabs -->
+    <style name="Statistics.Tab" parent="Text.Bold">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:paddingHorizontal">4dp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:background">@drawable/tab_background</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textColor">@color/tab_text</item>
+        <item name="android:textSize">@dimen/home_tab_text</item>
+    </style>
+
+    <!-- Result ============================================================ -->
+
+    <!-- bordered tile with a small label above a big value, replaces the box padding -->
+    <style name="Result.Tile" parent="Box">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">14dp</item>
+    </style>
+
+    <style name="Result.Tile.Label" parent="Text">
+        <item name="android:textColor">@color/on_surface_variant</item>
+        <item name="android:textSize">@dimen/settings_text_summary</item>
+    </style>
+
+    <style name="Result.Tile.Value" parent="Text.Bold">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textSize">@dimen/result_value_text</item>
+    </style>
+
+    <!-- bordered button, the bottom row shares the width -->
+    <style name="Result.Button" parent="Button.Box">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minHeight">@dimen/result_button_height</item>
+        <item name="android:paddingHorizontal">12dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:textSize">@dimen/settings_text_title</item>
+    </style>
+
+    <!-- full width yellow button: play again -->
+    <style name="Result.Button.Primary">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">0</item>
+        <item name="android:background">@color/primary</item>
+        <item name="android:textColor">@color/on_primary</item>
+        <item name="android:textSize">@dimen/result_button_text</item>
+    </style>
+
+    <!-- Fields ============================================================ -->
+
+    <style name="Field" parent="">
         <item name="android:gravity">center</item>
         <item name="android:padding">0dp</item>
-        <item name="android:textSize">@dimen/fieldNumberText</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <style name="Field.Number">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:textColor">@color/number_given</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:background">@color/transparent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">match_parent</item>
     </style>
 
-    <!-- NewGame Style -->
-    <style name="Theme.Transparent" parent="android:Theme.Dialog">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@color/transparent</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:backgroundDimEnabled">true</item>
+    <!-- one of the 3x3 notes of a field -->
+    <style name="Field.Note">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:visibility">invisible</item>
     </style>
-
-    <!-- General Styles -->
-    <style name="General.Title" parent="TextAppearance.AppCompat.Title">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/_13sdp</item>
-        <item name="android:textColor">@color/on_surface</item>
-        <item name="android:background">@color/transparent</item>
-        <item name="android:layout_marginLeft">5dp</item>
-    </style>
-
-    <style name="General.Info" parent="TextAppearance.AppCompat.Title">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/_12sdp</item>
-        <item name="android:textColor">@color/on_surface_variant</item>
-        <item name="android:background">@color/transparent</item>
-        <item name="android:layout_marginLeft">5dp</item>
-    </style>
-
-
-    <style name="General.ToolBar" parent="">
-        <item name="android:titleTextColor">@color/on_top_bar</item>
-        <item name="android:background">@color/top_bar</item>
-    </style>
-
-
-    <style name="General.Button" parent="TextAppearance.AppCompat.Button">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:stateListAnimator">@null</item>
-        <item name="android:textColor">@color/on_primary</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:background">?colorPrimary</item>
-        <item name="android:textAllCaps">false</item>
-    </style>
-
-    <style name="General.VerticalLine" parent="">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
-        <item name="android:background">@color/outline_variant</item>
-        <item name="android:layout_marginTop">@dimen/_15sdp</item>
-    </style>
-
 </resources>

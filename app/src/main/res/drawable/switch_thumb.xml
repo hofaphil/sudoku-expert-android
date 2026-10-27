@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- black square with a gap to the track border; a layer inset instead of an inset drawable,
+     SwitchCompat would treat the insets as padding and shrink the switch -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <size
+                android:width="@dimen/switch_height"
+                android:height="@dimen/switch_height" />
+            <solid android:color="@color/transparent" />
+        </shape>
+    </item>
+    <item
+        android:bottom="@dimen/switch_thumb_inset"
+        android:left="@dimen/switch_thumb_inset"
+        android:right="@dimen/switch_thumb_inset"
+        android:top="@dimen/switch_thumb_inset">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/outline" />
+        </shape>
+    </item>
+</layer-list>

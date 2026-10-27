@@ -15,8 +15,10 @@
     <!-- 1. Palette ========================================================= -->
 
     <!-- gray (both themes) -->
+    <color name="white">#FFFFFF</color>
     <color name="gray_50">#FAFAFA</color>
     <color name="gray_100">#EEEEEE</color>
+    <color name="gray_200">#DEDEDE</color>
     <color name="gray_300">#C7C5C5</color>
     <color name="gray_400">#A9A9A9</color>
     <color name="gray_500">#8E8E93</color>
@@ -40,7 +42,11 @@
 
     <!-- red -->
     <color name="red_200">#F09A96</color>
+    <color name="red_400">#E8566C</color>
     <color name="red_900">#5E2A28</color>
+
+    <!-- orange -->
+    <color name="orange_400">#FF9A3C</color>
 
     <color name="transparent">#00000000</color>
 
@@ -51,30 +57,34 @@
     <color name="on_primary">@color/gray_1000</color>
 
     <color name="secondary">@color/indigo_500</color>
+    <color name="on_secondary">@color/white</color>
+    <!-- lighter filled areas: progress bar, chart bars, toolbar icons -->
+    <color name="secondary_fill">@color/indigo_200</color>
     <color name="secondary_container">@color/indigo_100</color>
 
+    <color name="error">@color/red_400</color>
     <color name="error_container">@color/red_200</color>
 
     <color name="background">@color/gray_50</color>
     <color name="surface">@color/gray_50</color>
-    <color name="surface_dim">@color/gray_100</color>
     <color name="surface_variant">@color/gray_300</color>
 
     <color name="on_surface">@color/gray_1000</color>
     <color name="on_surface_variant">@color/gray_600</color>
-    <color name="on_surface_subtle">@color/gray_400</color>
 
     <color name="outline">@color/gray_1000</color>
     <color name="outline_variant">@color/gray_600</color>
 
     <color name="top_bar">@color/primary</color>
     <color name="on_top_bar">@color/on_primary</color>
+    <!-- buttons and info box on the top bar -->
+    <color name="top_bar_box">@color/surface</color>
 
     <!-- 3. Game ============================================================ -->
 
     <color name="cell_background">@color/background</color>
     <color name="cell_selected">@color/primary</color>
-    <color name="cell_highlight">@color/surface_variant</color>
+    <color name="cell_highlight">@color/gray_200</color>
     <color name="cell_same_number">@color/secondary_container</color>
     <color name="cell_error">@color/error_container</color>
 
@@ -86,6 +96,22 @@
     <!-- frame around a 3x3 block / lines between its cells -->
     <color name="grid_border">@color/outline</color>
     <color name="grid_line">@color/outline</color>
+
+    <!-- lives left in the status bar -->
+    <color name="heart">@color/error</color>
+
+    <!-- bars of the solved games per day in the statistics, today in yellow -->
+    <color name="chart_bar">@color/secondary_fill</color>
+    <color name="chart_bar_today">@color/primary</color>
+
+    <!-- filled icons of the bottom toolbar -->
+    <color name="tab_icon_fill">@color/secondary_fill</color>
+
+    <!-- reached stars of a difficulty on the home screen -->
+    <color name="difficulty_star">@color/primary</color>
+
+    <!-- streak flame on the home screen -->
+    <color name="flame">@color/orange_400</color>
 
     <color name="key_background">@color/transparent</color>
     <color name="key_active">@color/primary</color>

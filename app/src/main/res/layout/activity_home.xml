@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <!-- top bar: logo, app name and the streak -->
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/top_bar"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/edgeSpacing"
+            android:paddingVertical="13dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:importantForAccessibility="no"
+                android:src="@drawable/logo" />
+
+            <TextView
+                style="@style/Text.TopBar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:text="@string/home_title"
+                android:textSize="@dimen/home_title_text" />
+
+            <!-- the box padding only clears its border, the inner layout spaces the content -->
+            <LinearLayout
+                android:id="@+id/streakBox"
+                style="@style/Box"
+                android:layout_width="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="8dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_streak" />
+
+                    <TextView
+                        android:id="@+id/streakView"
+                        style="@style/Text.Bold"
+                        android:layout_marginStart="6dp"
+                        android:includeFontPadding="false"
+                        android:text="0"
+                        android:textSize="@dimen/settings_text_title"
+                        tools:ignore="HardcodedText" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View style="@style/Line" />
+    </LinearLayout>
+
+    <!-- the page of the selected tab is visible, see Home.select -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <include layout="@layout/page_play" />
+
+        <include
+            layout="@layout/page_statistics"
+            android:visibility="gone" />
+
+        <include
+            layout="@layout/page_settings"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <!-- bottom toolbar between two borders, the selected tab is yellow, thin lines between the tabs like between setting rows -->
+    <View style="@style/Line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/playTab"
+            style="@style/Home.Tab">
+
+            <ImageView
+                style="@style/Home.Tab.Icon"
+                android:src="@drawable/ic_gamepad" />
+
+            <TextView
+                style="@style/Home.Tab.Text"
+                android:text="@string/home_play" />
+        </LinearLayout>
+
+        <View style="@style/Line.Vertical.Thin" />
+
+        <LinearLayout
+            android:id="@+id/statisticsTab"
+            style="@style/Home.Tab">
+
+            <ImageView
+                style="@style/Home.Tab.Icon"
+                android:src="@drawable/ic_statistic" />
+
+            <TextView
+                style="@style/Home.Tab.Text"
+                android:text="@string/statistics_title" />
+        </LinearLayout>
+
+        <View style="@style/Line.Vertical.Thin" />
+
+        <LinearLayout
+            android:id="@+id/settingsTab"
+            style="@style/Home.Tab">
+
+            <ImageView
+                style="@style/Home.Tab.Icon"
+                android:src="@drawable/ic_settings" />
+
+            <TextView
+                style="@style/Home.Tab.Text"
+                android:text="@string/settings_title" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/Line" />
+</LinearLayout>
